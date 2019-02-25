@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css" />
+</head>
+
+<body>
+    <!-- 导航条 -->
+    <div class="layui-header">
+        <ul class="layui-nav ">
+            <li class="layui-nav-item"><a class="" href="index.html">会议室管理</a></li>
+            <li class="layui-nav-item">
+                <a class="" href="javascript:;">预定会议</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="meetAdd.html"><i class="layui-icon layui-icon-add-circle"></i> 发起会议</a>
+                    </dd>
+                    <dd>
+                        <a href="meetMy.html"><i class="layui-icon layui-icon-home"></i> 我的会程</a>
+                    </dd>
+                    <dd>
+                        <a href="meetHistory.html"><i class="layui-icon layui-icon-log"></i> 历史会程</a>
+                    </dd>
+
+                </dl>
+            </li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" id="userInfo">
+                <a href="javascript:;"><img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35"
+                        height="35"><cite class="username">咚咚咚</cite></a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="userInfo.html" class="">
+                            <i class="layui-icon layui-icon-tabs"></i><cite>个人资料</cite>
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="userChangepwd.html" class="">
+                            <i class="layui-icon layui-icon-edit"></i><cite>修改密码</cite>
+                        </a>
+                    </dd>
+                    <dd><a href="../login/login.html" class="signOut"><i class=" layui-icon layui-icon-close-fill"></i><cite>退出账号</cite></a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <!-- 我的会议 -->
+    <div class="layui-container">
+        <ul class="layui-timeline ">
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">8月18日</h3>
+                    <div class="layui-collapse" lay-accordion>
+                        <div class="layui-colla-item">
+                            <h4 class="layui-colla-title">关于吃饭的讨论</h4>
+                            <div class="layui-colla-content layui-show">
+                                <button class="layui-btn layui-btn-primary layui-btn-sm btnInfoMeet"><i class="layui-icon layui-icon-list"></i>会议详情</button>
+                                <br />
+                                <br />
+                                <div>公司治理是现代企业制度的核心，董事会是公司治理的关键，为进一步发挥董事会在公司治理和经营管理活动中的监督、指导和决策作用，企业通过召开年度会议，在了解了各公司上半年的经营管理完成情况的同时，还需要明确下半年的工作任务和重点，从而推动企业核心层在公司经营管理过程中作用的发挥。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">8月16日</h3>
+                    <div class="layui-collapse" lay-accordion>
+                        <div class="layui-colla-item">
+                            <h4 class="layui-colla-title">关于吃饭的讨论</h4>
+                            <div class="layui-colla-content layui-show">
+                                <button class="layui-btn layui-btn-primary layui-btn-sm btnInfoMeet"><i class="layui-icon layui-icon-list"></i>会议详情</button>
+                                <br />
+                                <br />
+                                <div>公司治理是现代企业制度的核心，董事会是公司治理的关键，为进一步发挥董事会在公司治理和经营管理活动中的监督、指导和决策作用，企业通过召开年度会议，在了解了各公司上半年的经营管理完成情况的同时，还需要明确下半年的工作任务和重点，从而推动企业核心层在公司经营管理过程中作用的发挥。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">8月15日</h3>
+                    <div class="layui-collapse" lay-accordion>
+                        <div class="layui-colla-item">
+                            <h4 class="layui-colla-title">关于吃饭的讨论</h4>
+                            <div class="layui-colla-content layui-show">
+                                <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon layui-icon-list"></i>会议详情</button>
+                                <br />
+                                <br />
+                                <div>公司治理是现代企业制度的核心，董事会是公司治理的关键，为进一步发挥董事会在公司治理和经营管理活动中的监督、指导和决策作用，企业通过召开年度会议，在了解了各公司上半年的经营管理完成情况的同时，还需要明确下半年的工作任务和重点，从而推动企业核心层在公司经营管理过程中作用的发挥。</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-collapse" lay-accordion>
+                        <div class="layui-colla-item">
+                            <h4 class="layui-colla-title">关于吃饭的讨论</h4>
+                            <div class="layui-colla-content layui-show">
+                                <button class="layui-btn layui-btn-primary layui-btn-sm btnInfoMeet"><i class="layui-icon layui-icon-list "></i>会议详情</button>
+                                <br />
+                                <br />
+                                <div>公司治理是现代企业制度的核心，董事会是公司治理的关键，为进一步发挥董事会在公司治理和经营管理活动中的监督、指导和决策作用，企业通过召开年度会议，在了解了各公司上半年的经营管理完成情况的同时，还需要明确下半年的工作任务和重点，从而推动企业核心层在公司经营管理过程中作用的发挥。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">过去</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        //JavaScript代码区域
+        layui.use(['element', 'layer', 'jquery'], function () {
+            var element = layui.element;
+            var layer = layui.layer;
+            var $ = layui.jquery;
+
+            $(".btnInfoMeet").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: '编辑详情',
+                    content: 'meet-Info.html',
+                    area: ['45%', '98%']
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

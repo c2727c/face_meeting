@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- 	
+namespace 的值是 接口
+每个Mapper 接口对应一个配置文件 
+<id column="关联pojo对象对应表的主键字段" jdbcType="字段类型" property="关联pojo对象的主席属性"/>
+<result  column="任意表的字段" jdbcType="字段类型" property="关联pojo对象的属性"/>
+<collection column="传递给嵌套查询语句的字段参数" property="pojo对象中集合属性" ofType="集合属性中的pojo对象" select="嵌套的查询语句" > </collection>
+ -->
+<mapper namespace="cn.drrs.face_meeting.dao.PersonDao">
+	<resultMap type="cn.drrs.face_meeting.entity.Person"
+		id="personMap">
+		<id column="pId" property="pId" />
+		<result column="pPass" property="pPass" />
+		<result column="pName" property="pName" />
+		<result column="pGender" property="pGender" />
+		<result column="pRole" property="pRole" />
+		<result column="pDept" property="pDept" />
+		<result column="pPhone" property="pPhone"/>
+		<result column="pEmail" property="pEmail"/>
+		<result column="pPrivilege" property="pPrivilege" />
+		<result column="pPictPath" property="pPictPath"/>
+		<collection property="pMeetingList" column="pId_FQ"
+			ofType="cn.drrs.face_meeting.entity.Meeting"
+			javaType="java.util.ArrayList" 
+			select="selectHoldMeetingList">
+		</collection>
+		<collection property="pAttendMeetingList" column="pId"
+			ofType="cn.drrs.face_meeting.entity.Meeting"
+			javaType="java.util.ArrayList" select="selectAttendMeetingList">
+		</collection>
+		<collection property="pInformMeetingList" column="pId"
+			ofType="cn.drrs.face_meeting.entity.Meeting"
+			javaType="java.util.ArrayList" select="selectInformMeetingList">
+		</collection>
+	</resultMap>
+	
+	<!--<select id="findById" 
+	parameterType="String" 
+	resultType="cn.drrs.face_meeting.entity.Person">
+	select * from person where pId=#{pId};
+	</select>  -->
+	<select id="findById" parameterType="String" resultMap="personMap">
+	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
+	</select>
+	
+	<insert id="add" parameterType="cn.drrs.face_meeting.entity.Person">
+	INSERT INTO person VALUES(#{pId},#{pPass},#{pName},#{pGender},'普通职工',#{pDept},#{pPhone},#{pEmail},#{pPrivilege},#{pPictPath},'');
+	</insert>
+	
+	<update id="userInfoUpdate" parameterType="cn.drrs.face_meeting.entity.Person">
+	update person set pName=#{pName},pGender=#{pGender},pPhone=#{pPhone},pEmail=#{pEmail},pPictPath=#{pPictPath} where pId=#{pId};
+	</update>
+	
+	<update id="changePass" parameterType="cn.drrs.face_meeting.entity.Person">
+	update person set pPass=#{pPass} where pId=#{pId};
+	</update>
+	
+	<select id="findByFields" parameterType="cn.drrs.face_meeting.entity.Person" resultMap="personMap">
+	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ)
+	<where>
+	<if test="pName!=null">and pName like #{pName}</if>
+	<if test="pGender!=null">and pGender=#{pGender}</if>
+	<if test="pRole!=null">and pRole=#{pRole}</if>
+	<if test="pDept!=null">and pDept=#{pDept}</if>
+	<if test="pPrivilege>0">and pPrivilege=#{pPrivilege}</if>
+	</where>
+	</select>
+	<select id="selectAttendMeetingList" 
+	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
+	SELECT  * FROM meeting NATURAL JOIN pm_attend LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) WHERE pId=#{pId};
+	</select>
+	<select id="selectInformMeetingList" 
+	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
+	SELECT  * FROM meeting NATURAL JOIN pm_inform LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) WHERE pId=#{pId};
+	</select>
+	<select id="selectHoldMeetingList" 
+	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
+	select meeting.* from meeting LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) where pId_FQ=#{pId};
+	</select>
+
+</mapper>

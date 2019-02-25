@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- namespace 的值是 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="cn.drrs.face_meeting.dao.PGJoinDao">
+	<insert id="insert" parameterType="java.util.ArrayList">
+		insert into `pg_join` values
+		<foreach collection="list" item="join" separator=",">
+			(#{join.pId},#{join.gId})
+		</foreach>
+
+	</insert>
+	<delete id="delete" parameterType="java.util.ArrayList">
+		<foreach collection="list" item="join" separator=",">
+			delete from `pg_join` where gId = #{join.gId} and pId=#{join.pId};
+		</foreach>
+	</delete>
+	
+
+</mapper>

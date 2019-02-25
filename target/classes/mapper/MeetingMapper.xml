@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- namespace 的值是 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="cn.drrs.face_meeting.dao.MeetingDao">
+	<resultMap type="cn.drrs.face_meeting.entity.Meeting" id="meetingMap">
+		<id column="mNo" property="mNo" />
+		<result column="mTitle" property="mTitle" />
+		<result column="mInfo" property="mInfo" />
+		<result column="mSize" property="mSize" />
+		<result column="mSpan" property="mSpan" />
+		<result column="tName" property="tName" />
+		<result column="pId_FQ" property="pId_FQ" />
+		<result column="state" property="state" />
+		<result column="mCreateTime" property="mCreateTime" />
+		<collection property="mEventList" column="mNo"
+			ofType="cn.drrs.face_meeting.entity.Event">
+			<id column="mNo" property="mNo" />
+			<id column="rId" property="rId" />
+			<result column="startDate" property="startDate" />
+			<result column="startTime" property="startTime" />
+			<result column="endTime" property="endTime" />
+		</collection>
+		<collection property="mAttendList" column="mNo"
+			ofType="cn.drrs.face_meeting.entity.Person"
+			javaType="java.util.ArrayList"
+			select="selectmAttendList">
+		</collection>
+		<collection property="mInformList" column="mNo"
+			ofType="cn.drrs.face_meeting.entity.Person"
+			javaType="java.util.ArrayList"
+			select="selectmInformList">
+		</collection>
+	</resultMap>
+	<insert id="save" 
+		parameterType="cn.drrs.face_meeting.entity.Meeting">
+		insert into Meeting values(NULL,#{mTitle},DEFAULT,#{mSize},#{mSpan},DEFAULT,#{pId_FQ},'pass',DEFAULT);
+	</insert>
+	<update id="update" 
+		parameterType="cn.drrs.face_meeting.entity.Meeting">
+		UPDATE meeting SET mTitle=#{mTitle},mInfo=#{mInfo},mSize=#{mSize},mSpan=#{mSpan},tName=#{tName}
+			WHERE mNo=#{mNo};
+	</update>
+	<delete id="deleteBymNo" 
+		parameterType="cn.drrs.face_meeting.entity.Meeting">
+		delete from Meeting where mNo = #{mNo};
+	</delete>
+	<select id="findBymNo" 
+		parameterType="int"
+		resultMap="meetingMap">
+		select * from meeting where mNo=#{mNo};
+	</select>
+	
+	<select id="findByFields" 
+		parameterType="cn.drrs.face_meeting.entity.Meeting"
+		resultMap="meetingMap">
+		select * from meeting
+		<where>
+		<if test="mNo>0">and mNo=#{mNo}</if>
+		<if test="mTitle!=null">and mTitle like CONCAT('%',#{mTitle},'%')</if>
+		<if test="tName!=null">and tName=#{tName}</if>
+		<if test="state!=null">and state=#{state}</if>
+		</where>
+	</select>
+	
+	<select id="selectmAttendList" 
+		parameterType="int"
+		resultMap="cn.drrs.face_meeting.dao.PersonDao.personMap">
+		select * from person natural join pm_attend where mNo=#{mNo};
+	</select>
+	<select id="selectmInformList" 
+		parameterType="int"
+		resultMap="cn.drrs.face_meeting.dao.PersonDao.personMap">
+		select * from person natural join pm_inform where mNo=#{mNo};
+	</select>
+	<!--分页查询数据，根据limit和page进行分页-->
+    <select id="findRoomByPage" parameterType="Map" resultType="cn.drrs.face_meeting.entity.Room">
+        SELECT rId,rName,rInfo,rSize,rAddr,tName
+        FROM  Room
+        <if test="page!=null and limit!=null">
+            limit #{page},#{limit}
+        </if>
+    </select>
+    <!--查询记录总数-->
+    <select id="queryRoomCount"  resultType="java.lang.Integer">
+        SELECT count(*) FROM  Room
+    </select>
+    
+	<!-- 以下为冗余 -->
+	<select id="findByCreator" 
+		parameterType="String"
+		resultType="cn.drrs.face_meeting.entity.Meeting">
+		select * from meeting
+			where pId_FQ=#{pId_FQ}
+			order by mCreateTime desc;
+	</select>
+	<select id="findByPM_inform" 
+		parameterType="String"
+		resultType="cn.drrs.face_meeting.entity.Meeting">
+		SELECT meeting.* FROM meeting NATURAL JOIN PM_inform WHERE PM_inform.pId=#{pId};
+	</select>
+	<select id="findByPM_attend" 
+		parameterType="String"
+		resultType="cn.drrs.face_meeting.entity.Meeting">
+		SELECT meeting.* FROM meeting NATURAL JOIN PM_attend WHERE PM_attend.pId=#{pId};
+	</select>
+	
+</mapper>

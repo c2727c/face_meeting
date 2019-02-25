@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css" />
+</head>
+
+<body class="layui-layout-body">
+    <div class="page-content-wrap">
+        <!-- 增加按钮 -->
+        <div class="layui-inline btn-add">
+            <div class="layui-btn-group">
+                <button id="adduser" class="layui-btn">
+                    <i class="layui-icon layui-icon-add-1"></i>
+                </button>
+            </div>
+        </div>
+        <!--添加搜索表单-->
+        <form class="layui-form layui-inline" action="">
+            <div class="layui-inline">
+                <input type="text" name="name" placeholder="请输入组名" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+            </div>
+        </form>
+
+
+        <!--人员列表-->
+        <div class="user-table">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>组名</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>小明的组</td>
+                        <td>
+                            <button class="layui-btn btn-edit">
+                                <i class="layui-icon layui-icon-edit"></i>
+                            </button>
+                            <button class="layui-btn layui-btn-danger btn-del">
+                                <i class="layui-icon layui-icon-delete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        //JavaScript代码区域
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use(['element', 'layer', 'jquery'], function () {
+            var element = layui.element;
+            var layer = layui.layer;
+            var $ = layui.jquery;
+            //添加按钮
+            $(".btn-add").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: '添加组名',
+                    content: 'add-group.html',
+                    area: ['50%', '100%']
+                });
+            });
+            //编辑按钮
+            $(".btn-edit").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: '编辑组名',
+                    content: 'edit-group.html',
+                    area: ['50%', '100%']
+                });
+            });
+            //删除
+            //layer.confirm(content, options, yes, cancel) - 询问框
+            $(".btn-del").on('click', function () {
+                layer.confirm('删除该行？', {icon: 3, title:'提示'}, function (index) {
+                    //ajax
+
+                    layer.close(index);
+                });
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

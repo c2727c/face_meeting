@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- namespace 的值是 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="cn.drrs.face_meeting.dao.MREventDao">
+	<resultMap type="cn.drrs.face_meeting.entity.Event" id="eventMap">
+		<id column="mNo" property="mNo" />
+		<id column="rId" property="rId" />
+		<result column="startDate" property="startDate" />
+		<result column="startTime" property="startTime" />
+		<result column="endTime" property="endTime" />
+		<association property="meeting" column="mNo"
+			javaType="cn.drrs.face_meeting.entity.Meeting"
+			select="selectMeeting">
+		</association>
+	</resultMap>
+	<insert id="insert"
+		parameterType="cn.drrs.face_meeting.entity.Event">
+		insert into MR_Event
+		values(#{mNo},#{rId},#{startDate},#{startTime},#{endTime});
+	</insert>
+	<delete id="delete">
+		delete from MR_Event
+		<where>
+			<if test="mNo>0">and mNo=#{mNo}</if>
+			<if test="rId!=null">and rId=#{rId}</if>
+		</where>
+	</delete>
+	<select id="findByFields"
+		resultMap="eventMap">
+		select * from mr_event
+		<where>
+			<if test="mNo>0">and mNo=#{mNo}</if>
+			<if test="rId!=null">and rId=#{rId}</if>
+			<if test="startDate!=null">and startDate=#{startDate}</if>
+		</where>
+	</select>
+	<select id="selectMeeting"
+		resultType="cn.drrs.face_meeting.entity.Meeting">
+		select * from meeting
+		<where>mNo=#{mNo}</where>
+	</select>
+
+</mapper>

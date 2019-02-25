@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- namespace 的值是 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="cn.drrs.face_meeting.dao.GroupDao">
+
+
+	<insert id="insert" 
+		parameterType="cn.drrs.face_meeting.entity.Group">
+		insert into `group` values (#{gId},#{gInfo});
+	</insert>
+	<delete id="delete" 
+		parameterType="String">
+		delete from `group` where gId = #{gId};
+	</delete>
+	<update id="update" 
+		parameterType="cn.drrs.face_meeting.entity.Group">
+		UPDATE `group` set gInfo=#{gInfo} where gId=#{gId};
+	</update>
+	
+	
+	<select id="findBygId" 
+		parameterType="String"
+		resultType="cn.drrs.face_meeting.entity.Group">
+		select * from `group` where gId=#{gId};
+	</select>
+	
+
+</mapper>

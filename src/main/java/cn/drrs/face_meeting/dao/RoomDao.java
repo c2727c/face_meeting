@@ -1,0 +1,26 @@
+package cn.drrs.face_meeting.dao;
+
+import java.util.List;
+
+import cn.drrs.face_meeting.entity.Room;
+import cn.drrs.face_meeting.entity.RoomRestrict;
+
+public interface RoomDao {
+	//增加房间
+	public boolean insert(Room r);
+	//删除房间
+	public boolean deleteByrId(String rId);
+	//更新房间信息
+	public boolean update(Room r);
+	
+	/*/查找所有房间
+	public List<Room>  findAll();
+	//查找符合该会议要求的房间
+	public List<Room>  findByMeeting(RoomRestrict rr);
+	//查找在某日期符合该会议要求的房间
+	public List<Room>  findByMeetingDate(RoomRestrict rr);*/
+	
+	//DONE 查找某日期某时间符合该会议要求的房间
+	public List<Room>  findByMeetingDateTime(RoomRestrict rr);
+
+}
