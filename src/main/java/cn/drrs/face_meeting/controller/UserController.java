@@ -31,7 +31,7 @@ public class UserController {
 		System.out.println(user);
 		System.out.println(" /user/changePass.do REQUEST");
 		//Controller-->Service-->ServiceImpl-->Dao-->Mapper
-		NoteResult<Person> result=userservice.changePass(user); 
+		NoteResult<Person> result=userservice.update(user); 
 		return result;
 	}
 }

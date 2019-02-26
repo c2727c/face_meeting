@@ -7,27 +7,27 @@ import java.util.List;
 
 
 public class Meeting {
-	private int mNo=-1;/*å”¯ä¸€ä¸”è‡ªå¢ï¼Œå¯ä»£è¡¨å‘èµ·çš„å…ˆåé¡ºåº*/
+	private int mNo=-1;/*Î¨Ò»ÇÒ×ÔÔö£¬¿É´ú±í·¢ÆğµÄÏÈºóË³Ğò*/
 	private String mTitle=null;
 	private String mInfo=null;
-	private int mSize=-1;;/*å®¹çº³äººæ•°*/
-	private int mSpan=-1;/*æ—¶é•¿,åˆ†é’Ÿæ•°*/
-	private String tName=null;/*ç‰¹æ€§ä¿¡æ¯*/
-	private String pId_FQ=null;/*å‘èµ·äºº*/
+	private int mSize=-1;;/*ÈİÄÉÈËÊı*/
+	private int mSpan=-1;/*Ê±³¤,·ÖÖÓÊı*/
+	private String tName=null;/*ÌØĞÔĞÅÏ¢*/
+	private String pId_FQ=null;/*·¢ÆğÈË*/
 	private	String state=null;
 	private Timestamp mCreateTime=null;
 	
 	
-	//é›†åˆæ˜ å°„
+	//¼¯ºÏÓ³Éä
 	private	List<Event> mEventList; 
 	private	List<Person> mAttendList;
 	private	List<Person> mInformList;
-	//DONE å‚ä¼š&æŠ¥é€åå•æ˜ å°„
+	//DONE ²Î»á&±¨ËÍÃûµ¥Ó³Éä
 	
 	public Meeting() {
 		
 	}
-	//ç”¨äºæ›´æ–°
+	//ÓÃÓÚ¸üĞÂ
 	public Meeting(int mNo, String mTitle, String mInfo, int mSize,int mSpan,String tName) {
 		super();
 		this.mNo = mNo;

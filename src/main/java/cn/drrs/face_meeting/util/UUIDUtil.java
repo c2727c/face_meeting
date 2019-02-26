@@ -3,7 +3,7 @@ package cn.drrs.face_meeting.util;
 import java.util.UUID;
 
 /**
- *	ç”ŸæˆéšæœºID
+ *	Éú³ÉËæ»úID
  */
 public class UUIDUtil {
 

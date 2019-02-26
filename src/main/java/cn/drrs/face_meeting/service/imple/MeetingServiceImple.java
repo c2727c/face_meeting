@@ -25,6 +25,7 @@ public class MeetingServiceImple implements MeetingService{
 	private PersonDao personDao;
 	@Resource
 	private RoomDaoTest roomDaoTest;
+	
 	public NoteResult<Object> add(String mTitle, int mSize, int mSpan,String pId_FQ) {
 		NoteResult<Object> result = new NoteResult<Object>();
 		//新建会议
@@ -135,6 +136,16 @@ public class MeetingServiceImple implements MeetingService{
 		result.setMsg("按条件查找会议，个数："+list.size());
 		return result;
 	}
+
+	public NoteResult<Meeting> findBymNo(int mNo) {
+		NoteResult<Meeting> result = new NoteResult<Meeting>();
+		Meeting m =meetingDao.findBymNo(mNo);
+		result.setData(m);
+		result.setStatus(0);
+		result.setMsg("按编号取唯一会议");
+		return result;
+	}
+
 
 	public NoteResult<List<Meeting>> findAllRoom(int before, int after) {
 		// TODO Auto-generated method stub

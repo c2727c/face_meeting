@@ -1,6 +1,15 @@
 eclipse.preferences.version=1
-encoding//src/main/java=UTF-8
 encoding//src/main/java/cn/drrs/face_meeting/controller/AnalyseController.java=UTF-8
-encoding//src/main/java/cn/drrs/face_meeting/service/PersonService.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/controller/MeetingController.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/controller/MeterController.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/controller/UserRegistController.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/dao/PMAttendDao.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/dao/PersonDao.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/dao/RoomDao.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/service/PersonService.java=GBK
+encoding//src/main/java/cn/drrs/face_meeting/service/imple/FaceServiceImple.java=UTF-8
 encoding//src/main/java/cn/drrs/face_meeting/service/imple/GroupServiceImple.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/service/imple/MeetingServiceImple.java=UTF-8
+encoding//src/main/java/cn/drrs/face_meeting/service/imple/RoomServiceImple.java=UTF-8
+encoding//src/test/java/test/service=UTF-8
 encoding/<project>=UTF-8

@@ -1,16 +1,11 @@
 package cn.drrs.face_meeting.entity;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Room implements Serializable{
+public class Room {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String rId;
 	private String rName;
 	private String rInfo;
@@ -18,7 +13,7 @@ public class Room implements Serializable{
 	private String rAddr = "3Floor";
 	private String tName;
 	
-	//ÈõÜÂêàÊò†Â∞Ñ
+	//ºØ∫œ”≥…‰
 	private  List<Event> rEventList;
 	
 	
@@ -30,11 +25,6 @@ public class Room implements Serializable{
 		return s;
 	}
 	
-	public Room() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public Room(String rId, String rName, String rInfo, int rSize, String tName) {
 		super();
 		this.rId = rId;
@@ -85,7 +75,6 @@ public class Room implements Serializable{
 	public List<Event> getrEventList() {
 		return rEventList;
 	}
-	@SuppressWarnings("unlikely-arg-type")
 	public List<Event> getrEventList(Date date) {
 		List<Event> list= new ArrayList<Event>();
 		for(Event e:rEventList) {

@@ -113,5 +113,7 @@ public class RoomServiceImple implements RoomService{
 		result.setData(list);
 		return result;
 	}
+	
+	
 
 }

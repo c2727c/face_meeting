@@ -18,14 +18,27 @@ public class PGJoinServiceImple implements PGJoinService{
 	//·加入分组
 	public NoteResult<Object> insert(List<PGJoin> list){
 		NoteResult<Object> nr= new  NoteResult<Object>();
-		nr.setAll(0, "批量插入分组", dao.insert(list));
+		try {
+			nr.setAll(0, "批量加入分组", dao.insert(list));
+		} catch (Exception e) {
+			nr.setAll(1, "加入分组失败，可能是外键限制", dao.insert(list));
+			
+			e.printStackTrace();
+			return nr;
+		}
 		return nr;
 		
 	}
 	//·退出分组
 	public NoteResult<Object> delete(List<PGJoin> list){
 		NoteResult<Object> nr= new  NoteResult<Object>();
-		nr.setAll(0, "批量删除分组", dao.delete(list));
+		try {
+			nr.setAll(0, "批量退出分组", dao.delete(list));
+		} catch (Exception e) {
+			nr.setAll(1, "退出分组失败", dao.insert(list));
+			e.printStackTrace();
+			return nr;
+		}
 		return nr;
 		
 	}

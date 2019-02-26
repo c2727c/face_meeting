@@ -22,9 +22,7 @@ public class UserRegistController {
 	@RequestMapping("/register.do")
 	@ResponseBody
 	public NoteResult<Person> execute(@RequestBody(required = false) Person user) {
-		System.out.println("one /user/register.do REQUEST");
-		//取手机号后六位作为pId
-		user.setpId(user.getpPhone().substring(user.getpPhone().length()-6, user.getpPhone().length()));
+		System.out.println("one /user/register.do REQUEST");		
 		System.out.println(user);
 		List<Person> users=new ArrayList<Person>();
 		users.add(user);

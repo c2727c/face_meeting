@@ -50,10 +50,13 @@ public class NoteResult<T> implements Serializable {
 
 	@Override
 	public String toString() {
-		String s = "NoteResult [status=" + status + ", msg=" + msg + ", data=" + data.toString() + "]";
-		//说明data不能为null
+		String s;
+		if(data!=null) {
+				s = "NoteResult [status=" + status + ", msg=" + msg + ", data=" + data.toString() + "]";
+		}else {	s = "NoteResult [status=" + status + ", msg=" + msg + ", data= null ]";}
 		System.err.println(s);
 		return s;
+		
 	}
 
 }

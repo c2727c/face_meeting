@@ -1,5 +1,6 @@
 package test.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -18,51 +19,63 @@ public class TestPersonService {
 	@Before
 	public void init() {
 		String[] conf= {"conf/spring-mybatis.xml",
-						"conf/spring-mvc.xml"};
+			"conf/spring-mvc.xml"};
 		ApplicationContext ctx = 
-				new ClassPathXmlApplicationContext(conf);
+			new ClassPathXmlApplicationContext(conf);
 		 ps = ctx.getBean("personService", PersonService.class);
 	}
-	//²âÊÔµÇÂ½
-	@Test//ÕıÈ·ÊäÈë
+	//æµ‹è¯•ç™»é™†
+	@Test//æ­£ç¡®è¾“å…¥
 	public void testLoginCorrect() {
-		NoteResult<Person> nr =ps.checkLogin("cCode", "CC001", "123456");
+		NoteResult<Person> nr =ps.checkLogin("cCode", "t15", "123456");
 		nr.toString();
 	}//ok 2/5
-	//²âÊÔ²éÕÒ
+	//æµ‹è¯•æŸ¥æ‰¾
 	@Test
 	public void testFind() {
-		//°´²¿·ÖĞÕÃû
-		NoteResult<List<Person>> nr =ps.findBypDeptpName(null,"a");
+		//æŒ‰éƒ¨åˆ†å§“å
+		NoteResult<List<Person>> nr =ps.findBypDeptpName(null,"8");
 		nr.toString();
-		//°´²¿·ÖĞÕÃû+²¿ÃÅÖ¸¶¨
-		nr =ps.findBypDeptpName("ggb","a");
+		//æŒ‰éƒ¨åˆ†å§“å+éƒ¨é—¨æŒ‡å®š
+		nr =ps.findBypDeptpName("ggb","8");
 		nr.toString();
 		
 	}//ok 2/5
-	//²âÊÔ·ÃÎÊ¹ØÁªµÄ»áÒé¼¯ºÏ
+	//æµ‹è¯•è®¿é—®å…³è”çš„ä¼šè®®é›†åˆ
 	@Test
 	public void testRelatedMeetings() {
-		Person p=ps.findBypId("CC001").getData();
-		System.out.println(p.toString());
+		Person p=ps.findBypId("t15").getData();
+		System.err.println(p.toString());
 		List<Meeting> list = p.getMeetings();
-		System.out.println("holdListSzie:"+list.size());
+		System.err.println("holdListSzie:"+list.size());
 		for(Meeting m :list) {
 			List<Event> el = m.getmEventList();
-			System.out.println("EventListSzie:"+el.size());
+			System.err.println("EventListSzie:"+el.size());
 		}
 		
 		List<Meeting> attendlist = p.getpAttendMeetingList();
-		System.out.println("attendlistSzie:"+attendlist.size());
+		System.err.println("attendlistSzie:"+attendlist.size());
 		for(Meeting m :attendlist) {
 			List<Event> el = m.getmEventList();
-			System.out.println("EventListSzie:"+el.size());
+			System.err.println("EventListSzie:"+el.size());
 			for(Event e:el)System.out.println(e.toString());
 		}
 	}//ok 2/5
 	
-	//TODO ²âÊÔ·ÃÎÊ¹ØÁª¹¤×÷×é
+	//TODO æµ‹è¯•è®¿é—®å…³è”å·¥ä½œç»„
 	
+	
+	//æµ‹è¯•æ‰¹é‡æ³¨å†Œ
+	@Test
+	public void testRejest() {
+		List<Person> list = new ArrayList<Person>();
+		for(int i=0;i<4;++i) {
+			Person p = new Person();
+			list.add(p);
+		}
+		NoteResult<Person> nr = ps.insert(list);
+		nr.toString();
+	}
 	
 	
 	

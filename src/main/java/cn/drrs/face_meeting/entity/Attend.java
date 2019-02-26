@@ -1,10 +1,16 @@
 package cn.drrs.face_meeting.entity;
 
 public class Attend {
+	
 	private int mNo;
 	private String pId;
 	private String state;
-	
+	public Attend(int mNo, String pId, String state) {
+		super();
+		this.mNo = mNo;
+		this.pId = pId;
+		this.state = state;
+	}
 	
 	public int getmNo() {
 		return mNo;

@@ -27,33 +27,33 @@ public class TestGroupAndJoinService {//complete2-5
 	@Before
 	public void init() {
 		String[] conf= {"conf/spring-mybatis.xml",
-						"conf/spring-mvc.xml"};
+			"conf/spring-mvc.xml"};
 		ApplicationContext ctx = 
-				new ClassPathXmlApplicationContext(conf);
+			new ClassPathXmlApplicationContext(conf);
 		 gs = ctx.getBean("groupService", GroupService.class);
 		 js = ctx.getBean("joinService", PGJoinService.class);
 	}
 	
 	@Test
 	public void testInsert() {
-		gs.insert(new Group("ÏîÄ¿A×é","ÌØ±ğÖØÒªµÄÏîÄ¿"));
+		gs.insert(new Group("é¡¹ç›®Aç»„","ç‰¹åˆ«é‡è¦çš„é¡¹ç›®"));
 	}
 	
 	@Test
 	public void testDelete() {
-		gs.delete( "ÏîÄ¿A×é");
+		gs.delete( "é¡¹ç›®Aç»„");
 	}
 	
 	@Test
 	public void testUpdate() {
-		gs.update(new Group("ÏîÄ¿A×é","ÌØ±ğÌØ±ğÌØ±ÈÖØÒªµÄÏîÄ¿"));
+		gs.update(new Group("é¡¹ç›®Aç»„","ç‰¹åˆ«ç‰¹åˆ«ç‰¹æ¯”é‡è¦çš„é¡¹ç›®"));
 	}
 	
 	@Test
 	public void testJoinGroup() {//5-3OK
 		List<PGJoin> list = new ArrayList<PGJoin>();
-		list.add(new PGJoin("B","CC001"));
-		list.add(new PGJoin("B","CC002"));
+		list.add(new PGJoin("é¡¹ç›®Aç»„","t15"));
+		list.add(new PGJoin("é¡¹ç›®Aç»„","t37"));
 		js.insert(list);
 		
 	}
@@ -61,7 +61,7 @@ public class TestGroupAndJoinService {//complete2-5
 	@Test
 	public void testQuitGroup() {//5-3OK
 		List<PGJoin> list = new ArrayList<PGJoin>();
-		list.add(new PGJoin("B","CC001"));
+		list.add(new PGJoin("é¡¹ç›®Aç»„","t37"));
 		js.delete(list);
 		
 	}

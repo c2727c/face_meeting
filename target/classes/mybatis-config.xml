@@ -28,5 +28,8 @@
 			handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />
 		<typeHandler
 			handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />
+		<typeHandler
+			handler="org.apache.ibatis.type.BlobTypeHandler" />
+		
 	</typeHandlers>
 </configuration>

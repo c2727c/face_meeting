@@ -13,7 +13,7 @@ public class Event {
 	private LocalTime startTime;
 	private LocalTime endTime;
 	
-	private Meeting meeting;//DONE Eventåˆ°Meetingå…³è”æ˜ å°„
+	private Meeting meeting;//DONE Eventµ½Meeting¹ØÁªÓ³Éä
 	
 	
 	

@@ -7,12 +7,14 @@ import cn.drrs.face_meeting.entity.Person;
 public interface PersonDao {
 	
 	public Person findById(String pId);
+	public List<Person> findAll();
+	
+	
 	//DONE 按字段查找用户
 	public List<Person> findByFields(Person p);
+	public int update(Person p);
+	
+	//批量注册
+	public int insert(List<Person> list);
 
-	//更新用户信息
-	//函数名与mapper中的id相对应
-	public boolean userInfoUpdate(Person p);
-	public boolean changePass(Person user);
-	public boolean add(Person person);
 }

@@ -25,8 +25,8 @@ public class MREventServiceImple implements MREventService{
 			nr.setMsg("成功安排一个会程，影响行数："+n);
 		}catch(Exception ecp) {
 			ecp.printStackTrace();
-			nr.setStatus(-1);
-			nr.setMsg("安排会程出错");
+			nr.setStatus(1);
+			nr.setMsg("安排会程出错，可能是外键限制");
 		}
 		return nr;
 	}
@@ -40,8 +40,8 @@ public class MREventServiceImple implements MREventService{
 			nr.setMsg("成功删除一个会程，影响行数："+n);
 		}catch(Exception ecp) {
 			ecp.printStackTrace();
-			nr.setStatus(-1);
-			nr.setMsg("删除会程出错");
+			nr.setStatus(1);
+			nr.setMsg("删除会程出错，可能是外键限制");
 		}
 		return nr;
 	}

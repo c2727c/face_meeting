@@ -6,18 +6,17 @@ import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.util.NoteResult;
 
 public interface PersonService {
-	//Â·ç™»å½•
-	public NoteResult<Person> checkLogin(String cCode,String pId,String password);
-	//Â·ä¸ªäººä¿¡æ¯ä¿®æ”¹
+	//¡¤µÇÂ¼
+	public NoteResult<Person> checkLogin(String cCode,String name,String password);
+	//¡¤¸öÈËĞÅÏ¢ĞŞ¸Ä
 	public NoteResult<Person> update(Person p);
-	//Â·TODO å½•å…¥äººè„¸ä¿¡æ¯ 
-	//Â·æŒ‰éƒ¨é—¨/å§“å/æ‰€åœ¨åˆ†ç»„æŸ¥æ‰¾å…¶ä»–ç”¨æˆ·
+	//¡¤TODO Â¼ÈëÈËÁ³ĞÅÏ¢ 
+	//¡¤°´²¿ÃÅ/ĞÕÃû/ËùÔÚ·Ö×é²éÕÒÆäËûÓÃ»§
 	public NoteResult<Person> findBypId(String pId);
 	public NoteResult<List<Person>> findBypDeptpName(String pDept,String pName);
-	//Groupé›†åˆæ˜ å°„public NoteResult<List<Person>> findBygName(String gName);
-	//Â· æ‰¹é‡æ³¨å†Œ
+	//Group¼¯ºÏÓ³Éäpublic NoteResult<List<Person>> findBygName(String gName);
+	//¡¤ ÅúÁ¿×¢²á
 	public NoteResult<Person> insert(List<Person> list);
-	//Â· æ‰¹é‡æ³¨é”€
+	//¡¤ ÅúÁ¿×¢Ïú
 	public NoteResult<Object> delete(List<String> list);
-	public NoteResult<Person> changePass(Person user);
 }

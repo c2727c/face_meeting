@@ -33,16 +33,11 @@ public class PersonServiceImple implements PersonService{
 	public NoteResult<Person> update(Person p) {
 		// TODO 更改账户信息
 		NoteResult<Person> nr = new NoteResult<Person>();
-		if(personDao.userInfoUpdate(p)) {
-			nr.setStatus(0);
-			nr.setMsg("修改用户信息成功");
-			Person p_new = personDao.findById(p.getpId());
-			nr.setData(p_new);
-			//不再设置nr.setData
+		int res = personDao.update(p);
+		if(res>0) {
+			nr.setAll(0, "成功更新用户信息", p);
 		}else {
-			nr.setStatus(1);
-			nr.setMsg("修改用户信息失败！");
-			nr.setData(p);
+			nr.setAll(1, "更新用户信息失败", null);
 		}
 		return nr;
 	}
@@ -69,35 +64,21 @@ public class PersonServiceImple implements PersonService{
 	
 
 	public NoteResult<Person> insert(List<Person> list) {
+		
 		NoteResult<Person> nr = new NoteResult<Person>();
-		// TODO 批量注册
-		if(personDao.findById(list.get(0).getpId())!=null) {
-			nr.setAll(1, "用户已存在", list.get(0));
-			return nr;
+		if(list.size()<=0)return nr;
+		try {
+			int i = personDao.insert(list);
+			nr.setAll(0, "批量注册成功，新增用户个数："+i, list.get(0));
+		}catch(Exception e) {
+			nr.setAll(1, "批量注册失败，可能存在重复id", null);
 		}
-		for(int i=0;i<list.size();i++) {
-			personDao.add(list.get(i));
-		}
-		nr.setAll(0, "注册成功",list.get(0));
 		return nr;
 	}
 
 	public NoteResult<Object> delete(List<String> list) {
 		// TODO 批量注销
 		return null;
-	}
-
-	public NoteResult<Person> changePass(Person user) {
-		// TODO Auto-generated method stub
-		NoteResult<Person> nr = new NoteResult<Person>();
-		if(personDao.changePass(user)) {
-			nr.setStatus(0);
-			nr.setMsg("修改密码成功");
-			nr.setData(personDao.findById(user.getpId()));
-		}else {
-			nr.setAll(1, "修改密码失败", personDao.findById(user.getpId()));
-		}
-		return nr;
 	}
 	
 	

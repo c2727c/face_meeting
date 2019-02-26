@@ -1,77 +1,63 @@
 package cn.drrs.face_meeting.entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.arcsoft.facerecognition.AFR_FSDKFace;
+
 /*
- * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ÐµÄ±ï¿½ï¿½ï¿½
- * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
- * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
- * Êµï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
+ * ²ÎÕÕÊý¾Ý¿âÖÐµÄ±í¶¨Òå
+ * ÊôÐÔÃûÓÚ×Ö¶ÎÃû±£³ÖÒ»ÖÂ
+ * ÊôÐÔÀàÐÍÓë×Ö¶ÎÀàÐÍ±£³ÖÒ»ÖÂ
+ * ÊµÏÖÐòÁÐ»¯
  */
 public class Person implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String pId=null;
 	private String pPass=null;
 	private String pName=null;
 	private String pGender=null;
 	private String pRole=null;
 	private String pDept=null;
-	private String pPhone=null;
-	private String pEmail=null;
 	private int pPrivilege=-1;
-	private String pPictPath="0";
-	//ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½
+	private byte[] pFace="face".getBytes();
+	private byte[] pIcon="icon".getBytes();
+	private String pTel = null;
+	
+	//¼¯ºÏÓ³Éä
 	private List<Meeting>	pMeetingList;
 	private List<Meeting>	pAttendMeetingList;
 	private List<Meeting>	pInformMeetingList;
-	//FIXME ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½Group  
+	//FIXME ¼¯ºÏÓ³ÉäGroup  
 	
 	public Person() {
-		
+		super();
+		this.pId = "t"+(int)(1+Math.random()*(100-1+1));
+		this.pPass = "123456";
+		this.pName = "²âÊÔ"+pId;
+		this.pFace = "testFeature".getBytes();
 	}
-	
-	
+	public Person(String pId, String pPass, String pName) {
+		super();
+		this.pId = pId;
+		this.pPass = pPass;
+		this.pName = pName;
+	}
+	public Person(String pId, String pPass) {
+		super();
+		this.pId = pId;
+		this.pPass = pPass;
+		this.pName = "--";
+	}
+
+
 	@Override
 	public String toString() {
 		return "Personel [pId=" + pId + ", pPass=" + pPass + ", pName=" + pName + ", pGender=" + pGender + ", pRole="
-				+ pRole + ", pDept=" + pDept + ", pPhone=" + pPhone + ", pEmail=" + pEmail + ", pPrivilege="
-				+ pPrivilege + ", pPictPath=" + pPictPath + "]";
+				+ pRole + ", pDept=" + pDept + ", pPrivilege=" + pPrivilege + "]";
 	}
 	
-	public String getpPhone() {
-		return pPhone;
-	}
-
-
-	public void setpPhone(String pPhone) {
-		this.pPhone = pPhone;
-	}
-
-
-	public String getpEmail() {
-		return pEmail;
-	}
-
-
-	public void setpEmail(String pEmail) {
-		this.pEmail = pEmail;
-	}
-
-
-	public String getpPictPath() {
-		return pPictPath;
-	}
-
-
-	public void setpPictPath(String pPictPath) {
-		this.pPictPath = pPictPath;
-	}
-
-
 	public String getpId() {
 		return pId;
 	}
@@ -115,24 +101,61 @@ public class Person implements Serializable{
 		this.pPrivilege = pPrivilege;
 	}
 	public List<Meeting> getMeetings() {
+		if(pMeetingList==null) {
+			pMeetingList = new ArrayList<Meeting>();
+		}
 		return pMeetingList;
 	}
 	public void setMeetings(List<Meeting> meetings) {
 		this.pMeetingList = meetings;
 	}
 	public List<Meeting> getpAttendMeetingList() {
+		if(pAttendMeetingList==null) {
+			pAttendMeetingList = new ArrayList<Meeting>();
+		}
 		return pAttendMeetingList;
 	}
 	public void setpAttendMeetingList(List<Meeting> pAttendMeetingList) {
 		this.pAttendMeetingList = pAttendMeetingList;
 	}
 	public List<Meeting> getpInformMeetingList() {
+		if(pInformMeetingList==null) {
+			pInformMeetingList = new ArrayList<Meeting>();
+		}
 		return pInformMeetingList;
 	}
 	public void setpInformMeetingList(List<Meeting> pInformMeetingList) {
 		this.pInformMeetingList = pInformMeetingList;
 	}
+	public byte[]  getpFace() {
+		return pFace;
+	}
+	public AFR_FSDKFace  getAFR_FSDKFace() {
+		return new AFR_FSDKFace(pFace);
+	}
+	public void setpFace(byte[] face) {
+		this.pFace = face;
+	}
 	
+
+	public byte[] getpIcon() {
+		return pIcon;
+	}
+
+
+	public void setpIcon(byte[] pIcon) {
+		this.pIcon = pIcon;
+	}
+
+
+	public String getpTel() {
+		return pTel;
+	}
+
+
+	public void setpTel(String pTel) {
+		this.pTel = pTel;
+	}
 	
 
 }

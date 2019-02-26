@@ -22,8 +22,8 @@ public class TestRoomService {//complete2-5
 	MeetingService ms=ctx.getBean("meetingService", MeetingService.class);
 	@Test
 	public void findByMeetingDateTime() {
-		rs.findByMeetingDateTime(1,LocalDate.of(2019,1,20),LocalTime.of(11,30,0,0));
-		
+		NoteResult nr = rs.findByMeetingDateTime(2,LocalDate.of(2019,1,20),LocalTime.of(11,30,0,0));
+		nr.toString();
 	}
 	@Test
 	public void insert() {
@@ -41,9 +41,9 @@ public class TestRoomService {//complete2-5
 		System.out.println(nr.toString());
 	}//ok2-5
 	
-	@Test//测试按条件查找会议室并获取房间的eventList
+	@Test//娴嬭瘯鎸夋潯浠舵煡鎵句細璁骞惰幏鍙栨埧闂寸殑eventList
 	public void getEventList() {
-		NoteResult<List<Room>> nr= rs.findByMeetingDateTime(1,LocalDate.parse("2019-01-20"),LocalTime.parse("09:00:00"));
+		NoteResult<List<Room>> nr= rs.findByMeetingDateTime(2,LocalDate.parse("2019-01-20"),LocalTime.parse("09:00:00"));
 		System.out.println(nr.toString());
 		for(Room r:nr.getData()) {
 			System.out.println(r.getrEventList().toString());

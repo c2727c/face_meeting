@@ -35,28 +35,37 @@ public class TestMeetingService {
 
 	@Test//ok 2/5
 	public void testAdd() {
-		ms.add("test Meeting7", 30, 60, "CC001");
+		ms.add("test Meeting7", 30, 60, "t15");
 	}
 	@Test//ok 2/5
 	public void deleteTest() {
 		ms.delete(1);
 	}
 	
-	//²âÊÔ·ÃÎÊ²éÕÒ²¢²Î»áÃûµ¥ºÍ±¨ËÍÃûµ¥
+	//æµ‹è¯•è®¿é—®æŸ¥æ‰¾å¹¶å‚ä¼šåå•å’ŒæŠ¥é€åå•
 	@Test
-	public void testFind() {
+	public void testFindBymNo() {
 		NoteResult<List<Meeting>> nr;
-		Meeting m = new Meeting();
-		m.setmNo(1);
-		nr=ms.findByFields(m);
-		nr.toString();
-		m = nr.getData().get(0);
+		Meeting m = ms.findBymNo(2).getData();
 		for(Person p:m.getmAttendList()) {
-			System.out.println(p.toString());
+			System.err.println(p.toString());
 		}
 		
 	}
 	
+	@Test
+	public void testFindByFields() {
+		NoteResult<List<Meeting>> nr;
+		Meeting m = new Meeting();
+		m.setmNo(2);
+		nr=ms.findByFields(m);
+		nr.toString();
+		m = nr.getData().get(0);
+		for(Person p:m.getmAttendList()) {
+			System.err.println(p.toString());
+		}
+		
+	}
 	
 	
 	/*

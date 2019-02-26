@@ -1,8 +1,11 @@
 package cn.drrs.face_meeting.service;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import cn.drrs.face_meeting.entity.Event;
+import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.util.NoteResult;
 
 public interface MREventService {

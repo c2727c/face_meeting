@@ -8,7 +8,7 @@ public class Group {
 	private String gId;
 	private String gInfo;
 	
-	//TODO é›†åˆæ˜ å°„
+	//TODO ¼¯ºÏÓ³Éä
 	private List<Person> memberList;
 	
 	

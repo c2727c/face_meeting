@@ -16,23 +16,23 @@ public class TestMREventService {
 	String[] conf= {"conf/spring-mybatis.xml",
 	"conf/spring-mvc.xml"};
 	ApplicationContext ctx = 
-			new ClassPathXmlApplicationContext(conf);
+		new ClassPathXmlApplicationContext(conf);
 	MREventService mres=ctx.getBean("mREventService", MREventService.class);
 	@Test
 	public void testInsert() {
-		System.out.println(mres.insert(new Event(1,"CR301",LocalDate.parse("2019-01-20"),LocalTime.parse("9:00:00"),LocalTime.parse("9:45:00"))));
+		System.out.println(mres.insert(new Event(2,"CR301",LocalDate.parse("2019-01-20"),LocalTime.parse("09:00:00"),LocalTime.parse("09:45:00"))));
 	}//ok
 	
 	@Test
 	public void testDelete() {
-		System.out.println(mres.delete(1, null));
+		System.out.println(mres.delete(2, null));
 	} 
 	@Test
-	// °´×Ö¶Î²éÕÒ£ºmNo/rId/ÈÕÆÚ/¿ªÊ¼Ê±¼ä/½áÊøÊ±¼ä
+	// æŒ‰å­—æ®µæŸ¥æ‰¾ï¼šmNo/rId/æ—¥æœŸ/å¼€å§‹æ—¶é—´/ç»“æŸæ—¶é—´
 	public void testFind() {
-		System.out.println(mres.findBymNo(1));
-		for(Event e :mres.findBymNo(1).getData() ) {
-			System.out.println(e.getStartDate()+","+e.getStartTime()+","+e.getMeeting().toString());
+		System.err.println(mres.findBymNo(2));
+		for(Event e :mres.findBymNo(2).getData() ) {
+			System.err.println(e.getStartDate()+","+e.getStartTime()+","+e.getMeeting().toString());
 		}
 
 	} 
