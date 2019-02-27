@@ -31,11 +31,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_74"/>
 	<classpathentry kind="lib" path="libs/ageestimation.jar"/>
 	<classpathentry kind="lib" path="libs/facedetection.jar"/>
 	<classpathentry kind="lib" path="libs/facerecognition.jar"/>
 	<classpathentry kind="lib" path="libs/facetracking.jar"/>
 	<classpathentry kind="lib" path="libs/genderestimation.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre32_1.8"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
