@@ -1,5 +1,6 @@
 package cn.drrs.face_meeting.service.imple;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,20 @@ public class MeetingServiceImple implements MeetingService{
 		}
 		return result;
 	}
+	
+	public NoteResult<Meeting> add(Meeting m) {
+		NoteResult<Meeting> result = new NoteResult<Meeting>();
+		try {
+			meetingDao.save(m);
+			result.setAll(0, "添加会议成功!", m);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setAll(1, "添加会议失败!", null);
+			return result;
+		}
+	}
+	
 
 	public NoteResult<Object> delete(int mNo) {
 		NoteResult<Object> result = new NoteResult<Object>();
@@ -114,9 +129,7 @@ public class MeetingServiceImple implements MeetingService{
 
 	
 	*/
-	public NoteResult<Object> update(int mNo, String mTitle, String mInfo, int mSize, int mSpan, String tName) {
-		Meeting m = new Meeting(mNo,mTitle,mInfo,mSize,mSpan,tName);
-		//FIXME传入tName
+	public NoteResult<Object> update(Meeting m) {
 		NoteResult<Object> result = new NoteResult<Object>();
 		if(meetingDao.update(m)) {
 			result.setStatus(0);
@@ -180,5 +193,31 @@ public class MeetingServiceImple implements MeetingService{
         }
         return rd;
 	}
+
+	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
+		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
+		List<Meeting> list = new ArrayList<Meeting>();
+		try {
+			Person p = personDao.findById(pId);
+			switch(option) {
+			case 1:
+				nr.setAll(0, "查询用户："+pId+"的创建会议成功", p.getMeetings());
+				break;
+			case 2:
+				nr.setAll(0, "查询用户："+pId+"的参加会议成功", p.getpAttendMeetingList());
+				break;
+			case 3:
+				nr.setAll(0, "查询用户："+pId+"的报送会议成功", p.getpInformMeetingList());
+				break;
+			}
+			return nr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			nr.setAll(1, "查询用户："+pId+"的相关会议失败", null);
+			return nr;
+		}
+	}
+
+	
 
 }

@@ -13,10 +13,11 @@ public interface MeetingService {
 	//【管理与自己相关的会议】
 	//发起（添加）会议
 	public NoteResult<Object> add(String mTitle, int mSize, int mSpan,String pId_FQ);
+	public NoteResult<Meeting> add(Meeting m);
 	//删除会议
 	public NoteResult<Object> delete(int mNo);
 	//更新会议
-	public NoteResult<Object> update(int mNo,String mTitle,String mInfo,int mSize,int mSpan,String tName);
+	public NoteResult<Object> update(Meeting m);
 	//按字段查找会议
 	public NoteResult<List<Meeting>> findByFields(Meeting m);
 	//按编号查找唯一会议
@@ -34,5 +35,6 @@ public interface MeetingService {
 	//退回会议
 	//【】
 	public ResponseData findAllRoomByPage(int page, int limit);
+	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option);
 
 }

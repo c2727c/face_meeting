@@ -20,6 +20,7 @@ public interface MREventService {
 	public NoteResult<List<Event>> findBymNo(int mNo);
 	// 查找会程（按多字段）
 	//public NoteResult<List<Event>> findByFields(int mNo,String rId,Date startDate);
+	public NoteResult<Object> update(Event e);
 	
 	/*
 	//通过Meeting的集合映射实现
