@@ -4,10 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="icon" href="../../favicon.ico">
 	<title>登录</title>
-	<script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-	<script src="../../js/user/jquery.cookies.js" type="text/javascript" charset="utf-8"></script>
+
 
 	<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css" />
 	<link rel="stylesheet" type="text/css" href="login.css" />
@@ -17,7 +16,7 @@
 	<div class="m-login-bg">
 		<div class="m-login">
 			<h3>欢迎</h3>
-			<h4>会议室管理系统（管理端）</h4>
+			<h4>会议室管理系统</h4>
 			<div class="m-login-warp">
 				<form class="layui-form">
 					<div class="layui-form-item">
@@ -47,6 +46,10 @@
 			</div>
 		</div>
 	</div>
+
+	<script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+	<script src="../../js/user/jquery.cookies.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		layui.use(['element', 'layer', 'jquery', 'form'], function () {
 			var element = layui.element;
@@ -90,9 +93,12 @@
 								icon: 5
 							}); //失败的表情
 						} else if (data.status == 0) {
-							document.cookie = "userId=" + data.data.pId;
-							document.cookie = "userName=" + data.data.pName;
-							console.log("test")
+							// document.cookie = "userId=" + data.data.pId;
+							// document.cookie = "userName=" + data.data.pName;
+							$.cookie("userId",data.data.pId, {path:'/face_meeting'});
+							$.cookie("userName",data.data.pName, {path:'/face_meeting'});
+							console.log($.cookie("userId"))
+							console.log($.cookie("userName"))
 
 							layer.msg(data.msg, {
 								icon: 6, //成功的表情

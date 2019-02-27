@@ -32,6 +32,11 @@ public class TestPersonService {
 	}//ok 2/5
 	//测试查找
 	@Test
+	public void testFindpId() {
+		NoteResult<Person> nr = ps.findBypId("user01");
+		nr.toString();
+	}
+	@Test
 	public void testFind() {
 		//按部分姓名
 		NoteResult<List<Person>> nr =ps.findBypDeptpName(null,"8");

@@ -24,4 +24,13 @@ public class UserControllerxdw {
 		return result;
 	}
 	
+	@RequestMapping("/getPerson.do") 
+	@ResponseBody
+	public NoteResult<Person> getPerson(@RequestBody(required = false) Person user) {
+		System.out.println("开始 /getPerson.do ");
+		System.out.println(user.getpId());
+		NoteResult<Person> result = userservice.findBypId(user.getpId());
+		System.out.println("结果result: "+result);
+		return result;
+	}
 }
