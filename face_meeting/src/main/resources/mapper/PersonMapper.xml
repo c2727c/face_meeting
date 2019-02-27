@@ -3,13 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  
-<!-- 	
-namespace 的值是 接口
-每个Mapper 接口对应一个配置文件 
-<id column="关联pojo对象对应表的主键字段" jdbcType="字段类型" property="关联pojo对象的主席属性"/>
-<result  column="任意表的字段" jdbcType="字段类型" property="关联pojo对象的属性"/>
-<collection column="传递给嵌套查询语句的字段参数" property="pojo对象中集合属性" ofType="集合属性中的pojo对象" select="嵌套的查询语句" > </collection>
- -->
+<!-- namespace 的值是 接口
+  每个Mapper 接口对应一个配置文件  -->
 <mapper namespace="cn.drrs.face_meeting.dao.PersonDao">
 	<resultMap type="cn.drrs.face_meeting.entity.Person"
 		id="personMap">
@@ -19,10 +14,12 @@ namespace 的值是 接口
 		<result column="pGender" property="pGender" />
 		<result column="pRole" property="pRole" />
 		<result column="pDept" property="pDept" />
-		<result column="pPhone" property="pPhone"/>
-		<result column="pEmail" property="pEmail"/>
 		<result column="pPrivilege" property="pPrivilege" />
-		<result column="pPictPath" property="pPictPath"/>
+		<result column="pFace" property="pFace" jdbcType="BLOB"
+			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
+		<result column="pIcon" property="pIcon" jdbcType="BLOB"
+			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
+		<result column="pTel" property="pTel" />
 		<collection property="pMeetingList" column="pId_FQ"
 			ofType="cn.drrs.face_meeting.entity.Meeting"
 			javaType="java.util.ArrayList" 
@@ -37,29 +34,24 @@ namespace 的值是 接口
 			javaType="java.util.ArrayList" select="selectInformMeetingList">
 		</collection>
 	</resultMap>
+
+	
 	
 	<!--<select id="findById" 
 	parameterType="String" 
 	resultType="cn.drrs.face_meeting.entity.Person">
 	select * from person where pId=#{pId};
 	</select>  -->
-	<select id="findById" parameterType="String" resultMap="personMap">
+	<select id="findById" 
+	parameterType="String" resultMap="personMap">
 	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
 	</select>
-	
-	<insert id="add" parameterType="cn.drrs.face_meeting.entity.Person">
-	INSERT INTO person VALUES(#{pId},#{pPass},#{pName},#{pGender},'普通职工',#{pDept},#{pPhone},#{pEmail},#{pPrivilege},#{pPictPath},'');
-	</insert>
-	
-	<update id="userInfoUpdate" parameterType="cn.drrs.face_meeting.entity.Person">
-	update person set pName=#{pName},pGender=#{pGender},pPhone=#{pPhone},pEmail=#{pEmail},pPictPath=#{pPictPath} where pId=#{pId};
-	</update>
-	
-	<update id="changePass" parameterType="cn.drrs.face_meeting.entity.Person">
-	update person set pPass=#{pPass} where pId=#{pId};
-	</update>
-	
-	<select id="findByFields" parameterType="cn.drrs.face_meeting.entity.Person" resultMap="personMap">
+	<select id="findAll" 
+	resultMap="personMap">
+	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ);
+	</select>
+	<select id="findByFields" 
+	parameterType="cn.drrs.face_meeting.entity.Person" resultMap="personMap">
 	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ)
 	<where>
 	<if test="pName!=null">and pName like #{pName}</if>
@@ -81,5 +73,27 @@ namespace 的值是 接口
 	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
 	select meeting.* from meeting LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) where pId_FQ=#{pId};
 	</select>
+	<update id="update" 
+		parameterType="cn.drrs.face_meeting.entity.Person">
+		update person
+			<set>
+			    <if test="pPass!=null">pPass=#{pPass}</if>
+			    <if test="pName!=null">pName=#{pName}</if>
+			    <if test="pGender!=null">pGender=#{pGender}</if>
+			    <if test="pRole!=null">pRole=#{pRole}</if>
+			    <if test="pDept!=null">pDept=#{pDept}</if>
+			    <if test="pPrivilege!=null">pPrivilege=#{pPrivilege}</if>
+			    <if test="pFace!=null">pFace=#{pFace}</if>
+			    <if test="pIcon!=null">pIcon=#{pIcon}</if>
+			    <if test="pTel!=null">pTel=#{pTel}</if>
+			</set>
+				where pId=#{pId};
+	</update>
+	<insert id="insert" parameterType="java.util.ArrayList">
+	    insert into `person` values
+	    <foreach collection="list" item="p" separator=",">
+			(#{p.pId},#{p.pPass},#{p.pName},#{p.pGender},#{p.pRole},#{p.pDept},#{p.pPrivilege},#{p.pFace},#{p.pIcon},#{p.pTel})
+		</foreach>
+	</insert>
 
 </mapper>
