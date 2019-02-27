@@ -3,7 +3,6 @@ layui.use(['element', 'layer', 'jquery'], function () {
     var layer = layui.layer;
     var $ = layui.$;
 
-
     // console.log("userId" + $.cookie("userId"))
     // console.log("userName" + $.cookie("userName"))
 

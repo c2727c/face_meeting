@@ -5,63 +5,63 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>修改密码</title>
-    <script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
     <link rel="icon" href="../../favicon.ico">
 </head>
 
 <body class="">
 
     <!-- 导航条 -->
-	<div class="layui-header">
-		<ul class="layui-nav">
-			<li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
-		</ul>
-		<ul class="layui-nav layui-layout-right">
-			<!-- 会议预定 -->
-			<li class="layui-nav-item">
-				<a class="" href="javascript:;">预定会议</a>
-				<dl class="layui-nav-child">
-					<dd>
-						<a href="meetAdd.html"><i class="layui-icon layui-icon-add-circle"></i> 发起会议</a>
-					</dd>
-					<dd>
-						<a href="meetMy.html"><i class="layui-icon layui-icon-form"></i> 我的会议</a>
-					</dd>
-					<dd>
-						<a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i> 我的小组</a>
-					</dd>
-					<dd>
-						<a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
-					</dd>
+    <div class="layui-header">
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <!-- 会议预定 -->
+            <li class="layui-nav-item">
+                <a class="" href="javascript:;">预定会议</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="meetAdd.html"><i class="layui-icon layui-icon-add-circle"></i> 发起会议</a>
+                    </dd>
+                    <dd>
+                        <a href="meetMy.html"><i class="layui-icon layui-icon-form"></i> 我的会议</a>
+                    </dd>
+                    <dd>
+                        <a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i> 我的小组</a>
+                    </dd>
+                    <dd>
+                        <a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
+                    </dd>
 
-					<dd>
-						<a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
-					</dd>
-				</dl>
-			</li>
+                    <dd>
+                        <a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
+                    </dd>
+                </dl>
+            </li>
 
-			<!-- 个人设置 -->
-			<li class="layui-nav-item" id="userInfo">
-				<a href="javascript:;"><img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite
-					 class="username">咚咚咚</cite></a>
-				<dl class="layui-nav-child">
-					<dd>
-						<a href="userInfo.html" class="">
-							<i class="layui-icon layui-icon-tabs"></i><cite>个人资料</cite>
-						</a>
-					</dd>
-					<dd>
-						<a href="userChangepwd.html" class="">
-							<i class="layui-icon layui-icon-edit"></i><cite>修改密码</cite>
-						</a>
-					</dd>
-					<dd><a href="../user-login/login.html" class="signOut"><i class=" layui-icon layui-icon-close-fill"></i><cite>退出账号</cite></a></dd>
-				</dl>
-			</li>
-		</ul>
-	</div>
+            <!-- 个人设置 -->
+            <li class="layui-nav-item" id="userInfo">
+                <a href="javascript:;">
+                    <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35">
+                    <cite class="username" id="pName">咚咚咚</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="userInfo.html" class="">
+                            <i class="layui-icon layui-icon-tabs"></i><cite>个人资料</cite>
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="userChangepwd.html" class="">
+                            <i class="layui-icon layui-icon-edit"></i><cite>修改密码</cite>
+                        </a>
+                    </dd>
+                    <dd><a href="../user-login/login.html" class="signOut"><i class=" layui-icon layui-icon-close-fill"></i><cite>退出账号</cite></a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
     <br>
 
     <div class="layui-container">
@@ -102,6 +102,10 @@
         </form>
     </div>
 
+    <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../../js/user/jquery.cookies.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/user/index.js" type="text/javascript" charset="utf-8"></script>
     <script>
         //JavaScript代码区域
         layui.use(['element', 'layer', 'jquery'], function () {
