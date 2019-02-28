@@ -9,13 +9,16 @@ import cn.drrs.face_meeting.util.NoteResult;
 
 public interface PMAttendService {
 	//添加参会关系
-	public NoteResult<Object> insert(Attend a);
+	public NoteResult<Object> insert(List<Attend> alist);
 	//删除参会关系
 	public NoteResult<Object> delete(int mNo,String pId);
+	public NoteResult<Object> delete(List<Attend> alist);
 	//修改参会状态
 	public NoteResult<Object> update(Attend a);
+	public NoteResult<Object> checkin(Attend attend);
 	//按会议查询参会名单 Meeting集合映射
 	//public NoteResult<List<Person>> findAtdBymNo(int mNo);
+	
 	
 
 }

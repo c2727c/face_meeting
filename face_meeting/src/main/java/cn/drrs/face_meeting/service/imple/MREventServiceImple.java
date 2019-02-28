@@ -45,6 +45,20 @@ public class MREventServiceImple implements MREventService{
 		}
 		return nr;
 	}
+	
+	public NoteResult<Object> update(Event e) {
+		NoteResult<Object> nr = new NoteResult<Object>();
+		try {
+			delete(e.getmNo(),null);
+			insert(e);
+			nr.setAll(0, "重新安排会程成功", null);
+			return nr;
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			nr.setAll(1, "重新安排会程失败", null);
+			return nr;
+		}
+	}
 
 	public NoteResult<List<Event>> findBymNo(int mNo) {
 		return findByFields(mNo,null,null);
@@ -63,6 +77,8 @@ public class MREventServiceImple implements MREventService{
 		nr.setData(list);
 		return nr;
 	}
+
+	
 
 	/*public NoteResult<List<Event>> findByFQpId(String pId) {
 		NoteResult<List<Event>> nr = new NoteResult<List<Event>>();

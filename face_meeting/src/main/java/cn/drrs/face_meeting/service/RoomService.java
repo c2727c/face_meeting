@@ -11,6 +11,7 @@ import java.util.List;
 import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Room;
+import cn.drrs.face_meeting.entity.RoomRestrict;
 import cn.drrs.face_meeting.util.NoteResult;
 
 
@@ -29,6 +30,7 @@ public interface RoomService {
 	//查找在某日期符合该会议要求的房间
 	//public NoteResult<List<Room>>  findByMeetingDate(int mNo,Date startDate);
 	//查找某日期某开始时间符合该会议要求的房间（在内部或可对其排序）
+	public NoteResult<List<Room>> findByRoomRestrict(RoomRestrict rr);
 	public NoteResult<List<Room>>  findByMeetingDateTime(int mNo,LocalDate startDate,LocalTime startTime);
 	/*1.指定时间段有空（startTime和endTime由Meeting m中的span和Calendar c计算出来）
 	 *2.该会议的发起者有权使用这个Room

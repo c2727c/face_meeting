@@ -23,7 +23,6 @@ public class UserRegistController {
 	@ResponseBody
 	public NoteResult<Person> execute(@RequestBody(required = false) Person user) {
 		System.out.println("one /user/register.do REQUEST");
-		//取手机号后六位作为pId
 		System.out.println(user);
 		List<Person> users=new ArrayList<Person>();
 		users.add(user);
