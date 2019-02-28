@@ -17,6 +17,7 @@ public class UserControllerxdw {
 	@Resource
 	private PersonService userservice;
 	
+	//用户登录
 	@RequestMapping("/user-login.do") 
 	@ResponseBody
 	public NoteResult<Person> userLogin(@RequestBody(required = false) Person user) {
@@ -24,6 +25,7 @@ public class UserControllerxdw {
 		return result;
 	}
 	
+	//根据pId获取用户信息
 	@RequestMapping("/getPerson.do") 
 	@ResponseBody
 	public NoteResult<Person> getPerson(@RequestBody(required = false) Person user) {
@@ -33,4 +35,6 @@ public class UserControllerxdw {
 		System.out.println("结果result: "+result);
 		return result;
 	}
+	
+	
 }

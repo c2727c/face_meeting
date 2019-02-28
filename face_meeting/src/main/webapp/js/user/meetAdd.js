@@ -21,16 +21,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate"], function () {
 	});
 
 
-	var getPerson = function (data, callback) {
-		LeTao.ajax({
-			type: 'post',
-			url: '/user/getPerson.do',
-			data: data,
-			dataType: 'json',
-			success: function (data) {
-				callback && callback(data);
-			}
-		});
-	}
+
 
 })

@@ -6,9 +6,9 @@ layui.use(['element', 'layer', 'jquery'], function () {
 
     //根据cookie中得userId查询用户信息
     var userId = $.cookie("userId")
-    console.log("useId:" + userId);
+    console.log("userId是："+userId)
     var path = "http://localhost:8080/face_meeting"
-    var url = path + "/user/getPerson.do";
+    var url = path + "/meeting/getMyAttends.do";
     $.ajax({
         url: url,
         type: "post",
@@ -19,11 +19,12 @@ layui.use(['element', 'layer', 'jquery'], function () {
         contentType: 'application/json;charset=UTF-8', //这里的这行是关键
         dataType: "json",
         success: function (data) {
-            // console.log(data.data.pName)
-            $("#pName").html(data.data.pName);
+            console.log("pName是："+data.data.pName)
+            console.log("data.data是："+JSON.stringify(data.data))
+            $("#test1").html(JSON.stringify(data.data));
         },
         error: function () {
-            // alert("ajax请求失败");
+             alert("ajax请求失败");
         }
     });
 
