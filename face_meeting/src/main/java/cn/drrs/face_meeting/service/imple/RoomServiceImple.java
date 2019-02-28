@@ -21,10 +21,9 @@ public class RoomServiceImple implements RoomService{
 	@Resource
 	private MeetingDao meetingDao;
 
-	public NoteResult<Object> insert(String rId, String rName, String rInfo, int rSize, String tName) {
+	public NoteResult<Object> insert(Room r) {
 		// DONE 添加房间
 		NoteResult<Object> result = new NoteResult<Object>();
-		Room r = new Room(rId,rName,rInfo,rSize,tName);
 		if(roomDao.insert(r)) {
 			result.setStatus(0);
 			result.setMsg("添加房间成功!");
@@ -48,10 +47,9 @@ public class RoomServiceImple implements RoomService{
 		return result;
 	}
 
-	public NoteResult<Object> update(String rId, String rName, String rInfo, int rSize, String tName) {
+	public NoteResult<Object> update(Room r) {
 		// DONE 更新房间
 		NoteResult<Object> result = new NoteResult<Object>();
-		Room r = new Room(rId,rName,rInfo,rSize,tName);
 		if(roomDao.update(r)) {
 			result.setStatus(0);
 			result.setMsg("更新房间成功!");
