@@ -27,8 +27,8 @@ public class TestRoomService {//complete2-5
 	}
 	@Test
 	public void insert() {
-		NoteResult nr = rs.insert("A001", "", "", 30, "default");
-		nr.toString();
+//		NoteResult nr = rs.insert("A001", "", "", 30, "default");
+//		nr.toString();
 	}//ok2-5
 	@Test
 	public void delete() {
@@ -37,8 +37,8 @@ public class TestRoomService {//complete2-5
 	}//ok2-5
 	@Test
 	public void update() {
-		NoteResult nr = rs.update("A001", "UPDATE", "TEST", 30, "default");
-		System.out.println(nr.toString());
+//		NoteResult nr = rs.update("A001", "UPDATE", "TEST", 30, "default");
+//		System.out.println(nr.toString());
 	}//ok2-5
 	
 	@Test//测试按条件查找会议室并获取房间的eventList

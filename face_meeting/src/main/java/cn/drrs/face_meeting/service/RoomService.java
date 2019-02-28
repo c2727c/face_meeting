@@ -18,11 +18,11 @@ import cn.drrs.face_meeting.util.NoteResult;
 public interface RoomService {
 	//【0】对房间的增删改查
 	//增加房间
-	public NoteResult<Object> insert(String rId,String rName,String rInfo,int rSize,String tName);
+	public NoteResult<Object> insert(Room r);
 	//删除房间
 	public NoteResult<Object> deleteByrId(String rId);
 	//更新房间信息
-	public NoteResult<Object> update(String rId,String rName,String rInfo,int rSize,String tName);
+	public NoteResult<Object> update(Room r);
 	//查找所有房间
 	//public NoteResult<List<Room>>  findAll();
 	//查找符合该会议要求的房间
