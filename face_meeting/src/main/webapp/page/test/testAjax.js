@@ -5,10 +5,14 @@ layui.use(['element', 'layer', 'jquery'], function () {
 
 
     //根据cookie中得userId查询用户信息
-    var userId = $.cookie("userId")
+    // var userId = $.cookie("userId")
+    // var userId = 't15'
+    var userId = 'user01'
     console.log("userId是："+userId)
     var path = "http://localhost:8080/face_meeting"
     var url = path + "/meeting/getMyAttends.do";
+    // var url = path + "/meeting/getMyCreates.do";
+    console.log("请求controller的url是:"+url)
     $.ajax({
         url: url,
         type: "post",
@@ -19,7 +23,6 @@ layui.use(['element', 'layer', 'jquery'], function () {
         contentType: 'application/json;charset=UTF-8', //这里的这行是关键
         dataType: "json",
         success: function (data) {
-            console.log("pName是："+data.data.pName)
             console.log("data.data是："+JSON.stringify(data.data))
             $("#test1").html(JSON.stringify(data.data));
         },
