@@ -21,33 +21,15 @@ import cn.drrs.face_meeting.util.NoteResult;
 
 @Controller("meetingEditController")
 @RequestMapping("/meeting")
+//变更或完善会议所需的请求
 public class MeetingEditController {
 	@Resource
-	private MeetingService service;
-	@Resource
-	private RoomService roomService;
+	private MeetingService meetingService;
 	@Resource
 	private MREventService eventService;
 	
-	//根据前端填写的表单，传上来房间限制RoomStrict，返回推荐可用的房间列表
-	//onblur就提交一次，更新推荐的房间列表
-	@RequestMapping("/recommendRoom.do") 
-	@ResponseBody
-	public NoteResult<List<Room>> recommendRoom(@RequestBody(required = false) RoomRestrict rr) {
-		return roomService.findByRoomRestrict(rr);
-	}
-	//点击提交之后第一步是增加会议，返回新增会议编号	
-	@RequestMapping("/addMeeting.do") 
-	@ResponseBody
-	public NoteResult<Meeting> addMeeting(@RequestBody(required = false) Meeting m) {
-		return service.add(m);
-	}
-	//第二步是增加会议成功后取返回的会议编号，加上时间信息和选定的房间信息组成event对象，为其安排时间地点
-	@RequestMapping("/arrangeMeeting.do") 
-	@ResponseBody
-	public NoteResult<Object> addEvent(@RequestBody(required = false) Event e) {
-		return eventService.insert(e);
-	}
+	
+	
 	
 	//重新安排时间地点
 	@RequestMapping("/reArrangeMeeting.do") 
@@ -67,14 +49,14 @@ public class MeetingEditController {
 	@RequestMapping("/update.do") 
 	@ResponseBody
 	public NoteResult<Object> update(@RequestBody(required = false) Meeting m) {
-		return service.update(m);
+		return meetingService.update(m);
 	}	
 	
 	//删除会议
 	@RequestMapping("/delete.do") 
 	@ResponseBody
 	public NoteResult<Object> delete(int mNo) {
-		return service.delete(mNo);
+		return meetingService.delete(mNo);
 	}
 
 

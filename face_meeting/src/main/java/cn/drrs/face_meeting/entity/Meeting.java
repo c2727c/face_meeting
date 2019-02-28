@@ -17,7 +17,7 @@ public class Meeting {
 	private	String state=null;
 	private Timestamp mCreateTime=null;
 	
-	
+	private Person creator;
 	//集合映射
 	private	List<Event> mEventList; 
 	private	List<Person> mAttendList;
@@ -126,6 +126,12 @@ public class Meeting {
 	}
 	public void setmInformList(List<Person> mInformList) {
 		this.mInformList = mInformList;
+	}
+	public Person getCreator() {
+		return creator;
+	}
+	public void setCreator(Person creator) {
+		this.creator = creator;
 	} 
 	
 

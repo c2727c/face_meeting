@@ -16,6 +16,10 @@
 		<result column="pId_FQ" property="pId_FQ" />
 		<result column="state" property="state" />
 		<result column="mCreateTime" property="mCreateTime" />
+		<association property="creator" column="pId_FQ"
+		    javaType="cn.drrs.face_meeting.entity.Person"
+		    select="selectCreator">
+		</association>
 		<collection property="mEventList" column="mNo"
 			ofType="cn.drrs.face_meeting.entity.Event">
 			<id column="mNo" property="mNo" />
@@ -53,7 +57,6 @@
 		resultMap="meetingMap">
 		select * from meeting where mNo=#{mNo};
 	</select>
-	
 	<select id="findByFields" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting"
 		resultMap="meetingMap">
@@ -66,9 +69,11 @@
 		</where>
 	</select>
 	
-	
-	
-	
+	<select id="selectCreator" 
+		parameterType="int"
+		resultMap="cn.drrs.face_meeting.dao.PersonDao.personMap">
+		SELECT person.* FROM person JOIN meeting WHERE pId= pId_FQ AND #{mNo};
+	</select>
 	<select id="selectmAttendList" 
 		parameterType="int"
 		resultMap="cn.drrs.face_meeting.dao.PersonDao.personMap">
