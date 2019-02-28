@@ -1,11 +1,36 @@
-layui.use(['element','layer','jquery','form'],function(){
+layui.use(["element", "layer", "jquery", "form", "laydate"], function () {
 	var element = layui.element;
-	var layer = parent.layer === undefined ? layui.layer : top.layer;
+	var layer = layui.layer;
 	var $ = layui.jquery;
 	var form = layui.form;
-	
-	var username=getCookie("userName");
-	$("#username").html(username);
-	
-	
+	var laydate = layui.laydate;
+
+	//日期选择器
+	laydate.render({
+		elem: "#chosedate",
+		type: "date",
+		isInitValue: true,
+		value: new Date()
+	});
+	laydate.render({
+		elem: "#chosetime",
+		type: "time",
+		isInitValue: true,
+		format: "HH点mm分",
+		value: new Date()
+	});
+
+
+	var getPerson = function (data, callback) {
+		LeTao.ajax({
+			type: 'post',
+			url: '/user/getPerson.do',
+			data: data,
+			dataType: 'json',
+			success: function (data) {
+				callback && callback(data);
+			}
+		});
+	}
+
 })

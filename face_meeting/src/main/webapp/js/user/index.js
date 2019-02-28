@@ -24,7 +24,7 @@ layui.use(['element', 'layer', 'jquery'], function () {
             $("#pName").html(data.data.pName);
         },
         error: function () {
-            alert("ajax请求失败");
+            // alert("ajax请求失败");
         }
     });
 
