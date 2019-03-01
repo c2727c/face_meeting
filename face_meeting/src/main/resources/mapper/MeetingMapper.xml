@@ -78,12 +78,12 @@
 	</select>
 	<select id="selectmAttendList" 
 		parameterType="int"
-		resultMap="cn.drrs.face_meeting.dao.PersonDao.personMap">
+		resultType="cn.drrs.face_meeting.entity.Person">
 		select * from person natural join pm_attend where mNo=#{mNo};
 	</select>
 	<select id="selectmInformList" 
 		parameterType="int"
-		resultMap="cn.drrs.face_meeting.dao.PersonDao.personMap">
+		resultType="cn.drrs.face_meeting.entity.Person">
 		select * from person natural join pm_inform where mNo=#{mNo};
 	</select>
 	

@@ -1,5 +1,6 @@
 package cn.drrs.face_meeting.controller.meeting;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
 
 
 @Controller("meetingListController")
@@ -35,6 +37,15 @@ public class MeetingListController {
 	public NoteResult<List<Meeting>> getMyAttends(@RequestBody(required = false) Person user) {
 		return service.getMyMeetings(user.getpId(),2);
 	}
+	
+	@RequestMapping("/getMyAttendss.do") 
+	@ResponseBody
+	public NoteResult<List<JSONObject>> getMyAttendss(@RequestBody(required = false) Person user) {
+		
+		return service.getMyMeetingss(user.getpId(),2);
+	}
+	
+	
 	
 	//获取用户被报送的会议列表
 	@RequestMapping("/getMyInforms.do") 

@@ -25,5 +25,17 @@ public class RoomManageController {
 	public NoteResult<Object> addRoom(@RequestBody(required = false) Room r) {
 		return roomService.insert(r);
 	}
+	
+	@RequestMapping("/updateRoom.do") 
+	@ResponseBody
+	public NoteResult<Object> updateRoom(@RequestBody(required = false) Room r) {
+		return roomService.update(r);
+	}
+	
+	@RequestMapping("/deleteRoom.do") 
+	@ResponseBody
+	public NoteResult<Object> deleteRoom(String rId) {
+		return roomService.deleteByrId(rId);
+	}
 
 }

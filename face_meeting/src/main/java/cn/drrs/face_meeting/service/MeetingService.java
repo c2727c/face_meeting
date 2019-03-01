@@ -7,6 +7,7 @@ import java.util.Set;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
 
 //管理会议模块
 public interface MeetingService {
@@ -35,6 +36,6 @@ public interface MeetingService {
 	//退回会议
 	//【】
 	public ResponseData findAllRoomByPage(int page, int limit);
+	public NoteResult<List<JSONObject>> getMyMeetingss(String pId,int option);
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option);
-
 }

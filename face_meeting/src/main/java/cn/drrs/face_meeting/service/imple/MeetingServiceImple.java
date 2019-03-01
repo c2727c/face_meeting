@@ -10,12 +10,16 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ser.PropertyFilter;
+
 import cn.drrs.face_meeting.dao.MeetingDao;
 import cn.drrs.face_meeting.dao.PersonDao;
 import cn.drrs.face_meeting.dao.RoomDaoTest;
 import cn.drrs.face_meeting.entity.*;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 
 @Service("meetingService")
@@ -193,7 +197,7 @@ public class MeetingServiceImple implements MeetingService{
         }
         return rd;
 	}
-
+	
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();
@@ -218,6 +222,37 @@ public class MeetingServiceImple implements MeetingService{
 		}
 	}
 
+	public NoteResult<List<JSONObject>> getMyMeetingss(String pId,int option) {
+		NoteResult<List<JSONObject>> nr = new NoteResult<List<JSONObject>>();
+		List<Meeting> list = new ArrayList<Meeting>();
+		List<JSONObject> entities = new ArrayList<JSONObject>();
+		try {
+			Person p = personDao.findById(pId);
+			switch(option) {
+			case 1:
+				list = p.getMeetings();
+				
+				break;
+			case 2:
+				list = p.getpAttendMeetingList();
+				break;
+			case 3:
+				list = p.getpInformMeetingList();
+				break;
+			}
+			for(Meeting m :list) {
+				 JsonConfig config = JsonConfig.getInstance();
+				 config.setExcludes(new String[]{"emps"});
+				 entities.add(JSONObject.fromObject(m));
+			}
+			nr.setAll(0, "查询用户："+pId+"的相关会议成功", entities);
+			return nr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			nr.setAll(1, "查询用户："+pId+"的相关会议失败", null);
+			return nr;
+		}
+	}
 	
 
 }
