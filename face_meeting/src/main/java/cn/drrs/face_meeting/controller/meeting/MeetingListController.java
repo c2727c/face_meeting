@@ -15,6 +15,7 @@ import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
@@ -27,7 +28,13 @@ public class MeetingListController {
 	//获取用户创建的会议列表
 	@RequestMapping("/getMyCreates.do") 
 	@ResponseBody
-	public NoteResult<List<Meeting>> getMyCreates(@RequestBody(required = false) Person user) {
+	public NoteResult<JSONArray> getMyCreates(@RequestBody(required = false) Person user) {
+		return service.getMyMeetings(user.getpId(),1).toJSONArray();
+	}
+	
+	
+	@ResponseBody
+	public NoteResult<List<Meeting>> getMyCreatess(@RequestBody(required = false) Person user) {
 		return service.getMyMeetings(user.getpId(),1);
 	}
 	

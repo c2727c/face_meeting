@@ -20,6 +20,7 @@
 		<result column="pIcon" property="pIcon" jdbcType="BLOB"
 			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
 		<result column="pTel" property="pTel" />
+		
 		<collection property="pMeetingList" column="pId_FQ"
 			ofType="cn.drrs.face_meeting.entity.Meeting"
 			javaType="java.util.ArrayList" 
@@ -61,8 +62,14 @@
 	<if test="pPrivilege>0">and pPrivilege=#{pPrivilege}</if>
 	</where>
 	</select>
+	
+	<!-- 
+	凡是选Meeting一定用MeetingMapper中定义的meetingMap（Meeting的附加信息较多）
+	由于meetingMap里没有嵌套别的resultMap，故不会造成嵌套循环
+	resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap"
+	 -->
 	<select id="selectAttendMeetingList" 
-	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
+	parameterType="String"  resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap" >
 	SELECT  * FROM meeting NATURAL JOIN pm_attend LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) WHERE pId=#{pId};
 	</select>
 	<select id="selectInformMeetingList" 
@@ -73,6 +80,7 @@
 	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
 	select meeting.* from meeting LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) where pId_FQ=#{pId};
 	</select>
+	
 	<update id="update" 
 		parameterType="cn.drrs.face_meeting.entity.Person">
 		update person
