@@ -87,6 +87,7 @@
 					}),
 					contentType: 'application/json;charset=UTF-8', //这里的这行是关键
 					dataType: "json",
+					// dataType: "text",
 					success: function (data) {
 						if (data.status != 0) {
 							layer.msg(data.msg, {
@@ -95,8 +96,12 @@
 						} else if (data.status == 0) {
 							// document.cookie = "userId=" + data.data.pId;
 							// document.cookie = "userName=" + data.data.pName;
-							$.cookie("userId",data.data.pId, {path:'/face_meeting'});
-							$.cookie("userName",data.data.pName, {path:'/face_meeting'});
+							$.cookie("userId", data.data.pId, {
+								path: '/face_meeting'
+							});
+							$.cookie("userName", data.data.pName, {
+								path: '/face_meeting'
+							});
 							console.log($.cookie("userId"))
 							console.log($.cookie("userName"))
 
@@ -110,8 +115,8 @@
 							});
 						}
 					},
-					error: function () {
-						alert("ajax请求失败")
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						console.log("ajax请求失败");
 					}
 				});
 				return false;

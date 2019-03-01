@@ -5,6 +5,7 @@
     <welcome-file>page/firstPage/login.html</welcome-file>
   </welcome-file-list>
   
+  <!-- 配置前端控制器，也就是配置：spring-*.xml进来 -->
   <servlet>
   	<servlet-name>SpringMVC</servlet-name>
   	<servlet-class>
@@ -79,7 +80,8 @@
   </servlet-mapping>
   
   
-  
+ 
+  <!-- 解决数据库响应中文乱码的问题,主要是针对post请求的数据 --> 
    <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>
