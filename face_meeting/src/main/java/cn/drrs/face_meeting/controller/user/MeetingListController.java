@@ -1,5 +1,6 @@
-package cn.drrs.face_meeting.controller.meeting;
+package cn.drrs.face_meeting.controller.user;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,36 +29,21 @@ public class MeetingListController {
 	//获取用户创建的会议列表
 	@RequestMapping("/getMyCreates.do") 
 	@ResponseBody
-	public NoteResult<JSONArray> getMyCreates(@RequestBody(required = false) Person user) {
-		return service.getMyMeetings(user.getpId(),1).toJSONArray();
-	}
-	
-	
-	@ResponseBody
-	public NoteResult<List<Meeting>> getMyCreatess(@RequestBody(required = false) Person user) {
-		return service.getMyMeetings(user.getpId(),1);
+	public NoteResult<List<Meeting>> getMyCreatess(String pId,String date) {
+		return service.getMyMeetings(pId,LocalDate.parse(date),1);
 	}
 	
 	//获取用户参加的会议列表
 	@RequestMapping("/getMyAttends.do") 
 	@ResponseBody
-	public NoteResult<List<Meeting>> getMyAttends(@RequestBody(required = false) Person user) {
-		return service.getMyMeetings(user.getpId(),2);
+	public NoteResult<List<Meeting>> getMyAttends(String pId,String date) {
+		return service.getMyMeetings(pId,LocalDate.parse(date),2);
 	}
-	
-	@RequestMapping("/getMyAttendss.do")
-	@ResponseBody
-	public NoteResult<List<JSONObject>> getMyAttendss(@RequestBody(required = false) Person user) {
-
-		return service.getMyMeetingss(user.getpId(), 2);
-	}
-	
-	
 	//获取用户被报送的会议列表
 	@RequestMapping("/getMyInforms.do") 
 	@ResponseBody
-	public NoteResult<List<Meeting>> getMyInforms(@RequestBody(required = false) Person user) {
-		return service.getMyMeetings(user.getpId(),3);
+	public NoteResult<List<Meeting>> getMyInforms(String pId,String date) {
+		return service.getMyMeetings(pId,LocalDate.parse(date),3);
 	}
 
 }

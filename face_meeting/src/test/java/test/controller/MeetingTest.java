@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.drrs.face_meeting.controller.meeting.MeetingListController;
+import cn.drrs.face_meeting.controller.user.MeetingListController;
 import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
@@ -33,9 +33,9 @@ public class MeetingTest {
 	@Test
 	public void test() {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
-		Person p = new Person();
-		p.setpId("t15");
-		nr=mlc.getMyAttends(p);
+		nr=mlc.getMyAttends("t15","2019-01-20");
+		System.err.println(JSONObject.fromObject(nr).toString());
+		nr=mlc.getMyAttends("t15","2019-01-21");
 		System.err.println(JSONObject.fromObject(nr).toString());
 		
 	}

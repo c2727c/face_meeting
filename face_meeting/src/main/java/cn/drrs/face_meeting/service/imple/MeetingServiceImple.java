@@ -1,5 +1,6 @@
 package cn.drrs.face_meeting.service.imple;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -197,23 +198,43 @@ public class MeetingServiceImple implements MeetingService{
         }
         return rd;
 	}
-	
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();
 		try {
 			Person p = personDao.findById(pId);
 			switch(option) {
-			case 1:
-				nr.setAll(0, "查询用户："+pId+"的创建会议成功", p.getMeetings());
-				break;
-			case 2:
-				nr.setAll(0, "查询用户："+pId+"的参加会议成功", p.getpAttendMeetingList());
-				break;
-			case 3:
-				nr.setAll(0, "查询用户："+pId+"的报送会议成功", p.getpInformMeetingList());
-				break;
+			case 1: list =  p.getMeetings();break;
+			case 2: list =  p.getpAttendMeetingList();break;
+			case 3: list =  p.getpInformMeetingList();break;
 			}
+			nr.setAll(0, "查询用户："+pId+"全部相关会议成功", list);
+			return nr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			nr.setAll(1, "查询用户："+pId+"的全部相关会议失败", null);
+			return nr;
+		}
+	}
+	
+	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option) {
+		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
+		List<Meeting> list = new ArrayList<Meeting>();
+		try {
+			Person p = personDao.findById(pId);
+			switch(option) {
+			case 1: list =  p.getMeetings();break;
+			case 2: list =  p.getpAttendMeetingList();break;
+			case 3: list =  p.getpInformMeetingList();break;
+			}
+			List<Meeting> data = new ArrayList<Meeting>();
+			for(Meeting m:list) {
+				LocalDate mDate = m.getmEventList().get(0).getStartDate();
+				if(!(mDate.isBefore(ld)||mDate.isAfter(ld.plusDays(7)))) {
+					data.add(m);
+				}
+			}
+			nr.setAll(0, "查询用户："+pId+" "+ld+"后七天的相关会议成功", data);
 			return nr;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -222,37 +243,7 @@ public class MeetingServiceImple implements MeetingService{
 		}
 	}
 
-	public NoteResult<List<JSONObject>> getMyMeetingss(String pId,int option) {
-		NoteResult<List<JSONObject>> nr = new NoteResult<List<JSONObject>>();
-		List<Meeting> list = new ArrayList<Meeting>();
-		List<JSONObject> entities = new ArrayList<JSONObject>();
-		try {
-			Person p = personDao.findById(pId);
-			switch(option) {
-			case 1:
-				list = p.getMeetings();
-				
-				break;
-			case 2:
-				list = p.getpAttendMeetingList();
-				break;
-			case 3:
-				list = p.getpInformMeetingList();
-				break;
-			}
-			for(Meeting m :list) {
-				 JsonConfig config = JsonConfig.getInstance();
-				 config.setExcludes(new String[]{"emps"});
-				 entities.add(JSONObject.fromObject(m));
-			}
-			nr.setAll(0, "查询用户："+pId+"的相关会议成功", entities);
-			return nr;
-		} catch (Exception e) {
-			e.printStackTrace();
-			nr.setAll(1, "查询用户："+pId+"的相关会议失败", null);
-			return nr;
-		}
-	}
+	
 	
 
 }
