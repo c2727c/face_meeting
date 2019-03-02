@@ -28,7 +28,15 @@ public class UserTest {
 	@Test
 	public void test() {
 		NoteResult<Person> nr = new NoteResult<Person>();
-		Person p = ps.findBypId("t15").getData();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("user02");
+		Person p = ps.findBypId("user01").getData();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("user02");
 		nr=ucl.userLogin(p);
 		System.err.println(JSONObject.fromObject(nr).toString());
 	}
