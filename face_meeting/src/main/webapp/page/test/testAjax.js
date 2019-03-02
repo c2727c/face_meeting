@@ -16,15 +16,10 @@ layui.use([ 'element', 'layer', 'jquery' ], function() {
 	$.ajax({
 		url : url,
 		type : "post",
-		// traditional : true, // 这使json格式的字符不会被转码
-		// data : JSON.stringify({
-		// 	"pId" : userId
-		// }),
 		data:{
 			"pId": userId,
-			"data": datatime
+			"date": datatime
 		},
-		contentType : 'application/json;charset=UTF-8', // 这里的这行是关键
 		dataType : "json",
 		success : function(data) {
 			console.log("data.data是：" + JSON.stringify(data.data))
