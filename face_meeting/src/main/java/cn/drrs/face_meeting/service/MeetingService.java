@@ -1,6 +1,7 @@
 package cn.drrs.face_meeting.service;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -36,6 +37,6 @@ public interface MeetingService {
 	//退回会议
 	//【】
 	public ResponseData findAllRoomByPage(int page, int limit);
-	public NoteResult<List<JSONObject>> getMyMeetingss(String pId,int option);
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option);
+	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option);
 }
