@@ -50,6 +50,7 @@
 	<script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
 	<script src="../../js/user/jquery.cookies.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/user/common.js" type="text/javascript"></script>
 	<script>
 		layui.use(['element', 'layer', 'jquery', 'form'], function () {
 			var element = layui.element;
@@ -75,7 +76,6 @@
 				console.log(data.field);
 				var userId = data.field.userId;
 				var userPass = data.field.userPass;
-				var path = "http://localhost:8080/face_meeting"
 				var url = path + "/user/user-login.do";
 				$.ajax({
 					url: url,
