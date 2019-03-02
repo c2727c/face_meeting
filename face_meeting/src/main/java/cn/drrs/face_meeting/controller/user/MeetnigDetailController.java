@@ -25,7 +25,7 @@ public class MeetnigDetailController {
 	@RequestMapping("/detail.do") 
 	@ResponseBody
 	public NoteResult<Meeting> detail(int mNo) {
-		return service.findBymNo(mNo);//返回的Meeting对象中的属性有其参会者名单/创建者Person对象的完整信息
+		return service.findFullInfoBymNo(mNo);//返回的Meeting对象中的属性有其参会者名单/创建者Person对象的完整信息
 	}
 	
 

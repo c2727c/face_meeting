@@ -8,10 +8,11 @@ public interface MeetingDao {
 	public boolean save(Meeting m);
 	public boolean deleteBymNo(int mNo);
 	public boolean update(Meeting m);
-	//public List<Meeting> findByCreator(String pId_FQ);//通过集合映射实现
-	//public List<Meeting> findByPM_inform(String pId_FQ);//通过集合映射实现
-	//public List<Meeting> findByPM_attend(String pId_FQ);//通过集合映射实现
+	//public List<Meeting> findByCreator(String pId_FQ);//通锟斤拷锟斤拷锟斤拷映锟斤拷实锟斤拷
+	//public List<Meeting> findByPM_inform(String pId_FQ);//通锟斤拷锟斤拷锟斤拷映锟斤拷实锟斤拷
+	//public List<Meeting> findByPM_attend(String pId_FQ);//通锟斤拷锟斤拷锟斤拷映锟斤拷实锟斤拷
 	public Meeting findBymNo(int mNo);
+	public Meeting findFullInfoBymNo(int mNo);
 	public List<Meeting> findByFields(Meeting m);
 
 	

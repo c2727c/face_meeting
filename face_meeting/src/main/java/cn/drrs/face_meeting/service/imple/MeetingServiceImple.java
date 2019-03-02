@@ -163,6 +163,15 @@ public class MeetingServiceImple implements MeetingService{
 		result.setMsg("按编号取唯一会议");
 		return result;
 	}
+	
+	public NoteResult<Meeting> findFullInfoBymNo(int mNo) {
+		NoteResult<Meeting> result = new NoteResult<Meeting>();
+		Meeting m =meetingDao.findFullInfoBymNo(mNo);
+		result.setData(m);
+		result.setStatus(0);
+		result.setMsg("按编号取唯一会议");
+		return result;
+	}
 
 
 	public NoteResult<List<Meeting>> findAllRoom(int before, int after) {
@@ -248,6 +257,8 @@ public class MeetingServiceImple implements MeetingService{
 			return nr;
 		}
 	}
+
+	
 
 	
 	

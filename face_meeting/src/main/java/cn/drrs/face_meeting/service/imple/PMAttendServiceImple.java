@@ -70,7 +70,7 @@ public class PMAttendServiceImple implements PMAttendService{
 	//查询历史邀请用户（或按频数，最新排序后返回）
 	public NoteResult<Object> checkin(Attend attend) {
 		NoteResult<Object> nr=new NoteResult<Object>();
-		Meeting m = meetingDao.findBymNo(attend.getmNo());
+		Meeting m = meetingDao.findFullInfoBymNo(attend.getmNo());
 		for(Person p:m.getmAttendList()) {
 			if(p.getpId().equals(attend.getpId())) {
 				//验证成功
