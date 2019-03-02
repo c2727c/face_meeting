@@ -5,7 +5,7 @@ layui.use([ 'element', 'layer', 'jquery' ], function() {
 
 	// 根据cookie中得userId查询用户信息
 	// var userId = $.cookie("userId")
-	var userId = 't15'
+	var userId = 'user01'
 	console.log(userId)
 	// var userId = 'user01'
 	var datatime = '2019-03-02'

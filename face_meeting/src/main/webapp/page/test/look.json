@@ -1,199 +1,298 @@
-[{
-    "msg": "查询用户：t15 2019-03-01后七天的相关会议成功",
-    "data": [{
-        "creator": {
-            "pInformMeetingList": [],
-            "pIcon": [105, 99, 111, 110],
-            "pAttendMeetingList": [],
-            "pFace": [116, 101, 115, 116, 70, 101, 97, 116, 117, 114, 101],
-            "pId": "user01",
-            "pPrivilege": 0,
-            "pPass": "123456",
-            "pName": "小明",
-            "pGender": "男",
-            "pRole": "经理",
-            "meetings": [],
-            "pDept": "技术部",
-            "pTel": "15528022968"
-        },
-        "mAttendList": [{
-            "pInformMeetingList": [],
-            "pIcon": [105, 99, 111, 110],
-            "pAttendMeetingList": [],
-            "pFace": [116, 101, 115, 116, 70, 101, 97, 116, 117, 114, 101],
-            "pId": "t15",
-            "pPrivilege": 0,
-            "pPass": "123456",
-            "pName": "小黑",
-            "pGender": "男",
-            "pRole": "",
-            "meetings": [],
-            "pDept": "",
-            "pTel": ""
-        }, {
-            "pInformMeetingList": [],
-            "pIcon": [105, 99, 111, 110],
-            "pAttendMeetingList": [],
-            "pFace": [116, 101, 115, 116, 70, 101, 97, 116, 117, 114, 101],
-            "pId": "user01",
-            "pPrivilege": 0,
-            "pPass": "123456",
-            "pName": "小明",
-            "pGender": "男",
-            "pRole": "经理",
-            "meetings": [],
-            "pDept": "技术部",
-            "pTel": "15528022968"
-        }],
-        "mInformList": [],
-        "mSize": 20,
-        "pId_FQ": "user01",
+[
+    {
+    "mNo": 1,
+    "mTitle": "关于吃饭的会议",
+    "mInfo": "如何吃饭是大事",
+    "mSize": 20,
+    "mSpan": 45,
+    "tName": "default",
+    "pId_FQ": "user02",
+    "state": "noshow",
+    "mCreateTime": 1551776650000,
+    "creator": {
+        "pId": "user02",
+        "pPass": "123456",
+        "pName": "小东",
+        "pGender": "男",
+        "pRole": null,
+        "pDept": null,
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": null,
+        "meetings": []
+    },
+    "mEventList": [{
         "mNo": 1,
-        "mSpan": 45,
-        "mCreateTime": {
-            "date": 5,
-            "hours": 17,
-            "seconds": 10,
-            "month": 2,
-            "nanos": 0,
-            "timezoneOffset": -480,
-            "year": 119,
-            "minutes": 4,
-            "time": 1551776650000,
-            "day": 2
+        "rId": "CR001",
+        "startDate": {
+            "year": 2019,
+            "month": "MARCH",
+            "dayOfMonth": 3,
+            "dayOfWeek": "SUNDAY",
+            "era": "CE",
+            "dayOfYear": 62,
+            "leapYear": false,
+            "monthValue": 3,
+            "chronology": {
+                "id": "ISO",
+                "calendarType": "iso8601"
+            }
         },
-        "mEventList": [{
-            "startTime": {
-                "hour": 17,
-                "nano": 0,
-                "minute": 8,
-                "second": 8
-            },
-            "endTime": {
-                "hour": 18,
-                "nano": 0,
-                "minute": 7,
-                "second": 11
-            },
-            "rId": "CR001",
-            "meeting": null,
-            "startDate": {
-                "dayOfWeek": "SUNDAY",
-                "month": "MARCH",
-                "dayOfMonth": 3,
-                "dayOfYear": 62,
-                "era": "CE",
-                "year": 2019,
-                "monthValue": 3,
-                "chronology": {
-                    "calendarType": "iso8601",
-                    "id": "ISO"
-                },
-                "leapYear": false
-            },
-            "mNo": 1
-        }],
-        "tName": "default",
-        "mInfo": "如何吃饭是大事",
-        "mTitle": "关于吃饭的会议",
-        "state": "noshow"
-    }, {
-        "creator": {
-            "pInformMeetingList": [],
-            "pIcon": [105, 99, 111, 110],
-            "pAttendMeetingList": [],
-            "pFace": [116, 101, 115, 116, 70, 101, 97, 116, 117, 114, 101],
-            "pId": "user01",
-            "pPrivilege": 0,
-            "pPass": "123456",
-            "pName": "小明",
-            "pGender": "男",
-            "pRole": "经理",
-            "meetings": [],
-            "pDept": "技术部",
-            "pTel": "15528022968"
+        "startTime": {
+            "hour": 17,
+            "minute": 8,
+            "second": 8,
+            "nano": 0
         },
-        "mAttendList": [{
-            "pInformMeetingList": [],
-            "pIcon": [105, 99, 111, 110],
-            "pAttendMeetingList": [],
-            "pFace": [116, 101, 115, 116, 70, 101, 97, 116, 117, 114, 101],
-            "pId": "t15",
-            "pPrivilege": 0,
-            "pPass": "123456",
-            "pName": "小黑",
-            "pGender": "男",
-            "pRole": "",
-            "meetings": [],
-            "pDept": "",
-            "pTel": ""
-        }, {
-            "pInformMeetingList": [],
-            "pIcon": [105, 99, 111, 110],
-            "pAttendMeetingList": [],
-            "pFace": [116, 101, 115, 116, 70, 101, 97, 116, 117, 114, 101],
-            "pId": "user01",
-            "pPrivilege": 0,
-            "pPass": "123456",
-            "pName": "小明",
-            "pGender": "男",
-            "pRole": "经理",
-            "meetings": [],
-            "pDept": "技术部",
-            "pTel": "15528022968"
-        }],
-        "mInformList": [],
-        "mSize": 20,
-        "pId_FQ": "user01",
-        "mNo": 2,
-        "mSpan": 45,
-        "mCreateTime": {
-            "date": 4,
-            "hours": 17,
-            "seconds": 48,
-            "month": 2,
-            "nanos": 0,
-            "timezoneOffset": -480,
-            "year": 119,
-            "minutes": 24,
-            "time": 1551691488000,
-            "day": 1
+        "endTime": {
+            "hour": 18,
+            "minute": 7,
+            "second": 11,
+            "nano": 0
         },
-        "mEventList": [{
-            "startTime": {
-                "hour": 17,
-                "nano": 0,
-                "minute": 13,
-                "second": 39
-            },
-            "endTime": {
-                "hour": 18,
-                "nano": 0,
-                "minute": 13,
-                "second": 43
-            },
-            "rId": "CR301",
-            "meeting": null,
-            "startDate": {
-                "dayOfWeek": "TUESDAY",
-                "month": "MARCH",
-                "dayOfMonth": 5,
-                "dayOfYear": 64,
-                "era": "CE",
-                "year": 2019,
-                "monthValue": 3,
-                "chronology": {
-                    "calendarType": "iso8601",
-                    "id": "ISO"
-                },
-                "leapYear": false
-            },
-            "mNo": 2
-        }],
-        "tName": "default",
-        "mInfo": "人生大事",
-        "mTitle": "关于吃饭的会议2",
-        "state": "noshow"
+        "meeting": null
     }],
-    "status": 0
+    "mAttendList": [{
+        "pId": "t15",
+        "pPass": "123456",
+        "pName": "小黑",
+        "pGender": "男",
+        "pRole": "普通员工",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": null,
+        "meetings": []
+    }, {
+        "pId": "user01",
+        "pPass": "123456",
+        "pName": "小明",
+        "pGender": "男",
+        "pRole": "经理",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": "15528022968",
+        "meetings": []
+    }],
+    "mInformList": []
+}, {
+    "mNo": 2,
+    "mTitle": "关于吃饭的会议2",
+    "mInfo": "人生大事",
+    "mSize": 20,
+    "mSpan": 45,
+    "tName": "default",
+    "pId_FQ": "user01",
+    "state": "noshow",
+    "mCreateTime": 1551691488000,
+    "creator": {
+        "pId": "user01",
+        "pPass": "123456",
+        "pName": "小明",
+        "pGender": "男",
+        "pRole": "经理",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": "15528022968",
+        "meetings": []
+    },
+    "mEventList": [{
+        "mNo": 2,
+        "rId": "CR301",
+        "startDate": {
+            "year": 2019,
+            "month": "MARCH",
+            "dayOfMonth": 5,
+            "dayOfWeek": "TUESDAY",
+            "era": "CE",
+            "dayOfYear": 64,
+            "leapYear": false,
+            "monthValue": 3,
+            "chronology": {
+                "id": "ISO",
+                "calendarType": "iso8601"
+            }
+        },
+        "startTime": {
+            "hour": 17,
+            "minute": 13,
+            "second": 39,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 18,
+            "minute": 13,
+            "second": 43,
+            "nano": 0
+        },
+        "meeting": null
+    }],
+    "mAttendList": [{
+        "pId": "t15",
+        "pPass": "123456",
+        "pName": "小黑",
+        "pGender": "男",
+        "pRole": "普通员工",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": null,
+        "meetings": []
+    }, {
+        "pId": "user01",
+        "pPass": "123456",
+        "pName": "小明",
+        "pGender": "男",
+        "pRole": "经理",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": "15528022968",
+        "meetings": []
+    }],
+    "mInformList": []
+}, {
+    "mNo": 3,
+    "mTitle": "t15创建的会议",
+    "mInfo": "没有说明",
+    "mSize": 20,
+    "mSpan": 45,
+    "tName": "default",
+    "pId_FQ": "t15",
+    "state": "noshow",
+    "mCreateTime": 1551618969000,
+    "creator": {
+        "pId": "t15",
+        "pPass": "123456",
+        "pName": "小黑",
+        "pGender": "男",
+        "pRole": "普通员工",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": null,
+        "meetings": []
+    },
+    "mEventList": [{
+        "mNo": 3,
+        "rId": "CR302",
+        "startDate": {
+            "year": 2019,
+            "month": "MARCH",
+            "dayOfMonth": 6,
+            "dayOfWeek": "WEDNESDAY",
+            "era": "CE",
+            "dayOfYear": 65,
+            "leapYear": false,
+            "monthValue": 3,
+            "chronology": {
+                "id": "ISO",
+                "calendarType": "iso8601"
+            }
+        },
+        "startTime": {
+            "hour": 17,
+            "minute": 14,
+            "second": 11,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 18,
+            "minute": 14,
+            "second": 13,
+            "nano": 0
+        },
+        "meeting": null
+    }],
+    "mAttendList": [{
+        "pId": "user01",
+        "pPass": "123456",
+        "pName": "小明",
+        "pGender": "男",
+        "pRole": "经理",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": "15528022968",
+        "meetings": []
+    }],
+    "mInformList": []
+}, {
+    "mNo": 4,
+    "mTitle": "user01创建的会议",
+    "mInfo": "没有说明",
+    "mSize": 20,
+    "mSpan": 45,
+    "tName": "default",
+    "pId_FQ": "user02",
+    "state": "noshow",
+    "mCreateTime": 1551705666000,
+    "creator": {
+        "pId": "user02",
+        "pPass": "123456",
+        "pName": "小东",
+        "pGender": "男",
+        "pRole": null,
+        "pDept": null,
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": null,
+        "meetings": []
+    },
+    "mEventList": [{
+        "mNo": 4,
+        "rId": "CR303",
+        "startDate": {
+            "year": 2019,
+            "month": "MARCH",
+            "dayOfMonth": 9,
+            "dayOfWeek": "SATURDAY",
+            "era": "CE",
+            "dayOfYear": 68,
+            "leapYear": false,
+            "monthValue": 3,
+            "chronology": {
+                "id": "ISO",
+                "calendarType": "iso8601"
+            }
+        },
+        "startTime": {
+            "hour": 17,
+            "minute": 14,
+            "second": 35,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 19,
+            "minute": 14,
+            "second": 37,
+            "nano": 0
+        },
+        "meeting": null
+    }],
+    "mAttendList": [{
+        "pId": "user01",
+        "pPass": "123456",
+        "pName": "小明",
+        "pGender": "男",
+        "pRole": "经理",
+        "pDept": "技术部",
+        "pPrivilege": 0,
+        "pFace": "dGVzdEZlYXR1cmU=",
+        "pIcon": "aWNvbg==",
+        "pTel": "15528022968",
+        "meetings": []
+    }],
+    "mInformList": []
 }]
