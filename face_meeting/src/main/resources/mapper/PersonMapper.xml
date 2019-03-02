@@ -20,7 +20,7 @@
 		<result column="pIcon" property="pIcon" jdbcType="BLOB"
 			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
 		<result column="pTel" property="pTel" />
-		
+		<!-- 万恶之源
 		<collection property="pMeetingList" column="pId_FQ"
 			ofType="cn.drrs.face_meeting.entity.Meeting"
 			javaType="java.util.ArrayList" 
@@ -34,6 +34,7 @@
 			ofType="cn.drrs.face_meeting.entity.Meeting"
 			javaType="java.util.ArrayList" select="selectInformMeetingList">
 		</collection>
+		 -->
 	</resultMap>
 
 	
@@ -45,20 +46,20 @@
 	</select>  -->
 	<select id="findFullInfoById" 
 	parameterType="String" resultMap="personMap">
-	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
+	select * from person where pId=#{pId};
 	</select>
 	<select id="findById" 
 	parameterType="String" resultType="Person">
-	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
+	select * from person where pId=#{pId};
 	</select>
 	
 	<select id="findAll" 
 	resultMap="personMap">
-	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ);
+	select * from person;
 	</select>
 	<select id="findByFields" 
-	parameterType="cn.drrs.face_meeting.entity.Person" resultMap="personMap">
-	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ)
+	parameterType="Person" resultMap="personMap">
+	select * from person
 	<where>
 	<if test="pName!=null">and pName like #{pName}</if>
 	<if test="pGender!=null">and pGender=#{pGender}</if>
@@ -68,11 +69,7 @@
 	</where>
 	</select>
 	
-	<!-- 
-	凡是选Meeting一定用MeetingMapper中定义的meetingMap（Meeting的附加信息较多）
-	由于meetingMap里没有嵌套别的resultMap，故不会造成嵌套循环
-	resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap"
-	 -->
+	<!-- 万恶之源
 	<select id="selectAttendMeetingList" 
 	parameterType="String"  resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap" >
 	SELECT  * FROM meeting NATURAL JOIN pm_attend LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) WHERE pId=#{pId};
@@ -85,6 +82,9 @@
 	parameterType="String" resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap">
 	select meeting.* from meeting LEFT JOIN MR_event ON(MR_event.`mNo`=MEETING.`mNo`) where pId_FQ=#{pId};
 	</select>
+	
+	 -->
+	
 	
 	<update id="update" 
 		parameterType="cn.drrs.face_meeting.entity.Person">

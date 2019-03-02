@@ -198,7 +198,6 @@ public class MeetingServiceImple implements MeetingService{
 			return nr;
 		}
 	}
-	
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option) {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();

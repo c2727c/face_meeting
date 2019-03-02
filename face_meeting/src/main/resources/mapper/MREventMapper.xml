@@ -34,13 +34,32 @@
 		<where>
 			<if test="mNo>0">and mNo=#{mNo}</if>
 			<if test="rId!=null">and rId=#{rId}</if>
-			<if test="startDate!=null">and startDate=#{startDate}</if>
+			<if test="startDate!=null">and startDate>=#{startDate}</if>
 		</where>
 	</select>
+	
+	<select id="findByCreator"
+		resultMap="eventMap">
+		SELECT mr_event.* FROM mr_event NATURAL JOIN meeting 
+		WHERE pId_FQ=#{pId} AND startDate>=#{date}
+		ORDER BY startDate,startTime LIMIT 12;
+	</select>
+	<select id="findByAttendDate"
+		resultMap="eventMap">
+		SELECT mr_event.* FROM mr_event NATURAL JOIN pm_attend 
+		WHERE pId=#{pId} AND startDate>=#{date}
+		ORDER BY startDate,startTime LIMIT 12;
+	</select>
+	<select id="findByInformDate"
+		resultMap="eventMap">
+		SELECT mr_event.* FROM mr_event NATURAL JOIN pm_inform 
+		WHERE pId=#{pId} AND startDate>=#{date}
+		ORDER BY startDate,startTime LIMIT 12;
+	</select>
+	
 	<select id="selectMeeting"
 		resultType="cn.drrs.face_meeting.entity.Meeting">
 		select * from meeting
 		<where>mNo=#{mNo}</where>
 	</select>
-
 </mapper>
