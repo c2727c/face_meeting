@@ -7,7 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-@JsonIgnoreProperties(value={"creator","mEventList","mAttendList","mInformList","mInformList"})
+//@JsonIgnoreProperties(value={"creator","mEventList","mAttendList","mInformList","mInformList"})
 public class Meeting {
 	private int mNo=-1;/*唯一且自增，可代表发起的先后顺序*/
 	private String mTitle=null;

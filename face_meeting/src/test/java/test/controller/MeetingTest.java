@@ -33,20 +33,10 @@ public class MeetingTest {
 	@Test
 	public void test() {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
-		NoteResult<List<JSONObject>> nr2 = new NoteResult<List<JSONObject>>();
 		Person p = new Person();
 		p.setpId("t15");
 		nr=mlc.getMyAttends(p);
-		nr.toString();
-		nr2=mlc.getMyAttendss(p);
-		nr2.toString();
-
-		Person p2 = new Person();
-		p2.setpId("user01");
-		System.out.println();
-		System.out.println(p2.toString());
-		nr=mlc.getMyCreates(p2);
-		nr.toString();
+		System.err.println(JSONObject.fromObject(nr).toString());
 		
 	}
 	

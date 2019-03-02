@@ -1,11 +1,36 @@
 package cn.drrs.face_meeting.util;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class NoteResult<T> implements Serializable {
 
 	private int status;
 	private String msg;
+	private T data;
+	
+	public NoteResult<JSONObject> toJSONObject() {
+		NoteResult<JSONObject> nr = new NoteResult<JSONObject>();
+		nr.setAll(this.status, this.msg, JSONObject.fromObject(this.data));
+		return nr;
+	}
+	public NoteResult<JSONArray> toJSONArray() {
+		NoteResult<JSONArray> nr = new NoteResult<JSONArray>();
+		nr.setAll(this.status, this.msg, JSONArray.fromCollection((Collection)this.data));
+		return nr;
+	}
+	
+	public static NoteResult<JSONArray> tofJSONArray(NoteResult<List<Object>> n) {
+		NoteResult<JSONArray> nr = new NoteResult<JSONArray>();
+		nr.setAll(n.getStatus(), n.getMsg(), JSONArray.fromCollection(n.getData()));
+		return nr;
+	}
+	
+	
 	
 	public NoteResult( ) {
 		super();
@@ -17,7 +42,7 @@ public class NoteResult<T> implements Serializable {
 		this.data = data;
 	}
 
-	private T data;
+	
 	public void setAll(int status, String msg, T data) {
 		this.status = status;
 		this.msg = msg;

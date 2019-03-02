@@ -13,6 +13,9 @@
 		<!-- 打印查询语句 -->
 		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
+	<typeAliases>
+  		<package name="cn.drrs.face_meeting.entity"/>
+	</typeAliases>
 	<typeHandlers>
 		<typeHandler
 			handler="org.apache.ibatis.type.InstantTypeHandler" />

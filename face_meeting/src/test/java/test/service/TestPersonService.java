@@ -13,6 +13,7 @@ import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
 
 public class TestPersonService {
 	PersonService ps;
@@ -33,8 +34,9 @@ public class TestPersonService {
 	//测试查找
 	@Test
 	public void testFindpId() {
-		NoteResult<Person> nr = ps.findBypId("user01");
+		NoteResult<Person> nr = ps.findBypId("t15");
 		nr.toString();
+		System.out.println(JSONObject.fromBean(nr).toString());
 	}
 	@Test
 	public void testFind() {
