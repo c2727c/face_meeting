@@ -41,6 +41,32 @@
 			select="selectmInformList">
 		</collection>
 	</resultMap>
+	<resultMap type="cn.drrs.face_meeting.entity.Meeting" id="meetingMap2">
+		<id column="mNo" property="mNo" />
+		<result column="mTitle" property="mTitle" />
+		<result column="mInfo" property="mInfo" />
+		<result column="mSize" property="mSize" />
+		<result column="mSpan" property="mSpan" />
+		<result column="tName" property="tName" />
+		<result column="pId_FQ" property="pId_FQ" />
+		<result column="state" property="state" />
+		<result column="mCreateTime" property="mCreateTime" />
+		<association property="creator" column="mNo"
+		    javaType="cn.drrs.face_meeting.entity.Person"
+		    select="selectCreator">
+		</association>
+		<collection property="mEventList" column="mNo"
+			ofType="cn.drrs.face_meeting.entity.Event">
+			<id column="mNo" property="mNo" />
+			<id column="rId" property="rId" />
+			<result column="startDate" property="startDate" />
+			<result column="startTime" property="startTime" />
+			<result column="endTime" property="endTime" />
+		</collection>
+	</resultMap>
+	
+	
+	
 	<insert id="save" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
 		insert into Meeting values(NULL,#{mTitle},DEFAULT,#{mSize},#{mSpan},DEFAULT,#{pId_FQ},'pass',DEFAULT);
@@ -54,14 +80,23 @@
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
 		delete from Meeting where mNo = #{mNo};
 	</delete>
+	
 	<select id="findBymNo" 
+		parameterType="int"
+		resultMap="meetingMap2">
+		select * from meeting where mNo=#{mNo};
+	</select>
+	<select id="findFullInfoBymNo" 
 		parameterType="int"
 		resultMap="meetingMap">
 		select * from meeting where mNo=#{mNo};
 	</select>
+	
+	
+	
 	<select id="findByFields" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting"
-		resultMap="meetingMap">
+		resultMap="meetingMap2">
 		select * from meeting
 		<where>
 		<if test="mNo>0">and mNo=#{mNo}</if>

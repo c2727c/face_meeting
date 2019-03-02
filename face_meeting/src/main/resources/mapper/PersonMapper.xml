@@ -43,10 +43,15 @@
 	resultType="cn.drrs.face_meeting.entity.Person">
 	select * from person where pId=#{pId};
 	</select>  -->
-	<select id="findById" 
+	<select id="findFullInfoById" 
 	parameterType="String" resultMap="personMap">
 	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
 	</select>
+	<select id="findById" 
+	parameterType="String" resultType="Person">
+	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
+	</select>
+	
 	<select id="findAll" 
 	resultMap="personMap">
 	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ);

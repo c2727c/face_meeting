@@ -163,6 +163,15 @@ public class MeetingServiceImple implements MeetingService{
 		result.setMsg("按编号取唯一会议");
 		return result;
 	}
+	
+	public NoteResult<Meeting> findFullInfoBymNo(int mNo) {
+		NoteResult<Meeting> result = new NoteResult<Meeting>();
+		Meeting m =meetingDao.findFullInfoBymNo(mNo);
+		result.setData(m);
+		result.setStatus(0);
+		result.setMsg("按编号取唯一会议");
+		return result;
+	}
 
 
 	public NoteResult<List<Meeting>> findAllRoom(int before, int after) {
@@ -175,7 +184,7 @@ public class MeetingServiceImple implements MeetingService{
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();
 		try {
-			Person p = personDao.findById(pId);
+			Person p = personDao.findFullInfoById(pId);
 			switch(option) {
 			case 1: list =  p.getMeetings();break;
 			case 2: list =  p.getpAttendMeetingList();break;
@@ -194,7 +203,7 @@ public class MeetingServiceImple implements MeetingService{
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();
 		try {
-			Person p = personDao.findById(pId);
+			Person p = personDao.findFullInfoById(pId);
 			switch(option) {
 			case 1: list =  p.getMeetings();break;
 			case 2: list =  p.getpAttendMeetingList();break;
@@ -202,7 +211,13 @@ public class MeetingServiceImple implements MeetingService{
 			}
 			List<Meeting> data = new ArrayList<Meeting>();
 			for(Meeting m:list) {
-				LocalDate mDate = m.getmEventList().get(0).getStartDate();
+				LocalDate mDate;
+				try {mDate = m.getmEventList().get(0).getStartDate();
+				} catch (IndexOutOfBoundsException e) {
+					//说明该会议未被安排时间地点，这样的会议也选上，然后在前台显示为会程未确定
+					data.add(m);
+					continue;
+				}
 				if(!(mDate.isBefore(ld)||mDate.isAfter(ld.plusDays(7)))) {
 					data.add(m);
 				}
@@ -215,6 +230,8 @@ public class MeetingServiceImple implements MeetingService{
 			return nr;
 		}
 	}
+
+	
 
 	
 	

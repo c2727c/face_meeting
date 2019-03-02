@@ -9,6 +9,7 @@ import cn.drrs.face_meeting.controller.user.UserControllerxdw;
 import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
 
 public class UserTest {
 	UserControllerxdw ucl;
@@ -29,6 +30,6 @@ public class UserTest {
 		NoteResult<Person> nr = new NoteResult<Person>();
 		Person p = ps.findBypId("t15").getData();
 		nr=ucl.userLogin(p);
-		nr.toString();
+		System.err.println(JSONObject.fromObject(nr).toString());
 	}
 }
