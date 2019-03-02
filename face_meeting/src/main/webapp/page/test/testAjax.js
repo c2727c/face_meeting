@@ -5,13 +5,11 @@ layui.use([ 'element', 'layer', 'jquery' ], function() {
 
 	// 根据cookie中得userId查询用户信息
 	// var userId = $.cookie("userId")
-	// var userId = 't15'
-	var userId = 'user01'
+	var userId = 't15'
+	// var userId = 'user01'
 	console.log(userId)
 
-	var path = "http://localhost:8080/face_meeting";
 	var url = path + "/meeting/getMyAttends.do";
-	// var url = path + "/meeting/getMyCreates.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
 		url : url,
