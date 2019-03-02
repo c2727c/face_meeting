@@ -20,7 +20,6 @@
 		<result column="pIcon" property="pIcon" jdbcType="BLOB"
 			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
 		<result column="pTel" property="pTel" />
-		
 		<collection property="pMeetingList" column="pId_FQ"
 			ofType="cn.drrs.face_meeting.entity.Meeting"
 			javaType="java.util.ArrayList" 
@@ -49,7 +48,7 @@
 	</select>
 	<select id="findById" 
 	parameterType="String" resultType="Person">
-	select * from person left join meeting natural join mr_event on(person.pId=meeting.pId_FQ) where pId=#{pId};
+	select * from person where pId=#{pId};
 	</select>
 	
 	<select id="findAll" 
