@@ -27,7 +27,7 @@ public class UserTest {
 	@Test
 	public void test() {
 		NoteResult<Person> nr = new NoteResult<Person>();
-		Person p = ps.findBypId("t15").getData();
+		Person p = ps.findBypId("user02").getData();
 		nr=ucl.userLogin(p);
 		nr.toString();
 	}

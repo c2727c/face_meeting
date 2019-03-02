@@ -33,11 +33,10 @@ public class MeetingTest {
 	@Test
 	public void test() {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
-		nr=mlc.getMyAttends("t15","2019-01-20");
+		nr=mlc.getMyAttends("t15","2019-03-01");
 		System.err.println(JSONObject.fromObject(nr).toString());
-		nr=mlc.getMyAttends("t15","2019-01-21");
+		nr=mlc.getMyAttends("t15","2019-03-01");
 		System.err.println(JSONObject.fromObject(nr).toString());
-		
 	}
 	
 	@Test
@@ -46,7 +45,6 @@ public class MeetingTest {
 		Meeting m = new Meeting(1, null, null, 0, 0, null);
 		System.out.println(JSONObject.fromObject(a).toString());
 		System.out.println(JSONObject.fromObject(m).toString());
-		
 	}
 	
 
