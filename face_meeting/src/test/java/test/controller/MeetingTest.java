@@ -40,6 +40,13 @@ public class MeetingTest {
 		nr.toString();
 		nr2=mlc.getMyAttendss(p);
 		nr2.toString();
+
+		Person p2 = new Person();
+		p2.setpId("user01");
+		System.out.println();
+		System.out.println(p2.toString());
+		nr=mlc.getMyCreates(p2);
+		nr.toString();
 		
 	}
 	

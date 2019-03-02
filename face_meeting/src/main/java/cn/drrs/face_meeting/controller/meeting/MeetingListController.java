@@ -38,13 +38,12 @@ public class MeetingListController {
 		return service.getMyMeetings(user.getpId(),2);
 	}
 	
-	@RequestMapping("/getMyAttendss.do") 
+	@RequestMapping("/getMyAttendss.do")
 	@ResponseBody
 	public NoteResult<List<JSONObject>> getMyAttendss(@RequestBody(required = false) Person user) {
-		
-		return service.getMyMeetingss(user.getpId(),2);
+
+		return service.getMyMeetingss(user.getpId(), 2);
 	}
-	
 	
 	
 	//获取用户被报送的会议列表
