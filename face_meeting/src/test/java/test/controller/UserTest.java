@@ -9,6 +9,7 @@ import cn.drrs.face_meeting.controller.user.UserControllerxdw;
 import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
 
 public class UserTest {
 	UserControllerxdw ucl;
@@ -37,14 +38,6 @@ public class UserTest {
 		System.out.println();
 		System.out.println("user02");
 		nr=ucl.userLogin(p);
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println("user02");
-		nr.toString();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println("user02");
+		System.err.println(JSONObject.fromObject(nr).toString());
 	}
 }

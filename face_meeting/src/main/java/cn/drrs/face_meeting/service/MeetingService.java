@@ -39,4 +39,5 @@ public interface MeetingService {
 	public ResponseData findAllRoomByPage(int page, int limit);
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option);
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option);
+	public NoteResult<Meeting> findFullInfoBymNo(int mNo);
 }
