@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.drrs.face_meeting.controller.user.MeetingListController;
 import cn.drrs.face_meeting.entity.Attend;
+import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.MeetingService;
@@ -32,7 +33,7 @@ public class MeetingTest {
 	
 	@Test
 	public void test() {
-		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
+		NoteResult<List<Event>> nr = new NoteResult<List<Event>>();
 		nr=mlc.getMyAttends("t15","2019-03-01");
 		System.err.println(JSONObject.fromObject(nr).toString());
 		nr=mlc.getMyAttends("t15","2019-03-01");

@@ -207,24 +207,24 @@ public class MeetingServiceImple implements MeetingService{
         }
         return rd;
 	}
-	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
-		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
-		List<Meeting> list = new ArrayList<Meeting>();
-		try {
-			Person p = personDao.findFullInfoById(pId);
-			switch(option) {
-			case 1: list =  p.getMeetings();break;
-			case 2: list =  p.getpAttendMeetingList();break;
-			case 3: list =  p.getpInformMeetingList();break;
-			}
-			nr.setAll(0, "查询用户："+pId+"全部相关会议成功", list);
-			return nr;
-		} catch (Exception e) {
-			e.printStackTrace();
-			nr.setAll(1, "查询用户："+pId+"的全部相关会议失败", null);
-			return nr;
-		}
-	}
+//	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
+//		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
+//		List<Meeting> list = new ArrayList<Meeting>();
+//		try {
+//			Person p = personDao.findFullInfoById(pId);
+//			switch(option) {
+//			case 1: list =  p.getMeetings();break;
+//			case 2: list =  p.getpAttendMeetingList();break;
+//			case 3: list =  p.getpInformMeetingList();break;
+//			}
+//			nr.setAll(0, "查询用户："+pId+"全部相关会议成功", list);
+//			return nr;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			nr.setAll(1, "查询用户："+pId+"的全部相关会议失败", null);
+//			return nr;
+//		}
+//	}
 	
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option) {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
