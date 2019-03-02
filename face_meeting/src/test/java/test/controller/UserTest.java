@@ -32,7 +32,7 @@ public class UserTest {
 		System.out.println();
 		System.out.println();
 		System.out.println("user02");
-		Person p = ps.findBypId("user01").getData();
+		Person p = ps.findBypId("user02").getData();
 		System.out.println();
 		System.out.println();
 		System.out.println();
