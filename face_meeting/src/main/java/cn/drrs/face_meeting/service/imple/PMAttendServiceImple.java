@@ -13,7 +13,7 @@ import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.PMAttendService;
-import cn.drrs.face_meeting.service.UsbRelayService;
+import cn.drrs.face_meeting.service.imple.UsbRelayServiceImple;
 import cn.drrs.face_meeting.util.NoteResult;
 
 
@@ -23,7 +23,7 @@ public class PMAttendServiceImple implements PMAttendService{
 	private PMAttendDao dao;
 	@Resource
 	private MeetingDao meetingDao;
-	private UsbRelayService usbRelayService = new UsbRelayService();
+	private UsbRelayServiceImple usbRelayService = new UsbRelayServiceImple();
 	//添加参会关系
 	public NoteResult<Object> insert(List<Attend> alist){
 		NoteResult<Object> nr=new NoteResult<Object>();

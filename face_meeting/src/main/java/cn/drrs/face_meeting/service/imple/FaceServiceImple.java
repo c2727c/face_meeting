@@ -44,7 +44,31 @@ public class FaceServiceImple implements FaceService {
 		Person p = null;
 		for (Person tmp : personDao.findAll()) {//获取所有用户对象
 			//比较两份【人脸特征信息】的匹配度，结果保存在score里。 
-			engine.AFR_FSDK_FacePairMatching(result, new AFR_FSDKFace(tmp.getpFace()), score);
+			engine.AFR_FSDK_FacePairMatching(feature, new AFR_FSDKFace(tmp.getpFace()), score);
+			if (max < score.getScore()) {
+				max = score.getScore();//更新最大值
+				p = tmp;//更新认定结果
+			} 
+		}
+		if (max > 0.6f) {
+			nr.setAll(0, "匹配成功，用户id"+p.getpId()+"匹配度："+max, p);
+		}else{
+			nr.setAll(1,"匹配失败",null);
+		}
+		return nr;
+	}
+	public NoteResult<Person> faceRecognition(byte[] faceBytes){
+		AFR_FSDKFace feature = new AFR_FSDKFace (faceBytes);
+		AFR_FSDKEngine engine = new AFR_FSDKEngine();
+		NoteResult<Person> nr = new NoteResult<Person>();
+		AFR_FSDKMatching score = new AFR_FSDKMatching();
+		//记录匹配度的最大值
+		float max = 0.0f;
+		//用来存匹配后得知的名字
+		Person p = null;
+		for (Person tmp : personDao.findAll()) {//获取所有用户对象
+			//比较两份【人脸特征信息】的匹配度，结果保存在score里。 
+			engine.AFR_FSDK_FacePairMatching(feature, new AFR_FSDKFace(tmp.getpFace()), score);
 			if (max < score.getScore()) {
 				max = score.getScore();//更新最大值
 				p = tmp;//更新认定结果

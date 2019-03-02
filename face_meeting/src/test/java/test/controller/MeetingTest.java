@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.drrs.face_meeting.controller.meeting.MeetingListController;
+import cn.drrs.face_meeting.controller.user.MeetingListController;
 import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;

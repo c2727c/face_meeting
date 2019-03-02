@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="libs/facetracking.jar"/>
 	<classpathentry kind="lib" path="libs/genderestimation.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre32_1.8"/>
+	<classpathentry kind="lib" path="usbrelay"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
