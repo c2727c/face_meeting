@@ -5,12 +5,16 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /*
  * 参照数据库中的表定义
  * 属性名于字段名保持一致
  * 属性类型与字段类型保持一致
  * 实现序列化
  */
+
+@JsonIgnoreProperties(value={"pMeetingList","pAttendMeetingList","pInformMeetingList"})
 public class Person implements Serializable {
 	private String pId = null;
 	private String pPass = null;
