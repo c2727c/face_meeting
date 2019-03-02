@@ -103,5 +103,19 @@
 			(#{p.pId},#{p.pPass},#{p.pName},#{p.pGender},#{p.pRole},#{p.pDept},#{p.pPrivilege},#{p.pFace},#{p.pIcon},#{p.pTel})
 		</foreach>
 	</insert>
-
+	
+	<!-- 表格所需的一些操作 -->
+	<!--分页查询数据，根据limit和page进行分页-->
+    <select id="getPageofUser" parameterType="Map" resultType="cn.drrs.face_meeting.entity.Person">
+        SELECT pId,pName,pGender,pRole,pDept,pPrivilege,pIcon
+        FROM  Person
+        <if test="page!=null and limit!=null">
+            limit #{page},#{limit}
+        </if>
+    </select>
+    <!--查询记录总数-->
+    <select id="queryUserCount"  resultType="java.lang.Integer">
+        SELECT count(*) FROM  Person
+    </select>
+	
 </mapper>

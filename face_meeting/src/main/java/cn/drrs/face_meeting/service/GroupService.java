@@ -1,7 +1,7 @@
 package cn.drrs.face_meeting.service;
 
-import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Group;
+import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.util.NoteResult;
 
 public interface GroupService {
@@ -15,6 +15,5 @@ public interface GroupService {
 	//public NoteResult<Group> findBypId(String pId);
 	//·修改分组信息
 	public NoteResult<Object> update(Group g);
-
-
+	public ResponseData getPageofGroup(int page, int limit);
 }

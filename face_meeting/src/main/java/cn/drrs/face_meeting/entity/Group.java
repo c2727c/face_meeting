@@ -14,16 +14,16 @@ public class Group {
 	
 	public Group(String gId, String gInfo) {
 		super();
-		this.setgId(gId);
+		this.gId=gId;
 		this.gInfo = gInfo;
 	}
 
 
-	public String getInfo() {
+	public String getgInfo() {
 		return gInfo;
 	}
 
-	public void setInfo(String gInfo) {
+	public void setgInfo(String gInfo) {
 		this.gInfo = gInfo;
 	}
 

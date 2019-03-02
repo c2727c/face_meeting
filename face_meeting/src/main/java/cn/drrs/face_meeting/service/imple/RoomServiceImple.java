@@ -2,11 +2,14 @@ package cn.drrs.face_meeting.service.imple;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.drrs.face_meeting.dao.MeetingDao;
 import cn.drrs.face_meeting.dao.RoomDao;
@@ -112,6 +115,33 @@ public class RoomServiceImple implements RoomService{
 		return result;
 	}
 	
-	
+	@Transactional(readOnly = true)//page默认是从1开始的
+	public ResponseData findPageRoom(int page, int limit) {
+		// TODO Auto-generated method stub
+		System.out.println("进入MeetingService层的findAllRoomByPage方法**************************************************************************************************");
+        ResponseData rd=new ResponseData();
+        List<Room> roomList;
+
+        System.out.println("page的值："+page+"****************************************************************************************************************");
+        page=(page-1)*limit;
+        System.out.println("page变换之后的值："+page+"****************************************************************************************************************");
+        System.out.println("limit的值："+limit+"***************************************************************************************************************");
+        try {
+            rd.setCode("0");
+            int num = roomDao.queryRoomCount();
+            System.out.println("num的值为：" + num + "*****************************************************************************************************");
+            String snum=num+"";
+            rd.setCount(snum);//获取记录总数
+            Map<String,Integer> map = new HashMap<String, Integer>();
+            map.put("page",page);//从第几页开始
+            map.put("limit",limit);//每页显示多少条记录
+            roomList = roomDao.findRoomByPage(map);
+            rd.setData(roomList);
+            rd.setMsg("请求成功");
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return rd;
+	}
 
 }

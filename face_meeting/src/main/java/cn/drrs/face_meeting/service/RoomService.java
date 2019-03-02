@@ -10,6 +10,7 @@ import java.util.List;
 
 import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
+import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.entity.Room;
 import cn.drrs.face_meeting.entity.RoomRestrict;
 import cn.drrs.face_meeting.util.NoteResult;
@@ -38,5 +39,6 @@ public interface RoomService {
 	
 	//【便捷转场业务】，给出一个Event，为它安排合适的临近Room，还需要给出“所需时长”的参数
 	public NoteResult<List<Room>> transfer(Event e,int span);
+	public ResponseData findPageRoom(int page, int limit);
 
 }
