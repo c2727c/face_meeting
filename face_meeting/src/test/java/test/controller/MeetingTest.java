@@ -33,9 +33,9 @@ public class MeetingTest {
 	@Test
 	public void test() {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
-		Person p = new Person();
-		p.setpId("t15");
-		nr=mlc.getMyAttends(p);
+		nr=mlc.getMyAttends("t15","2019-01-20");
+		System.err.println(JSONObject.fromObject(nr).toString());
+		nr=mlc.getMyAttends("t15","2019-01-21");
 		System.err.println(JSONObject.fromObject(nr).toString());
 		
 	}
