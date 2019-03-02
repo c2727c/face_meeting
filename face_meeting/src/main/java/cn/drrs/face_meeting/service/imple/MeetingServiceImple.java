@@ -202,7 +202,7 @@ public class MeetingServiceImple implements MeetingService{
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();
 		try {
-			Person p = personDao.findById(pId);
+			Person p = personDao.findFullInfoById(pId);
 			switch(option) {
 			case 1: list =  p.getMeetings();break;
 			case 2: list =  p.getpAttendMeetingList();break;
@@ -221,7 +221,7 @@ public class MeetingServiceImple implements MeetingService{
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();
 		try {
-			Person p = personDao.findById(pId);
+			Person p = personDao.findFullInfoById(pId);
 			switch(option) {
 			case 1: list =  p.getMeetings();break;
 			case 2: list =  p.getpAttendMeetingList();break;

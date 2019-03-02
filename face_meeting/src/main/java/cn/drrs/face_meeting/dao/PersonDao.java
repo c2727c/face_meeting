@@ -7,6 +7,7 @@ import cn.drrs.face_meeting.entity.Person;
 public interface PersonDao {
 	
 	public Person findById(String pId);
+	public Person findFullInfoById(String pId);
 	public List<Person> findAll();
 	
 	
