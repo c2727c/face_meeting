@@ -1,0 +1,3 @@
+1、此DEMO使用JNI技术开发
+2、UrDllBridge.dll、UrDllBridge.class是桥接DLL和类，运行时必须有这个DLL和class文件
+3、具体接口说明请看.h文件
