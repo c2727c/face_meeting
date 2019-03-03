@@ -66,11 +66,17 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
             dataType: "json",
             success: function (data) {
                 console.log(data)
-                
-                var html = template('meetList', {
-                    data: data.data
-                });
-                document.getElementById('content').innerHTML = html;
+                console.log(data.data)
+                if (JSON.stringify(data.data) != "[]") {
+                    var html = template('meetList', {
+                        data: data.data
+                    });
+                    document.getElementById('content').innerHTML = html;
+                } else {
+                    console.log("test")
+                    var html = template('noMeet', data);
+                    document.getElementById('content').innerHTML = html;
+                }
             },
             error: function () {
                 console.log("ajax请求失败");
