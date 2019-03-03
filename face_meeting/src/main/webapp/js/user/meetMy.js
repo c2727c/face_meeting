@@ -65,10 +65,15 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
             },
             dataType: "json",
             success: function (data) {
-                console.log("data.data是：" + JSON.stringify(data.data))
+                console.log(data)
+                
+                var html = template('meetList', {
+                    data: data.data
+                });
+                document.getElementById('content').innerHTML = html;
             },
             error: function () {
-                alert("ajax请求失败");
+                console.log("ajax请求失败");
             }
         });
     }

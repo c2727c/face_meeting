@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -29,5 +30,7 @@ public interface RoomDao {
 	
 	//DONE 查找某日期某时间符合该会议要求的房间
 	public List<Room>  findByMeetingDateTime(RoomRestrict rr);
+	public int queryRoomCount();
+	public List<Room> findRoomByPage(Map<String, Integer> map);
 
 }

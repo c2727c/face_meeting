@@ -3,20 +3,22 @@ package cn.drrs.face_meeting.service;
 import java.util.List;
 
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.util.NoteResult;
 
 public interface PersonService {
-	//¡¤µÇÂ¼
+	//ï¿½ï¿½ï¿½ï¿½Â¼
 	public NoteResult<Person> checkLogin(String cCode,String name,String password);
-	//¡¤¸öÈËĞÅÏ¢ĞŞ¸Ä
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ş¸ï¿½
 	public NoteResult<Person> update(Person p);
-	//¡¤TODO Â¼ÈëÈËÁ³ĞÅÏ¢ 
-	//¡¤°´²¿ÃÅ/ĞÕÃû/ËùÔÚ·Ö×é²éÕÒÆäËûÓÃ»§
+	//ï¿½ï¿½TODO Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	public NoteResult<Person> findBypId(String pId);
 	public NoteResult<List<Person>> findBypDeptpName(String pDept,String pName);
-	//Group¼¯ºÏÓ³Éäpublic NoteResult<List<Person>> findBygName(String gName);
-	//¡¤ ÅúÁ¿×¢²á
+	//Groupï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½public NoteResult<List<Person>> findBygName(String gName);
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
 	public NoteResult<Person> insert(List<Person> list);
-	//¡¤ ÅúÁ¿×¢Ïú
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
 	public NoteResult<Object> delete(List<String> list);
+	public ResponseData getPageofUser(int page, int limit);
 }

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ser.PropertyFilter;
 
 import cn.drrs.face_meeting.dao.MeetingDao;
 import cn.drrs.face_meeting.dao.PersonDao;
-import cn.drrs.face_meeting.dao.RoomDaoTest;
+import cn.drrs.face_meeting.dao.RoomDao;
 import cn.drrs.face_meeting.entity.*;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.util.NoteResult;
@@ -30,7 +30,7 @@ public class MeetingServiceImple implements MeetingService{
 	@Resource
 	private PersonDao personDao;
 	@Resource
-	private RoomDaoTest roomDaoTest;
+	private RoomDao roomDao;
 	
 	public NoteResult<Object> add(String mTitle, int mSize, int mSpan,String pId_FQ) {
 		NoteResult<Object> result = new NoteResult<Object>();
@@ -179,53 +179,25 @@ public class MeetingServiceImple implements MeetingService{
 		NoteResult<List<Meeting>> result = new NoteResult<List<Meeting>>();
 		return result;
 	}
-	@Transactional(readOnly = true)//page默认是从1开始的
-	public ResponseData findAllRoomByPage(int page, int limit) {
-		// TODO Auto-generated method stub
-		System.out.println("进入MeetingService层的findAllRoomByPage方法**************************************************************************************************");
-        ResponseData rd=new ResponseData();
-        List<Room> roomList;
-
-        System.out.println("page的值："+page+"****************************************************************************************************************");
-        page=(page-1)*limit;
-        System.out.println("page变换之后的值："+page+"****************************************************************************************************************");
-        System.out.println("limit的值："+limit+"***************************************************************************************************************");
-        try {
-            rd.setCode("0");
-            int num = roomDaoTest.queryRoomCount();
-            System.out.println("num的值为：" + num + "*****************************************************************************************************");
-            String snum=num+"";
-            rd.setCount(snum);//获取记录总数
-            Map<String,Integer> map = new HashMap<String, Integer>();
-            map.put("page",page);//从第几页开始
-            map.put("limit",limit);//每页显示多少条记录
-            roomList = roomDaoTest.findRoomByPage(map);
-            rd.setData(roomList);
-            rd.setMsg("请求成功");
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-        return rd;
-	}
-//	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
-//		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
-//		List<Meeting> list = new ArrayList<Meeting>();
-//		try {
-//			Person p = personDao.findFullInfoById(pId);
-//			switch(option) {
-//			case 1: list =  p.getMeetings();break;
-//			case 2: list =  p.getpAttendMeetingList();break;
-//			case 3: list =  p.getpInformMeetingList();break;
-//			}
-//			nr.setAll(0, "查询用户："+pId+"全部相关会议成功", list);
-//			return nr;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			nr.setAll(1, "查询用户："+pId+"的全部相关会议失败", null);
-//			return nr;
-//		}
-//	}
 	
+	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option) {
+		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
+		List<Meeting> list = new ArrayList<Meeting>();
+		try {
+			Person p = personDao.findFullInfoById(pId);
+			switch(option) {
+			case 1: list =  p.getMeetings();break;
+			case 2: list =  p.getpAttendMeetingList();break;
+			case 3: list =  p.getpInformMeetingList();break;
+			}
+			nr.setAll(0, "查询用户："+pId+"全部相关会议成功", list);
+			return nr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			nr.setAll(1, "查询用户："+pId+"的全部相关会议失败", null);
+			return nr;
+		}
+	}
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option) {
 		NoteResult<List<Meeting>> nr = new NoteResult<List<Meeting>>();
 		List<Meeting> list = new ArrayList<Meeting>();

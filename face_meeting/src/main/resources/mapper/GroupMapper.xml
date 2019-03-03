@@ -28,5 +28,17 @@
 		select * from `group` where gId=#{gId};
 	</select>
 	
-
+	<!-- 表格所需的一些操作 -->
+	<!--分页查询数据，根据limit和page进行分页-->
+    <select id="getPageofGroup" parameterType="Map" resultType="cn.drrs.face_meeting.entity.Group">
+        SELECT *
+        FROM  `Group`
+        <if test="page!=null and limit!=null">
+            limit #{page},#{limit}
+        </if>
+    </select>
+    <!--查询记录总数-->
+    <select id="queryGroupCount"  resultType="java.lang.Integer">
+        SELECT count(*) FROM  `Group`
+    </select>
 </mapper>

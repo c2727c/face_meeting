@@ -1,4 +1,5 @@
-var data = [{
+var data = [
+    {
     "mNo": 1,
     "rId": "CR001",
     "startDate": {
@@ -50,7 +51,7 @@ var data = [{
         "month": "MARCH",
         "dayOfYear": 64,
         "leapYear": false,
-        "dayOfMonth": 5,
+        "dayOfMonth": 3,
         "dayOfWeek": "TUESDAY",
         "era": "CE",
         "monthValue": 3,
@@ -138,7 +139,7 @@ var data = [{
         "month": "MARCH",
         "dayOfYear": 68,
         "leapYear": false,
-        "dayOfMonth": 9,
+        "dayOfMonth": 7,
         "dayOfWeek": "SATURDAY",
         "era": "CE",
         "monthValue": 3,

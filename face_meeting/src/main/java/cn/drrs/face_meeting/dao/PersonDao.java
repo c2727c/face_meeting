@@ -1,6 +1,7 @@
 package cn.drrs.face_meeting.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.drrs.face_meeting.entity.Person;
 
@@ -17,5 +18,7 @@ public interface PersonDao {
 	
 	//批量注册
 	public int insert(List<Person> list);
+	public int queryUserCount();
+	public List<Person> getPageofUser(Map<String, Integer> map);
 
 }

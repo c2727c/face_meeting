@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -24,4 +25,8 @@ public interface GroupDao {
 	Group findBygId(String gId);
 
 	int update(Group g);
+
+	int queryGroupCount();
+
+	List<Group> getPageofGroup(Map<String, Integer> map);
 }

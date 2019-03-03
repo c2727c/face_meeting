@@ -1,6 +1,8 @@
 package cn.drrs.face_meeting.service.imple;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import cn.drrs.face_meeting.dao.PersonDao;
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
 
@@ -79,6 +82,35 @@ public class PersonServiceImple implements PersonService{
 	public NoteResult<Object> delete(List<String> list) {
 		// TODO 批量注销
 		return null;
+	}
+
+	public ResponseData getPageofUser(int page, int limit) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				System.out.println("进入PersonService层的getPageofUser方法**************************************************************************************************");
+		        ResponseData rd=new ResponseData();
+		        List<Person> personList;
+
+		        System.out.println("page的值："+page+"****************************************************************************************************************");
+		        page=(page-1)*limit;
+		        System.out.println("page变换之后的值："+page+"****************************************************************************************************************");
+		        System.out.println("limit的值："+limit+"***************************************************************************************************************");
+		        try {
+		            rd.setCode("0");
+		            int num = personDao.queryUserCount();
+		            System.out.println("num的值为：" + num + "*****************************************************************************************************");
+		            String snum=num+"";
+		            rd.setCount(snum);//获取记录总数
+		            Map<String,Integer> map = new HashMap<String, Integer>();
+		            map.put("page",page);//从第几页开始
+		            map.put("limit",limit);//每页显示多少条记录
+		            personList = personDao.getPageofUser(map);
+		            rd.setData(personList);
+		            rd.setMsg("请求成功");
+		        }catch(Exception ex){
+		            ex.printStackTrace();
+		        }
+		        return rd;
 	}
 	
 	
