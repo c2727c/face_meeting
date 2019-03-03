@@ -83,5 +83,13 @@ public class NoteResult<T> implements Serializable {
 		return s;
 		
 	}
+	
+	public String printJSON() {
+		String s = JSONObject.fromObject(this).toString();
+		System.err.println(s);
+		return s;
+		
+	}
 
 }
+

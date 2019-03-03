@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import cn.drrs.face_meeting.dao.MeetingDao;
@@ -31,22 +32,29 @@ public class MessageServiceImple implements MessageService {
 
 	public int add(Message m) {
 		String type = m.getType();
+		m.setMessageId(UUIDUtil.getUID());
 		if(type.equals("meeting")) {//会议公告
-			m.setMessageId(UUIDUtil.getUID());
 			messageDao.add(m);
 			List<String> receivers = messageDao.getreceivers(m.getmNo());
 			for(String pId : receivers) {
 				m.setOwner(pId);
 				m.setReceiver(pId);
-				messageDao.add(m);
+				try {
+					messageDao.add(m);
+				} catch (DuplicateKeyException e) {
+					System.err.println("跳过插入主键重复信息");
+				}
 			}
 		}else if(type.equals("system")) {
-			
+			messageDao.add(m);
 		}else {//"request""private"
-			m.setMessageId(UUIDUtil.getUID());
 			messageDao.add(m);
 			m.setOwner(m.getReceiver());
-			messageDao.add(m);
+			try {
+				messageDao.add(m);
+			} catch (DuplicateKeyException e) {
+				System.err.println("跳过插入主键重复信息");
+			}
 		}
 		return 0;
 	}

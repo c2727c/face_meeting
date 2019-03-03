@@ -3,6 +3,43 @@ package cn.drrs.face_meeting.entity;
 import java.sql.Timestamp;
 
 public class Message {
+	
+	private String messageId;
+	private String sender;
+	private String receiver;//群发时在发送者处此项缺省
+	private String owner;//消息的所有者，会产生分别属于发送者和接收者的两条消息
+	private int mNo;
+	
+	private String title;
+	private String content;
+	private Timestamp sendTime=null;
+	private String type;//系统通知system/会议公告meeting/请假request/私信private
+	private boolean isRead;
+	private String state;//主要是请假类消息的批准与否//none/rejected/accepted
+	
+	//通过association填写
+	private String relativeMeetingTile;//取出来会议名
+	private Event relativeEvent;//包含时间，地点，会议号
+	
+
+	public Message() {
+		super();
+	}
+
+	public Message(String messageId, String sender, String receiver, int mNo, String title,
+			String content, String type) {
+		super();
+		this.messageId = messageId;
+		this.sender = sender;
+		this.receiver = receiver;
+		this.owner = sender;
+		this.mNo = mNo;
+		this.title = title;
+		this.content = content;
+		this.type = type;
+		this.isRead = false;
+	}
+
 	public String getMessageId() {
 		return messageId;
 	}
@@ -81,24 +118,6 @@ public class Message {
 	public void setRelativeEvent(Event relativeEvent) {
 		this.relativeEvent = relativeEvent;
 	}
-	private String messageId;
-	
-	
-	private String sender;
-	private String receiver;//群发时在发送者处此项缺省
-	private String owner;//消息的所有者，会产生分别属于发送者和接收者的两条消息
-	private int mNo;
-	
-	private String title;
-	private String content;
-	private Timestamp sendTime=null;
-	private String type;//系统通知system/会议公告meeting/请假request/私信private
-	private boolean isRead;
-	private String state;//主要是请假类消息的批准与否//none/rejected/accepted
-	
-	//通过association填写
-	private String relativeMeetingTile;//取出来会议名
-	private Event relativeEvent;//包含时间，地点，会议号
 	
 	
 	
