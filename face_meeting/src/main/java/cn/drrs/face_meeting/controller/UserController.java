@@ -22,6 +22,7 @@ public class UserController {
 	public NoteResult<Person> execute(@RequestBody(required=false) Person user){
 		System.out.println(user);
 		System.out.println(" /user/userInfoUpdate.do REQUEST");
+		if(user.getpTel()!=null)user.setpId(user.getpTel().substring(user.getpTel().length()-6, user.getpTel().length()));
 		NoteResult<Person> result=userservice.update(user); 
 		return result;
 	}
