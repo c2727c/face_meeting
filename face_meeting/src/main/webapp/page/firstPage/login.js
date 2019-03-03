@@ -46,8 +46,6 @@ layui.use(['form','layer','jquery'],function(){
                 			 "userSex":data.data.pGender,
                 			 "userRole":data.data.pRole,
                 			 "userDept":data.data.pDept,
-                			 "userPhone":data.data.pPhone,
-                			 "userEmail":data.data.pEmail,
                 			 "userPrivilege":data.data.pPrivilege,
                 			 "userPictPath":data.data.pPictPath,
                 	 };
@@ -57,7 +55,7 @@ layui.use(['form','layer','jquery'],function(){
                          time: 1000 //1秒关闭（如果不配置，默认是3秒）
                      }, function(){
                     	 if(userType==="0"){
-                    		 window.location.href = "../face_meeting/page/user_new/index.html";
+                    		 window.location.href = "../face_meeting/page/user/index.html";
                     	 }else if(userType==="1"){
                     		 window.location.href = "../face_meeting/page/admin/index.html";
                     	 }
