@@ -90,14 +90,14 @@
 		parameterType="cn.drrs.face_meeting.entity.Person">
 		update person
 			<set>
-			    <if test="pPass!=null">pPass=#{pPass}</if>
-			    <if test="pName!=null">pName=#{pName}</if>
-			    <if test="pGender!=null">pGender=#{pGender}</if>
-			    <if test="pRole!=null">pRole=#{pRole}</if>
-			    <if test="pDept!=null">pDept=#{pDept}</if>
-			    <if test="pPrivilege!=null">pPrivilege=#{pPrivilege}</if>
-			    <if test="pFace!=null">pFace=#{pFace}</if>
-			    <if test="pIcon!=null">pIcon=#{pIcon}</if>
+			    <if test="pPass!=null">pPass=#{pPass},</if>
+			    <if test="pName!=null">pName=#{pName},</if>
+			    <if test="pGender!=null">pGender=#{pGender},</if>
+			    <if test="pRole!=null">pRole=#{pRole},</if>
+			    <if test="pDept!=null">pDept=#{pDept},</if>
+			    <if test="pPrivilege!=null">pPrivilege=#{pPrivilege},</if>
+			    <if test="pFace!=null">pFace='',</if>
+			    <if test="pIcon!=null">pIcon='',</if>
 			    <if test="pTel!=null">pTel=#{pTel}</if>
 			</set>
 				where pId=#{pId};
@@ -105,7 +105,7 @@
 	<insert id="insert" parameterType="java.util.ArrayList">
 	    insert into `person` values
 	    <foreach collection="list" item="p" separator=",">
-			(#{p.pId},#{p.pPass},#{p.pName},#{p.pGender},#{p.pRole},#{p.pDept},#{p.pPrivilege},#{p.pFace},#{p.pIcon},#{p.pTel})
+			(#{p.pId},#{p.pPass},#{p.pName},#{p.pGender},#{p.pRole},#{p.pDept},#{p.pPrivilege},'','',#{p.pTel})
 		</foreach>
 	</insert>
 	

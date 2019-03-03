@@ -3,6 +3,7 @@ package cn.drrs.face_meeting.entity;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,10 +36,6 @@ public class Person implements Serializable {
 
 	public Person() {
 		super();
-		this.pId = "t" + (int) (1 + Math.random() * (100 - 1 + 1));
-		this.pPass = "123456";
-		this.pName = "测试" + pId;
-		this.pFace = "testFeature".getBytes();
 	}
 
 	public Person(String pId, String pPass, String pName) {
@@ -55,10 +52,14 @@ public class Person implements Serializable {
 		this.pName = "--";
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Personel [pId=" + pId + ", pPass=" + pPass + ", pName=" + pName + ", pGender=" + pGender + ", pRole="
-				+ pRole + ", pDept=" + pDept + ", pPrivilege=" + pPrivilege + "]";
+		return "Person [pId=" + pId + ", pPass=" + pPass + ", pName=" + pName + ", pGender=" + pGender + ", pRole="
+				+ pRole + ", pDept=" + pDept + ", pPrivilege=" + pPrivilege + ", pFace=" + Arrays.toString(pFace)
+				+ ", pIcon=" + Arrays.toString(pIcon) + ", pTel=" + pTel + ", pMeetingList=" + pMeetingList
+				+ ", pAttendMeetingList=" + pAttendMeetingList + ", pInformMeetingList=" + pInformMeetingList + "]";
 	}
 
 	public String getpId() {
