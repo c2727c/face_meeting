@@ -23,12 +23,9 @@
 		</association>
 		
 		<collection property="mEventList" column="mNo"
-			ofType="cn.drrs.face_meeting.entity.Event">
-			<id column="mNo" property="mNo" />
-			<id column="rId" property="rId" />
-			<result column="startDate" property="startDate" />
-			<result column="startTime" property="startTime" />
-			<result column="endTime" property="endTime" />
+			ofType="cn.drrs.face_meeting.entity.Event"
+			javaType="java.util.ArrayList"
+			select="selectmEventList">
 		</collection>
 		<collection property="mAttendList" column="mNo"
 			ofType="cn.drrs.face_meeting.entity.Person"
@@ -95,7 +92,7 @@
 	
 	
 	<select id="findByFields" 
-		parameterType="cn.drrs.face_meeting.entity.Meeting"
+		parameterType="Meeting"
 		resultMap="meetingMap2">
 		select * from meeting
 		<where>
@@ -108,18 +105,23 @@
 	
 	<select id="selectCreator" 
 		parameterType="int"
-		resultType="cn.drrs.face_meeting.entity.Person">
+		resultType="Person">
 		SELECT person.* FROM person JOIN meeting WHERE pId= pId_FQ AND mNo=#{mNo};
 	</select>
 	<select id="selectmAttendList" 
 		parameterType="int"
-		resultType="cn.drrs.face_meeting.entity.Person">
-		select * from person natural join pm_attend where mNo=#{mNo};
+		resultType="Person">
+		select person.* from person natural join pm_attend where mNo=#{mNo};
 	</select>
 	<select id="selectmInformList" 
 		parameterType="int"
-		resultType="cn.drrs.face_meeting.entity.Person">
-		select * from person natural join pm_inform where mNo=#{mNo};
+		resultType="Person">
+		select person.* from person natural join pm_inform where mNo=#{mNo};
+	</select>
+	<select id="selectmEventList" 
+		parameterType="int"
+		resultType="Event">
+		select * from mr_event where mNo=#{mNo};
 	</select>
 	
 	

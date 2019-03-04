@@ -46,6 +46,8 @@ public class MessageTest {
 		nr.printJSON();
 		NoteResult<List<Message>> nr2 =mlc.findByOwnerReceive("t37", LocalDate.now());
 		nr2.printJSON();
+		NoteResult<List<Message>> nr3 =mlc.findByOwnerSend("t37", LocalDate.now());
+		nr3.printJSON();
 	}
 
 }
