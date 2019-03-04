@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon" href="../../images/favicon.ico">
-  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
   <link rel="stylesheet" type="text/css" href="../../lib/font_iconfont/iconfont.css" />
   <title>会议详情</title>
@@ -58,34 +56,10 @@
     <br>
     <!-- 会议信息 -->
     <div style="padding: 5px; background-color: #F2F2F2;">
-      <div class="layui-card">
-        <div class="layui-card-header">
-          <div class="layui-row">
-            <h3 class="layui-col-xs10" style="font-weight:bold">关于xx的会议</h3>
-            <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
-              <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
-            </button>
-
-          </div>
-
-        </div>
-        <div class="layui-card-body">
-          <div class="layui-row">
-            <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
-            <div class="layui-col-xs10">公司治理是现代企业制度的核心，董事会是公司治理的关键，为进一步发挥董事会在公司治理和经营管理活动中的监督、指导和决策作用。</div>
-          </div>
-          <br>
-          <div class="layui-row">
-            <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
-            <div class="layui-col-xs10">2019-02-19 星期二 <br>10:00-11:00</div>
-          </div>
-          <br>
-          <div class="layui-row">
-            <div class="layui-col-xs2" style="color:#c2c2c2">地点：</div>
-            <div class="layui-col-xs10">A408会议室</div>
-          </div>
-        </div>
+      <div id="content">
+        <!-- 填入模板 -->
       </div>
+
     </div>
     <hr>
     <!-- 三个按钮 -->
@@ -207,8 +181,41 @@
   </div>
 
 
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+  <script src="../../js/user/common.js" type="text/javascript"></script>
+
+  <!-- 详情模板 -->
+  <script id="meetInfo" type="text/html">
+    <div class="layui-card">
+        <div class="layui-card-header">
+          <div class="layui-row">
+            <h3 class="layui-col-xs10" style="font-weight:bold">{{ mTitle }}</h3>
+            <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
+              <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
+            </button>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div class="layui-row">
+            <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
+            <div class="layui-col-xs10">{{ mInfo }}</div>
+          </div>
+          <br>
+          <div class="layui-row">
+            <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
+            <div class="layui-col-xs10">2019-02-19 星期二 <br>10:00-11:00</div>
+          </div>
+          <br>
+          <div class="layui-row">
+            <div class="layui-col-xs2" style="color:#c2c2c2">地点：</div>
+            <div class="layui-col-xs10">A408会议室</div>
+          </div>
+        </div>
+      </div>
+  </script>
   <script>
-    <!--这里是放置js代码区域-->
     layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
       var element = layui.element;
       var layer = layui.layer;
@@ -216,46 +223,70 @@
       var $ = layui.$;
       var upload = layui.upload;
 
+      //取得会议详情
+      var url = path + "/meeting/detail.do";
+      // console.log("请求controller的url是:" + url)
+      var mNo = parent.mNo;
+      // console.log('iframe-mNo:' + mNo)
+      $.ajax({
+        url: url,
+        type: "post",
+        data: {
+          "mNo": mNo,
+        },
+        dataType: "json",
+        success: function (data) {
+          // console.log("data.data是：" + JSON.stringify(data.data))
+          var html = template('meetInfo', data.data);
+          document.getElementById('content').innerHTML = html;
 
-      //提示编辑
-      var tip_index = 0;
-      $(document).on('mouseenter', '#editMeet', function () {
-        tip_index = layer.tips('编辑会议', '#editMeet', {
-          time: 1000
-        });
-      }).on('mouseleave', '#editMeet', function () {
-        layer.close(tip_index);
-      });
+          //提示编辑
+          var tip_index = 0;
+          $(document).on('mouseenter', '#editMeet', function () {
+            tip_index = layer.tips('编辑会议', '#editMeet', {
+              time: 1000
+            });
+          }).on('mouseleave', '#editMeet', function () {
+            layer.close(tip_index);
+          });
 
-      //添加人员
-      $(".btnAddPeople").on('click', function () {
-        layer.open({
-          type: 2,
-          title: '添加人员',
-          content: 'meetAdd-people.html',
-          scrollbar: false,
-          area: ["411px", "98%"],
-        });
-      });
+          //添加人员
+          $(".btnAddPeople").on('click', function () {
+            layer.open({
+              type: 2,
+              title: '添加人员',
+              content: 'meetAdd-people.html',
+              scrollbar: false,
+              area: ["411px", "98%"],
+            });
+          });
 
-      //编辑会议
-      $("#editMeet").on('click', function () {
-        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-        console.log(index);
-        parent.layer.close(index); //再执行关闭   
-      });
+          //编辑会议
+          $("#editMeet").on('click', function () {
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            // console.log(index);
+            parent.gotoEditMeet(index, data.data)
+            // parent.layer.close(index); //再执行关闭   
+          });
 
-      //上传文件
-      var uploadInst = upload.render({
-        elem: '#uploadfile',
-        url: '/upload/', //上传接口
-        done: function (res) {
-          //上传完毕回调
+          //上传文件
+          var uploadInst = upload.render({
+            elem: '#uploadfile',
+            url: '/upload/', //上传接口
+            done: function (res) {
+              //上传完毕回调
+            },
+            error: function () {
+              //请求异常回调
+            }
+          });
         },
         error: function () {
-          //请求异常回调
+          console.log("ajax请求失败");
         }
-      });
+      })
+
+
     });
   </script>
 </body>

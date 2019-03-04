@@ -1,8 +1,9 @@
+var mNo = 'number';
+
 layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
     var element = layui.element;
     var layer = layui.layer;
     var $ = layui.$;
-
 
     var d1 = new Date();
     var d = d1.format('yyyy-MM-dd');
@@ -24,7 +25,6 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
         }
     });
 
-
     function getListMeeting(value) {
         var userId = $.cookie("userId");
         var datetime = value;
@@ -38,6 +38,7 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
             },
             dataType: "json",
             success: function (data) {
+                console.log(data)
                 if (JSON.stringify(data.data) != "[]") {
                     var html = template('meetList', {
                         data: data.data
@@ -49,8 +50,10 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
                     document.getElementById('content').innerHTML = html;
                 }
                 //跳转
-                var index = '';
+                var index = ''
                 $(".btnInfoMeet").on('click', function () {
+                    mNo = $(this).data("mno");
+                    console.log('mNo:' + mNo)
                     index = layer.open({
                         type: 2,
                         title: '会议详情',
@@ -101,4 +104,9 @@ Date.prototype.format = function (format) {
                 RegExp.$1.length == 1 ? o[k] :
                 ("00" + o[k]).substr(("" + o[k]).length));
     return format;
+}
+
+function gotoEditMeet(index, data) {
+    layer.close(index);
+    window.location.href = "meetAdd.html"
 }

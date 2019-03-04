@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../../lib/layui/css/layui.css" />
+</head>
+
+<body>
+    <p><input id="name"><button id="new1">改变父类元素</button></p>
+    <button id="new">关闭iframe</button>
+
+    <script src="../../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
+            var element = layui.element;
+            var layer = layui.layer;
+            var form = layui.form;
+            var $ = layui.$;
+            var upload = layui.upload;
+
+            var str = window.location.href;
+            $("#name").val(str.split('?')[1]);
+            $('#new').on('click', function () {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.setRel("子类传值");
+                parent.layer.close(index);
+
+            });
+            $('#new1').on('click', function () {
+                parent.$('#parentIframe').text($("#name").val());
+            });
+        });
+    </script>
+</body>
+
+</html>
