@@ -3,36 +3,10 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
     var layer = layui.layer;
     var $ = layui.$;
 
-    //跳转
-    var index = '';
-    $(".btnInfoMeet").on('click', function () {
-        index = layer.open({
-            type: 2,
-            title: '会议详情',
-            content: 'meetMy-Info.html',
-            scrollbar: false,
-            area: ["411px", "98%"],
-
-        });
-    });
-
-    //提示编辑
-    var tip_index = 0;
-    $(".lookMeet").mouseenter(function () {
-        var index = $(".lookMeet").index(this);
-
-        var str = '.lookMeet:eq(' + index + ')';
-        tip_index = layer.tips('点击查看详情', str, {
-            time: 1000
-        });
-    });
-    $(".lookMeet").mouseleave(function () {
-        layer.close(tip_index);
-    });
 
     var d1 = new Date();
     var d = d1.format('yyyy-MM-dd');
-    console.log("new Date:" + d);
+    // console.log("new Date:" + d);
     getListMeeting(d);
 
     var laydate = layui.laydate;
@@ -43,7 +17,7 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
         isInitValue: true,
         value: new Date(),
         done: function (value, date) {
-            console.log("done:")
+            // console.log("done:")
             // console.log(value); //得到日期生成的值，如：2017-08-18
             // console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
             getListMeeting(value);
@@ -55,7 +29,6 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
         var userId = $.cookie("userId");
         var datetime = value;
         var url = path + "/meeting/getMyAttends.do";
-        console.log("请求controller的url是:" + url)
         $.ajax({
             url: url,
             type: "post",
@@ -65,24 +38,48 @@ layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data)
-                console.log(data.data)
                 if (JSON.stringify(data.data) != "[]") {
                     var html = template('meetList', {
                         data: data.data
                     });
                     document.getElementById('content').innerHTML = html;
                 } else {
-                    console.log("test")
+                    //无会议返回时处理
                     var html = template('noMeet', data);
                     document.getElementById('content').innerHTML = html;
                 }
+                //跳转
+                var index = '';
+                $(".btnInfoMeet").on('click', function () {
+                    index = layer.open({
+                        type: 2,
+                        title: '会议详情',
+                        content: 'meetMy-Info.html',
+                        scrollbar: false,
+                        area: ["411px", "96%"],
+                    });
+                });
+
+                //提示编辑
+                var tip_index = 0;
+                $(".lookMeet").mouseenter(function () {
+                    var index = $(".lookMeet").index(this);
+                    var str = '.lookMeet:eq(' + index + ')';
+                    tip_index = layer.tips('点击查看详情', str, {
+                        time: 1000
+                    });
+                });
+                $(".lookMeet").mouseleave(function () {
+                    layer.close(tip_index);
+                });
             },
             error: function () {
                 console.log("ajax请求失败");
             }
         });
     }
+
+
 });
 
 //格式化时间为yyyy-mm-dd

@@ -92,7 +92,6 @@
     <script src="../../js/user/headName.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/user/meetMy.js" type="text/javascript"></script>
 
-    <!-- <script src="../test/json.js"></script> -->
 
     <script id="oneMeeting" type="text/html">
         <div class="layui-row">
@@ -100,7 +99,7 @@
                     <div class="layui-card  btnInfoMeet lookMeet" style="cursor:pointer">
                         <div class="layui-card-header">
                             <div class="layui-row myMeet-head">
-                                <div class="layui-col-md8">
+                                <div class="layui-col-md8 layui-col-xs8">
                                     {{if startTime.hour< 10}}
                                         0{{startTime.hour}}:
                                     {{ else if startTime.hour >= 10}}
@@ -123,7 +122,7 @@
                                         {{endTime.minute}}
                                     {{/if}}
                                 </div>
-                                <div class="layui-col-md4">{{meeting.mTitle}}</div>
+                                <div class="layui-col-md4 layui-col-xs4">{{meeting.mTitle}}</div>
                             </div>
                         </div>
                         <div class="layui-card-body">
