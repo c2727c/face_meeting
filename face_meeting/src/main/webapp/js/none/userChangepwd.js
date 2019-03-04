@@ -3,7 +3,8 @@ layui.use(['element', 'layer', 'jquery','form'], function () {
     var element = layui.element;
 	var layer=parent.layer===undefined?layui.layer:top.layer;
     var $ = layui.jquery;
-    var form=layui.form;
+	var form=layui.form;
+	
     var userJsonInfo=sessionStorage.getItem("userInfo");
     var userInfo=JSON.parse(userJsonInfo);
     var username=userInfo.userName;

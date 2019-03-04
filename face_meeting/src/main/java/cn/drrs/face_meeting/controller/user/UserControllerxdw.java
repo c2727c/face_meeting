@@ -37,13 +37,15 @@ public class UserControllerxdw {
 	}
 	@RequestMapping("/changeImage.do") 
 	@ResponseBody
-	public NoteResult<Person> changeImage(@RequestBody(required = false) Person user) {
-		System.out.println("开始 /getPerson.do ");
-		System.out.println(user.getpId());
-		NoteResult<Person> result = userservice.findBypId(user.getpId());
-		System.out.println("结果result: "+result);
-		return result;
+	public void changeImage(String test) {
+		//TODO
+		System.out.println();
+		System.out.println(test);
 	}
-	
+	@RequestMapping("/changePwd.do") 
+	@ResponseBody
+	public void changePwd(String pId, String pOldpass, String pPass) {
+	//TODO	
+	}	
 	
 }

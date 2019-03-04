@@ -7,7 +7,7 @@
     <title>注册</title>
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../../js/user/common.js"> </script>
+    <script type="text/javascript" src="../../js/user/common.js"> </script>
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
     <link rel="stylesheet" type="text/css" href="register.css" />
 </head>
@@ -20,16 +20,16 @@
             <div class="m-login-warp">
                 <form class="layui-form">
                     <div class="layui-form-item">
-                        <input type="text" name="userPhone" required lay-verify="required|phone" placeholder="手机号" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                    <div class="layui-form-item">
-                        <input type="password" name="password" id="password"required lay-verify="required" placeholder="密码" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                    <div class="layui-form-item">
-                        <input type="password" name="passwordConfirm" id = "passwordConfirm" required lay-verify="required|passwordConfirm" placeholder="确认密码"
+                        <input type="text" name="userPhone" required lay-verify="required|phone" placeholder="手机号"
                             autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-item">
+                        <input type="password" name="password" id="password" required lay-verify="required" placeholder="密码"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-item">
+                        <input type="password" name="passwordConfirm" id="passwordConfirm" required lay-verify="required|passwordConfirm"
+                            placeholder="确认密码" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="layui-form-item m-login-btn">
                         <div class="layui-inline">
-                            <button class="layui-btn "  id="registerButton" lay-submit lay-filter="register">注册</button>
+                            <button class="layui-btn " id="registerButton" lay-submit lay-filter="register">注册</button>
                         </div>
                         <div class="layui-inline">
                             <button type="reset" class="layui-btn layui-btn-primary" onclick="jump()">取消</button>
@@ -53,11 +53,11 @@
         </div>
     </div>
     <script>
-        layui.use(['form', 'layedit', 'laydate','jquery'], function () {
+        layui.use(['form', 'layedit', 'laydate', 'jquery'], function () {
             var form = layui.form,
                 layer = layui.layer,
-				$ = layui.jquery;
-			
+                $ = layui.jquery;
+
             //自定义验证规则
             form.verify({
                 /* userPhone: function (value) {
@@ -66,17 +66,16 @@
                     }
                 }, */
                 password: [
-        		    /^[\S]{6,12}$/
-        		    ,'密码必须6到12位，且不能出现空格'
-        		],
+                    /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+                ],
                 verity: [/(.+){6}$/, '验证码必须是6位'],
-				passwordConfirm:function(value){
-					var password = $("#password").val();
-					var passwordConfirm = $("#passwordConfirm").val();
-					if(password!=passwordConfirm){
-						return '密码不一致';
-					}
-				}
+                passwordConfirm: function (value) {
+                    var password = $("#password").val();
+                    var passwordConfirm = $("#passwordConfirm").val();
+                    if (password != passwordConfirm) {
+                        return '密码不一致';
+                    }
+                }
             });
 
 
@@ -86,24 +85,32 @@
                     title: '最终的提交信息'
                 });
                 $.ajax({
-                	url:path+"/user/register.do",
-                	type:"post",
-                	contentType:"application/json;charset=utf-8",
-                	data:JSON.stringify({"pId":data.field.userPhone,"pPass":data.field.password,"pTel":data.field.userPhone}),
-                	dataType:"json",
-                	traditional:true,
-                	beforeSend: function () {
+                    url: path + "/user/register.do",
+                    type: "post",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify({
+                        "pId": data.field.userPhone,
+                        "pPass": data.field.password,
+                        "pTel": data.field.userPhone
+                    }),
+                    dataType: "json",
+                    traditional: true,
+                    beforeSend: function () {
                         // 禁用按钮防止重复提交
-                        $("#registerButton").attr({ disabled: "disabled" });
+                        $("#registerButton").attr({
+                            disabled: "disabled"
+                        });
                     },
-                    success:function(data){
-                         if(data.status == 1){
-                             layer.msg(data.msg,{icon: 5});//失败的表情
-                         }else if(data.status == 0){
-                        	 document.cookie="userId="+data.data.pId;
-                        	 document.cookie="userName="+data.data.pName;
-                        	 //使用session存储，此处不用
-                        	 /* var key,userInfoHtml="";
+                    success: function (data) {
+                        if (data.status == 1) {
+                            layer.msg(data.msg, {
+                                icon: 5
+                            }); //失败的表情
+                        } else if (data.status == 0) {
+                            document.cookie = "userId=" + data.data.pId;
+                            document.cookie = "userName=" + data.data.pName;
+                            //使用session存储，此处不用
+                            /* var key,userInfoHtml="";
                         	 userInfoHtml={
                         			 "userId":data.data.pId,
                         			 "userName":data.data.pName,
@@ -114,19 +121,20 @@
                         			 "userPictPath":data.data.pPictPath,
                         	 };
                  	        window.sessionStorage.setItem("userInfo",JSON.stringify(userInfoHtml)); */
-                             layer.msg(data.msg, {
-                                 icon: 6,//成功的表情
-                                 time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                             }, function(){
-                            		 window.location.href = "/face_meeting/page/user-login/login.html";
-                             });
-                         }
+                            layer.msg(data.msg, {
+                                icon: 6, //成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                window.location.href =
+                                    "/face_meeting/page/user-login/login.html";
+                            });
+                        }
                     },
                     complete: function () {
                         $("#registerButton").removeAttr("disabled");
                     },
-                    error: function(){
-                    	alert("ajax请求失败")
+                    error: function () {
+                        alert("ajax请求失败")
                     },
                 });
                 return false;
