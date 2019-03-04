@@ -74,9 +74,9 @@
 				<div class="layui-upload-list">
 					<img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace" src="../../images/face.jpg">
 				</div>
-				<button type="button" id="iconChange" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i>
-					掐指一算，我要换一个头像了</button>
-
+				<button type="button" name="file" id="iconChange" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i>
+					掐指一算，我要换一个头像了
+				</button>
 			</div>
 			<div class="layui-col-md6 layui-col-xs12">
 				<div class="layui-form-item">
@@ -110,7 +110,6 @@
 						<input type="text" name="userRole" disabled value="" class="layui-input layui-disabled">
 					</div>
 				</div>
-
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
@@ -123,50 +122,52 @@
 	<script type="text/javascript" src="../../lib/layui/layui.js"></script>
 	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
 	<script src="../../js/user/jquery.cookies.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../../js/user/index.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="../../js/user/userInfo.js"></script>
+
 	<script src="../../js/user/common.js" type="text/javascript"></script>
+	<script src="../../js/user/headName.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../js/user/userInfo.js"></script>
 
 	<script>
-		<!--这里是放置js代码区域-->
 		layui.use(['element', 'layer', 'jquery', 'upload'], function () {
 			var element = layui.element;
 			var layer = layui.layer;
 			var $ = layui.$;
 			var upload = layui.upload;
+
 			var userId = $.cookie("userId");
 			var userInfo;
-			$.ajax({
-				url: path + "/user/getPerson.do",
-				type: "post",
-				traditional: true,
-				contentType: "application/json;charset=utf-8",
-				data: JSON.stringify({
-					"pId": userId
-				}),
-				dataType: "json",
-				success: function (data) {
-					if (data.status != 0) {
-						layer.msg(data.msg, {
-							icon: 5
-						});
-					} else if (data.status == 0) {
-						userInfo = data.data;
-						console.log(userInfo);
-						$("#userName").val(userInfo.pName);
-						//预置表单元素
-						form.val("userInfo", {
-							"userName": userInfo.pName,
-							"sex": userInfo.pGender,
-							"userPhone": userInfo.pTel,
-							"userDepartment": userInfo.pDept,
-							"userRole": userInfo.pRole
-						});
-						//设置导航栏的pName
-						$("#pName").html(userInfo.pName);
-					}
-				},
-			});
+
+
+			//查询用户
+			// $.ajax({
+			// 	url: path + "/user/getPerson.do",
+			// 	type: "post",
+			// 	traditional: true,
+			// 	contentType: "application/json;charset=utf-8",
+			// 	data: JSON.stringify({
+			// 		"pId": userId
+			// 	}),
+			// 	dataType: "json",
+			// 	success: function (data) {
+			// 		if (data.status != 0) {
+			// 			layer.msg(data.msg, {
+			// 				icon: 5
+			// 			});
+			// 		} else if (data.status == 0) {
+			// 			userInfo = data.data;
+			// 			console.log(userInfo);
+			// 			$("#userName").val(userInfo.pName);
+			// 			//预置表单元素
+			// 			form.val("userInfo", {
+			// 				"userName": userInfo.pName,
+			// 				"sex": userInfo.pGender,
+			// 				"userPhone": userInfo.pTel,
+			// 				"userDepartment": userInfo.pDept,
+			// 				"userRole": userInfo.pRole
+			// 			});
+			// 		}
+			// 	},
+			// });
 
 			//图片上传
 			var uploadInst = upload.render({
@@ -187,12 +188,12 @@
 						$('#userFace').attr('src', result); //图片链接（base64）
 					});
 				},
-				done: function (res) {
-					if (res.code == 200) { //上传成功(具体返回code 看后台是怎么处理的)
-						return layer.msg('上传失败');
-					} else {
-						layer.msg('图片上传成功!');
-					}
+				done: function () {
+					// if (res.code == 200) { //上传成功(具体返回code 看后台是怎么处理的)
+					// 	return layer.msg('上传失败');
+					// } else {
+					// 	layer.msg('图片上传成功!');
+					// }
 				},
 				error: function () {
 					//请求异常回调
