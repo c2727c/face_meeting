@@ -1,5 +1,7 @@
 package cn.drrs.face_meeting.controller.user;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -33,7 +35,8 @@ public class MeetingAddController {
 	//onblur就提交一次，更新推荐的房间列表
 	@RequestMapping("/recommendRoom.do") 
 	@ResponseBody
-	public NoteResult<List<Room>> recommendRoom(@RequestBody(required = false) RoomRestrict rr) {
+	public NoteResult<List<Room>> recommendRoom(int mSize,String startDate,String startTime,String endTime) {
+		RoomRestrict rr = new RoomRestrict(15,null,LocalDate.parse(startDate),LocalTime.parse(startTime),LocalTime.parse(endTime));
 		return roomService.findByRoomRestrict(rr);
 	}
 	//点击提交之后第一步是增加会议，返回新增会议编号	

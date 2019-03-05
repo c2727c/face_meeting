@@ -124,6 +124,16 @@
 		select * from mr_event where mNo=#{mNo};
 	</select>
 	
+	<select id="selectMeetingMessage" 
+		parameterType="int"
+		resultType="Message">
+	    SELECT * FROM `message` WHERE mNo = #{mNo} AND `type`='meeting' AND `owner` = `sender`;
+	</select>
+	<select id="selectAttendanceReport" 
+		parameterType="int"
+		resultType="Report">
+	    SELECT * FROM `message` WHERE mNo = #{mNo} AND `type`='meeting' AND `owner` = `sender`;
+	</select>
 	
 	
 	
