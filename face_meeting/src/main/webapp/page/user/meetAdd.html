@@ -84,7 +84,7 @@
           <div class="layui-col-md6">
             <label class="layui-form-label">会议人数</label>
             <div class="layui-input-block">
-              <input type="number" value="10" placeholder="" lay-verify="required" class="layui-input realName" />
+              <input type="number" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@
           <div class="layui-col-md6">
             <label class="layui-form-label">选择日期</label>
             <div class="layui-input-block">
-              <input type="text" class="layui-input" id="chosedate" />
+              <input type="text" class="layui-input startDate" id="chosedate" />
             </div>
           </div>
         </div>
@@ -116,14 +116,14 @@
           <div class="layui-col-md6 layui-col-xs6">
             <label class="layui-form-label">开始时间</label>
             <div class="layui-input-block">
-              <div class="layui-input" style="padding: 11px;" id="sTime">7:00</div>
+              <div class="layui-input startTime" style="padding: 11px;" id="sTime">7:00</div>
               <!-- <input type="text" value="07:00" placeholder="" lay-verify="required" class="layui-input" /> -->
             </div>
           </div>
           <div class="layui-col-md6 layui-col-xs6">
             <label class="layui-form-label">结束时间</label>
             <div class="layui-input-block">
-              <div class="layui-input" style="padding: 11px;" id="eTime">8:00</div>
+              <div class="layui-input endTime" style="padding: 11px;" id="eTime">8:00</div>
               <!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
             </div>
           </div>
@@ -136,62 +136,13 @@
         <br />
         <br />
         <!-- 会议选择 -->
-        <div id="content">
-
-        </div>
         <div class="layui-row layui-col-space10">
           <div class="layui-row">
             <label class="layui-form-label">会议室选择</label>
           </div>
-          <div>
-            <div class="layui-row">
-              <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
-                <div class="layui-card  layui-row">
-                  <div class="layui-card-header">
-                    <input type="radio" name="room" value="nan" title="会议室A" />
-                  </div>
-                  <div class="layui-card-body">
-                    位置：xxx 容纳人数：xxx
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="layui-row">
-              <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
-                <div class="layui-card  layui-row">
-                  <div class="layui-card-header">
-                    <input type="radio" name="room" value="nan" title="会议室A" />
-                  </div>
-                  <div class="layui-card-body">
-                    位置：xxx 容纳人数：xxx
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="layui-row">
-              <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
-                <div class="layui-card  layui-row">
-                  <div class="layui-card-header">
-                    <input type="radio" name="room" value="nan" title="会议室A" />
-                  </div>
-                  <div class="layui-card-body">
-                    位置：xxx 容纳人数：xxx
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="layui-row">
-              <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
-                <div class="layui-card  layui-row">
-                  <div class="layui-card-header">
-                    <input type="radio" name="room" value="nan" title="会议室A" />
-                  </div>
-                  <div class="layui-card-body">
-                    位置：xxx 容纳人数：xxx
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div id="content">
+            <!-- 插入模板 -->
+
           </div>
         </div>
       </form>
@@ -199,13 +150,37 @@
     <br>
   </div>
 
+  <script id="roomList" type="text/html">
+    {{each data as value}}
+    <div class="layui-row layui-col-md6 ">
+      <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
+        <div class="layui-card  layui-row">
+          <div class="layui-card-header">
+            <input type="radio" name="room" value="{{value.rId}}" title="{{value.rName}}" />
+          </div>
+          <div class="layui-card-body">
+            位置：{{ value.rAddr }} &nbsp; &nbsp;
+            容纳人数：{{ value.rSize }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </script>
 
   <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
   <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
   <script src="../../js/user/jquery.cookies.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/user/common.js" type="text/javascript" charset="utf-8"></script>
   <script src="../../js/user/headName.js" type="text/javascript" charset="utf-8"></script>
   <script src="../../js/user/meetAdd.js" type="text/javascript" charset="utf-8"></script>
 
+  <!-- <script src="../test/json/meetAdd-room.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    var html = template('roomList', data);
+    document.getElementById('content').innerHTML = html
+  </script> -->
 
 </body>
 

@@ -180,14 +180,12 @@
 
   </div>
 
-
-  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-  <script src="../../js/user/common.js" type="text/javascript"></script>
-
   <!-- 详情模板 -->
   <script id="time" type="text/html">
+    {{ startDate.year}}-{{ startDate.monthValue}}-{{startDate.dayOfMonth}}
+    &nbsp &nbsp
+    {{ startDate.dayOfWeek }}
+    <br>
     {{if startTime.hour< 10}}
         0{{startTime.hour}}:
     {{ else if startTime.hour >= 10}}
@@ -230,8 +228,8 @@
           <br>
           <div class="layui-row">
             <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
-            <div class="layui-col-xs10">2019-02-19 星期二 
-              <br>
+            <div class="layui-col-xs10">
+              
               {{ each mEventList}}
                 {{include 'time' $value}} <!--引入子模板-->
               {{/each}}
@@ -249,6 +247,12 @@
         </div>
       </div>
   </script>
+
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+  <script src="../../js/user/common.js" type="text/javascript"></script>
+
   <script>
     layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
       var element = layui.element;
@@ -276,7 +280,7 @@
 
           if (parent.urladd == parent.url1) {
             console.log("隐藏")
-            $(".hidediv").css("display","none");
+            $(".hidediv").css("display", "none");
           }
 
           //提示编辑

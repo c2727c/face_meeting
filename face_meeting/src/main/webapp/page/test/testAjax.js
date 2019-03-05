@@ -75,21 +75,18 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	$.ajax({
 		url: url,
 		type: "post",
-		traditional: true, //这使json格式的字符不会被转码
-		data: JSON.stringify({
+		data: {
 			'mSize': mSize,
 			'startDate': startDate,
 			'startTime': startTime,
 			'endTime': endTime, 
-		}),
-		contentType: 'application/json;charset=UTF-8', //这里的这行是关键
+		},
 		dataType: "json",
-		// dataType: "text",
 		success: function (data) {
 			console.log("传过来的是：")
 			console.log(data)
 			console.log("data.data是：" + JSON.stringify(data.data))
-			$("#test1").html(JSON.stringify(data.data));
+			$("#test1").html(JSON.stringify(data));
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			console.log("ajax请求失败");
