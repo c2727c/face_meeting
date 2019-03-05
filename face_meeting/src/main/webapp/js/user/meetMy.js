@@ -1,6 +1,10 @@
 var mNo = 'number';
+var url1 = "/meeting/getMyAttends.do";
+var url2 = "/meeting/getMyCreates.do";
+var urladd = url1;
+var dataMy;
 
-layui.use(['element', 'layer', 'jquery', 'laydate','form'], function () {
+layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
     var element = layui.element;
     var layer = layui.layer;
     var form = layui.form;
@@ -8,8 +12,27 @@ layui.use(['element', 'layer', 'jquery', 'laydate','form'], function () {
 
     var d1 = new Date();
     var d = d1.format('yyyy-MM-dd');
+    dataMy = d;
     // console.log("new Date:" + d);
     getListMeeting(d);
+
+    //看单选框选择url
+    form.on('radio(my1)', function (data) {
+        // console.log(data.elem); //得到radio原始DOM对象
+        // console.log(data.value); //被点击的radio的value值
+        urladd = url1;
+        console.log(urladd)
+        console.log(dataMy)
+        getListMeeting(dataMy)
+    });
+    form.on('radio(my2)', function (data) {
+        // console.log(data.elem); //得到radio原始DOM对象
+        // console.log(data.value); //被点击的radio的value值
+        urladd = url2;
+        console.log(urladd)
+        console.log(dataMy)
+        getListMeeting(dataMy)
+    });
 
     var laydate = layui.laydate;
     //根据日期选择显示的会议
@@ -22,6 +45,7 @@ layui.use(['element', 'layer', 'jquery', 'laydate','form'], function () {
             // console.log("done:")
             // console.log(value); //得到日期生成的值，如：2017-08-18
             // console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            dataMy = value;
             getListMeeting(value);
         }
     });
@@ -29,7 +53,7 @@ layui.use(['element', 'layer', 'jquery', 'laydate','form'], function () {
     function getListMeeting(value) {
         var userId = $.cookie("userId");
         var datetime = value;
-        var url = path + "/meeting/getMyAttends.do";
+        var url = path + urladd;
         $.ajax({
             url: url,
             type: "post",
@@ -39,7 +63,7 @@ layui.use(['element', 'layer', 'jquery', 'laydate','form'], function () {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 if (JSON.stringify(data.data) != "[]") {
                     var html = template('meetList', {
                         data: data.data

@@ -114,7 +114,7 @@
         <div class="layui-tab-item">
           <br>
           <div class="layui-row">
-            <div class="layui-col-xs3">
+            <div class="layui-col-xs3 hidediv">
               <div class="layui-row people-circle btnAddPeople"><i class="layui-icon layui-icon-add-1" style="font-size: 30px; color: #1E9FFF;"></i></div>
               <div class="layui-row" style="text-align: center;">邀请</div>
             </div>
@@ -215,9 +215,11 @@
         <div class="layui-card-header">
           <div class="layui-row">
             <h3 class="layui-col-xs10" style="font-weight:bold">{{ mTitle }}</h3>
-            <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
-              <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
-            </button>
+            <div class="hidediv">
+              <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
+                <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
+              </button>
+            </div>
           </div>
         </div>
         <div class="layui-card-body">
@@ -271,6 +273,11 @@
           // console.log("data.data是：" + JSON.stringify(data.data))
           var html = template('meetInfo', data.data);
           document.getElementById('content').innerHTML = html;
+
+          if (parent.urladd == parent.url1) {
+            console.log("隐藏")
+            $(".hidediv").css("display","none");
+          }
 
           //提示编辑
           var tip_index = 0;

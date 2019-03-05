@@ -77,12 +77,13 @@
         </div>
         <div class="layui-inline">
             <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <label class="layui-form-label">由我创建</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" name="like[write]" title="查看">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">筛选</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="0" title="我参加的" lay-filter="my1" checked>
+                        <input type="radio" name="sex" value="1" title="我创建的" lay-filter="my2">
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
         <ul class="layui-timeline">

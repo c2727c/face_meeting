@@ -31,9 +31,12 @@ public class RoomRecommendTest {
 	@Test
 	public void test() {
 		NoteResult<List<Room>> nr = new NoteResult<List<Room>>();
-		RoomRestrict rr = new RoomRestrict(15,null,LocalDate.of(2019, 1, 1),LocalTime.of(9, 0),LocalTime.of(10, 0));
+		RoomRestrict rr = new RoomRestrict(15,null,LocalDate.of(2019, 3, 5),LocalTime.of(9, 0),LocalTime.of(10, 0));
+//		RoomRestrict rr = new RoomRestrict(15,null,"2019-03-05","09:00","10:00");
 		nr = mac.recommendRoom(rr);
-		
+//		System.out.println();
+//		System.out.println(LocalDate.of(2019, 3, 5));
+//		System.out.println(LocalTime.of(9, 0));
 		System.err.println(JSONObject.fromObject(nr).toString());
 	}
 
