@@ -34,12 +34,11 @@
 			WHERE rId=#{rId};
 	</update>
 	
-	
+	<!-- room.`tName`=#{tName} AND -->
 	<select id="findByMeetingDateTime" 
 		parameterType="cn.drrs.face_meeting.entity.RoomRestrict"
 		resultMap="roomMap">
 		SELECT * FROM room WHERE room.`rSize`>=#{mSize} AND 
-			room.`tName`=#{tName} AND
 			rId NOT IN( SELECT rId FROM room NATURAL JOIN mr_event 
 			WHERE #{startDate}=startDate AND #{startTime}&lt;endTime AND #{endTime}>startTime);
 	</select>
