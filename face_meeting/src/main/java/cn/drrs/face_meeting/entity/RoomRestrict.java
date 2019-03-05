@@ -7,6 +7,10 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class RoomRestrict {
+	public RoomRestrict() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		return "RoomRestrict [mSize=" + mSize + ", tName=" + tName + ", startDate=" + startDate + ", startTime="
