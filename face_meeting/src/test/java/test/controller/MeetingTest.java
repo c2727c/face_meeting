@@ -54,6 +54,14 @@ public class MeetingTest {
 		System.out.println(JSONObject.fromObject(a).toString());
 		System.out.println(JSONObject.fromObject(m).toString());
 	}
-	
+	@Test
+	public void splitTest() {
+		String str= "t15,t24,ttt,333,222,111";
+		String [] list = str.split(",");
+		for(String s:list) {
+			System.out.println(s);
+		}
+		
+	}
 
 }

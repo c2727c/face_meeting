@@ -1,8 +1,14 @@
 package cn.drrs.face_meeting.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +23,7 @@ public class UserController {
 	@Resource
 	private PersonService userservice;
 	
+	//更改信息包括头像
 	@RequestMapping("/userInfoUpdate.do")
 	@ResponseBody
 	public NoteResult<Person> execute(@RequestBody(required=false) Person user){
@@ -26,6 +33,30 @@ public class UserController {
 		NoteResult<Person> result=userservice.update(user); 
 		return result;
 	}
+	
+	@RequestMapping("/update.do")
+	@ResponseBody
+	public NoteResult<Object> update(HttpServletRequest request,
+            @ModelAttribute Person user,
+            Model model){
+		NoteResult<Object> nr = new NoteResult<Object>(); 
+		try {
+			if(!user.getImage().isEmpty()) {
+				user.setpIcon(user.getImage().getBytes());
+				userservice.update(user); 
+			    nr.setAll(0, "更新用户成功", null);
+			} else {nr.setAll(1, "头像不能为空", null);}return nr;
+		} catch (Exception e) {
+			 nr.setAll(2, "出错", null);
+			e.printStackTrace();
+			return nr;
+		}
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("/changePass.do")
 	@ResponseBody
 	public NoteResult<Person> changePass(@RequestBody(required=false)Person user){

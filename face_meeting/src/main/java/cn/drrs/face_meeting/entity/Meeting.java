@@ -29,6 +29,14 @@ public class Meeting {
 	public Meeting() {
 		
 	}
+	public Meeting(String mTitle, String mInfo, int mSize, int mSpan, String pId_FQ) {
+		super();
+		this.mTitle = mTitle;
+		this.mInfo = mInfo;
+		this.mSize = mSize;
+		this.mSpan = mSpan;
+		this.pId_FQ = pId_FQ;
+	}
 	//用于更新
 	public Meeting(int mNo, String mTitle, String mInfo, int mSize,int mSpan,String tName) {
 		super();
