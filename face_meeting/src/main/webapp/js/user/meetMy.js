@@ -1,8 +1,9 @@
 var mNo = 'number';
 
-layui.use(['element', 'layer', 'jquery', 'laydate'], function () {
+layui.use(['element', 'layer', 'jquery', 'laydate','form'], function () {
     var element = layui.element;
     var layer = layui.layer;
+    var form = layui.form;
     var $ = layui.$;
 
     var d1 = new Date();

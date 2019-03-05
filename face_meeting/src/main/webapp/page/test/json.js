@@ -21,7 +21,37 @@ var data = {
         "pTel": null,
         "meetings": []
     },
-    "mEventList": [],
+    "mEventList": [{
+        "mNo": 1,
+        "rId": "CR001",
+        "startDate": {
+            "year": 2019,
+            "month": "MARCH",
+            "dayOfYear": 64,
+            "leapYear": false,
+            "dayOfMonth": 5,
+            "dayOfWeek": "TUESDAY",
+            "era": "CE",
+            "monthValue": 3,
+            "chronology": {
+                "id": "ISO",
+                "calendarType": "iso8601"
+            }
+        },
+        "startTime": {
+            "hour": 17,
+            "minute": 8,
+            "second": 8,
+            "nano": 0
+        },
+        "endTime": {
+            "hour": 18,
+            "minute": 7,
+            "second": 11,
+            "nano": 0
+        },
+        "meeting": null
+    }],
     "mAttendList": [{
         "pId": "t15",
         "pPass": "123456",
