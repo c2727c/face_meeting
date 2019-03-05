@@ -113,7 +113,8 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 
 				var html = template('roomList', data);
 				document.getElementById('content').innerHTML = html;
-				var form = layui.form;
+				//更新渲染
+				form.render("radio");
 
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -140,7 +140,6 @@
           <div class="layui-row">
             <label class="layui-form-label">会议室选择</label>
           </div>
-              <form class="layui-form"></form>
           <div id="content">
             <!-- 插入模板 -->
 
@@ -152,7 +151,8 @@
   </div>
 
   <script id="roomList" type="text/html">
-    {{each data as value index}}
+  <form class="layui-form">
+    {{each data as value}}
     <div class="layui-row layui-col-md6 ">
       <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
         <div class="layui-card  layui-row">
@@ -167,6 +167,7 @@
       </div>
     </div>
     {{/each}}
+  </form>
   </script>
 
   <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -177,11 +178,11 @@
   <script src="../../js/user/headName.js" type="text/javascript" charset="utf-8"></script>
   <script src="../../js/user/meetAdd.js" type="text/javascript" charset="utf-8"></script>
 
-  <!-- <script src="../test/json/meetAdd-room.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../test/json/meetAdd-room.js" type="text/javascript" charset="utf-8"></script>
   <script>
     var html = template('roomList', data);
     document.getElementById('content').innerHTML = html
-  </script> -->
+  </script>
 
 </body>
 
