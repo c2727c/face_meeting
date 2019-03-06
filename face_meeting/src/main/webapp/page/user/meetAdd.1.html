@@ -43,7 +43,7 @@
       <!-- 个人设置 -->
       <li class="layui-nav-item" id="userInfo">
         <a href="javascript:;">
-          <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35">
+          <img src="../../images/face.jpg" id="pIcon" class="layui-nav-img userAvatar" width="35" height="35">
           <cite class="username" id="pName">咚咚咚</cite>
         </a>
         <dl class="layui-nav-child">
@@ -151,7 +151,7 @@
   </div>
 
   <script id="roomList" type="text/html">
-  <form class="layui-form">
+    <form class="layui-form">
     {{each data as value}}
     <div class="layui-row layui-col-md6 ">
       <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">

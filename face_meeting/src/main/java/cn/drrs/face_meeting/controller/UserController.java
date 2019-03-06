@@ -44,7 +44,7 @@ public class UserController {
 		System.out.println(pId);
 		try {
 			Person user = new Person();
-			user.setpId("user01");
+			user.setpId(pId);
 			if (!file.isEmpty()) {
 				user.setpIcon(file.getBytes());
 				return userservice.update(user);

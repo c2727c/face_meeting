@@ -78,7 +78,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		startDate = $(".startDate").val()
 		startTime = $(".startTime").text()
 		endTime = $(".endTime").text()
-		var userId = $.cookie("userId")
 		// console.log(userId)
 		// console.log("form data: ")
 		// console.log(mTitle)

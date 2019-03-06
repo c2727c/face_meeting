@@ -51,7 +51,6 @@ layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
     });
 
     function getListMeeting(value) {
-        var userId = $.cookie("userId");
         var datetime = value;
         var url = path + urladd;
         $.ajax({
