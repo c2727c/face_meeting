@@ -39,17 +39,46 @@ public class UserControllerxdw {
 	}
 
 	// 上传图片
-	@RequestMapping("/changeImage.do")
+	@RequestMapping("/updatenew.do")
 	@ResponseBody
-	public void changeImage(@RequestParam(value = "file") MultipartFile file) {
-		// TODO
-		System.out.println();
+	public NoteResult<Person> updatenew(@RequestParam("file") MultipartFile file, @RequestParam("pId") String pId) {
+		NoteResult<Person> nr = new NoteResult<Person>();
+		System.out.println(file);
+		System.out.println(pId);
+		try {
+			Person user = new Person();
+			user.setpId(pId);
+			if (!file.isEmpty()) {
+				user.setpIcon(file.getBytes());
+				return userservice.update(user);
+			} else {
+				nr.setAll(1, "头像不能为空", null);
+			}
+			return nr;
+		} catch (Exception e) {
+			nr.setAll(2, "出错", null);
+			e.printStackTrace();
+			return nr;
+		}
 	}
 
+	// 修改密码
 	@RequestMapping("/changePwd.do")
 	@ResponseBody
 	public void changePwd(String pId, String pOldpass, String pPass) {
 		// TODO
+	}
+
+	// 修改个人信息
+	@RequestMapping("/userInfoUpdate.do")
+	@ResponseBody
+	public NoteResult<Person> execute(@RequestBody(required = false) Person user) {
+		System.out.println(user);
+		System.out.println(" /user/userInfoUpdate.do REQUEST");
+		if (user.getpTel() != null)
+			user.setpId(user.getpTel().substring(user.getpTel().length() - 6, user.getpTel().length()));
+		NoteResult<Person> result = userservice.update(user);
+		return result;
 	}
 
 }
