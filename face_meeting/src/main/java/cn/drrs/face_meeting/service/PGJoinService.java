@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.drrs.face_meeting.entity.Group;
 import cn.drrs.face_meeting.entity.PGJoin;
+import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.util.NoteResult;
 
 public interface PGJoinService {
@@ -11,4 +12,5 @@ public interface PGJoinService {
 	public NoteResult<Object> insert(List<PGJoin> list);
 	//·批量退出分组
 	public NoteResult<Object> delete(List<PGJoin> list);
+	public ResponseData findGroupMembersBygId(String getgId);
 }
