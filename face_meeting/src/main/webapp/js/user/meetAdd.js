@@ -3,6 +3,10 @@ var startDate = '2019-03-05'
 var startTime = '17:00'
 var endTime = '17:30'
 
+var mTitle = '';
+var mInfo = '';
+
+
 layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function () {
 	var element = layui.element;
 	var layer = layui.layer;
@@ -10,7 +14,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 	var form = layui.form;
 	var laydate = layui.laydate;
 	var slider = layui.slider;
-
 
 	//跳出人员选择
 	$(".btnAddPeople").on("click", function () {
@@ -63,6 +66,34 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		}
 	});
 
+	//点击按钮创建会议
+	form.on('submit(meetAdd)', function (data) {
+		// console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+		// console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+		//有三个：mTitle: "1", mSize: "10", mInfo: "", startDate: "2019-03-05"
+		console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+		mTitle = data.field.mTitle;
+		mInfo = data.field.mInfo;
+		mSize = $(".mSize").val()
+		startDate = $(".startDate").val()
+		startTime = $(".startTime").text()
+		endTime = $(".endTime").text()
+		var userId = $.cookie("userId")
+		// console.log(userId)
+		// console.log("form data: ")
+		// console.log(mTitle)
+		// console.log(mInfo)
+		// console.log(mSize)
+		// console.log(startDate)
+		// console.log(startTime)
+		// console.log(endTime)
+
+
+		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+	});
+
+
+
 	//得到格式化的时间。如‘08:00'
 	function getTimeValue(value) {
 		//自定义提示文本
@@ -86,11 +117,11 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		startDate = $(".startDate").val()
 		startTime = $(".startTime").text()
 		endTime = $(".endTime").text()
-		console.log("各个数据：")
-		console.log(mSize)
-		console.log(startDate)
-		console.log(startTime)
-		console.log(endTime)
+		// console.log("各个数据：")
+		// console.log(mSize)
+		// console.log(startDate)
+		// console.log(startTime)
+		// console.log(endTime)
 
 		var url = path + "/meeting/recommendRoom.do";
 		console.log("请求controller的url是:" + url)

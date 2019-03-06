@@ -18,8 +18,16 @@
 
 
 	<!-- 开启组件扫描 -->
-	<context:component-scan base-package="cn.drrs.face_meeting"/>
+	<context:component-scan
+		base-package="cn.drrs.face_meeting" />
 	<!-- 启用注解驱动 -->
 	<mvc:annotation-driven />
-	
+
+	<!-- springmvc的xml需要配置文件上传的类，否则会接收不了上传的文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件最大尺寸，单位为B -->
+		<property name="maxUploadSize" value="1000000000" />
+	</bean>
+
 </beans>

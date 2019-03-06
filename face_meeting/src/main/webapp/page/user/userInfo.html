@@ -125,7 +125,7 @@
 
 	<script src="../../js/user/common.js" type="text/javascript"></script>
 	<script src="../../js/user/headName.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../../js/user/userInfo.js"></script>
+	<!-- <script type="text/javascript" src="../../js/user/userInfo.js"></script> -->
 
 	<script>
 		layui.use(['element', 'layer', 'jquery', 'upload'], function () {
@@ -137,45 +137,18 @@
 			var userId = $.cookie("userId");
 			var userInfo;
 
-
-			//查询用户
-			// $.ajax({
-			// 	url: path + "/user/getPerson.do",
-			// 	type: "post",
-			// 	traditional: true,
-			// 	contentType: "application/json;charset=utf-8",
-			// 	data: JSON.stringify({
-			// 		"pId": userId
-			// 	}),
-			// 	dataType: "json",
-			// 	success: function (data) {
-			// 		if (data.status != 0) {
-			// 			layer.msg(data.msg, {
-			// 				icon: 5
-			// 			});
-			// 		} else if (data.status == 0) {
-			// 			userInfo = data.data;
-			// 			console.log(userInfo);
-			// 			$("#userName").val(userInfo.pName);
-			// 			//预置表单元素
-			// 			form.val("userInfo", {
-			// 				"userName": userInfo.pName,
-			// 				"sex": userInfo.pGender,
-			// 				"userPhone": userInfo.pTel,
-			// 				"userDepartment": userInfo.pDept,
-			// 				"userRole": userInfo.pRole
-			// 			});
-			// 		}
-			// 	},
-			// });
-
 			//图片上传
+			// var url = path + "/user/update.do";
+			var url = path + "/user/updatenew.do";
+			console.log("url是：" + url)
+			console.log("userId:" + userId)
 			var uploadInst = upload.render({
 				elem: '#iconChange', //绑定元素
-				url: '/user/changeImage.do', //上传接口
+				// url: path+'/user/changeImage.do', //上传接口
+				url: url, //上传接口
 				accept: 'images',
 				method: 'post',
-				acceptMime: 'image/*',
+				acceptMime: 'image/*', //只显示图片文件
 				number: 1,
 				data: {
 					'pId': userId
@@ -183,17 +156,21 @@
 				before: function (obj) {
 					/*如果您不想用上面的URL 进行上传,也可以在这里,添加你的上传方式*/
 					obj.preview(function (index, file, result) {
-						console.log('base64')
-						console.log(result)
+						// console.log('base64')
+						// console.log(result)
 						$('#userFace').attr('src', result); //图片链接（base64）
 					});
 				},
-				done: function () {
+				done: function (res, index, upload) {
+					// 回调返回三个参数，分别为：服务端响应信息、当前文件的索引、重新上传的方法
 					// if (res.code == 200) { //上传成功(具体返回code 看后台是怎么处理的)
 					// 	return layer.msg('上传失败');
 					// } else {
 					// 	layer.msg('图片上传成功!');
 					// }
+					console.log("传过来的是：")
+					console.log(res)
+					console.log("data.data是：" + JSON.stringify(res.data))
 				},
 				error: function () {
 					//请求异常回调

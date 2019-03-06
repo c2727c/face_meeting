@@ -69,7 +69,7 @@
       <form class="layui-form layui-form-pane layui-col-md6">
         <br />
         <div class="layui-row layui-col-space10">
-          <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="changeUser" style="margin: 5px;">
+          <button class="layui-btn layui-btn-normal" lay-submit lay-filter="meetAdd" style="margin: 5px;">
             <i class="layui-icon layui-icon-add-circle" style="font-size: 15px;"></i>创建会议
           </button>
         </div>
@@ -78,20 +78,20 @@
           <div class="layui-col-md6">
             <label class="layui-form-label">主题</label>
             <div class="layui-input-block">
-              <input type="text" value="" placeholder="请输入会议主题" lay-verify="required" class="layui-input realName" />
+              <input type="text" name="mTitle" value="" placeholder="请输入会议主题" lay-verify="required" class="layui-input" />
             </div>
           </div>
           <div class="layui-col-md6">
             <label class="layui-form-label">会议人数</label>
             <div class="layui-input-block">
-              <input type="number" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
+              <input type="number" name="mSize" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
             </div>
           </div>
         </div>
         <div class="layui-row layui-col-space10">
           <div class="layui-col-md12">
             <label class="layui-form-label">详情</label>
-            <textarea name="" required lay-verify="required" placeholder="会议简介" class="layui-textarea"></textarea>
+            <textarea name="mInfo" placeholder="会议简介" class="layui-textarea" lay-verify="required"></textarea>
           </div>
         </div>
         <div class="layui-row layui-col-space10">
@@ -108,7 +108,7 @@
           <div class="layui-col-md6">
             <label class="layui-form-label">选择日期</label>
             <div class="layui-input-block">
-              <input type="text" class="layui-input startDate" id="chosedate" />
+              <input type="text" name="startDate" class="layui-input startDate" id="chosedate" />
             </div>
           </div>
         </div>
@@ -116,14 +116,14 @@
           <div class="layui-col-md6 layui-col-xs6">
             <label class="layui-form-label">开始时间</label>
             <div class="layui-input-block">
-              <div class="layui-input startTime" style="padding: 11px;" id="sTime">7:00</div>
+              <div class="layui-input startTime" name="startTime" style="padding: 11px;" id="sTime">7:00</div>
               <!-- <input type="text" value="07:00" placeholder="" lay-verify="required" class="layui-input" /> -->
             </div>
           </div>
           <div class="layui-col-md6 layui-col-xs6">
             <label class="layui-form-label">结束时间</label>
             <div class="layui-input-block">
-              <div class="layui-input endTime" style="padding: 11px;" id="eTime">8:00</div>
+              <div class="layui-input endTime" name="endTime" style="padding: 11px;" id="eTime">8:00</div>
               <!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
             </div>
           </div>
@@ -157,7 +157,7 @@
       <div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
         <div class="layui-card  layui-row">
           <div class="layui-card-header">
-            <input type="radio" name="room" value="{{value.rId}}" title="{{value.rName}}" />
+            <input type="radio" name="rId" value="{{value.rId}}" title="{{value.rName}}" />
           </div>
           <div class="layui-card-body">
             位置：{{ value.rAddr }} &nbsp; &nbsp;
