@@ -36,11 +36,15 @@ public class PersonServiceImple implements PersonService{
 	public NoteResult<Person> update(Person p) {
 		// TODO 更改账户信息
 		NoteResult<Person> nr = new NoteResult<Person>();
-		int res = personDao.update(p);
-		if(res>0) {
-			nr.setAll(0, "成功更新用户信息", p);
-		}else {
-			nr.setAll(1, "更新用户信息失败", null);
+		try {
+			personDao.update(p);
+			Person per = personDao.findById(p.getpId());
+			nr.setAll(0, "更新用户信息成功", per);
+		} catch (Exception e) {
+			Person per = personDao.findById(p.getpId());
+			nr.setAll(1, "更新用户信息失败", per);
+			e.printStackTrace();
+			return nr;
 		}
 		return nr;
 	}

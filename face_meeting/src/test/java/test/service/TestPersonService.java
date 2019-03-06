@@ -84,6 +84,16 @@ public class TestPersonService {
 		nr.toString();
 	}
 	
+	//测试更新
+	@Test
+	public void testUpdate() {
+		Person p = new Person();
+		p.setpId("t15");
+		p.setpIcon("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".getBytes());
+		NoteResult<Person> nr = ps.update(p);
+		nr.printJSON();
+	}
+		
 	
 	
 	

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /*
@@ -26,6 +28,7 @@ public class Person implements Serializable {
 	private int pPrivilege = -1;
 	private byte[] pFace = "face".getBytes();
 	private byte[] pIcon = "icon".getBytes();
+	private MultipartFile image;
 	private String pTel = null;
 
 	// 集合映射
@@ -173,6 +176,14 @@ public class Person implements Serializable {
 
 	public void setpTel(String pTel) {
 		this.pTel = pTel;
+	}
+
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 
 }

@@ -7,16 +7,30 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class RoomRestrict {
+	public RoomRestrict() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		return "RoomRestrict [mSize=" + mSize + ", tName=" + tName + ", startDate=" + startDate + ", startTime="
 				+ startTime + ", endTime=" + endTime + "]";
 	}
+	
 	private int mSize;
 	private String tName;
 	private LocalDate startDate;
 	private LocalTime startTime;
 	private LocalTime endTime;
+	public RoomRestrict(int mSize, String tName, LocalDate startDate, LocalTime startTime, LocalTime endTime) {
+		super();
+		this.mSize = mSize;
+		this.tName = tName;
+		this.startDate = startDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	public RoomRestrict(Meeting m, LocalDate startDate, LocalTime startTime) {
 		this.mSize=m.getmSize();
 		this.tName=m.gettName();

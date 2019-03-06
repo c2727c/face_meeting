@@ -30,5 +30,7 @@ public class UserRegistController {
 		NoteResult<Person> result=userService.insert(users);
 		return result;
 	}
+	
+	
 
 }

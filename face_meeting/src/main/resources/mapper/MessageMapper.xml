@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- namespace 的值是 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="cn.drrs.face_meeting.dao.MessageDao">
+	<resultMap type="Message" id="messageMap">
+		<id column="messageId" property="messageId" />
+		<result column="sender" property="sender" />
+		<result column="receiver" property="receiver" />
+		<result column="mNo" property="mNo" />
+		
+		<result column="owner" property="owner" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="state" property="state" />
+		<result column="isRead" property="isRead" />
+		<result column="sendTime" property="sendTime" />
+		
+		<association property="relativeMeetingTile" column="mNo"
+		    javaType="String"
+		    select="selectRMT">
+		</association>
+		<association property="relativeEvent" column="mNo"
+		    javaType="Event"
+		    select="selectRE">
+		</association>
+	</resultMap>
+	<insert id="add" 
+		parameterType="Message">
+		INSERT INTO `message` VALUES 
+		(#{messageId},#{owner},#{sender},#{receiver},#{mNo},#{title},#{content},DEFAULT,#{type},DEFAULT,DEFAULT);
+	</insert>
+	<update id="update" 
+		parameterType="Message">
+		UPDATE `message` SET `state`=#{state} WHERE `messageId` = #{messageId}; 
+	</update>
+	<delete id="delete">
+		delete from `message` where messageId = #{messageId} and owner=#{owner};
+	</delete>
+	
+	<select id="findByOwnerSend" 
+		resultMap="messageMap">
+		SELECT * FROM message WHERE `owner`=#{owner} AND sender=#{owner} AND sendTime&lt;=#{date} LIMIT 15;
+	</select>
+	<select id="findByOwnerReceive" 
+		resultMap="messageMap">
+		SELECT * FROM message WHERE `owner`=#{owner} AND receiver=#{owner}AND sendTime&lt;=#{date} LIMIT 15;
+	</select>
+
+	
+	<select id="selectRMT" 
+		parameterType="int"
+		resultType="String">
+		SELECT mTitle FROM meeting WHERE mNo = #{mNo};
+	</select>
+	
+	<select id="selectRE" 
+		parameterType="int"
+		resultType="Event">
+		SELECT * FROM mr_event WHERE mNo = #{mNo};
+	</select>
+	
+	<select id="getreceivers" 
+		parameterType="int"
+		resultType="String">
+		SELECT pId FROM pm_attend WHERE mNo = #{mNo};
+	</select>
+	
+	
+</mapper>

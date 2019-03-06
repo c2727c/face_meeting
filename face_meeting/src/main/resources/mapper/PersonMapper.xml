@@ -96,8 +96,8 @@
 			    <if test="pRole!=null">pRole=#{pRole},</if>
 			    <if test="pDept!=null">pDept=#{pDept},</if>
 			    <if test="pPrivilege!=null">pPrivilege=#{pPrivilege},</if>
-			    <if test="pFace!=null">pFace='',</if>
-			    <if test="pIcon!=null">pIcon='',</if>
+			    <if test="pFace!=null">pFace=#{pFace},</if>
+			    <if test="pIcon!=null">pIcon=#{pIcon},</if>
 			    <if test="pTel!=null">pTel=#{pTel}</if>
 			</set>
 				where pId=#{pId};
