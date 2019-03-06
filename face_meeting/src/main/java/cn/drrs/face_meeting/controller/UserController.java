@@ -36,20 +36,18 @@ public class UserController {
 
 	@RequestMapping("/updatenew.do")
 	@ResponseBody
-	public NoteResult<Object> updatenew(
+	public NoteResult<Person> updatenew(
 			@RequestParam("file") MultipartFile file, 
 			@RequestParam("pId") String pId) {
-		NoteResult<Object> nr = new NoteResult<Object>();
+		NoteResult<Person> nr = new NoteResult<Person>();
 		System.out.println(file);
 		System.out.println(pId);
 		try {
 			Person user = new Person();
-			user.setImage(file);
 			user.setpId("user01");
-			if (!user.getImage().isEmpty()) {
-				user.setpIcon(user.getImage().getBytes());
-				userservice.update(user);
-				nr.setAll(0, "更新用户成功", null);
+			if (!file.isEmpty()) {
+				user.setpIcon(file.getBytes());
+				return userservice.update(user);
 			} else {
 				nr.setAll(1, "头像不能为空", null);
 			}
