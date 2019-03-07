@@ -71,6 +71,7 @@ public class UserControllerxdw {
 	public NoteResult<Person> changePwd(String pId, String pOldpass, String pPass) {
 		//检查是否原密码正确
 		NoteResult<Person> result = userservice.checkLogin("cCode", pId, pOldpass);
+		
 		if(result.getStatus()==0) {
 			Person user = new Person();
 			user.setpId(pId);

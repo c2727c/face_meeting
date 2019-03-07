@@ -209,7 +209,10 @@
 					localStorage.setItem("userId", data.data.pId);
 					localStorage.setItem("userName", data.data.pName);
 					localStorage.setItem("pIcon", data.data.pIcon);
-					layer.msg('头像修改成功', {icon: 1, time: 1000});
+					layer.msg('头像修改成功', {
+						icon: 1,
+						time: 1000
+					});
 					getNameAndIcon();
 				},
 				error: function () {
@@ -236,7 +239,13 @@
 					dataType: "json",
 					// dataType: "text",
 					success: function (data) {
-						console.log(data)
+						// console.log(data)
+						if (data.status == 0) {
+							layer.msg('更新用户信息成功', {
+								icon: 1,
+								time: 1000
+							});
+						}
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {
 						console.log("ajax请求失败");
