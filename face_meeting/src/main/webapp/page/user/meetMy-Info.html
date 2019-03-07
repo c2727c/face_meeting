@@ -304,7 +304,6 @@
             layer.confirm('确定删除当前会议？', {
               btn: ['确定', '取消'] //按钮
             }, function () {
-
               var url = path + "/meeting/delete.do";
               console.log("请求controller的url是:" + url)
               $.ajax({
@@ -316,7 +315,6 @@
                 dataType: "json",
                 success: function (data) {
                   console.log(data)
-
                   if (data.status == 0) {
                     layer.msg(data.msg, {
                       icon: 1,
@@ -333,7 +331,6 @@
                   alert("ajax请求失败");
                 }
               });
-
 
             }, function () {
 

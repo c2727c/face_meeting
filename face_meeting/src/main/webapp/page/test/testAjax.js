@@ -8,45 +8,46 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// var datatime = '2019-03-02'
 	// console.log(datatime)
 
-	// var url = path + "/meeting/detail.do";
-	// console.log("请求controller的url是:" + url)
-	// $.ajax({
-	// 	url : url,
-	// 	type : "post",
-	// 	data:{
-	// 		'mNo': 1,
-	// 	},
-	// 	dataType : "json",
-	// 	success : function(data) {
-	// 		console.log("data.data是：" + JSON.stringify(data.data))
-	// 		$("#test1").html(JSON.stringify(data.data));
-	// 	},
-	// 	error : function() {
-	// 		alert("ajax请求失败");
-	// 	}
-	// });
-
-	var url = path + '/user/getPerson.do';
 	var userId = 'user01';
+	var url = path + "/user/group/findMyGroup.do";
+	console.log("请求controller的url是:" + url)
 	$.ajax({
-		url: url,
-		type: "post",
-		traditional: true, //这使json格式的字符不会被转码
-		data: JSON.stringify({
-			"pId": userId,
-		}),
-		contentType: 'application/json;charset=UTF-8', //这里的这行是关键
-		dataType: "json",
-		// dataType: "text",
-		success: function (data) {
+		url : url,
+		type : "post",
+		data:{
+			'pId': userId,
+		},
+		dataType : "json",
+		success : function(data) {
 			console.log(data)
-			console.log("data.data是：" + JSON.stringify(data.data))
 			$("#test1").html(JSON.stringify(data));
 		},
-		error: function () {
+		error : function() {
 			console.log("ajax请求失败");
 		}
 	});
+
+	// var url = path + '/user/getPerson.do';
+	// var userId = 'user01';
+	// $.ajax({
+	// 	url: url,
+	// 	type: "post",
+	// 	traditional: true, //这使json格式的字符不会被转码
+	// 	data: JSON.stringify({
+	// 		"pId": userId,
+	// 	}),
+	// 	contentType: 'application/json;charset=UTF-8', //这里的这行是关键
+	// 	dataType: "json",
+	// 	// dataType: "text",
+	// 	success: function (data) {
+	// 		console.log(data)
+	// 		console.log("data.data是：" + JSON.stringify(data.data))
+	// 		$("#test1").html(JSON.stringify(data));
+	// 	},
+	// 	error: function () {
+	// 		console.log("ajax请求失败");
+	// 	}
+	// });
 
 	//获取房间
 	// var mSize = '20';
