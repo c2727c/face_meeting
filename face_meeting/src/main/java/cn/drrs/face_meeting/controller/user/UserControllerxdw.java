@@ -28,6 +28,7 @@ public class UserControllerxdw {
 		NoteResult<Person> result = userservice.checkLogin("cCode", user.getpId(), user.getpPass());
 		return result;
 	}
+	
 
 	// 根据pId获取用户信息
 	@RequestMapping("/getPerson.do")
@@ -67,18 +68,22 @@ public class UserControllerxdw {
 	// 修改密码
 	@RequestMapping("/changePwd.do")
 	@ResponseBody
-	public void changePwd(String pId, String pOldpass, String pPass) {
-		// TODO
+	public NoteResult<Person> changePwd(String pId, String pOldpass, String pPass) {
+		Person user = new Person();
+		user.setpId(pId);
+		user.setpPass(pOldpass);
+		//检查是否原密码正确
+		NoteResult<Person> result = userservice.checkLogin("cCode", user.getpId(), user.getpPass());
+		
+		return result;
 	}
 
 	// 修改个人信息
 	@RequestMapping("/userInfoUpdate.do")
 	@ResponseBody
 	public NoteResult<Person> execute(@RequestBody(required = false) Person user) {
-		System.out.println(user);
-		System.out.println(" /user/userInfoUpdate.do REQUEST");
-		if (user.getpTel() != null)
-			user.setpId(user.getpTel().substring(user.getpTel().length() - 6, user.getpTel().length()));
+//		System.out.println();
+//		System.out.println(user);
 		NoteResult<Person> result = userservice.update(user);
 		return result;
 	}

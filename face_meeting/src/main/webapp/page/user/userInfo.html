@@ -186,6 +186,7 @@
 				url: url, //上传接口
 				accept: 'images',
 				method: 'post',
+				size: 60,
 				acceptMime: 'image/*', //只显示图片文件
 				number: 1,
 				data: {
@@ -201,17 +202,14 @@
 				},
 				done: function (data, index, upload) {
 					// 回调返回三个参数，分别为：服务端响应信息、当前文件的索引、重新上传的方法
-					// if (res.code == 200) { //上传成功(具体返回code 看后台是怎么处理的)
-					// 	return layer.msg('上传失败');
-					// } else {
-					// 	layer.msg('图片上传成功!');
-					// }
-					console.log("传过来的是：")
-					console.log(data)
-					console.log("data.data是：" + JSON.stringify(data.data))
+
+					// console.log("传过来的是：")
+					// console.log(data)
+					// console.log("data.data是：" + JSON.stringify(data.data))
 					localStorage.setItem("userId", data.data.pId);
 					localStorage.setItem("userName", data.data.pName);
 					localStorage.setItem("pIcon", data.data.pIcon);
+					layer.msg('头像修改成功', {icon: 1, time: 1000});
 					getNameAndIcon();
 				},
 				error: function () {
@@ -220,27 +218,30 @@
 				}
 			});
 
+			//表单提交，修改个人信息
 			form.on("submit(changeUser)", function (data) {
 				console.log(data.field);
 				var url = path + "/user/userInfoUpdate.do";
-				// $.ajax({
-				// 	url: url,
-				// 	type: "post",
-				// 	traditional: true, //这使json格式的字符不会被转码
-				// 	data: JSON.stringify({
-				// 		'pId': userId,
-				// 	}),
-				// 	contentType: 'application/json;charset=UTF-8', //这里的这行是关键
-				// 	dataType: "json",
-				// 	// dataType: "text",
-				// 	success: function (data) {
-				// 		console.log(data)
-				// 	},
-				// 	error: function (XMLHttpRequest, textStatus, errorThrown) {
-				// 		console.log("ajax请求失败");
-				// 	}
-				// });
-
+				$.ajax({
+					url: url,
+					type: "post",
+					traditional: true, //这使json格式的字符不会被转码
+					data: JSON.stringify({
+						'pId': userId,
+						'pName': data.field.pName,
+						'pGender1': data.field.pGender,
+						'pTel': data.field.pTel,
+					}),
+					contentType: 'application/json;charset=UTF-8', //这里的这行是关键
+					dataType: "json",
+					// dataType: "text",
+					success: function (data) {
+						console.log(data)
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						console.log("ajax请求失败");
+					}
+				});
 				return false;
 			})
 
