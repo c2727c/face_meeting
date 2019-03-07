@@ -69,14 +69,19 @@ public class UserControllerxdw {
 	@RequestMapping("/changePwd.do")
 	@ResponseBody
 	public NoteResult<Person> changePwd(String pId, String pOldpass, String pPass) {
-		Person user = new Person();
-		user.setpId(pId);
-		user.setpPass(pOldpass);
 		//检查是否原密码正确
-		NoteResult<Person> result = userservice.checkLogin("cCode", user.getpId(), user.getpPass());
-		
+		NoteResult<Person> result = userservice.checkLogin("cCode", pId, pOldpass);
+		if(result.getStatus()==0) {
+			Person user = new Person();
+			user.setpId(pId);
+			user.setpPass(pPass);
+			result = userservice.update(user);
+		}else {
+			result.setAll(1, "原密码输入不正确", null);
+		}
 		return result;
 	}
+	
 
 	// 修改个人信息
 	@RequestMapping("/userInfoUpdate.do")
