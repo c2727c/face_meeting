@@ -31,7 +31,7 @@ public class UsbRelayServiceImple {
 	}
 	
 	//打开指定会议室的门(因为只有两个继电器，奇数为2，偶数为1)
-	public void openDoor(String rId) throws InterruptedException {
+	public void openDoor(String rId) throws Exception {
 		Dev = new UrDllBridge();
         Hdl = Dev.USBRELAY_Open(1);
 		int doorNo = Integer.parseInt(rId.substring(rId.length()-1))%2+1;
@@ -44,7 +44,7 @@ public class UsbRelayServiceImple {
         System.out.printf("Relay"+doorNo+" Connect\n");
 	}
 	
-	public void longOpenDoor(String rId) throws InterruptedException {
+	public void longOpenDoor(String rId) throws Exception {
 		Dev = new UrDllBridge();
         Hdl = Dev.USBRELAY_Open(1);
 		int doorNo = Integer.parseInt(rId.substring(rId.length()-1))%2+1;
@@ -53,7 +53,7 @@ public class UsbRelayServiceImple {
 	    System.out.printf("Relay1 Disconnect\n");
 	}
 	
-	public void longCloseDoor(String rId) throws InterruptedException {
+	public void longCloseDoor(String rId) throws Exception {
 		Dev = new UrDllBridge();
         Hdl = Dev.USBRELAY_Open(1);
 		int doorNo = Integer.parseInt(rId.substring(rId.length()-1))%2+1;

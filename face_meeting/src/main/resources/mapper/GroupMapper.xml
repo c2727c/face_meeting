@@ -6,6 +6,15 @@
 <!-- namespace 的值是 接口
   每个Mapper 接口对应一个配置文件  -->
 <mapper namespace="cn.drrs.face_meeting.dao.GroupDao">
+    <resultMap type="Group" id="groupMap">
+        <id column="gId" property="gId" />
+		<result column="pId" property="pId" />
+		<collection property="memberList" column="gId"
+			ofType="PersonLight"
+			javaType="java.util.ArrayList"
+			select="selectMemberList">
+		</collection>
+    </resultMap>
 
 
 	<insert id="insert" 
@@ -27,6 +36,25 @@
 		resultType="cn.drrs.face_meeting.entity.Group">
 		select * from `group` where gId=#{gId};
 	</select>
+	
+	<select id="findBypId" 
+		parameterType="String"
+		resultMap="groupMap">
+		select `group`.* from `group` NATURAL JOIN pg_join where pId=#{pId};
+	</select>
+	<select id="findAll" 
+		parameterType="String"
+		resultMap="groupMap">
+		select * from `group`;
+	</select>
+	
+	<select id="selectMemberList" 
+		parameterType="String"
+		resultType="PersonLight">
+		SELECT pId,pName,pRole,pDept,pIcon FROM person NATURAL JOIN pg_join WHERE gId=#{gId};
+	</select>
+	
+	
 	
 	<!-- 表格所需的一些操作 -->
 	<!--分页查询数据，根据limit和page进行分页-->

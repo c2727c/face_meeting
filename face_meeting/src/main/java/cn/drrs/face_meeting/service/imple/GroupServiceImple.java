@@ -77,6 +77,13 @@ public class GroupServiceImple implements GroupService {
         }
         return rd;
 	}
+	public List<Group> findBypId(String pId) {
+		return dao.findBypId(pId);
+	}
+	
+	public List<Group> findAll() {
+		return dao.findAll();
+	}
 
 
 }

@@ -29,4 +29,7 @@ public interface GroupDao {
 	int queryGroupCount();
 
 	List<Group> getPageofGroup(Map<String, Integer> map);
+
+	List<Group> findBypId(String pId);
+	List<Group> findAll();
 }
