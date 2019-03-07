@@ -212,16 +212,14 @@
     <div class="layui-card">
         <div class="layui-card-header">
           <div class="layui-row">
-            <h3 class="layui-col-xs8" style="font-weight:bold">{{ mTitle }}</h3>
-            <div class="hidediv layui-col-xs4" style="text-align:right">
-              <div class="layui-btn-group">
-                <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
-                  <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
-                </button>
-                <button class="layui-btn layui-btn-sm  layui-btn-normal btnDelGroup">
-                  <i class="layui-icon layui-icon-delete" style="font-size: 30px;"></i>
-                </button>
-              </div>
+            <h3 class="layui-col-xs10" style="font-weight:bold">{{ mTitle }}</h3>
+            <div class="hidediv">
+              <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
+                <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
+              </button>
+              <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
+                <i class="layui-icon layui-icon-delete btnDelGroup" style="font-size: 30px;"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -304,37 +302,10 @@
             layer.confirm('确定删除当前会议？', {
               btn: ['确定', '取消'] //按钮
             }, function () {
-
-              var url = path + "/meeting/delete.do";
-              console.log("请求controller的url是:" + url)
-              $.ajax({
-                url: url,
-                type: "post",
-                data: {
-                  'mNo': mNo,
-                },
-                dataType: "json",
-                success: function (data) {
-                  console.log(data)
-
-                  if (data.status == 0) {
-                    layer.msg(data.msg, {
-                      icon: 1,
-                      time: 1000,
-                    });
-                  } else {
-                    layer.msg(data.msg, {
-                      icon: 1,
-                      time: 1000,
-                    });
-                  }
-                },
-                error: function () {
-                  alert("ajax请求失败");
-                }
+              layer.msg('删除完成', {
+                icon: 1,
+                time: 1000,
               });
-
-
             }, function () {
 
             });
@@ -345,7 +316,7 @@
           $(".btnDelGroup").mouseenter(function () {
             var index = $(".btnDelGroup").index(this);
             var str = '.btnDelGroup:eq(' + index + ')';
-            tip_index = layer.tips('删除会议', str, {
+            tip_index = layer.tips('退出工作组', str, {
               time: 1000
             });
           });
@@ -383,9 +354,6 @@
               //请求异常回调
             }
           });
-
-
-
         },
         error: function () {
           console.log("ajax请求失败");

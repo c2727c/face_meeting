@@ -29,8 +29,6 @@ public class MeetingEditController {
 	private MREventService eventService;
 	
 	
-	
-	
 	//重新安排时间地点
 	@RequestMapping("/reArrangeMeeting.do") 
 	@ResponseBody
