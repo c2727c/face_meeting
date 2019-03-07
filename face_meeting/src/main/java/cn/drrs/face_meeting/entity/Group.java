@@ -12,6 +12,12 @@ public class Group {
 	private List<Person> memberList;
 	
 	
+	public Group() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Group(String gId, String gInfo) {
 		super();
 		this.gId=gId;

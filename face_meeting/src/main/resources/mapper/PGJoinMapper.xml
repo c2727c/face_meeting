@@ -19,5 +19,15 @@
 		</foreach>
 	</delete>
 	
+	
+	<select id="getGroupMembersBygId" parameterType="String" resultType="cn.drrs.face_meeting.entity.PGJoin">
+        SELECT *
+        FROM  pg_join
+        WHERE gId=#{gId}
+    </select>
+    <!--查询记录总数-->
+    <select id="queryMemberCountBygId" parameterType="String"  resultType="java.lang.Integer">
+        SELECT count(*) FROM  pg_join WHERE gId=#{gId}
+    </select>
 
 </mapper>
