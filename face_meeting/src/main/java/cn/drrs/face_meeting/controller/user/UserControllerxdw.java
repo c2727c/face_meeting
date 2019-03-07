@@ -1,5 +1,7 @@
 package cn.drrs.face_meeting.controller.user;
 
+import java.util.Base64;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -67,14 +69,19 @@ public class UserControllerxdw {
 	@RequestMapping("/changePwd.do")
 	@ResponseBody
 	public NoteResult<Person> changePwd(String pId, String pOldpass, String pPass) {
-		Person user = new Person();
-		user.setpId(pId);
-		user.setpPass(pOldpass);
 		//检查是否原密码正确
-		NoteResult<Person> result = userservice.checkLogin("cCode", user.getpId(), user.getpPass());
-		
+		NoteResult<Person> result = userservice.checkLogin("cCode", pId, pOldpass);
+		if(result.getStatus()==0) {
+			Person user = new Person();
+			user.setpId(pId);
+			user.setpPass(pPass);
+			result = userservice.update(user);
+		}else {
+			result.setAll(1, "原密码输入不正确", null);
+		}
 		return result;
 	}
+	
 
 	// 修改个人信息
 	@RequestMapping("/userInfoUpdate.do")
@@ -85,5 +92,18 @@ public class UserControllerxdw {
 		NoteResult<Person> result = userservice.update(user);
 		return result;
 	}
+	
+	@RequestMapping("/updateFace.do")
+	@ResponseBody
+	public NoteResult<Person> updateFace(String pId,String pFace) {
+		Person user = new Person();
+		user.setpId(pId);
+		final Base64.Decoder decoder = Base64.getDecoder();
+		byte[] faceBytes = decoder.decode(pFace);
+		user.setpFace(faceBytes);
+		NoteResult<Person> result = userservice.update(user);
+		return result;
+	}
+	 
 
 }
