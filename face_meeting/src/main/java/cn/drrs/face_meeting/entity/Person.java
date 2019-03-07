@@ -26,9 +26,8 @@ public class Person implements Serializable {
 	private String pRole = null;
 	private String pDept = null;
 	private int pPrivilege = -1;
-	private byte[] pFace = "face".getBytes();
-	private byte[] pIcon = "icon".getBytes();
-	private MultipartFile image;
+	private byte[] pFace = null;
+	private byte[] pIcon = null;
 	private String pTel = null;
 
 	// 集合映射
@@ -178,12 +177,6 @@ public class Person implements Serializable {
 		this.pTel = pTel;
 	}
 
-	public MultipartFile getImage() {
-		return image;
-	}
 
-	public void setImage(MultipartFile image) {
-		this.image = image;
-	}
 
 }

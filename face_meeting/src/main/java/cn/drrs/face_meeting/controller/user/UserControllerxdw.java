@@ -1,5 +1,7 @@
 package cn.drrs.face_meeting.controller.user;
 
+import java.util.Base64;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -80,5 +82,18 @@ public class UserControllerxdw {
 		NoteResult<Person> result = userservice.update(user);
 		return result;
 	}
+	
+	@RequestMapping("/updateFace.do")
+	@ResponseBody
+	public NoteResult<Person> updateFace(String pId,String pFace) {
+		Person user = new Person();
+		user.setpId(pId);
+		final Base64.Decoder decoder = Base64.getDecoder();
+		byte[] faceBytes = decoder.decode(pFace);
+		user.setpFace(faceBytes);
+		NoteResult<Person> result = userservice.update(user);
+		return result;
+	}
+	 
 
 }
