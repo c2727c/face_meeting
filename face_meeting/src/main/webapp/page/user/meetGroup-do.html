@@ -30,72 +30,53 @@
 </style>
 
 <body>
-  <div class="">
-    <div class="layui-row">
-      <div class="layui-col-xs10">
-        <input class="layui-input user" type="text" name="search" required lay-verify="required" placeholder="搜索"
-          autocomplete="off" />
-      </div>
+  <div>
 
-      <div class="layui-col-xs2">
-        <button class="layui-btn layui-btn-sm layui-btn-normal" style="margin: 4px;">完成</button>
-      </div>
-      
-    </div>
-    <form class="layui-form layui-form-pane" action="">
-        <label class="layui-form-label">工作组名</label>
-        <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入工作组名" autocomplete="off" class="layui-input">
-          </div>
-    </form>
     <br />
     <div>
-      <form class="layui-form">
-        <div class="layui-collapse">
-          <div class="layui-colla-item">
-            <h2 class="layui-colla-title">部门1</h2>
-            <div class="layui-colla-content layui-show">
-              <div class="layui-row chosepeople">
-                <input type="checkbox" lay-skin="primary" />
-                <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite class="username">咚咚咚</cite>
-                <hr>
+      <!-- 工作组 -->
+      <div class="layui-collapse">
+        <div class="layui-colla-item">
+          <!-- 工作组名 -->
+          <div class="layui-colla-title">
+            <div class="layui-row">
+              <div class="layui-col-xs6">
+                &nbsp;我的工作组1
               </div>
-              <div class="layui-row">
-                <input type="checkbox" lay-skin="primary" />
-                <img src="../../images/face1.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite class="username">咚咚咚</cite>
-                <hr>
-              </div>
-              <div class="layui-row">
-                <input type="checkbox" lay-skin="primary" />
-                <img src="../../images/face2.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite class="username">咚咚咚</cite>
-                <hr>
+              <div class="layui-col-xs6" style="text-align:right">
+                <div class="layui-btn-group btnEdit  noshow">
+                  <button type="button" class="layui-btn layui-btn-sm layui-btn-normal btnDelGroup">
+                    <i class="layui-icon layui-icon-add-1"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div class="layui-colla-item">
-            <h2 class="layui-colla-title">部门x</h2>
-            <div class="layui-colla-content">
-              <div class="layui-row">
-                <input type="checkbox" lay-skin="primary" />
-                <img src="../../images/face3.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite class="username">咚咚咚</cite>
-                <hr>
-              </div>
-              <div class="layui-row">
-                <input type="checkbox" lay-skin="primary" />
-                <img src="../../images/face4.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite class="username">咚咚咚</cite>
-                <hr>
-              </div>
-              <div class="layui-row">
-                <input type="checkbox" lay-skin="primary" />
-                <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite class="username">咚咚咚</cite>
-                <hr>
-              </div>
+          <!-- 人员列表 -->
+          <div class="layui-colla-content layui-show">
+            <div class="layui-row chosepeople">
+              <img src="../../images/face3.jpg" class="layui-circle" width="35" height="35" />
+              &nbsp; &nbsp;
+              <div class="layui-inline stylename" style="font-weight: bold;">小黑</div>
+              <hr>
             </div>
+            <div class="layui-row chosepeople">
+              <img src="../../images/face4.jpg" class="layui-circle" width="35" height="35" />
+              &nbsp; &nbsp;
+              <div class="layui-inline stylename" style="font-weight: bold;">胡大幅</div>
+              <hr>
+            </div>
+            <div class="layui-row chosepeople">
+              <img src="../../images/face2.jpg" class="layui-circle" width="35" height="35" />
+              &nbsp; &nbsp;
+              <div class="layui-inline stylename" style="font-weight: bold;">鲜明</div>
+            </div>
+
           </div>
         </div>
-        <br>
-        <br>
-      </form>
+      </div>
+      <br>
+      <br>
     </div>
   </div>
 
@@ -109,6 +90,40 @@
       var form = layui.form;
       var $ = layui.$;
 
+      //阻止事件冒泡
+      $(function () {
+        $(".noshow").click(function (event) {
+          event.stopPropagation();
+        });
+      });
+
+      //询问框是否删除
+      $(".btnDelGroup").click(function () {
+        layer.confirm('确定加入当前工作组？', {
+          btn: ['确定', '取消'] //按钮
+        }, function () {
+          layer.msg('已加入该工作组', {
+            icon: 1,
+            time: 1000,
+          });
+        }, function () {
+
+        });
+      });
+
+
+      //tip删除工作组
+      var tip_index = 0;
+      $(".btnDelGroup").mouseenter(function () {
+        var index = $(".btnDelGroup").index(this);
+        var str = '.btnDelGroup:eq(' + index + ')';
+        tip_index = layer.tips('加入该工作组', str, {
+          time: 1000
+        });
+      });
+      $(".btnDelGroup").mouseleave(function () {
+        layer.close(tip_index);
+      });
 
     });
   </script>
