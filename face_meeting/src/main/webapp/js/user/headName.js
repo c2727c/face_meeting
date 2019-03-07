@@ -16,7 +16,7 @@ function getNameAndIcon() {
     if (pIcon != "aWNvbg==") {
         $('#pIcon').attr('src', "data:image/jpeg;base64," + pIcon);
     }
-    console.log("重写成功")
+    // console.log("重写成功")
 }
 
 getNameAndIcon();

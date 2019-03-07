@@ -129,14 +129,13 @@
 
             //监听提交
             form.on('submit(changePwd)', function (data) {
-                var pId = $.cookie('userId')
                 var pOldPass = data.field.oldpass;
                 $.ajax({
                     url: path + "/user/changePwd.do",
                     type: "post",
                     contentType: "application/json;charset=utf-8",
                     data: {
-                        "pId": pId,
+                        "pId": userId,
                         "pOldPass": pOldPass,
                         "pPass": data.field.password,
                     },
