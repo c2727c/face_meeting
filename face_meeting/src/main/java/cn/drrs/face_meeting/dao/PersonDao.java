@@ -20,6 +20,10 @@ public interface PersonDao {
 	public int insert(List<Person> list);
 	public int queryUserCount();
 	public List<Person> getPageofUser(Map<String, Integer> map);
+<<<<<<< HEAD
 	public List<String> findAllDeptName();
+=======
+	public boolean delete(List<String> list);
+>>>>>>> c4a2ac9979a1d7543eaf02c41f0fe74a9df0ed68
 
 }

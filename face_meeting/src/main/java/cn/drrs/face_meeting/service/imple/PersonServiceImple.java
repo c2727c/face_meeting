@@ -83,9 +83,13 @@ public class PersonServiceImple implements PersonService{
 		return nr;
 	}
 
-	public NoteResult<Object> delete(List<String> list) {
+	public NoteResult<String> delete(List<String> list) {
 		// TODO 批量注销
-		return null;
+		NoteResult<String> nr = new NoteResult<String>();
+		if(personDao.delete(list)) {
+			nr.setAll(0,"批量删除成功", "批量删除成功");
+		}else nr.setAll(1, "批量删除失败", "批量删除失败");
+		return nr;
 	}
 
 	public ResponseData getPageofUser(int page, int limit) {

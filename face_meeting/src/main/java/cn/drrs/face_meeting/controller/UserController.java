@@ -1,5 +1,7 @@
 package cn.drrs.face_meeting.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -62,6 +64,15 @@ public class UserController {
 		System.out.println(" /user/changePass.do REQUEST");
 		// Controller-->Service-->ServiceImpl-->Dao-->Mapper
 		NoteResult<Person> result = userservice.update(user);
+		return result;
+	}
+	@RequestMapping("/deleteUser.do")
+	@ResponseBody
+	public NoteResult<String> deleteUser(@RequestBody List<String> orderNoList) {
+		System.out.println(orderNoList);
+		System.out.println(" /user/deleteUser.do REQUEST");
+		// Controller-->Service-->ServiceImpl-->Dao-->Mapper
+		NoteResult<String> result = userservice.delete(orderNoList);
 		return result;
 	}
 }
