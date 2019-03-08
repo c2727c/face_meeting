@@ -8,7 +8,7 @@ import cn.drrs.face_meeting.util.NoteResult;
 
 public interface GroupService {
 	//·建立分组
-	public NoteResult<Object> insert(Group g);
+	public NoteResult<String> insert(Group g);
 	//·删除分组
 	public NoteResult<Object> delete(String gName);
 	//·按组号查询分组
@@ -17,6 +17,7 @@ public interface GroupService {
 	public List<Group> findBypId(String pId);
 	public List<Group> findAll();
 	//·修改分组信息
-	public NoteResult<Object> update(Group g);
+	public NoteResult<String> update(Group g);
 	public ResponseData getPageofGroup(int page, int limit);
+	public NoteResult<String> batchGroupDelete(List<String> orderNoList);
 }

@@ -28,6 +28,14 @@
 		parameterType="String">
 		delete from Room where rId = #{rId};
 	</delete>
+	
+	<delete id="batchRoomDelete" parameterType="java.util.ArrayList">
+	    delete from room where rId in
+	    <foreach collection="list" item="r"  open="(" separator=","  close=")">
+			#{r}
+		</foreach>
+	</delete>
+	
 	<update id="update" 
 		parameterType="cn.drrs.face_meeting.entity.Room">
 		UPDATE Room SET rName=#{rName},rInfo=#{rInfo},rSize=#{rSize},tName=#{tName}

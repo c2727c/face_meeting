@@ -6,7 +6,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     var userId = localStorage.getItem('userId')
 
     getMyGroup();
-    getDept();
+    //getDept();
 
     function getMyGroup() {
         // 取得我加入的组
@@ -53,7 +53,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                     //全选
                     form.on('checkbox(allChoose)', function (data) {
                         var gg = data.elem.dataset.gid;
-                        var child = $(':checkbox[data-pgid='+gg+']');
+                        var child = $(':checkbox[data-pgid=' + gg + ']');
                         child.each(function (index, item) {
                             item.checked = data.elem.checked;
                         });
@@ -74,6 +74,55 @@ layui.use(["element", "layer", "jquery", "form"], function () {
 
     }
 
+    function getDept() {
+        // 取得公司部门
+        var url = path + "/user/group/findAllDept.do";
+        console.log("请求controller的url是:" + url)
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                if (data.status == 0) {
+                    // console.log("读入")
+                    var html = template('meetDept', {
+                        data: data.data
+                    });
+                    document.getElementById('content2').innerHTML = html;
+                    element.render('collapse');
+                    form.render('checkbox')
+
+                    //阻止事件冒泡
+                    $(function () {
+                        $(".noshow").click(function (event) {
+                            event.stopPropagation();
+                        });
+                    });
+
+                    //全选
+                    form.on('checkbox(allChoose)', function (data) {
+                        var gg = data.elem.dataset.gid;
+                        var child = $(':checkbox[data-pgid=' + gg + ']');
+                        child.each(function (index, item) {
+                            item.checked = data.elem.checked;
+                        });
+                        form.render('checkbox');
+                    });
+                } else {
+                    layer.msg("请求部门失败", {
+                        time: '1000',
+                        icon: 5,
+                    })
+                }
+            },
+            error: function () {
+                console.log("ajax请求失败");
+            }
+        });
+
+    }
+}
 
 
 });

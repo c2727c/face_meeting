@@ -1,5 +1,7 @@
 package cn.drrs.face_meeting.controller.admin;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -48,5 +50,13 @@ public class RoomManageController {
 		result=roomService.findPageRoom(page,limit);
 		return result;
 	}
-	
+	@RequestMapping("/batchDeleteRoom.do")
+	@ResponseBody
+	public NoteResult<String> batchDeleteRoom(@RequestBody List<String> orderNoList){
+		System.out.println(orderNoList);
+		System.out.println("one /admin/room/batchDeleteRoom.do REQUEST");
+		NoteResult<String> rs = new NoteResult<String>();
+		rs = roomService.batchRoomDelete(orderNoList);
+		return rs;
+	}
 }

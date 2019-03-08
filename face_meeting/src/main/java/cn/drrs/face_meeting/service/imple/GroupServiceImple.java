@@ -21,9 +21,11 @@ public class GroupServiceImple implements GroupService {
 	private GroupDao dao;
 
 	// ·建立分组
-	public NoteResult<Object> insert(Group g) {
-		NoteResult<Object> nr = new NoteResult<Object>();
-		nr.setAll(0, "新建工作组成功", dao.insert(g));
+	public NoteResult<String> insert(Group g) {
+		NoteResult<String> nr = new NoteResult<String>();
+		if(dao.insert(g)) {
+			nr.setAll(0, "新建工作组成功", "新建工作组成功");
+		}else nr.setAll(1, "新建工作组失败，可能存在相同名称的工作组", "新建工作组失败，可能存在相同名称的工作组");
 		return nr;
 	}
 
@@ -47,9 +49,12 @@ public class GroupServiceImple implements GroupService {
 	}
 
 	// ·修改分组信息
-	public NoteResult<Object> update(Group g) {
-		NoteResult<Object> nr = new NoteResult<Object>();
-		nr.setAll(0, "更新工作组", dao.update(g));
+	public NoteResult<String> update(Group g) {
+		NoteResult<String> nr = new NoteResult<String>();
+		if(dao.update(g)) {
+			nr.setAll(0, "更新工作组", "更新成功");
+		}else nr.setAll(1, "更新Group失败", "更新Group失败");
+		
 		return nr;
 	}
 
@@ -91,6 +96,15 @@ public class GroupServiceImple implements GroupService {
 	
 	public List<Group> findAll() {
 		return dao.findAll();
+	}
+
+	public NoteResult<String> batchGroupDelete(List<String> orderNoList) {
+		// TODO Auto-generated method stub
+		NoteResult<String> rs = new NoteResult<String>();
+		if(dao.batchGroupDelete(orderNoList)) {
+			rs.setAll(0, "批量删除成功", "批量删除成功");
+		}else rs.setAll(1, "批量删除失败", "批量删除失败");
+		return rs;
 	}
 
 }

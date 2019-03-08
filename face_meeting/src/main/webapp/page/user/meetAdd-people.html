@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="../../js/search/autocomplete.css">
 
 
-	
+
 
 	<title>人员选择</title>
 </head>
@@ -68,7 +68,7 @@
 	</div>
 
 
-	<!-- 模板 -->
+	<!-- 模板小组 -->
 	<script id="meetGroup" type="text/html">
 		<div class="layui-collapse">
 		<!-- 显示加入的工作组 -->
@@ -115,7 +115,53 @@
 		<% } %>
 	</div>
 	</script>
-
+	<!-- 模板部门 -->
+	<script id="meetDept" type="text/html">
+	<div class="layui-collapse">
+		<!-- 显示 -->
+		<% for(var j = 0; j < data.length; j++){ %>
+		<div class="layui-colla-item ">
+			<!-- 部门名 -->
+			<div class="layui-colla-title">
+				<div class="layui-row">
+					<div class="layui-col-xs6">
+						&nbsp;
+						<i class="layui-icon layui-icon-group"></i>
+						&nbsp;
+						<%= data[j].deptName %>
+					</div>
+					<div class="layui-col-xs6 btnEdit" style="text-align:right">
+						<div class="layui-btn-group noshow btnDelGroup">
+							<input type="checkbox" class="checkboxAll" lay-skin="primary" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].deptName%>">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 获取人员列表 -->
+			<div class="layui-colla-content">
+				<% for(var i = 0; i < data[j].memberList.length; i++){ %>
+				<div class="layui-row chosepeople" style=" padding: 0px 20px;">
+					<div class="layui-col-xs8">
+						<!-- <input type="checkbox" lay-skin="primary" /> -->
+						<img src="data:image/jpeg;base64,<%= data[j].memberList[i].pIcon%>" class="layui-circle" width="35" height="35" />
+						&nbsp; &nbsp;
+						<div class="layui-inline stylename" style="font-weight: bold;">
+							<%= data[j].memberList[i].pName %>
+						</div>
+					</div>
+					<div class="layui-col-xs4" style="text-align:right">
+						<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].deptName%>" data-pid="<%= data[j].memberList[i].pId %>" />
+					</div>
+					<% if (i < data[j].memberList.length-1 ) { %>
+					<hr>
+					<% } %>
+				</div>
+				<% } %>
+			</div>
+		</div>
+		<% } %>
+	</div>
+	</script>
 
 	<script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
