@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 
 public interface PersonDao {
 	
@@ -13,7 +14,7 @@ public interface PersonDao {
 	
 	
 	//DONE 按字段查找用户
-	public List<Person> findByFields(Person p);
+	public List<PersonLight> findByFields(Person p);
 	public int update(Person p);
 	
 	//批量注册

@@ -58,7 +58,7 @@
 	select * from person;
 	</select>
 	<select id="findByFields" 
-	parameterType="Person" resultMap="personMap">
+	parameterType="Person" resultType="PersonLight">
 	select * from person
 	<where>
 	<if test="pName!=null">and pName like #{pName}</if>
