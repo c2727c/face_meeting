@@ -47,10 +47,10 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                     $(".btnDelGroup").click(function () {
                         var userId = localStorage.getItem('userId')
                         var gId = $(this).data('gid');
-                        // console.log(gId)
-                        // console.log(userId)
+                        console.log(gId)
+                        console.log(userId)
                         var url = path + "/user/group/join.do";
-                        // console.log("请求controller的url是:" + url)
+                        console.log("请求controller的url是:" + url)
 
                         layer.confirm('确定加入当前工作组？', {
                             btn: ['确定', '取消'] //按钮

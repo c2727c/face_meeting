@@ -1,16 +1,13 @@
-var mTitle = '吃饭'
-var mInfo = '无'
-var mSize = '20'
-var mSpan = '60'
-var pId_FQ = 'user01'
-var rId = 'CR001'
-var startDate = '2019-03-10'
-var startTime = '18:00'
-var endTime = '19:00'
-var attendList = 'user01,user02,user03'
+var mSize = '20';
+var startDate = '2019-03-05'
+var startTime = '17:00'
+var endTime = '17:30'
+
+var mTitle = '';
+var mInfo = '';
 
 
-layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function() {
+layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function () {
 	var element = layui.element;
 	var layer = layui.layer;
 	var $ = layui.jquery;
@@ -19,13 +16,12 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function(
 	var slider = layui.slider;
 
 	//跳出人员选择
-	$(".btnAddPeople").on("click", function() {
+	$(".btnAddPeople").on("click", function () {
 		layer.open({
 			type: 2,
 			title: ["选择人员"],
 			content: "meetAdd-people.html",
-			area: ["411px", "98%"],
-			
+			area: ["411px", "98%"]
 		});
 	})
 
@@ -35,7 +31,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function(
 		type: "date",
 		isInitValue: true,
 		value: new Date(),
-		done: function(value, date) {
+		done: function (value, date) {
 			// console.log("done:")
 			// console.log(value); //得到日期生成的值，如：2017-08-18
 			// console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
@@ -52,10 +48,10 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function(
 		range: true,
 		value: [72, 84],
 		//theme: '#1E9FFF',
-		setTips: function(value) {
+		setTips: function (value) {
 			return getTimeValue(value);
 		},
-		change: function(value) {
+		change: function (value) {
 			// console.log(value); //动态获取滑块数值
 			//do something
 			value[0] = getTimeValue(value[0])
@@ -71,17 +67,15 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function(
 	});
 
 	//点击按钮创建会议
-	form.on('submit(meetAdd)', function(data) {
+	form.on('submit(meetAdd)', function (data) {
 		// console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
 		// console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
 		//有三个：mTitle: "1", mSize: "10", mInfo: "", startDate: "2019-03-05"
 		console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-		
 		mTitle = data.field.mTitle;
 		mInfo = data.field.mInfo;
 		mSize = $(".mSize").val()
 		startDate = $(".startDate").val()
-		
 		startTime = $(".startTime").text()
 		endTime = $(".endTime").text()
 		// console.log(userId)
@@ -140,7 +134,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function(
 				'endTime': endTime,
 			},
 			dataType: "json",
-			success: function(data) {
+			success: function (data) {
 				console.log("传过来的是：")
 				console.log("一次")
 				// console.log(data)
@@ -153,7 +147,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function(
 				form.render("radio");
 
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				console.log("ajax请求失败");
 			}
 		});
