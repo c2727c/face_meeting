@@ -49,6 +49,9 @@ public class GroupTest {
 		NoteResult<List<JSONObject>> nr2 = new NoteResult<List<JSONObject>>();
 		nr2=gc.findAllDept();
 		nr2.printJSON();
+		nr2.printJSON();
+		nr2=gc.findAllDept();
+		nr2.printJSON();
 
 	}
 	
