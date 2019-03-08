@@ -144,4 +144,13 @@ public class RoomServiceImple implements RoomService{
         return rd;
 	}
 
+	public NoteResult<String> batchRoomDelete(List<String> orderNoList) {
+		// TODO Auto-generated method stub
+		NoteResult<String> rs = new NoteResult<String>();
+		if(roomDao.batchRoomDelete(orderNoList)) {
+			rs.setAll(0, "批量删除成功", "批量删除成功");
+		}else rs.setAll(1, "批量删除失败", "批量删除失败");
+		return rs;
+	}
+
 }

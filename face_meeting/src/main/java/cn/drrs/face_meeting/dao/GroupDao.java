@@ -18,13 +18,13 @@ import cn.drrs.face_meeting.util.NoteResult;
 
 public interface GroupDao {
 
-	int insert(Group g);
+	boolean insert(Group g);
 
 	int delete(String gId);
 
 	Group findBygId(String gId);
 
-	int update(Group g);
+	boolean update(Group g);
 
 	int queryGroupCount();
 
@@ -32,4 +32,6 @@ public interface GroupDao {
 
 	List<Group> findBypId(String pId);
 	List<Group> findAll();
+
+	boolean batchGroupDelete(List<String> orderNoList);
 }

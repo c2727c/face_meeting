@@ -29,7 +29,12 @@
 		parameterType="cn.drrs.face_meeting.entity.Group">
 		UPDATE `group` set gInfo=#{gInfo} where gId=#{gId};
 	</update>
-	
+	<delete id="batchGroupDelete" parameterType="java.util.ArrayList">
+	    delete from `group` where gId in
+	    <foreach collection="list" item="g"  open="(" separator=","  close=")">
+			#{g}
+		</foreach>
+	</delete>
 	
 	<select id="findBygId" 
 		parameterType="String"

@@ -32,5 +32,6 @@ public interface RoomDao {
 	public List<Room>  findByMeetingDateTime(RoomRestrict rr);
 	public int queryRoomCount();
 	public List<Room> findRoomByPage(Map<String, Integer> map);
+	public boolean batchRoomDelete(List<String> orderNoList);
 
 }
