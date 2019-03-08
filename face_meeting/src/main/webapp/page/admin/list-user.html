@@ -7,10 +7,16 @@
     <title></title>
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
 </head>
 
 <body class="layui-layout-body">
+	<div class="layui-row">
+		<button class="layui-btn" onclick="addUser();"><i class="layui-icon">&#xe608;</i>添加用户</button>
+		<button class="layui-btn" onclick="batchAddUsers();"><i class="layui-icon">&#xe608;</i>批量添加用户(导入Excel文件)</button>
+		<button class="layui-btn layui-btn-danger" id ="batchDeleteUsersButton"><i class="layui-icon">&#xe640;</i>批量删除用户</button>
+	</div>
     <table class="layui-table" lay-data="{cellMinWidth:50, height:400, url:'../../admin/user/getPageofUser.do', page:true, id:'userList'}" lay-filter="demo">
 	    <thead>
 	      <tr>
@@ -31,6 +37,20 @@
     	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
 	<script>
+		function batchAddUsers(){
+	    	layer.msg("功能开发中",{icon:6,time:1000});
+	    }
+	
+	    //添加用户,onclick=对应的方法必须定义在layui.use()的外面，为什么...
+	    function addUser(){
+	    	layer.open({
+	    		type:2,
+	    		content:"add-user.html",
+	    		title:"添加用户",
+	    		area:['40%','80%'],
+	    	});
+	    }
+	
 	    layui.use(['form','layer','layedit','laydate','upload','table'],function(){
 		        var form = layui.form;
 		        layer =  parent.layer === undefined ? layui.layer : top.layer,
@@ -41,21 +61,99 @@
 		                $ = layui.jquery,
 		                table = layui.table;
 		        //监听表格复选框选择
+		        var checkedData;
 		        table.on('checkbox(demo)', function(obj){
-		            console.log(obj)
+		            console.log(obj);
+		            checkedData = obj;
+		        });
+		        //上传文件
+		        var uploadInst = upload.render({
+		        	    elem: '#test1' //绑定元素
+		        	    ,url: '/upload/' //上传接口
+		        	    ,accept:'xlsx'
+		        	    ,acceptMime: 'xlsx'
+		        	    ,done: function(res){
+		        	      //上传完毕回调
+		        	    }
+		        	    ,error: function(){
+		        	      //请求异常回调
+		        	    }
 		        });
 		        //监听工具条
 		        table.on('tool(demo)', function(obj){
 		            var data = obj.data;
+		            console.log(data);
 		            if(obj.event === 'detail'){
-		                layer.msg('ID：'+ data.id + ' 的查看操作');
+		            	layer.open({
+		            		type:2,
+		            		content:"personInfo.html",
+		            		title:"用户"+data.pName+"的信息",
+		            		area:['40%','80%'],
+		            		success:function(layero,index){
+		            			console.log("test");
+		            			console.log(index);
+		            			var body = layer.getChildFrame('body',index);
+		            			//把layui.layer.getChildFrame换成layer.getChildFrame会有惊喜哦...我哭了...
+		            			console.log(body);
+		            			body.find(".pName").val(data.pName);
+		            			console.log(body.find(".pName"));
+		            			body.find(".pTel").val(data.pTel);
+		            			body.find("#form").val({
+		            				"pGender":data.pGender,
+		            			});//无用，对弹出框中的radio无法进行渲染·
+		            			body.find("pGender").val(data.pGender);
+		            			body.find(".pDept").val(data.pDept);
+		            			body.find(".pRole").val(data.pRole);
+		            			form.render();
+		            		}
+		            	});
 		            } else if(obj.event === 'del'){
 		                layer.confirm('真的删除行么', function(index){
 		                    obj.del();
 		                    layer.close(index);
+		                    console.log(data);
+		                    var orderNoList = new Array();
+		                    orderNoList[0]=data.pId;
+		                    $.ajax({
+				        		url:basePath+"/user/deleteUser.do",
+				        		type:"post",
+				        		contentType:"application/json;charset=utf-8",
+				        		data:JSON.stringify(orderNoList),
+				        		dataType:"json",
+				        		success:function(data){
+				        			if(data.status==0){
+				        				layer.msg(data.msg,{icon:6,time:1000});
+				        				//删除后要更新界面
+				        				table.reload('userList',{
+				        					url:'../../admin/user/getPageofUser.do',
+				        				});
+				        			}else layer.msg(data.msg,{icon:5,time:1000});
+				        		},
+				        		error:function(){
+				        			layer.msg("ajax请求失败");
+				        		}
+				        	})
 		                });
 		            } else if(obj.event === 'edit'){
-		                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+		                layer.msg('编辑行：<br>'+ JSON.stringify(data))
+		                layer.open({
+		                	type:2,
+		                	title:"编辑用户"+data.pName+"的资料",
+		                	content:"edit-user.html",
+		                	area:['40%','80%'],
+		                	success:function(layero,index){
+		            			var body = layer.getChildFrame('body',index);
+		            			console.log(body);
+		            			console.log(index);
+		            			body.find(".pName").val(data.pName);
+		            			body.find(".pTel").val(data.pTel);
+		            			body.find(".pGender").val(data.pGender);
+		            			body.find(".pDept").val(data.pDept);
+		            			body.find(".pRole").val(data.pRole);
+		            			form.render('radio');
+		            			form.render();
+		            		}
+		                });
 		            }
 		        });
 		
@@ -64,6 +162,7 @@
 		                var checkStatus = table.checkStatus('userList')
 		                        ,data = checkStatus.data;
 		                layer.alert(JSON.stringify(data));
+		                return data;
 		            }
 		            ,getCheckLength: function(){ //获取选中数目
 		                var checkStatus = table.checkStatus('userList')
@@ -75,10 +174,46 @@
 		                layer.msg(checkStatus.isAll ? '全选': '未全选')
 		            }
 		        };
-		
+		        
+		        
+		        
 		        $('.demoTable .layui-btn').on('click', function(){
 		            var type = $(this).data('type');
 		            active[type] ? active[type].call(this) : '';
+		        });
+		        
+		        $("#batchDeleteUsersButton").on('click',function(){
+		        	console.log(checkedData);//只能得到最后一次点击的行
+		        	var checkData = active.getCheckData();//得到的checkData是一个数组
+		        	console.log(active.getCheckData());//可以得到多次不同点击的结果集
+		        	var orderNoList = new Array();
+		        	for(var i=0;i<checkData.length;i++){
+		        		orderNoList[i]=checkData[i].pId;
+		        		console.log(checkData[i].pId);
+		        	}
+		        	var params = {
+		        			reserveOrderNoList:orderNoList
+		        	}
+		        	//ajax传list集合
+		        	$.ajax({
+		        		url:basePath+"/user/deleteUser.do",
+		        		type:"post",
+		        		contentType:"application/json;charset=utf-8",
+		        		data:JSON.stringify(orderNoList),
+		        		dataType:"json",
+		        		success:function(data){
+		        			if(data.status==0){
+		        				layer.msg(data.msg,{icon:6,time:1000});
+		        				//删除后要更新界面
+		        				table.reload('userList',{
+		        					url:'../../admin/user/getPageofUser.do',
+		        				});
+		        			}else layer.msg(data.msg,{icon:5,time:1000});
+		        		},
+		        		error:function(){
+		        			layer.msg("ajax请求失败");
+		        		}
+		        	})
 		        });
 		    });
 	</script>

@@ -178,13 +178,15 @@
 			var data = obj.data;
           	if(obj.event === 'detail'){
             	layer.msg('ID：'+ data.pId + ' 的查看操作');
-            	layer.open({
+            	var index = layer.open({
             		type:2,
             		title:data.pName+"的用户信息",
             		content:"personInfo.html",
             		area:['40%','80%'],
             		success:function(layero,index){
-            			var body = layui.layer.getChildFrame('body',index);
+            			var body = layer.getChildFrame('body',index);
+            			console.log(body);
+            			console.log(index);
             			body.find(".pName").val(data.pName);
             			body.find(".pTel").val(data.pTel);
             			body.find(".pGender").val(data.pGender);
