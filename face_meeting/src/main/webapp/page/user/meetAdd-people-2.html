@@ -8,14 +8,10 @@
 	<link rel="icon" href="../../favicon.ico" />
 
 	<link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
-	<link rel="stylesheet" href="../../js/search/autocomplete.css">
-
-
-	
-
 	<title>人员选择</title>
 </head>
 <style type="text/css">
+
 	.btnEdit {
 		opacity: 0;
 	}
@@ -23,53 +19,39 @@
 	.btnEdit:hover {
 		opacity: 1;
 	}
-
-	#search-box {
-		position: relative;
-		width: 400px;
-		margin: 0 auto;
-		display: inline;
-	}
-
-	#message {
-		margin-top: 40px;
-		margin-bottom: 50px;
-		font-size: 20px;
-		text-align: center;
-	}
-
-	:focus {
-		outline: none;
-	}
 </style>
 
 <body>
-
-	<!-- 搜索功能 -->
-	<div class="layui-row">
-		<div id="search-form"></div>
-	</div>
-	<br />
-	<!-- 人员列表 -->
 	<div>
-		<form class="layui-form layui-form-pane">
-			<!-- <div class="layui-row  layui-form-label">我的小组</div> -->
-			<div id="content" class="layui-row">
-				<!-- 填入模板1，我的工作组 -->
-			</div>
-			<br>
-			<!-- <div class="layui-row  layui-form-label">公司部门</div> -->
-			<div id="content2" class="layui-row">
-				<!-- 我的部门 -->
-			</div>
-			<br>
-		</form>
-	</div>
+		<!-- 搜索功能 -->
+		<div class="layui-row">
+			
 
+			<div class="layui-col-xs2">
+				<button class="layui-btn layui-btn-sm layui-btn-normal" style="margin: 4px;">完成</button>
+			</div>
+		</div>
+		<br />
+		<!-- 人员列表 -->
+		<div>
+			<form class="layui-form layui-form-pane">
+				<div class="layui-row  layui-form-label">我的小组</div>
+				<div id="content" class="layui-row">
+					<!-- 填入模板1，我的工作组 -->
+				</div>
+				<br>
+				<div class="layui-row  layui-form-label">公司部门</div>
+				<div id="content2" class="layui-row">
+					<!-- 我的部门 -->
+					<br>
+					<br>
+			</form>
+		</div>
+	</div>
 
 	<!-- 模板 -->
 	<script id="meetGroup" type="text/html">
-		<div class="layui-collapse">
+	<div class="layui-collapse">
 		<!-- 显示加入的工作组 -->
 		<% for(var j = 0; j < data.length; j++){ %>
 		<div class="layui-colla-item ">
@@ -120,24 +102,8 @@
 	<script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
 	<script src="../../js/user/common.js" type="text/javascript"></script>
-	<script src="../../js/search/autocomplete.js"></script>
 	<script src="../../js/user/meetAdd-people.js" type="text/javascript" charset="utf-8"></script>
 
-	<script>
-		var proposals = ['at', 'boat', 'bear', 'chief', 'dog', 'drink', 'elephant', 'fruit', 'grave', 'hotel', 'illness',
-			'London', 'motorbike', 'xw素材网官网', 'xw素材网之家', 'xw素材网下载'
-		];
-		$(document).ready(function () {
-			$('#search-form').autocomplete({
-				hints: proposals,
-				width: 300,
-				height: 30,
-				onSubmit: function (text) {
-					// $('#message').html('Selected: <b>' + text + '</b>');
-				}
-			});
-		});
-	</script>
 
 </body>
 
