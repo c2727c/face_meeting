@@ -12,6 +12,10 @@
 </head>
 
 <body class="layui-layout-body">
+	<div class="layui-row">
+		<button class="layui-btn" onclick="addGroup();"><i class="layui-icon">&#xe608;</i>添加小组</button>
+		<button class="layui-btn layui-btn-danger" id ="batchDeleteGroupButton"><i class="layui-icon">&#xe640;</i>批量删除小组</button>
+	</div>
     <table class="layui-table" lay-data="{cellMinWidth:100, height:400, url:'../../admin/group/getPageofGroup.do', page:true, id:'groupList'}" lay-filter="demo">
 	    <thead>
 	      <tr>
@@ -29,7 +33,22 @@
 	</script>
 	<script>
 		var groupMember;
-	
+		function addGroup(){
+			layer.open({
+				type:2,
+				title:"添加小组",
+				content:"add-group.html",
+				area:['40%','80%'],
+				success:function(layero,index){
+					//无需
+				},
+				end:function(){
+					table.reload('groupList',{
+						url:"../../admin/group/getPageofGroup.do",
+					});
+				},
+			});
+		}
 	    layui.use(['form','layer','layedit','laydate','upload','table'],function(){
 		        var form = layui.form;
 		        layer =  parent.layer === undefined ? layui.layer : top.layer,
@@ -78,9 +97,54 @@
 		                layer.confirm('真的删除行么', function(index){
 		                    obj.del();
 		                    layer.close(index);
+		                    var orderNoList = new Array();
+		                    orderNoList[0] = data.gId;
+		                    $.ajax({
+		                    	url:basePath+"/admin/group/batchGroupDelete.do",
+		                    	type:"post",
+		                    	contentType:"application/json;charset=utf-8",
+		                    	data:JSON.stringify(orderNoList),
+				        		dataType:"json",
+				        		success:function(data){
+				        			if(data.status==0){
+				        				layer.msg(data.msg,{icon:6,time:1000});
+				        				//删除后要更新界面,userList中对应的是lay-data中的id
+				        				table.reload('groupList',{
+				        					url:'../../admin/group/getPageofGroup.do',
+				        				});
+				        			}else layer.msg(data.msg,{icon:5,time:1000});
+				        		},
+				        		error:function(){
+				        			layer.msg("ajax请求失败");
+				        		}
+		                    });
 		                });
 		            } else if(obj.event === 'edit'){
-		                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+		                layer.open({
+		                	type:2,
+		                	content:"edit-group.html",
+		                	title:"编辑小组"+data.gId+"的信息",
+		                	area:['40%','80%'],
+		                	success:function(layero,index){
+		                		var body = layer.getChildFrame('body',index);
+		                		body.find(".gInfo").val(data.gInfo);
+		                		body.find(".gId").val(data.gId);
+		                		form.render();
+		                	},
+		                	end:function(){
+		                		layer.msg("更新成功",{icon:6,time:1000});
+		                		table.reload('groupList',{
+		                			url:"../../admin/group/getPageofGroup.do",
+		                		});
+								//关闭当前页面，刷新添加后的表格
+								var index = parent.layer.getFrameIndex(window.name);  
+								//window.parent.location.reload(); //刷新父页面这样做会刷新全部，不推荐
+						        /* parent.table.reload('userList',{
+						        	url:"../../admin/room/getPageRoom.do",
+						        }); */
+						        parent.layer.close(index);
+		                	},
+		                });
 		            }
 		        });
 		
@@ -88,7 +152,7 @@
 		            getCheckData: function(){ //获取选中数据
 		                var checkStatus = table.checkStatus('groupList')
 		                        ,data = checkStatus.data;
-		                layer.alert(JSON.stringify(data));
+		               return data;
 		            }
 		            ,getCheckLength: function(){ //获取选中数目
 		                var checkStatus = table.checkStatus('groupList')
@@ -101,6 +165,61 @@
 		            }
 		        };
 		
+		        /* $("#batchDeleteGroupButton").on('click',function(){
+		        	var orderNoList = new Array();
+		        	var checkData = active.getCheckData();
+		        	for(var i = 0;i<checkData.length;i++){
+		        		orderNoList[i] = checkData[i].gId;
+		        	}
+		        	$.ajax({
+		        		url:basePath+"/admin/group/batchGroupDelete.do",
+		        		type:"post",
+		        		contentType:"application/json;charset=utf-8",
+		        		data:JSON.stringify(orderNoList),
+		        		dataType:"json",
+		        		success:function(data){
+		        			if(data.status==0){
+		        				layer.msg(data.msg,{icon:6,time:1000});
+		        				//删除后要更新界面,userList中对应的是lay-data中的id
+		        				table.reload('groupList',{
+		        					url:'../../admin/group/getPageofGroup.do',
+		        				});
+		        			}else layer.msg(data.msg,{icon:5,time:1000});
+		        		},
+		        		error:function(){
+		        			layer.msg("ajax请求失败");
+		        		}
+		        	});
+		        }) */
+		        
+		        $("#batchDeleteGroupButton").on('click',function(){
+					var checkData=active.getCheckData();
+					console.log(checkData);
+					var orderNoList = new Array();
+					for(var i=0;i<checkData.length;i++){
+						orderNoList[i] = checkData[i].gId;
+					}
+					$.ajax({
+		        		url:basePath+"/admin/group/batchGroupDelete.do",
+		        		type:"post",
+		        		contentType:"application/json;charset=utf-8",
+		        		data:JSON.stringify(orderNoList),
+		        		dataType:"json",
+		        		success:function(data){
+		        			if(data.status==0){
+		        				layer.msg(data.msg,{icon:6,time:1000});
+		        				//删除后要更新界面
+		        				table.reload('groupList',{
+		        					url:'../../admin/group/getPageofGroup.do',
+		        				});
+		        			}else layer.msg(data.msg,{icon:5,time:1000});
+		        		},
+		        		error:function(){
+		        			layer.msg("ajax请求失败");
+		        		}
+		        	})
+				});
+		        
 		        $('.demoTable .layui-btn').on('click', function(){
 		            var type = $(this).data('type');
 		            active[type] ? active[type].call(this) : '';

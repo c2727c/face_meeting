@@ -40,5 +40,6 @@ public interface RoomService {
 	//【便捷转场业务】，给出一个Event，为它安排合适的临近Room，还需要给出“所需时长”的参数
 	public NoteResult<List<Room>> transfer(Event e,int span);
 	public ResponseData findPageRoom(int page, int limit);
+	public NoteResult<String> batchRoomDelete(List<String> orderNoList);
 
 }
