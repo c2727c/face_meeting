@@ -109,6 +109,14 @@
 		</foreach>
 	</insert>
 	
+	<delete id="delete" parameterType="java.util.ArrayList">
+	    delete from `person` where pId in
+	    <foreach collection="list" item="p"  open="(" separator=","  close=")">
+			#{p}
+		</foreach>
+	</delete>
+	
+	
 	<!-- 表格所需的一些操作 -->
 	<!--分页查询数据，根据limit和page进行分页-->
     <select id="getPageofUser" parameterType="Map" resultType="cn.drrs.face_meeting.entity.Person">

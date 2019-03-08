@@ -19,6 +19,6 @@ public interface PersonService {
 	//�� ����ע��
 	public NoteResult<Person> insert(List<Person> list);
 	//�� ����ע��
-	public NoteResult<Object> delete(List<String> list);
+	public NoteResult<String> delete(List<String> list);
 	public ResponseData getPageofUser(int page, int limit);
 }
