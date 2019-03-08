@@ -58,7 +58,7 @@
 	select * from person;
 	</select>
 	<select id="findByFields" 
-	parameterType="Person" resultMap="personMap">
+	parameterType="Person" resultType="PersonLight">
 	select * from person
 	<where>
 	<if test="pName!=null">and pName like #{pName}</if>
@@ -69,6 +69,10 @@
 	</where>
 	</select>
 	
+	<select id="findAllDeptName" 
+	 resultType="String">
+	SELECT DISTINCT pDept FROM person ;
+	</select>
 	<!-- 万恶之源
 	<select id="selectAttendMeetingList" 
 	parameterType="String"  resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap" >
