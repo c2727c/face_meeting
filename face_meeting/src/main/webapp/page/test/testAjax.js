@@ -48,14 +48,17 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// });
 
 	// 提交会议
-	var mSize = '20';
-	var startDate = '2019-03-09'
-	var startTime = '17:00'
-	var endTime = '17:30'
 	var mTitle = '吃饭'
 	var mInfo = '无'
-	var 
-	var url = path + "/meeting/recommendRoom.do";
+	var mSize = '20'
+	var mSpan = '60'
+	var pId_FQ = 'user01'
+	var rId = 'CR001'
+	var startDate = '2019-03-10'
+	var startTime = '18:00'
+	var endTime = '19:00'
+	var attendList = 'user01,user02,user03'
+	var url = path + "/meeting/add.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
 		url: url,
