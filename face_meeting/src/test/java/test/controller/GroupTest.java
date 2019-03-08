@@ -10,7 +10,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.drrs.face_meeting.controller.user.GroupJoinController;
 import cn.drrs.face_meeting.controller.user.MeetingListController;
 import cn.drrs.face_meeting.controller.user.MeetnigDetailController;
-import cn.drrs.face_meeting.entity.Department;
 import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Group;
 import cn.drrs.face_meeting.entity.Person;
@@ -35,6 +34,7 @@ public class GroupTest {
 		NoteResult<List<Group>> nr = new NoteResult<List<Group>>();
 		nr=gc.findAllGroup();nr.printJSON();
 		nr=gc.findMyGroup("t15");nr.printJSON();
+		NoteResult<Object> nr2 = new NoteResult<Object>();
 	}
 	
 	@Test
@@ -46,22 +46,12 @@ public class GroupTest {
 	
 	@Test
 	public void findByDeptTest() {
-		NoteResult<List<Group>> nr = new NoteResult<List<Group>>();
-		nr=gc.findAllGroup();nr.printJSON();
-		nr=gc.findMyGroup("t15");
 		NoteResult<List<JSONObject>> nr2 = new NoteResult<List<JSONObject>>();
-		NoteResult<List<Department>> nr3 = new NoteResult<List<Department>>();
 		nr2=gc.findAllDept();
-		nr3=gc.findAllDept2();
-		nr.toString();
-		
-		nr3.toString();
-		nr2.toString();
-		nr.printJSON();
-		nr3.printJSON();
 		nr2.printJSON();
-		
-		
+		nr2.printJSON();
+		nr2=gc.findAllDept();
+		nr2.printJSON();
 
 	}
 	

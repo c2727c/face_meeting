@@ -59,7 +59,7 @@
 	</select>
 	<select id="findByFields" 
 	parameterType="Person" resultType="PersonLight">
-	select pId,pName,pRole,pDept,pIcon from person
+	select * from person
 	<where>
 	<if test="pName!=null">and pName like #{pName}</if>
 	<if test="pGender!=null">and pGender=#{pGender}</if>

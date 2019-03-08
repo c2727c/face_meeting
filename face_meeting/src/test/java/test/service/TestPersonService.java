@@ -93,12 +93,6 @@ public class TestPersonService {
 		NoteResult<Person> nr = ps.update(p);
 		nr.printJSON();
 	}
-	//测试更新
-		@Test
-		public void testfff() {
-			NoteResult<Person> nr = ps.findBypId("t15");
-			nr.printJSON();
-		}
 		
 	
 	
