@@ -20,7 +20,9 @@ public interface PersonDao {
 	public int insert(List<Person> list);
 	public int queryUserCount();
 	public List<Person> getPageofUser(Map<String, Integer> map);
+
 	public List<String> findAllDeptName();
+
 	public boolean delete(List<String> list);
 
 }
