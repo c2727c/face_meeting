@@ -116,6 +116,14 @@ public class PersonServiceImple implements PersonService{
 		        }
 		        return rd;
 	}
+
+	public List<Person> findByFields(Person p) {
+		return personDao.findByFields(p);
+	}
+
+	public List<String> findAllDeptName() {
+		return personDao.findAllDeptName();
+	}
 	
 	
 	

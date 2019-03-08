@@ -12,6 +12,7 @@ import cn.drrs.face_meeting.controller.user.MeetingListController;
 import cn.drrs.face_meeting.controller.user.MeetnigDetailController;
 import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Group;
+import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
 import net.sf.json.JSONObject;
@@ -41,6 +42,18 @@ public class GroupTest {
 		NoteResult<Object> nr2 = new NoteResult<Object>();
 		nr2=gc.join("项目A组", "t37");nr2.printJSON();
 		nr2=gc.quit("项目A组", "t38");nr2.printJSON();
+	}
+	
+	@Test
+	public void findByDeptTest() {
+		NoteResult<List<String>> nr = new NoteResult<List<String>>();
+		NoteResult<List<Person>> nr2 = new NoteResult<List<Person>>();
+		nr=gc.findAllDeptName();
+		nr.printJSON();
+		for(String dept :nr.getData()) {
+			nr2=gc.findUserByDept(dept);
+			nr2.printJSON();
+		}
 	}
 	
 	
