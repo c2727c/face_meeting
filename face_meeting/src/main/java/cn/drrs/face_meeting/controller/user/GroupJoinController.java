@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.drrs.face_meeting.entity.Group;
 import cn.drrs.face_meeting.entity.PGJoin;
+import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.service.GroupService;
 import cn.drrs.face_meeting.service.PGJoinService;
+import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
 import net.sf.json.JSONObject;
 
@@ -25,6 +27,8 @@ public class GroupJoinController {
 	private GroupService groupService;
 	@Resource 
 	private PGJoinService pGJoinService;
+	@Resource
+	private PersonService userService;
 	
 	//加入某组
 	@RequestMapping("/join.do")
@@ -79,6 +83,71 @@ public class GroupJoinController {
 			nr.setAll(0, "查询加入的组及其成员成功", list);
 		} catch (Exception e) {
 			nr.setAll(1, "查询加入的组及其成员失败", null);
+			e.printStackTrace();
+			return nr;
+		}
+		return nr;
+	}
+	
+	//查找有哪些部门
+	@RequestMapping("/findAllDeptName.do")
+	@ResponseBody
+	public NoteResult<List<String>> findAllDeptName() {
+		NoteResult<List<String>> nr = new NoteResult<List<String>>();
+		try {
+			List<String> list = userService.findAllDeptName();
+			nr.setAll(0, "查找全部部门名成功", list);
+		} catch (Exception e) {
+			nr.setAll(0, "查找全部部门名失败", null);
+		}
+		return nr;
+	}
+	
+	//按部门查找用户
+	@RequestMapping("/findUserByDept.do")
+	@ResponseBody
+	public NoteResult<List<Person>> findUserByDept(String dept) {
+		NoteResult<List<Person>> nr = new NoteResult<List<Person>>();
+		try {
+			Person p = new Person();
+			p.setpName(dept);
+			List<Person> list = userService.findByFields(p);
+			nr.setAll(0, "按部门查找用户成功", list);
+		} catch (Exception e) {
+			nr.setAll(1, "按部门查找用户失败", null);
+			e.printStackTrace();
+			return nr;
+		}
+		return nr;
+	}
+	
+	//按姓名查找用户//只要名字包含输入的字就行
+	@RequestMapping("/findUserByName.do")
+	@ResponseBody
+	public NoteResult<List<Person>> findUserByName(String pName) {
+		NoteResult<List<Person>> nr = new NoteResult<List<Person>>();
+		try {
+			Person p = new Person();
+			p.setpName(pName);
+			List<Person> list = userService.findByFields(p);
+			nr.setAll(0, "按姓名查找用户成功", list);
+		} catch (Exception e) {
+			nr.setAll(1, "按姓名查找用户失败", null);
+			e.printStackTrace();
+			return nr;
+		}
+		return nr;
+	}
+	//按多条件查找用户
+	@RequestMapping("/findUserByFields.do")
+	@ResponseBody
+	public NoteResult<List<Person>> findUserByFields(Person p) {
+		NoteResult<List<Person>> nr = new NoteResult<List<Person>>();
+		try {
+			List<Person> list = userService.findByFields(p);
+			nr.setAll(0, "按姓名查找用户成功", list);
+		} catch (Exception e) {
+			nr.setAll(1, "按姓名查找用户失败", null);
 			e.printStackTrace();
 			return nr;
 		}

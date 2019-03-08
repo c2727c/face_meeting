@@ -21,6 +21,7 @@
 	<context:component-scan
 		base-package="cn.drrs.face_meeting" />
 	<!-- 启用注解驱动 -->
+	
 	<mvc:annotation-driven />
 
 	<!-- springmvc的xml需要配置文件上传的类，否则会接收不了上传的文件 -->

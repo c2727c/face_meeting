@@ -1,9 +1,12 @@
 package cn.drrs.face_meeting.controller.user;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,6 +20,7 @@ import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Room;
 import cn.drrs.face_meeting.entity.RoomRestrict;
+import cn.drrs.face_meeting.service.AnalyseService;
 import cn.drrs.face_meeting.service.MREventService;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.service.PMAttendService;
@@ -36,6 +40,16 @@ public class MeetingAddController {
 	private MREventService eventService;
 	@Resource
 	private PMAttendService attendService;
+	@Resource
+	private AnalyseService analyseService;
+	
+	//根据选择的日期，显示当日剩余可用会议室时间轴分布
+	public NoteResult<Map<Time,Integer>> dailyAvilable(String dateInString){
+		NoteResult<Map<Time,Integer>> result;
+		Date date = Date.valueOf(dateInString); 
+		result = analyseService.dailyAvilable(date);
+		return result;
+	}
 	
 	//根据前端填写的表单，传上来房间限制RoomStrict，返回推荐可用的房间列表
 	//onblur就提交一次，更新推荐的房间列表

@@ -69,6 +69,10 @@
 	</where>
 	</select>
 	
+	<select id="findAllDeptName" 
+	 resultType="String">
+	SELECT DISTINCT pDept FROM person ;
+	</select>
 	<!-- 万恶之源
 	<select id="selectAttendMeetingList" 
 	parameterType="String"  resultMap="cn.drrs.face_meeting.dao.MeetingDao.meetingMap" >

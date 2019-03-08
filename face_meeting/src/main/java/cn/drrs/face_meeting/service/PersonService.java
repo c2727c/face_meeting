@@ -21,4 +21,6 @@ public interface PersonService {
 	//�� ����ע��
 	public NoteResult<String> delete(List<String> list);
 	public ResponseData getPageofUser(int page, int limit);
+	public List<Person> findByFields(Person p);
+	public List<String> findAllDeptName();
 }
