@@ -9,7 +9,7 @@ public class Group {
 	private String gInfo;
 	
 	//TODO 集合映射
-	private List<Person> memberList;
+	private List<PersonLight> memberList;
 	
 	
 	public Group() {
@@ -33,11 +33,11 @@ public class Group {
 		this.gInfo = gInfo;
 	}
 
-	public List<Person> getMemberList() {
+	public List<PersonLight> getMemberList() {
 		return memberList;
 	}
 
-	public void setMemberList(List<Person> memberList) {
+	public void setMemberList(List<PersonLight> memberList) {
 		this.memberList = memberList;
 	}
 

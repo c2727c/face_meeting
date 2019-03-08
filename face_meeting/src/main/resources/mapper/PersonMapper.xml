@@ -105,7 +105,7 @@
 	<insert id="insert" parameterType="java.util.ArrayList">
 	    insert into `person` values
 	    <foreach collection="list" item="p" separator=",">
-			(#{p.pId},#{p.pPass},#{p.pName},#{p.pGender},#{p.pRole},#{p.pDept},#{p.pPrivilege},'','',#{p.pTel})
+			(#{p.pId},#{p.pPass},#{p.pName},#{p.pGender},#{p.pRole},#{p.pDept},#{p.pPrivilege},#{p.pFace},#{p.pIcon},#{p.pTel})
 		</foreach>
 	</insert>
 	

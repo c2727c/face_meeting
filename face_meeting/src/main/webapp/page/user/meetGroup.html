@@ -12,22 +12,6 @@
   <title>我的小组</title>
 </head>
 <style type="text/css">
-  .user {
-    background-image: url(../../images/search.jpg);
-    /*设置小图标*/
-    background-size: 25px 25px;
-    /*小图标的大小*/
-    background-position: 5px 4px;
-    /*小图标在input的位置*/
-    background-repeat: no-repeat;
-    /*背景小图标不重复*/
-    padding: 8px 10px 8px 40px;
-    /*设置input内边距*/
-    border-style: none none solid none;
-    /*  上 右 下  左 */
-    background-color: transparent;
-  }
-
   .btnEdit {
     opacity: 0;
   }
@@ -94,32 +78,26 @@
     <div class="layui-row">
       <div class="layui-col-md6">
         <div class="layui-row">
-          <div class="layui-col-xs10">
-            <input class="layui-input user" type="text" name="search" required lay-verify="required" placeholder="搜索"
-              autocomplete="off" />
-          </div>
-
           <div class="layui-col-xs2">
-            <button class="layui-btn layui-btn-sm layui-btn-normal btnAddPeople" style="margin: 4px;">添加工作组</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal btnAddPeople" style="margin: 4px;">加入新工作组</button>
           </div>
         </div>
         <br />
         <div>
           <form class="layui-form">
             <div class="layui-collapse">
-              <div class="layui-colla-item">
+
+              <!-- 显示加入的工作组 -->
+              <div class="layui-colla-item ">
                 <div class="layui-colla-title">
                   <div class="layui-row">
                     <div class="layui-col-xs6">
-                      我的工作组1
+                      &nbsp;我的工作组1
                     </div>
-                    <div class="layui-col-xs6 noshow" style="text-align:right">
-                      <div class="layui-btn-group btnEdit">
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal btnEditGroup">
-                          <i class="layui-icon">&#xe642;</i>
-                        </button>
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal btnDelGroup">
-                          <i class="layui-icon">&#xe640;</i>
+                    <div class="layui-col-xs6" style="text-align:right">
+                      <div class="layui-btn-group btnEdit  noshow">
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger btnDelGroup">
+                          <i class="layui-icon layui-icon-close"></i>
                         </button>
                       </div>
                     </div>
@@ -127,64 +105,63 @@
                 </div>
                 <div class="layui-colla-content layui-show">
                   <div class="layui-row chosepeople">
-                    <input type="checkbox" lay-skin="primary" />
-                    <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite
-                      class="username">咚咚咚</cite>
+                    <img src="../../images/face3.jpg" class="layui-circle" width="35" height="35" />
+                    &nbsp; &nbsp;
+                    <div class="layui-inline stylename" style="font-weight: bold;">小黑</div>
                     <hr>
                   </div>
-                  <div class="layui-row">
-                    <input type="checkbox" lay-skin="primary" />
-                    <img src="../../images/face1.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite
-                      class="username">咚咚咚</cite>
+                  <div class="layui-row chosepeople">
+                    <img src="../../images/face4.jpg" class="layui-circle" width="35" height="35" />
+                    &nbsp; &nbsp;
+                    <div class="layui-inline stylename" style="font-weight: bold;">胡大幅</div>
                     <hr>
                   </div>
-                  <div class="layui-row">
-                    <input type="checkbox" lay-skin="primary" />
-                    <img src="../../images/face2.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite
-                      class="username">咚咚咚</cite>
-                    <hr>
+                  <div class="layui-row chosepeople">
+                    <img src="../../images/face2.jpg" class="layui-circle" width="35" height="35" />
+                    &nbsp; &nbsp;
+                    <div class="layui-inline stylename" style="font-weight: bold;">鲜明</div>
                   </div>
+
                 </div>
               </div>
-              <div class="layui-colla-item">
+              <!-- 显示加入的工作组 -->
+              <div class="layui-colla-item ">
                 <div class="layui-colla-title">
                   <div class="layui-row">
                     <div class="layui-col-xs6">
-                      我的工作组2
+                      &nbsp;我的工作组1
                     </div>
-                    <div class="layui-col-xs6 noshow" style="text-align:right">
-                      <div class="layui-btn-group btnEdit">
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal btnEditGroup">
-                          <i class="layui-icon">&#xe642;</i>
-                        </button>
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal btnDelGroup">
-                          <i class="layui-icon">&#xe640;</i>
+                    <div class="layui-col-xs6" style="text-align:right">
+                      <div class="layui-btn-group btnEdit  noshow">
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger btnDelGroup">
+                          <i class="layui-icon layui-icon-close"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="layui-colla-content">
-                  <div class="layui-row">
-                    <input type="checkbox" lay-skin="primary" />
-                    <img src="../../images/face3.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite
-                      class="username">咚咚咚</cite>
+                <div class="layui-colla-content layui-show">
+                  <div class="layui-row chosepeople">
+                    <img src="../../images/face3.jpg" class="layui-circle" width="35" height="35" />
+                    &nbsp; &nbsp;
+                    <div class="layui-inline stylename" style="font-weight: bold;">小黑</div>
                     <hr>
                   </div>
-                  <div class="layui-row">
-                    <input type="checkbox" lay-skin="primary" />
-                    <img src="../../images/face4.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite
-                      class="username">咚咚咚</cite>
+                  <div class="layui-row chosepeople">
+                    <img src="../../images/face4.jpg" class="layui-circle" width="35" height="35" />
+                    &nbsp; &nbsp;
+                    <div class="layui-inline stylename" style="font-weight: bold;">胡大幅</div>
                     <hr>
                   </div>
-                  <div class="layui-row">
-                    <input type="checkbox" lay-skin="primary" />
-                    <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35" /><cite
-                      class="username">咚咚咚</cite>
-                    <hr>
+                  <div class="layui-row chosepeople">
+                    <img src="../../images/face2.jpg" class="layui-circle" width="35" height="35" />
+                    &nbsp; &nbsp;
+                    <div class="layui-inline stylename" style="font-weight: bold;">鲜明</div>
                   </div>
+
                 </div>
               </div>
+
             </div>
             <br>
             <br>
@@ -206,7 +183,7 @@
       $(".btnAddPeople").on("click", function () {
         layer.open({
           type: 2,
-          title: ["添加工作组"],
+          title: ["加入新工作组"],
           content: "meetGroup-do.html",
           area: ["411px", "98%"]
         });
@@ -218,20 +195,13 @@
           event.stopPropagation();
         });
       });
-      $(".btnEditGroup").on("click", function () {
-        layer.open({
-          type: 2,
-          title: ["编辑工作组"],
-          content: "meetGroup-do.html",
-          area: ["411px", "98%"]
-        });
-      });
+
       //询问框是否删除
       $(".btnDelGroup").click(function () {
-        layer.confirm('确定删除当前工作组？', {
+        layer.confirm('确定退出当前工作组？', {
           btn: ['确定', '取消'] //按钮
         }, function () {
-          layer.msg('删除完成', {
+          layer.msg('退出完成', {
             icon: 1,
             time: 1000,
           });
@@ -246,26 +216,14 @@
       $(".btnDelGroup").mouseenter(function () {
         var index = $(".btnDelGroup").index(this);
         var str = '.btnDelGroup:eq(' + index + ')';
-        tip_index = layer.tips('删除工作组', str, {
+        tip_index = layer.tips('退出工作组', str, {
           time: 1000
         });
       });
       $(".btnDelGroup").mouseleave(function () {
         layer.close(tip_index);
       });
-      //tip编辑工作组
-      var tip_index = 0;
-      $(".btnEditGroup").mouseenter(function () {
-        var index = $(".btnEditGroup").index(this);
 
-        var str = '.btnEditGroup:eq(' + index + ')';
-        tip_index = layer.tips('编辑工作组', str, {
-          time: 1000
-        });
-      });
-      $(".btnEditGroup").mouseleave(function () {
-        layer.close(tip_index);
-      });
 
     });
   </script>
