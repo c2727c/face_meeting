@@ -8,21 +8,19 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// var datatime = '2019-03-02'
 	// console.log(datatime)
 
-	var userId = 'user01';
-	var url = path + "/user/group/findMyGroup.do";
+	var url = path + "/user/group/findAllGroup.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
-		url : url,
-		type : "post",
-		data:{
-			'pId': userId,
+		url: url,
+		type: "get",
+		dataType: "json",
+		success: function (data) {
+			if (data.status == 0) {
+				console.log(data)
+				$("#test1").html(JSON.stringify(data));
+			}
 		},
-		dataType : "json",
-		success : function(data) {
-			console.log(data)
-			$("#test1").html(JSON.stringify(data));
-		},
-		error : function() {
+		error: function () {
 			console.log("ajax请求失败");
 		}
 	});
