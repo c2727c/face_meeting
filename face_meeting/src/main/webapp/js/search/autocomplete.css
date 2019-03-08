@@ -27,7 +27,7 @@ https://github.com/lorecioni
 .autocomplete-button {
 	font-family: inherit;
 	border: none;
-	background-color: #990101;
+	background-color: #169f92;
 	color: white;
 	padding: 8px;
 	float: left;
@@ -38,7 +38,7 @@ https://github.com/lorecioni
 }
 
 .autocomplete-button:HOVER {
-	background-color: #D11E1E;
+	background-color: #33aba0;
 }
 
 .proposal-box {

@@ -32,23 +32,23 @@ public class TestPersonService {
 		nr.toString();
 	}//ok 2/5
 	//测试查找
-	@Test
-	public void testFindpId() {
-		NoteResult<Person> nr = ps.findBypId("t15");
-		nr.toString();
-		System.out.println(JSONObject.fromBean(nr).toString());
-	}
-	@Test
-	public void testFind() {
-		//按部分姓名
-		NoteResult<List<Person>> nr =ps.findBypDeptpName(null,"8");
-		nr.toString();
-		//按部分姓名+部门指定
-		nr =ps.findBypDeptpName("ggb","8");
-		nr.toString();
-		
-	}//ok 2/5
-	//测试访问关联的会议集合
+//	@Test
+//	public void testFindpId() {
+//		NoteResult<Person> nr = ps.findBypId("t15");
+//		nr.toString();
+//		System.out.println(JSONObject.fromBean(nr).toString());
+//	}
+//	@Test
+//	public void testFind() {
+//		//按部分姓名
+//		NoteResult<List<Person>> nr =ps.findBypDeptpName(null,"8");
+//		nr.toString();
+//		//按部分姓名+部门指定
+//		nr =ps.findBypDeptpName("ggb","8");
+//		nr.toString();
+//		
+//	}//ok 2/5
+//	//测试访问关联的会议集合
 	@Test
 	public void testRelatedMeetings() {
 		Person p=ps.findBypId("t15").getData();

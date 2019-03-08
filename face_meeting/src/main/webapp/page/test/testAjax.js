@@ -8,7 +8,7 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// var datatime = '2019-03-02'
 	// console.log(datatime)
 
-	var url = path + "/user/group/findAllDeptName.do";
+	var url = path + "/user/group/findAllDept.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
 		url: url,

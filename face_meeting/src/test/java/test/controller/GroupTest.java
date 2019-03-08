@@ -46,14 +46,10 @@ public class GroupTest {
 	
 	@Test
 	public void findByDeptTest() {
-		NoteResult<List<String>> nr = new NoteResult<List<String>>();
-		NoteResult<List<Person>> nr2 = new NoteResult<List<Person>>();
-		nr=gc.findAllDeptName();
-		nr.printJSON();
-		for(String dept :nr.getData()) {
-			nr2=gc.findUserByDept(dept);
-			nr2.printJSON();
-		}
+		NoteResult<List<JSONObject>> nr2 = new NoteResult<List<JSONObject>>();
+		nr2=gc.findAllDept();
+		nr2.printJSON();
+
 	}
 	
 	

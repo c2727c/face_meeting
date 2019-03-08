@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import cn.drrs.face_meeting.dao.PersonDao;
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
@@ -57,12 +58,12 @@ public class PersonServiceImple implements PersonService{
 		return nr;
 	}
 
-	public NoteResult<List<Person>> findBypDeptpName(String pDept,String pName) {
-		NoteResult<List<Person>> nr = new NoteResult<List<Person>>();
+	public NoteResult<List<PersonLight>> findBypDeptpName(String pDept,String pName) {
+		NoteResult<List<PersonLight>> nr = new NoteResult<List<PersonLight>>();
 		Person p = new Person();
 		p.setpDept(pDept);
 		p.setpName("%"+pName+"%");
-		List<Person>  list = personDao.findByFields(p);
+		List<PersonLight>  list = personDao.findByFields(p);
 		nr.setStatus(0);
 		nr.setMsg("按名字查询用户成功，个数："+list.size());
 		nr.setData(list);
@@ -121,7 +122,7 @@ public class PersonServiceImple implements PersonService{
 		        return rd;
 	}
 
-	public List<Person> findByFields(Person p) {
+	public List<PersonLight> findByFields(Person p) {
 		return personDao.findByFields(p);
 	}
 

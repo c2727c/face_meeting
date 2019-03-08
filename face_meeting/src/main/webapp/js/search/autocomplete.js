@@ -14,11 +14,11 @@ Author: Lorenzo Cioni - https://github.com/lorecioni
 		//Default parameters
 		params = $.extend({
 			hints: [],
-			placeholder: 'Search',
+			placeholder: '在公司部门中查找',
 			width: 200,
 			height: 16,
 			showButton: true,
-			buttonText: 'Search',
+			buttonText: '查找人员',
 			onSubmit: function(text){},
 			onBlur: function(){}
 		}, params);
