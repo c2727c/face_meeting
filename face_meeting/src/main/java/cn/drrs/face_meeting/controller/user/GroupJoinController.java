@@ -100,7 +100,7 @@ public class GroupJoinController {
 			Person p = new Person();
 			for(String dept:list) {
 				JSONObject json = new JSONObject();
-				p.setpName(dept);
+				p.setpDept(dept);
 				json.put("deptName", dept);
 				json.put("memberList", userService.findByFields(p));
 				data.add(json);
