@@ -22,10 +22,10 @@
     <div class="to3" data-pname="小东3">第3部分对应的内容</div>
     <div class="to4" data-pname="小东4">第4部分对应的内容</div>
     <div class="to5" data-pname="小东5">第5部分对应的内容</div>
-    <div class="to6"  data-pname="小东6">第6部分对应的内容</div>
-    <div class="to7"  data-pname="小东7">第7部分对应的内容</div>
-    <div class="to8"  data-pname="小东8">第8部分对应的内容</div>
-    <div class="to9"  data-pname="小东9">第9部分对应的内容</div>
+    <div class="to6" data-pname="小东6">第6部分对应的内容</div>
+    <div class="to7" data-pname="小东7">第7部分对应的内容</div>
+    <div class="to8" data-pname="小东8">第8部分对应的内容</div>
+    <div class="to9" data-pname="小东9">第9部分对应的内容</div>
 
 
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -39,6 +39,8 @@
         });
         go = function (index) {
             var top = $('[data-pname=' + index + ']').offset().top;
+            
+            console.log('top:' + top)
             $('html, body').animate({
                 scrollTop: top
             }, 500)

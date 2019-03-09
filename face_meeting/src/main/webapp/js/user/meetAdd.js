@@ -25,16 +25,22 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			title: ["选择人员"],
 			content: "meetAdd-people.html",
 			area: ["411px", "98%"],
+			skin: 'layui-layer-molv',
 			cancel: function (index, layero) {
-				layer.msg('已选择勾选的人', {
-					icon: 1,
-					time: 1000 //2秒关闭（如果不配置，默认是3秒）
+				layer.confirm('选择完成？', {
+					btn: ['继续选择', '保存离开'], //按钮
+					title: '提示'
+				}, function (index1) {
+					layer.close(index1)
 				}, function () {
-					//do something
+					var body = layer.getChildFrame('body', index);
+					var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+					attendList = iframeWin.getAttend();
 					layer.close(index)
 				});
 				return false;
-			}
+			},
+
 		});
 	})
 
@@ -83,26 +89,43 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 	form.on('submit(meetAdd)', function (data) {
 		// console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
 		// console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-		//有三个：mTitle: "1", mSize: "10", mInfo: "", startDate: "2019-03-05"
 		console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-
 		mTitle = data.field.mTitle;
 		mInfo = data.field.mInfo;
+		rId = data.field.rId;
 		mSize = $(".mSize").val()
 		startDate = $(".startDate").val()
-
 		startTime = $(".startTime").text()
 		endTime = $(".endTime").text()
-		// console.log(userId)
-		// console.log("form data: ")
-		// console.log(mTitle)
-		// console.log(mInfo)
-		// console.log(mSize)
-		// console.log(startDate)
-		// console.log(startTime)
-		// console.log(endTime)
+		pId_FQ = userId
+		mSpan = '60'
 
-
+		var url = path + "/meeting/add.do";
+		console.log("请求controller的url是:" + url)
+		$.ajax({
+			url: url,
+			type: "post",
+			data: {
+				'mTitle': mTitle,
+				'mInfo': mInfo,
+				'mSize': mSize,
+				'mSpan': mSpan,
+				'pId_FQ': pId_FQ,
+				'rId': rId,
+				'startDate': startDate,
+				'startTime': startTime,
+				'endTime': endTime,
+				'attendList': attendList,
+			},
+			dataType: "json",
+			success: function (data) {
+				console.log("传过来的是：")
+				console.log(data)
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				console.log("ajax请求失败");
+			}
+		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
 
@@ -138,7 +161,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		// console.log(endTime)
 
 		var url = path + "/meeting/recommendRoom.do";
-		console.log("请求controller的url是:" + url)
+		// console.log("请求controller的url是:" + url)
 		$.ajax({
 			url: url,
 			type: "post",
@@ -167,4 +190,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			}
 		});
 	}
+
+
 })

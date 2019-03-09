@@ -50,6 +50,12 @@
 	<div style="height:40px"></div>
 	<div>
 		<form class="layui-form layui-form-pane">
+			<!-- <div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">选择完成</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重新选择</button>
+				</div>
+			</div> -->
 			<div class="layui-row  layui-form-label">我的小组</div>
 			<div id="content" class="layui-row">
 				<!-- 填入模板1，我的工作组 -->
@@ -80,7 +86,7 @@
       				</div>
       				<div class="layui-col-xs6 btnEdit" style="text-align:right">
       					<div class="layui-btn-group noshow btnDelGroup">
-      						<input type="checkbox" class="checkboxAll" lay-skin="primary" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].gId%>">
+      						<input type="checkbox" class="checkboxAll" lay-skin="primary" cname="all"  lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].gId%>">
       					</div>
       				</div>
       			</div>
@@ -127,25 +133,25 @@
       				</div>
       				<div class="layui-col-xs6 btnEdit" style="text-align:right">
       					<div class="layui-btn-group noshow btnDelGroup">
-      						<input type="checkbox" class="checkboxAll" lay-skin="primary" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].deptName%>">
+      						<input type="checkbox" class="checkboxAll" lay-skin="primary" cname="all" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].deptName%>">
       					</div>
       				</div>
       			</div>
       		</div>
       		<!-- 获取人员列表 -->
-      		<div class="layui-colla-content">
+      		<div class="layui-colla-content layui-show">
       			<% for(var i = 0; i < data[j].memberList.length; i++){ %>
       			<div class="layui-row chosepeople" style=" padding: 0px 20px;">
       				<div class="layui-col-xs8">
       					<!-- <input type="checkbox" lay-skin="primary" /> -->
-      					
+      					<!-- <img src="data:image/jpeg;base64,<%= data[j].memberList[i].pIcon%>" class="layui-circle" width="35" height="35" /> -->
       					&nbsp; &nbsp;
       					<div class="layui-inline stylename" style="font-weight: bold;">
       						<%= data[j].memberList[i].pName %>
       					</div>
       				</div>
-      				<div class="layui-col-xs4" style="text-align:right">
-      					<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].deptName%>" data-pid="<%= data[j].memberList[i].pId %>" data-pname="<%= data[j].memberList[i].pName %>"/>
+      				<div class="layui-col-xs4" style="text-align:right" data-pname="<%= data[j].memberList[i].pName %>">
+      					<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].deptName%>" data-pid="<%= data[j].memberList[i].pId %>" />
       				</div>
       				<% if (i < data[j].memberList.length-1 ) { %>
       				<hr>
