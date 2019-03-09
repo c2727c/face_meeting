@@ -11,23 +11,22 @@
         div {
             height: 150px;
         }
-        
     </style>
 </head>
 
 <body>
 
     <input class="goto">
-    <div class="to1">第1部分对应的内容</div>
-    <div class="to2">第2部分对应的内容</div>
-    <div class="to3">第3部分对应的内容</div>
-    <div class="to4">第4部分对应的内容</div>
-    <div class="to5">第5部分对应的内容</div>
-    <div class="to6">第6部分对应的内容</div>
-    <div class="to7">第7部分对应的内容</div>
-    <div class="to8">第8部分对应的内容</div>
-    <div class="to9">第9部分对应的内容</div>
-  
+    <div class="to1" data-pname="小东1">第1部分对应的内容</div>
+    <div class="to2" data-pname="小东2">第2部分对应的内容</div>
+    <div class="to3" data-pname="小东3">第3部分对应的内容</div>
+    <div class="to4" data-pname="小东4">第4部分对应的内容</div>
+    <div class="to5" data-pname="小东5">第5部分对应的内容</div>
+    <div class="to6" data-pname="小东6">第6部分对应的内容</div>
+    <div class="to7" data-pname="小东7">第7部分对应的内容</div>
+    <div class="to8" data-pname="小东8">第8部分对应的内容</div>
+    <div class="to9" data-pname="小东9">第9部分对应的内容</div>
+
 
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
@@ -39,7 +38,9 @@
             }
         });
         go = function (index) {
-            var top = $('.' + index).offset().top;
+            var top = $('[data-pname=' + index + ']').offset().top;
+            
+            console.log('top:' + top)
             $('html, body').animate({
                 scrollTop: top
             }, 500)

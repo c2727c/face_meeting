@@ -1,159 +1,162 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-		<title>发起会议</title>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>发起会议</title>
 
-		<link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
-	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+</head>
 
-	<body>
-		<!-- 导航条 -->
-		<div class="layui-header">
-			<ul class="layui-nav">
-				<li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
-			</ul>
-			<ul class="layui-nav layui-layout-right">
-				<!-- 会议预定 -->
-				<li class="layui-nav-item">
-					<a class="" href="javascript:;">预定会议</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="meetAdd.html"><i class="layui-icon layui-icon-add-circle"></i> 发起会议</a>
-						</dd>
-						<dd>
-							<a href="meetMy.html"><i class="layui-icon layui-icon-form"></i> 我的会议</a>
-						</dd>
-						<dd>
-							<a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i> 我的小组</a>
-						</dd>
-						<dd>
-							<a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
-						</dd>
+<body>
+	<!-- 导航条 -->
+	<div class="layui-header">
+		<ul class="layui-nav">
+			<li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
+		</ul>
+		<ul class="layui-nav layui-layout-right">
+			<!-- 会议预定 -->
+			<li class="layui-nav-item">
+				<a class="" href="javascript:;">预定会议</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a href="meetAdd.html"><i class="layui-icon layui-icon-add-circle"></i> 发起会议</a>
+					</dd>
+					<dd>
+						<a href="meetMy.html"><i class="layui-icon layui-icon-form"></i> 我的会议</a>
+					</dd>
+					<dd>
+						<a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i> 我的小组</a>
+					</dd>
+					<dd>
+						<a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
+					</dd>
 
-						<dd>
-							<a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
-						</dd>
-					</dl>
-				</li>
+					<dd>
+						<a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
+					</dd>
+				</dl>
+			</li>
 
-				<!-- 个人设置 -->
-				<li class="layui-nav-item" id="userInfo">
-					<a href="javascript:;">
-						<img src="../../images/face.jpg" id="pIcon" class="layui-nav-img userAvatar" width="35" height="35">
-						<cite class="username" id="pName">咚咚咚</cite>
-					</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="userInfo.html" class="">
-								<i class="layui-icon layui-icon-tabs"></i><cite>个人资料</cite>
-							</a>
-						</dd>
-						<dd>
-							<a href="userChangepwd.html" class="">
-								<i class="layui-icon layui-icon-edit"></i><cite>修改密码</cite>
-							</a>
-						</dd>
-						<dd><a href="../user-login/login.html" class="signOut"><i class=" layui-icon layui-icon-close-fill"></i><cite>退出账号</cite></a></dd>
-					</dl>
-				</li>
-			</ul>
-		</div>
+			<!-- 个人设置 -->
+			<li class="layui-nav-item" id="userInfo">
+				<a href="javascript:;">
+					<img src="../../images/face.jpg" id="pIcon" class="layui-nav-img userAvatar" width="35" height="35">
+					<cite class="username" id="pName">咚咚咚</cite>
+				</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a href="userInfo.html" class="">
+							<i class="layui-icon layui-icon-tabs"></i><cite>个人资料</cite>
+						</a>
+					</dd>
+					<dd>
+						<a href="userChangepwd.html" class="">
+							<i class="layui-icon layui-icon-edit"></i><cite>修改密码</cite>
+						</a>
+					</dd>
+					<dd><a href="../user-login/login.html" class="signOut"><i class=" layui-icon layui-icon-close-fill"></i><cite>退出账号</cite></a></dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
 
-		<!-- 发起一个会议 -->
-		<div class="layui-container">
-			<div class="layui-row">
-				<form class="layui-form layui-form-pane layui-col-md6">
-					<br />
-					<div class="layui-row layui-col-space10">
-						<button class="layui-btn" lay-submit lay-filter="meetAdd" style="margin: 5px;">
-							<i class="layui-icon layui-icon-add-circle" style="font-size: 15px;"></i>
-							创建会议
+	<!-- 发起一个会议 -->
+	<div class="layui-container">
+		<div class="layui-row">
+			<form class="layui-form layui-form-pane layui-col-md6">
+				<br />
+				<div class="layui-row layui-col-space10">
+					<button class="layui-btn" lay-submit lay-filter="meetAdd" style="margin: 5px;">
+						<i class="layui-icon layui-icon-add-circle" style="font-size: 15px;"></i>
+						创建会议
+					</button>
+				</div>
+				<br />
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">主题</label>
+						<div class="layui-input-block">
+							<input type="text" name="mTitle" value="" placeholder="请输入会议主题" lay-verify="required" class="layui-input" />
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<label class="layui-form-label">会议人数</label>
+						<div class="layui-input-block">
+							<input type="number" name="mSize" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
+						</div>
+					</div>
+				</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md12">
+						<label class="layui-form-label">详情</label>
+						<textarea name="mInfo" placeholder="会议简介" class="layui-textarea" lay-verify="required"></textarea>
+					</div>
+				</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">参与人员</label>
+						<button type="button" class="layui-btn layui-btn-primary  btnAddPeople">
+							人员选择
+							<i class="layui-icon layui-icon-next" style="font-size: 15px;"></i>
 						</button>
 					</div>
-					<br />
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6">
-							<label class="layui-form-label">主题</label>
-							<div class="layui-input-block">
-								<input type="text" name="mTitle" value="" placeholder="请输入会议主题" lay-verify="required" class="layui-input" />
-							</div>
-						</div>
-						<div class="layui-col-md6">
-							<label class="layui-form-label">会议人数</label>
-							<div class="layui-input-block">
-								<input type="number" name="mSize" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
-							</div>
-						</div>
-					</div>
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md12">
-							<label class="layui-form-label">详情</label>
-							<textarea name="mInfo" placeholder="会议简介" class="layui-textarea" lay-verify="required"></textarea>
-						</div>
-					</div>
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6">
-							<label class="layui-form-label">参与人员</label>
-							<button type="button" class="layui-btn layui-btn-primary  btnAddPeople">
-								人员选择
-								<i class="layui-icon layui-icon-next" style="font-size: 15px;"></i>
-							</button>
-						</div>
-					</div>
+				</div>
 
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6">
-							<label class="layui-form-label">选择日期</label>
-							<div class="layui-input-block">
-								<input type="text" name="startDate" class="layui-input startDate" id="chosedate" />
-							</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">选择日期</label>
+						<div class="layui-input-block">
+							<input type="text" name="startDate" class="layui-input startDate" id="chosedate" />
 						</div>
 					</div>
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6 layui-col-xs6">
-							<label class="layui-form-label">开始时间</label>
-							<div class="layui-input-block">
-								<div class="layui-input startTime" name="startTime" style="padding: 11px;" id="sTime">7:00</div>
-								<!-- <input type="text" value="07:00" placeholder="" lay-verify="required" class="layui-input" /> -->
-							</div>
-						</div>
-						<div class="layui-col-md6 layui-col-xs6">
-							<label class="layui-form-label">结束时间</label>
-							<div class="layui-input-block">
-								<div class="layui-input endTime" name="endTime" style="padding: 11px;" id="eTime">8:00</div>
-								<!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
-							</div>
+				</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6 layui-col-xs6">
+						<label class="layui-form-label">开始时间</label>
+						<div class="layui-input-block">
+							<div class="layui-input startTime" name="startTime" style="padding: 11px;" id="sTime">7:00</div>
+							<!-- <input type="text" value="07:00" placeholder="" lay-verify="required" class="layui-input" /> -->
 						</div>
 					</div>
-					<br />
-					<br />
-					<div class="layui-row layui-col-space10">
-						<div id="slideTest1"></div>
-					</div>
-					<br />
-					<br />
-					<!-- 会议选择 -->
-					<div class="layui-row layui-col-space10">
-						<div class="layui-row">
-							<label class="layui-form-label">会议室选择</label>
+					<div class="layui-col-md6 layui-col-xs6">
+						<label class="layui-form-label">结束时间</label>
+						<div class="layui-input-block">
+							<div class="layui-input endTime" name="endTime" style="padding: 11px;" id="eTime">8:00</div>
+							<!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
 						</div>
-						<form class="layui-form"></form>
-						<div id="content">
-							<!-- 插入模板 -->
+					</div>
+				</div>
+				<br />
+				<br />
+				<div class="layui-row layui-col-space10">
+					<div id="slideTest1"></div>
+				</div>
+				<br />
+				<br />
+				<!-- 会议选择 -->
+				<div class="layui-row layui-col-space10">
+					<div class="layui-row">
+						<label class="layui-form-label">会议室选择</label>
+					</div>
+					<form class="layui-form"></form>
+					<div id="content">
+						<!-- 插入模板 -->
 
-						</div>
 					</div>
-				</form>
-			</div>
-			<br>
+				</div>
+			</form>
 		</div>
+		<br>
+	</div>
+	<br>
+	<br>
+	<br>
 
-		<script id="roomList" type="text/html">
-			{{each data as value index}}
+	<script id="roomList" type="text/html">
+		{{each data  value index}}
 				<div class="layui-row layui-col-md6 ">
 				<div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
 					<div class="layui-card  layui-row">
@@ -170,15 +173,15 @@
     {{/each}}
   </script>
 
-		<script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-		<script src="../../js/user/common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../js/user/headName.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../js/user/meetAdd.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+	<script src="../../js/user/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/user/headName.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/user/meetAdd.js" type="text/javascript" charset="utf-8"></script>
 
 
 
-	</body>
+</body>
 
 </html>

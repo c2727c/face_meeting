@@ -8,10 +8,7 @@
 	<link rel="icon" href="../../favicon.ico" />
 
 	<link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
-	<link rel="stylesheet" href="../../js/search/autocomplete.css">
-
-
-
+	<link rel="stylesheet" href="../../js/search/autocomplete.css" />
 
 	<title>人员选择</title>
 </head>
@@ -44,7 +41,6 @@
 </style>
 
 <body>
-
 	<!-- 搜索功能 -->
 	<div class="layui-row" style="z-index: 9999;position: fixed">
 		<div id="search-form"></div>
@@ -54,114 +50,119 @@
 	<div style="height:40px"></div>
 	<div>
 		<form class="layui-form layui-form-pane">
+			<!-- <div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">选择完成</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重新选择</button>
+				</div>
+			</div> -->
 			<div class="layui-row  layui-form-label">我的小组</div>
 			<div id="content" class="layui-row">
 				<!-- 填入模板1，我的工作组 -->
 			</div>
-			<br>
+			<br />
 			<div class="layui-row  layui-form-label">公司部门</div>
 			<div id="content2" class="layui-row">
 				<!-- 我的部门 -->
 			</div>
-			<br>
+			<br />
 		</form>
 	</div>
-
 
 	<!-- 模板小组 -->
 	<script id="meetGroup" type="text/html">
 		<div class="layui-collapse">
-		<!-- 显示加入的工作组 -->
-		<% for(var j = 0; j < data.length; j++){ %>
-		<div class="layui-colla-item ">
-			<!-- 组名 -->
-			<div class="layui-colla-title">
-				<div class="layui-row">
-					<div class="layui-col-xs6">
-						&nbsp;
-						<i class="layui-icon layui-icon-group"></i>
-						&nbsp;						
-						<%= data[j].gId %>
-					</div>
-					<div class="layui-col-xs6 btnEdit" style="text-align:right">
-						<div class="layui-btn-group noshow btnDelGroup">
-							<input type="checkbox" class="checkboxAll" lay-skin="primary" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].gId%>">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 获取人员列表 -->
-			<div class="layui-colla-content">
-				<% for(var i = 0; i < data[j].memberList.length; i++){ %>
-				<div class="layui-row chosepeople" style=" padding: 0px 20px;">
-					<div class="layui-col-xs8">
-						<!-- <input type="checkbox" lay-skin="primary" /> -->
-						<img src="data:image/jpeg;base64,<%= data[j].memberList[i].pIcon%>" class="layui-circle" width="35" height="35" />
-						&nbsp; &nbsp;
-						<div class="layui-inline stylename" style="font-weight: bold;">
-							<%= data[j].memberList[i].pName %>
-						</div>
-					</div>
-					<div class="layui-col-xs4" style="text-align:right">
-						<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].gId%>" data-pid="<%= data[j].memberList[i].pId %>" />
-					</div>
-					<% if (i < data[j].memberList.length-1 ) { %>
-						<hr>
-					<% } %>
-				</div>
-				<% } %>
-			</div>
-		</div>
-		<% } %>
-	</div>
-	</script>
+      	<!-- 显示加入的工作组 -->
+      	<% for(var j = 0; j < data.length; j++){ %>
+      	<div class="layui-colla-item ">
+      		<!-- 组名 -->
+      		<div class="layui-colla-title">
+      			<div class="layui-row">
+      				<div class="layui-col-xs6">
+      					&nbsp;
+      					<i class="layui-icon layui-icon-group"></i>
+      					&nbsp;
+      					<%= data[j].gId %>
+      				</div>
+      				<div class="layui-col-xs6 btnEdit" style="text-align:right">
+      					<div class="layui-btn-group noshow btnDelGroup">
+      						<input type="checkbox" class="checkboxAll" lay-skin="primary" cname="all"  lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].gId%>">
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      		<!-- 获取人员列表 -->
+      		<div class="layui-colla-content">
+      			<% for(var i = 0; i < data[j].memberList.length; i++){ %>
+      			<div class="layui-row chosepeople" style=" padding: 0px 20px;">
+      				<div class="layui-col-xs8">
+      					<!-- <input type="checkbox" lay-skin="primary" /> -->
+      					<img src="data:image/jpeg;base64,<%= data[j].memberList[i].pIcon%>" class="layui-circle" width="35" height="35" />
+      					&nbsp; &nbsp;
+      					<div class="layui-inline stylename" style="font-weight: bold;">
+      						<%= data[j].memberList[i].pName %>
+      					</div>
+      				</div>
+      				<div class="layui-col-xs4" style="text-align:right">
+      					<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].gId%>" data-pid="<%= data[j].memberList[i].pId %>" />
+      				</div>
+      				<% if (i < data[j].memberList.length-1 ) { %>
+      					<hr>
+      				<% } %>
+      			</div>
+      			<% } %>
+      		</div>
+      	</div>
+      	<% } %>
+      </div>
+    </script>
 	<!-- 模板部门 -->
 	<script id="meetDept" type="text/html">
-	<div class="layui-collapse">
-		<!-- 显示 -->
-		<% for(var j = 0; j < data.length; j++){ %>
-		<div class="layui-colla-item ">
-			<!-- 部门名 -->
-			<div class="layui-colla-title">
-				<div class="layui-row">
-					<div class="layui-col-xs6">
-						&nbsp;
-						<i class="layui-icon layui-icon-group"></i>
-						&nbsp;
-						<%= data[j].deptName %>
-					</div>
-					<div class="layui-col-xs6 btnEdit" style="text-align:right">
-						<div class="layui-btn-group noshow btnDelGroup">
-							<input type="checkbox" class="checkboxAll" lay-skin="primary" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].deptName%>">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 获取人员列表 -->
-			<div class="layui-colla-content">
-				<% for(var i = 0; i < data[j].memberList.length; i++){ %>
-				<div class="layui-row chosepeople" style=" padding: 0px 20px;">
-					<div class="layui-col-xs8">
-						<!-- <input type="checkbox" lay-skin="primary" /> -->
-						<img src="data:image/jpeg;base64,<%= data[j].memberList[i].pIcon%>" class="layui-circle" width="35" height="35" />
-						&nbsp; &nbsp;
-						<div class="layui-inline stylename" style="font-weight: bold;">
-							<%= data[j].memberList[i].pName %>
-						</div>
-					</div>
-					<div class="layui-col-xs4" style="text-align:right">
-						<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].deptName%>" data-pid="<%= data[j].memberList[i].pId %>" />
-					</div>
-					<% if (i < data[j].memberList.length-1 ) { %>
-					<hr>
-					<% } %>
-				</div>
-				<% } %>
-			</div>
-		</div>
-		<% } %>
-	</div>
-	</script>
+		<div class="layui-collapse">
+      	<!-- 显示 -->
+      	<% for(var j = 0; j < data.length; j++){ %>
+      	<div class="layui-colla-item ">
+      		<!-- 部门名 -->
+      		<div class="layui-colla-title">
+      			<div class="layui-row">
+      				<div class="layui-col-xs6">
+      					&nbsp;
+      					<i class="layui-icon layui-icon-group"></i>
+      					&nbsp;
+      					<%= data[j].deptName %>
+      				</div>
+      				<div class="layui-col-xs6 btnEdit" style="text-align:right">
+      					<div class="layui-btn-group noshow btnDelGroup">
+      						<input type="checkbox" class="checkboxAll" lay-skin="primary" cname="all" lay-filter="allChoose" title="全选当前组" data-gid="<%=data[j].deptName%>">
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      		<!-- 获取人员列表 -->
+      		<div class="layui-colla-content layui-show">
+      			<% for(var i = 0; i < data[j].memberList.length; i++){ %>
+      			<div class="layui-row chosepeople" style=" padding: 0px 20px;">
+      				<div class="layui-col-xs8">
+      					<!-- <input type="checkbox" lay-skin="primary" /> -->
+      					<!-- <img src="data:image/jpeg;base64,<%= data[j].memberList[i].pIcon%>" class="layui-circle" width="35" height="35" /> -->
+      					&nbsp; &nbsp;
+      					<div class="layui-inline stylename" style="font-weight: bold;">
+      						<%= data[j].memberList[i].pName %>
+      					</div>
+      				</div>
+      				<div class="layui-col-xs4" style="text-align:right" data-pname="<%= data[j].memberList[i].pName %>">
+      					<input type="checkbox" lay-skin="primary" data-pgid="<%=data[j].deptName%>" data-pid="<%= data[j].memberList[i].pId %>" />
+      				</div>
+      				<% if (i < data[j].memberList.length-1 ) { %>
+      				<hr>
+      				<% } %>
+      			</div>
+      			<% } %>
+      		</div>
+      	</div>
+      	<% } %>
+      </div>
+    </script>
 
 	<script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
@@ -170,21 +171,6 @@
 	<script src="../../js/search/autocomplete.js"></script>
 	<script src="../../js/user/meetAdd-people.js" type="text/javascript" charset="utf-8"></script>
 
-	<script>
-		var proposals = ['at', 'boat', 'bear', 'chief', 'dog', 'drink', 'elephant', 'fruit', 'grave', 'hotel', 'illness',
-			'London', 'motorbike', 'xw素材网官网', 'xw素材网之家', 'xw素材网下载'
-		];
-		$(document).ready(function () {
-			$('#search-form').autocomplete({
-				hints: proposals,
-				width: 300,
-				height: 30,
-				onSubmit: function (text) {
-					// $('#message').html('Selected: <b>' + text + '</b>');
-				}
-			});
-		});
-	</script>
 
 </body>
 

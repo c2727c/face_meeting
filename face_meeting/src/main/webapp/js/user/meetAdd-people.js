@@ -1,3 +1,6 @@
+var proposals = [];
+var attend = '';
+
 layui.use(["element", "layer", "jquery", "form"], function () {
     var element = layui.element;
     var layer = layui.layer;
@@ -6,7 +9,8 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     var userId = localStorage.getItem('userId')
 
     getMyGroup();
-    //getDept();
+    getDept();
+
 
     function getMyGroup() {
         // 取得我加入的组
@@ -109,6 +113,40 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                         });
                         form.render('checkbox');
                     });
+
+                    for (var i = 0; i < data.data.length; i++) {
+                        for (var j = 0; j < data.data[i].memberList.length; j++) {
+                            proposals.push(data.data[i].memberList[j].pName);
+
+                        }
+                    }
+                    // console.log('现在:' + proposals)
+
+                    $("#search-form").autocomplete({
+                        hints: proposals,
+                        width: 300,
+                        height: 30,
+                        onSubmit: function (text) {
+                            // $('#message').html('Selected: <b>' + text + '</b>');
+
+                            go(text)
+                        }
+                    });
+                    $(".autocomplete-input").keypress(function (e) {
+                        if (e.which == 13) {
+                            var value = $(".autocomplete-input").val()
+                            go(value);
+                        }
+                    });
+                    go = function (index) {
+                        console.log('index:' + index)
+                        var top = $('[data-pname=' + index + ']').offset().top;
+                        console.log('top:' + top)
+                        $('html, body').animate({
+                            scrollTop: top
+                        }, 500)
+                    }
+
                 } else {
                     layer.msg("请求部门失败", {
                         time: '1000',
@@ -122,7 +160,14 @@ layui.use(["element", "layer", "jquery", "form"], function () {
         });
 
     }
-}
-
 
 });
+
+function getAttend() {
+    attend = ''
+    $("input:checkbox[cname!='all']:checked").each(function(i){
+        attend = attend +','+ $(this).data('pid');
+    });
+    // console.log(attend)
+    return attend;
+}
