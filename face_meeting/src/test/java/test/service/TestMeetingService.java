@@ -15,6 +15,7 @@ import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
+import net.sf.json.JSONObject;
 
 public class TestMeetingService {
 	MeetingService ms;
@@ -35,7 +36,10 @@ public class TestMeetingService {
 
 	@Test//ok 2/5
 	public void testAdd() {
-		ms.add("test Meeting7", 30, 60, "t15");
+		Meeting m = new Meeting("3333333333", "aa", 30, 60, "t15");
+		ms.add(m);
+		JSONObject js = JSONObject.fromObject(m);
+		System.err.println(js.toString());
 	}
 	@Test//ok 2/5
 	public void deleteTest() {

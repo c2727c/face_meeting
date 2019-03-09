@@ -5,10 +5,10 @@
  
 <!-- namespace 的值是 接口
   每个Mapper 接口对应一个配置文件  -->
-<mapper namespace="cn.drrs.face_meeting.dao.PMAttend">
+<mapper namespace="cn.drrs.face_meeting.dao.PMAttendDao">
 	<insert id="insert" 
-		parameterType="cn.drrs.face_meeting.entity.Attend">
-		insert into pm_attend values (#{mNo},#{pId},#{state});
+		parameterType="Attend"> 
+		insert into pm_attend values (#{pId},#{mNo},#{state});
 	</insert>
 	
 	
@@ -17,7 +17,7 @@
 	</delete>
 	
 	<update id="update" 
-		parameterType="cn.drrs.face_meeting.entity.Attend">
+		parameterType="Attend">
 		update pm_attend set state=#{state} where mNo=#{mNo} and pId=#{pId};
 	</update>
 	

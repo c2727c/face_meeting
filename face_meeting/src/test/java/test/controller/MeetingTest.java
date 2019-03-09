@@ -20,6 +20,7 @@ import net.sf.json.JSONObject;
 public class MeetingTest {
 	MeetingListController mlc;
 	MeetnigDetailController mdc;
+	MeetingAddController mac;
 	PersonService ps;
 	
 	@Before
@@ -30,6 +31,7 @@ public class MeetingTest {
 				new ClassPathXmlApplicationContext(conf);
 		mlc=ctx.getBean("meetingListController", MeetingListController.class);
 		mdc=ctx.getBean("meetingDetailController", MeetnigDetailController.class);
+		mac=ctx.getBean("meetingAddController", MeetingAddController.class);
 		ps = ctx.getBean("personService", PersonService.class);
 	}
 	
@@ -61,6 +63,12 @@ public class MeetingTest {
 		for(String s:list) {
 			System.out.println(s);
 		}
+		
+	}
+	@Test
+	public void addTest() {
+		mac.add("KKK", "KKK", 5, 15, "t15", "A001", "2016-03-09", "00:00:00",  "00:00:00", "t15,t37,t38");
+
 		
 	}
 

@@ -74,9 +74,12 @@ public class MeetingAddController {
 			Event e = new Event(m.getmNo(), rId, LocalDate.parse(startDate), LocalTime.parse(startTime),
 					LocalTime.parse(endTime));
 			eventService.insert(e);
+			System.err.println("测试点a");
 			String[] attends = attendList.split(",");
 			List<Attend> alist = new ArrayList<Attend>();
+			System.err.println("测试点b");
 			for (String pId : attends) {
+				System.err.println("测试点c：pId="+pId);
 				alist.add(new Attend(m.getmNo(), pId, "noshow"));
 			}
 			attendService.insert(alist);
