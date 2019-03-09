@@ -42,40 +42,42 @@ public class MeetingAddController {
 	private PMAttendService attendService;
 	@Resource
 	private AnalyseService analyseService;
-	
-	//根据选择的日期，显示当日剩余可用会议室时间轴分布
-	public NoteResult<Map<Time,Integer>> dailyAvilable(String dateInString){
-		NoteResult<Map<Time,Integer>> result;
-		Date date = Date.valueOf(dateInString); 
+
+	// 根据选择的日期，显示当日剩余可用会议室时间轴分布
+	public NoteResult<Map<Time, Integer>> dailyAvilable(String dateInString) {
+		NoteResult<Map<Time, Integer>> result;
+		Date date = Date.valueOf(dateInString);
 		result = analyseService.dailyAvilable(date);
 		return result;
 	}
-	
-	//根据前端填写的表单，传上来房间限制RoomStrict，返回推荐可用的房间列表
-	//onblur就提交一次，更新推荐的房间列表
-	@RequestMapping("/recommendRoom.do") 
+
+	// 根据前端填写的表单，传上来房间限制RoomStrict，返回推荐可用的房间列表
+	// onblur就提交一次，更新推荐的房间列表
+	@RequestMapping("/recommendRoom.do")
 	@ResponseBody
-	public NoteResult<List<Room>> recommendRoom(int mSize,String startDate,String startTime,String endTime) {
-		RoomRestrict rr = new RoomRestrict(15,null,LocalDate.parse(startDate),LocalTime.parse(startTime),LocalTime.parse(endTime));
+	public NoteResult<List<Room>> recommendRoom(int mSize, String startDate, String startTime, String endTime) {
+		RoomRestrict rr = new RoomRestrict(15, null, LocalDate.parse(startDate), LocalTime.parse(startTime),
+				LocalTime.parse(endTime));
 		return roomService.findByRoomRestrict(rr);
 	}
-	
-	//一步提交会议和会程并安排已经选择的参会人员 
-	@RequestMapping("/add.do") 
+
+	// 一步提交会议和会程并安排已经选择的参会人员
+	@RequestMapping("/add.do")
 	@ResponseBody
-	public NoteResult<Object> add(String mTitle,String mInfo,int mSize,int mSpan,String pId_FQ,
-			String rId,String startDate,String startTime,String endTime,String attendList) {
+	public NoteResult<Object> add(String mTitle, String mInfo, int mSize, int mSpan, String pId_FQ, String rId,
+			String startDate, String startTime, String endTime, String attendList) {
 		NoteResult<Object> nr = new NoteResult<Object>();
 		Meeting m;
 		try {
-			m = new Meeting(mTitle,mInfo,mSize,mSpan,pId_FQ);
+			m = new Meeting(mTitle, mInfo, mSize, mSpan, pId_FQ);
 			service.add(m);
-			Event e = new Event(m.getmNo(),rId,LocalDate.parse(startDate),LocalTime.parse(startTime),LocalTime.parse(endTime));
+			Event e = new Event(m.getmNo(), rId, LocalDate.parse(startDate), LocalTime.parse(startTime),
+					LocalTime.parse(endTime));
 			eventService.insert(e);
-			String [] attends = attendList.split(",");
+			String[] attends = attendList.split(",");
 			List<Attend> alist = new ArrayList<Attend>();
-			for(String pId: attends) {
-				alist.add(new Attend(m.getmNo(),pId,"noshow"));
+			for (String pId : attends) {
+				alist.add(new Attend(m.getmNo(), pId, "noshow"));
 			}
 			attendService.insert(alist);
 			nr.setAll(0, "插入会议并安排会程成功", null);
@@ -85,16 +87,16 @@ public class MeetingAddController {
 		}
 		return nr;
 	}
-	
-	
-	//点击提交之后第一步是增加会议，返回新增会议编号	
-	@RequestMapping("/addMeeting.do") 
+
+	// 点击提交之后第一步是增加会议，返回新增会议编号
+	@RequestMapping("/addMeeting.do")
 	@ResponseBody
 	public NoteResult<Meeting> addMeeting(@RequestBody(required = false) Meeting m) {
 		return service.add(m);
 	}
-	//第二步是增加会议成功后取返回的会议编号，加上时间信息和选定的房间信息组成event对象，为其安排时间地点
-	@RequestMapping("/arrangeMeeting.do") 
+
+	// 第二步是增加会议成功后取返回的会议编号，加上时间信息和选定的房间信息组成event对象，为其安排时间地点
+	@RequestMapping("/arrangeMeeting.do")
 	@ResponseBody
 	public NoteResult<Object> addEvent(@RequestBody(required = false) Event e) {
 		return eventService.insert(e);

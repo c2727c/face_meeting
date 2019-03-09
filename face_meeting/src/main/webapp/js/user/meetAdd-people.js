@@ -120,7 +120,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
 
                         }
                     }
-                    console.log('现在:' + proposals)
+                    // console.log('现在:' + proposals)
 
                     $("#search-form").autocomplete({
                         hints: proposals,
@@ -168,6 +168,6 @@ function getAttend() {
     $("input:checkbox[cname!='all']:checked").each(function(i){
         attend = attend +','+ $(this).data('pid');
     });
-    console.log(attend)
+    // console.log(attend)
     return attend;
 }
