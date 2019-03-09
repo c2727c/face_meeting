@@ -2,7 +2,7 @@ var mNo = 'number';
 var url1 = "/meeting/getMyAttends.do";
 var url2 = "/meeting/getMyCreates.do";
 var urladd = url1;
-var dataMy;
+var dataMy = '';
 
 layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
     var element = layui.element;
@@ -13,45 +13,21 @@ layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
     var d1 = new Date();
     var d = d1.format('yyyy-MM-dd');
     dataMy = d;
-    // console.log("new Date:" + d);
-    getListMeeting(d);
 
-    //看单选框选择url
-    form.on('radio(my1)', function (data) {
-        // console.log(data.elem); //得到radio原始DOM对象
-        // console.log(data.value); //被点击的radio的value值
-        urladd = url1;
-        console.log(urladd)
-        console.log(dataMy)
-        getListMeeting(dataMy)
-    });
-    form.on('radio(my2)', function (data) {
-        // console.log(data.elem); //得到radio原始DOM对象
-        // console.log(data.value); //被点击的radio的value值
-        urladd = url2;
-        console.log(urladd)
-        console.log(dataMy)
-        getListMeeting(dataMy)
-    });
-
-    var laydate = layui.laydate;
-    //根据日期选择显示的会议
-    laydate.render({
-        elem: '#test1',
-        // theme: '#1E9FFF',
-        isInitValue: true,
-        value: new Date(),
-        done: function (value, date) {
-            // console.log("done:")
-            // console.log(value); //得到日期生成的值，如：2017-08-18
-            // console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-            dataMy = value;
-            getListMeeting(value);
-        }
-    });
-
-    function getListMeeting(value) {
-        var datetime = value;
+    window.getListMeeting = function () {
+        // console.log('刷新我的会议')
+        $('input:radio').each(function () {
+            if (this.checked) {
+                is_Middle = $(this).val();
+                if(is_Middle == 0) {
+                    urladd = url1;
+                } else {
+                    urladd = url2;
+                }
+            }
+        });
+        // console.log('当前url'+urladd)
+        var datetime = dataMy;
         var url = path + urladd;
         $.ajax({
             url: url,
@@ -84,6 +60,10 @@ layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
                         content: 'meetMy-Info.html',
                         scrollbar: false,
                         area: ["411px", "96%"],
+                        skin: 'layui-layer-molv',
+                        cancel: function (index, layero) {
+                            layer.close(index)
+                        }
                     });
                 });
 
@@ -106,6 +86,46 @@ layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
         });
     }
 
+    getListMeeting();
+
+    form.render('radio');
+    //看单选框选择url
+    form.on('radio(my1)', function (data) {
+        // console.log(data.elem); //得到radio原始DOM对象
+        // console.log(data.value); //被点击的radio的value值
+        urladd = url1;
+        // console.log(urladd)
+        // console.log(dataMy)
+        getListMeeting()
+    });
+    form.on('radio(my2)', function (data) {
+        // console.log(data.elem); //得到radio原始DOM对象
+        // console.log(data.value); //被点击的radio的value值
+        urladd = url2;
+        // console.log(urladd)
+        // console.log(dataMy)
+        getListMeeting()
+    });
+
+    var laydate = layui.laydate;
+    //根据日期选择显示的会议
+    laydate.render({
+        elem: '#test1',
+        // theme: '#1E9FFF',
+        isInitValue: true,
+        value: new Date(),
+        done: function (value, date) {
+            // console.log("done:")
+            // console.log(value); //得到日期生成的值，如：2017-08-18
+            // console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            dataMy = value;
+            getListMeeting();
+        }
+    });
+
+    window.gotoEditMeet = function (index, data) {
+        window.location.href = "meetAdd.html"
+    }
 
 });
 
@@ -128,9 +148,4 @@ Date.prototype.format = function (format) {
                 RegExp.$1.length == 1 ? o[k] :
                 ("00" + o[k]).substr(("" + o[k]).length));
     return format;
-}
-
-function gotoEditMeet(index, data) {
-    layer.close(index);
-    window.location.href = "meetAdd.html"
 }

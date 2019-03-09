@@ -158,7 +158,10 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					layer.msg('会议创建成功！', {
 						icon: 1,
 						time: 1500
+					},function(){
+						window.location.href = "meetAdd.html"
 					});
+
 				},
 				error: function () {
 					console.log("ajax请求失败");

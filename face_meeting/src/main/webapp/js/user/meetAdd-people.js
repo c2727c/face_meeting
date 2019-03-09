@@ -128,7 +128,6 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                         height: 30,
                         onSubmit: function (text) {
                             // $('#message').html('Selected: <b>' + text + '</b>');
-
                             go(text)
                         }
                     });
@@ -139,13 +138,18 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                         }
                     });
                     go = function (index) {
-                        console.log('index:' + index)
+                        $('[data-pname=' + index + ']').addClass("active-name")
+                        // console.log('改颜色')
                         var top = $('[data-pname=' + index + ']').offset().top;
-                        console.log('top:' + top)
                         $('html, body').animate({
                             scrollTop: top
                         }, 500)
                     }
+
+                    $(".chosepeople").click( function() {
+                        $(this).removeClass("active-name")
+                    })
+
 
                 } else {
                     layer.msg("请求部门失败", {
