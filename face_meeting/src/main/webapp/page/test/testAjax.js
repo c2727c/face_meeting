@@ -8,7 +8,7 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// var datatime = '2019-03-02'
 	// console.log(datatime)
 
-	var url = path + "/user/group/findAllGroup.do";
+	var url = path + "/user/group/findAllDept.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
 		url: url,
@@ -47,21 +47,33 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 	}
 	// });
 
-	//获取房间
-	// var mSize = '20';
-	// var startDate = '2019-03-05'
-	// var startTime = '17:00'
-	// var endTime = '17:30'
-	// var url = path + "/meeting/recommendRoom.do";
+	// 提交会议
+	// var mTitle = '吃饭'
+	// var mInfo = '无'
+	// var mSize = '20'
+	// var mSpan = '60'
+	// var pId_FQ = 'user01'
+	// var rId = 'CR001'
+	// var startDate = '2019-03-10'
+	// var startTime = '18:00'
+	// var endTime = '19:00'
+	// var attendList = 'user01,user02,user03'
+	// var url = path + "/meeting/add.do";
 	// console.log("请求controller的url是:" + url)
 	// $.ajax({
 	// 	url: url,
 	// 	type: "post",
 	// 	data: {
+	// 		'mTitle': mTitle,
+	// 		'mInfo': mInfo,
 	// 		'mSize': mSize,
+	// 		'mSpan': mSpan,
+	// 		'pId_FQ': pId_FQ,
+	// 		'rId': rId,
 	// 		'startDate': startDate,
 	// 		'startTime': startTime,
-	// 		'endTime': endTime, 
+	// 		'endTime': endTime,
+	// 		'attendList': attendList,
 	// 	},
 	// 	dataType: "json",
 	// 	success: function (data) {

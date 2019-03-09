@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+    <style type="text/css">
+        div {
+            height: 150px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <input class="goto">
+    <div class="to1">第1部分对应的内容</div>
+    <div class="to2">第2部分对应的内容</div>
+    <div class="to3">第3部分对应的内容</div>
+    <div class="to4">第4部分对应的内容</div>
+    <div class="to5">第5部分对应的内容</div>
+    <div class="to6">第6部分对应的内容</div>
+    <div class="to7">第7部分对应的内容</div>
+    <div class="to8">第8部分对应的内容</div>
+    <div class="to9">第9部分对应的内容</div>
+  
+
+    <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script>
+        $(".goto").keypress(function (e) {
+            if (e.which == 13) {
+                var value = $(".goto").val()
+                go(value);
+            }
+        });
+        go = function (index) {
+            var top = $('.' + index).offset().top;
+            $('html, body').animate({
+                scrollTop: top
+            }, 500)
+        }
+    </script>
+</body>
+
+</html>
