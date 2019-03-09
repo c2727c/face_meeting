@@ -15,10 +15,11 @@
 			height: 45px;
 			border: 2px solid #009688;
 		}
+		
 	</style>
 </head>
 
-<body class="bg">
+<body>
 	<!-- 导航条 -->
 	<div class="layui-header">
 		<ul class="layui-nav layui-bg-green">
@@ -74,123 +75,121 @@
 	<!-- 发起一个会议 -->
 	<div class="layui-container">
 		<div class="layui-row">
-			<div class="layui-col-md8 layui-col-lg8 inner-box">
-				<form class="layui-form layui-form-pane ">
-					<br />
-					<div class="layui-row layui-col-space10">
-						<button class="layui-btn" lay-submit lay-filter="meetAdd" style="margin: 5px;">
-							<i class="layui-icon layui-icon-add-circle" style="font-size: 15px;"></i>
-							创建会议
-						</button>
-					</div>
-					<br />
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6">
-							<label class="layui-form-label">主题</label>
-							<div class="layui-input-block">
-								<input type="text" name="mTitle" value="" placeholder="请输入会议主题" lay-verify="required" class="layui-input" />
-							</div>
-						</div>
-						<div class="layui-col-md6">
-							<label class="layui-form-label">会议人数</label>
-							<div class="layui-input-block">
-								<input type="number" name="mSize" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
-							</div>
+			<form class="layui-form layui-form-pane layui-col-md6">
+				<br />
+				<div class="layui-row layui-col-space10">
+					<button class="layui-btn" lay-submit lay-filter="meetAdd" style="margin: 5px;">
+						<i class="layui-icon layui-icon-add-circle" style="font-size: 15px;"></i>
+						创建会议
+					</button>
+				</div>
+				<br />
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">主题</label>
+						<div class="layui-input-block">
+							<input type="text" name="mTitle" value="" placeholder="请输入会议主题" lay-verify="required" class="layui-input" />
 						</div>
 					</div>
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md12">
-							<label class="layui-form-label">详情</label>
-							<textarea name="mInfo" placeholder="会议简介" class="layui-textarea" lay-verify="required"></textarea>
+					<div class="layui-col-md6">
+						<label class="layui-form-label">会议人数</label>
+						<div class="layui-input-block">
+							<input type="number" name="mSize" value="10" placeholder="" lay-verify="required" class="layui-input mSize" />
 						</div>
 					</div>
-					<div class="layui-row layui-col-space10">
-						<!-- <div class="layui-col-md12">
+				</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md12">
+						<label class="layui-form-label">详情</label>
+						<textarea name="mInfo" placeholder="会议简介" class="layui-textarea" lay-verify="required"></textarea>
+					</div>
+				</div>
+				<div class="layui-row layui-col-space10">
+					<!-- <div class="layui-col-md12">
 						<label class="layui-form-label">参与人员</label>
 						<button type="button" class="layui-btn layui-btn-primary  btnAddPeople">
 							人员选择
 							<i class="layui-icon layui-icon-next" style="font-size: 15px;"></i>
 						</button>
 					</div> -->
-						<div class="layui-row">
-							<div style="padding: 5px; background-color: #F2F2F2;">
-								<div class="layui-card">
-									<div class="layui-card-header">
-										<!-- <label class="layui-form-label" >参与人员</label> -->
-										参与人员
-									</div>
-									<div class="layui-card-body">
-										<div class="layui-row">
-											<!-- 邀请 -->
+					<div class="layui-row">
+						<div style="padding: 5px; background-color: #F2F2F2;">
+							<div class="layui-card">
+								<div class="layui-card-header">
+									<!-- <label class="layui-form-label" >参与人员</label> -->
+									参与人员
+								</div>
+								<div class="layui-card-body">
+									<div class="layui-row">
+										<!-- 邀请 -->
+										<div class="layui-col-xs2">
+											<div class="layui-row btnAddPeople" style="text-align: center; cursor:pointer">
+												<i class="layui-icon layui-icon-add-circle" style="font-size: 52px; color: #009688; line-height: 0.8269;"></i>
+											</div>
+											<div class="layui-row" style="text-align: center;">邀请</div>
+										</div>
+										<!-- 头像 -->
+										<div>
 											<div class="layui-col-xs2">
-												<div class="layui-row btnAddPeople" style="text-align: center; cursor:pointer">
-													<i class="layui-icon layui-icon-add-circle" style="font-size: 52px; color: #009688; line-height: 0.8269;"></i>
+												<div class="layui-row" style="text-align: center;">
+													<img src="../../images/face3.jpg" class="layui-circle personImag">
 												</div>
-												<div class="layui-row" style="text-align: center;">邀请</div>
+												<div class="layui-row" style="text-align: center;">咚咚咚</div>
 											</div>
-											<!-- 头像 -->
-											<div>
-												<div class="layui-col-xs2">
-													<div class="layui-row" style="text-align: center;">
-														<img src="../../images/face3.jpg" class="layui-circle personImag">
-													</div>
-													<div class="layui-row" style="text-align: center;">咚咚咚</div>
-												</div>
 
-
-											</div>
 
 										</div>
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6">
-							<label class="layui-form-label">选择日期</label>
-							<div class="layui-input-block">
-								<input type="text" name="startDate" class="layui-input startDate" id="chosedate" />
-							</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">选择日期</label>
+						<div class="layui-input-block">
+							<input type="text" name="startDate" class="layui-input startDate" id="chosedate" />
 						</div>
 					</div>
-					<div class="layui-row layui-col-space10">
-						<div class="layui-col-md6 layui-col-xs6">
-							<label class="layui-form-label">开始时间</label>
-							<div class="layui-input-block">
-								<div class="layui-input startTime" name="startTime" style="padding: 11px;" id="sTime">7:00</div>
-								<!-- <input type="text" value="07:00" placeholder="" lay-verify="required" class="layui-input" /> -->
-							</div>
-						</div>
-						<div class="layui-col-md6 layui-col-xs6">
-							<label class="layui-form-label">结束时间</label>
-							<div class="layui-input-block">
-								<div class="layui-input endTime" name="endTime" style="padding: 11px;" id="eTime">8:00</div>
-								<!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
-							</div>
+				</div>
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md6 layui-col-xs6">
+						<label class="layui-form-label">开始时间</label>
+						<div class="layui-input-block">
+							<div class="layui-input startTime" name="startTime" style="padding: 11px;" id="sTime">7:00</div>
+							<!-- <input type="text" value="07:00" placeholder="" lay-verify="required" class="layui-input" /> -->
 						</div>
 					</div>
-					<br />
-					<br />
-					<div class="layui-row layui-col-space10">
-						<div id="slideTest1"></div>
-					</div>
-					<br />
-					<br />
-					<!-- 会议选择 -->
-					<div class="layui-row layui-col-space10">
-						<div class="layui-row">
-							<label class="layui-form-label">会议室选择</label>
+					<div class="layui-col-md6 layui-col-xs6">
+						<label class="layui-form-label">结束时间</label>
+						<div class="layui-input-block">
+							<div class="layui-input endTime" name="endTime" style="padding: 11px;" id="eTime">8:00</div>
+							<!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
 						</div>
-						<form class="layui-form"></form>
-						<div id="content">
-							<!-- 插入模板 -->
+					</div>
+				</div>
+				<br />
+				<br />
+				<div class="layui-row layui-col-space10">
+					<div id="slideTest1"></div>
+				</div>
+				<br />
+				<br />
+				<!-- 会议选择 -->
+				<div class="layui-row layui-col-space10">
+					<div class="layui-row">
+						<label class="layui-form-label">会议室选择</label>
+					</div>
+					<form class="layui-form"></form>
+					<div id="content">
+						<!-- 插入模板 -->
 
-						</div>
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 		<br>
 	</div>

@@ -13,6 +13,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             title: ["加入新工作组"],
             content: "meetGroup-do.html",
             area: ["411px", "98%"],
+            skin: 'layui-layer-molv',
             cancel: function (index, layero) {
                 //先关闭弹窗后刷新我的工作组
                 layer.close(index);

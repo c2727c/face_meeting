@@ -80,7 +80,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
 
     function getDept() {
         // 取得公司部门
-        var url = path + "/user/group/findAllDept.do";
+        var url = path + "/user/group/findAllDept2.do";
         console.log("请求controller的url是:" + url)
         $.ajax({
             url: url,
