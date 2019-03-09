@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.drrs.face_meeting.entity.Department;
 import cn.drrs.face_meeting.entity.Group;
 import cn.drrs.face_meeting.entity.PGJoin;
 import cn.drrs.face_meeting.entity.Person;
@@ -111,6 +112,29 @@ public class GroupJoinController {
 		}
 		return nr;
 	}
+	//查找每个部门下成员
+		@RequestMapping("/findAllDept2.do")
+		@ResponseBody
+		public NoteResult<List<Department>> findAllDept2() {
+			NoteResult<List<Department>> nr = new NoteResult<List<Department>>();
+			try {
+				List<String> list = userService.findAllDeptName();
+				List<Department> data = new ArrayList<Department>(); 
+				Person p = new Person();
+				for(String dept:list) {
+					p.setpDept(dept);
+					Department department = new Department(dept,userService.findByFields(p));
+					data.add(department);
+				}
+				nr.setAll(0, "查找每个部门下成员成功", data);
+			} catch (Exception e) {
+				nr.setAll(0, "查找每个部门下成员失败", null);
+			}
+			return nr;
+		}
+	
+	
+	
 //	
 //	
 //	
