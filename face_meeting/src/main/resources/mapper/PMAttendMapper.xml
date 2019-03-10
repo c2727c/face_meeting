@@ -10,12 +10,9 @@
 		parameterType="Attend"> 
 		insert into pm_attend values (#{pId},#{mNo},#{state});
 	</insert>
-	
-	
 	<delete id="delete" >
 		delete from pm_attend where mNo=#{mNo} and rId = #{rId};
 	</delete>
-	
 	<update id="update" 
 		parameterType="Attend">
 		update pm_attend set state=#{state} where mNo=#{mNo} and pId=#{pId};
