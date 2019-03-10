@@ -15,6 +15,7 @@ public interface PersonService {
 	//��TODO ¼��������Ϣ 
 	//��������/����/���ڷ�����������û�
 	public NoteResult<Person> findBypId(String pId);
+	public List<PersonLight> findList(String[] users);
 	public NoteResult<List<PersonLight>> findBypDeptpName(String pDept,String pName);
 	//Group����ӳ��public NoteResult<List<Person>> findBygName(String gName);
 	//�� ����ע��
