@@ -36,7 +36,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					attendList = iframeWin.getAttend(attendList);
 					layer.close(index)
 					layer.close(index1)
-					getPersonList()
+					getPersonList(attendList)
 				}, function (index1) {
 					layer.close(index1)
 				});
@@ -246,8 +246,30 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 	}
 
 	//调用ajax获得已选人员列表
-	function getPersonList() {
-
+	function getPersonList(attendList) {
+		// console.log('attendList:'+attendList)		
+		var url = path + "/user/findUsers.do";
+		// console.log("请求controller的url是:" + url)
+		$.ajax({
+			url: url,
+			type: "post",
+			data: {
+				'userList': attendList,
+			},
+			dataType: "json",
+			success: function (data) {
+				// console.log("传过来的是：")
+				// console.log(data)
+				var str = data.data;
+				if (str != '') {
+					var html = template('personList', data);
+					document.getElementById('content2').innerHTML = html;
+				}
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				console.log("ajax请求失败");
+			}
+		});
 	}
 
 })

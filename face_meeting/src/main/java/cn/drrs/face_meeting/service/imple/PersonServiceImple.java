@@ -129,6 +129,10 @@ public class PersonServiceImple implements PersonService{
 	public List<String> findAllDeptName() {
 		return personDao.findAllDeptName();
 	}
+
+	public List<PersonLight> findList(String[] users) {
+		return personDao.findList(users);
+	}
 	
 	
 	

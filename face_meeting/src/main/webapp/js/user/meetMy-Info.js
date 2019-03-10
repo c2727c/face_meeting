@@ -18,25 +18,28 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
         },
         dataType: "json",
         success: function (data) {
+            console.log(data);
             // console.log("data.data是：" + JSON.stringify(data.data))
             var html = template('meetInfo', data.data);
             document.getElementById('content').innerHTML = html;
+            //更新人员列表
+            html = template('peopleList', data.data);
+            document.getElementById('contentPeople').innerHTML = html;
 
             if (parent.urladd == parent.url1) {
                 // console.log("隐藏")
                 $(".hidediv").css("display", "none");
             }
+            tipAll();
 
-            //提示编辑
-            var tip_index = 0;
-            $(document).on('mouseenter', '#editMeet', function () {
-                tip_index = layer.tips('编辑会议', '#editMeet', {
-                    time: 1000
-                });
-            }).on('mouseleave', '#editMeet', function () {
-                layer.close(tip_index);
+            //编辑会议,负责关闭页面并跳转
+            $("#editMeet").on('click', function () {
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                // console.log(index);
+                parent.layer.close(index); //再执行关闭
+                parent.gotoEditMeet(index, data.data)
             });
-
+            
             //询问框是否删除
             $(".btnDelGroup").click(function () {
                 layer.confirm('确定删除当前会议？', {
@@ -79,18 +82,6 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 });
             });
 
-            //tip删除
-            var tip_index = 0;
-            $(".btnDelGroup").mouseenter(function () {
-                var index = $(".btnDelGroup").index(this);
-                var str = '.btnDelGroup:eq(' + index + ')';
-                tip_index = layer.tips('删除会议', str, {
-                    time: 1000
-                });
-            });
-            $(".btnDelGroup").mouseleave(function () {
-                layer.close(tip_index);
-            });
 
             //添加人员
             $(".btnAddPeople").on('click', function () {
@@ -103,14 +94,7 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 });
             });
 
-            //编辑会议,负责关闭页面并跳转
-            $("#editMeet").on('click', function () {
-                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                // console.log(index);
-                parent.layer.close(index); //再执行关闭   
-                parent.gotoEditMeet(index, data.data)
-            });
-
+            
             //上传文件
             var uploadInst = upload.render({
                 elem: '#uploadfile',
@@ -130,6 +114,34 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             console.log("ajax请求失败");
         }
     })
+
+    //鼠标移动提示
+    function tipAll() {
+        //tip删除
+        var tip_index = 0;
+        $(".btnDelGroup").mouseenter(function () {
+            var index = $(".btnDelGroup").index(this);
+            var str = '.btnDelGroup:eq(' + index + ')';
+            tip_index = layer.tips('删除会议', str, {
+                time: 1000
+            });
+        });
+        $(".btnDelGroup").mouseleave(function () {
+            layer.close(tip_index);
+        });
+
+        //提示编辑
+        var tip_index = 0;
+        $(document).on('mouseenter', '#editMeet', function () {
+            tip_index = layer.tips('编辑会议', '#editMeet', {
+                time: 1000
+            });
+        }).on('mouseleave', '#editMeet', function () {
+            layer.close(tip_index);
+        });
+
+
+    }
 
 
 });

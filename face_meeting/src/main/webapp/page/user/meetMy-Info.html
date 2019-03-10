@@ -31,7 +31,7 @@
       margin: 0 auto 10px;
       text-align: center;
       border-width: 2px;
-      border-color: #1E9FFF;
+      border-color: #009688;
       border-style: solid;
       cursor: pointer;
       border-radius: 50%;
@@ -68,7 +68,7 @@
       <ul class="layui-tab-title layui-row">
         <li class="layui-this layui-col-xs4"><i class="layui-icon layui-icon-notice"></i> 通知公告</li>
         <li class="layui-col-xs4"><i class="layui-icon layui-icon-user"></i> 参会名单</li>
-        <li class="layui-col-xs4"><i class="layui-icon layui-icon-file"></i> 会议文件</li>
+        <!-- <li class="layui-col-xs4"><i class="layui-icon layui-icon-file"></i> 会议文件</li> -->
       </ul>
       <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item  layui-show">
@@ -112,38 +112,18 @@
 
           <br>
         </div>
+        <!-- 参会人员 -->
         <div class="layui-tab-item">
           <br>
           <div class="layui-row">
-            <div class="layui-col-xs3 hidediv">
-              <div class="layui-row people-circle btnAddPeople"><i class="layui-icon layui-icon-add-1" style="font-size: 30px; color: #1E9FFF;"></i></div>
-              <div class="layui-row" style="text-align: center;">邀请</div>
+            <div id="contentPeople">
+              <!-- 人员模板 -->
+              
             </div>
-            <div class="layui-col-xs3">
-              <div class="layui-row" style="text-align: center;"><img src="../../images/face.jpg" class="people-circle"></div>
-              <div class="layui-row" style="text-align: center;">咚咚咚</div>
-            </div>
-            <!-- 后续例子 -->
-            <div class="layui-col-xs3">
-              <div class="layui-row" style="text-align: center;"><img src="../../images/face1.jpg" class="people-circle"></div>
-              <div class="layui-row" style="text-align: center;">咚咚咚</div>
-            </div>
-            <div class="layui-col-xs3">
-              <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
-              <div class="layui-row" style="text-align: center;">咚咚咚</div>
-            </div>
-            <div class="layui-col-xs3">
-              <div class="layui-row" style="text-align: center;"><img src="../../images/face3.jpg" class="people-circle"></div>
-              <div class="layui-row" style="text-align: center;">咚咚咚</div>
-            </div>
-            <div class="layui-col-xs3">
-              <div class="layui-row" style="text-align: center;"><img src="../../images/face4.jpg" class="people-circle"></div>
-              <div class="layui-row" style="text-align: center;">咚咚咚</div>
-            </div>
-
           </div>
 
         </div>
+        <!-- 会议文件 -->
         <div class="layui-tab-item">
           <br>
           <div class="layui-row layui-col-space10">
@@ -253,6 +233,15 @@
         </div>
       </div>
   </script>
+  <script id="peopleList" type="text/html">
+    {{ each mAttendList value index}}
+    <div class="layui-col-xs2">
+        <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
+        <div class="layui-row" style="text-align: center;">{{value.pName}}</div>
+    </div>
+    {{/each}}
+  </script>
+
 
   <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
   <script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>

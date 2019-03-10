@@ -129,14 +129,8 @@
 												<div class="layui-row" style="text-align: center;">邀请</div>
 											</div>
 											<!-- 头像 -->
-											<div id="personList">
+											<div id="content2">
 												<!-- 插入模板 -->
-												<div class="layui-col-xs2">
-													<div class="layui-row" style="text-align: center;">
-														<img src="../../images/face3.jpg" class="layui-circle personImag">
-													</div>
-													<div class="layui-row" style="text-align: center;">咚咚咚</div>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -225,12 +219,14 @@
     {{/each}}
   	</script>
 	<script id="personList" type="text/html">
+		{{each data  value index}}
 		<div class="layui-col-xs2">
 			<div class="layui-row" style="text-align: center;">
-				<img src="../../images/face3.jpg" class="layui-circle personImag">
+				<img src="data:image/jpeg;base64,{{value.pIcon}}" class="layui-circle personImag">
 			</div>
-			<div class="layui-row" style="text-align: center;">咚咚咚</div>
+			<div class="layui-row" style="text-align: center;">{{value.pName}}</div>
 		</div>
+		{{/each}}
 	</script>
 
 	<script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>

@@ -25,5 +25,6 @@ public interface PersonDao {
 	public List<String> findAllDeptName();
 
 	public boolean delete(List<String> list);
+	public List<PersonLight> findList(String[] users);
 
 }

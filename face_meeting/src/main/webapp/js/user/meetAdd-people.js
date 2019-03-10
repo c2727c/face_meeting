@@ -132,7 +132,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
 
     //已经邀请的人，再次打开时显示已勾选
     function checkedPerson() {
-        console.log("checkPerson:")
+        // console.log("checkPerson:")
         var attendList = parent.attendList;
         if (attendList != '') {
             var attendArry = [];
@@ -172,6 +172,8 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             $('[data-pname=' + index + ']').addClass("active-name")
             // console.log('改颜色')
             var top = $('[data-pname=' + index + ']').offset().top;
+            // console.log(top)
+            top = top - 60;
             $('html, body').animate({
                 scrollTop: top
             }, 500)

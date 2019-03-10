@@ -89,13 +89,13 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// });
 
 	var attendList = 'user01,user02,user03'
-	var url = path + "/meeting/getPerson.do";
+	var url = path + "/user/findUsers.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
 		url: url,
 		type: "post",
 		data: {
-			'attendList': attendList,
+			'userList': attendList,
 		},
 		dataType: "json",
 		success: function (data) {

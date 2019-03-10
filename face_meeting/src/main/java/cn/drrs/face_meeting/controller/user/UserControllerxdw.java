@@ -1,6 +1,8 @@
 package cn.drrs.face_meeting.controller.user;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
 
@@ -104,6 +107,21 @@ public class UserControllerxdw {
 		user.setpFace(faceBytes);
 		NoteResult<Person> result = userservice.update(user);
 		return result;
+	}
+	
+	@RequestMapping("/findUsers.do")
+	@ResponseBody
+	public NoteResult<List<PersonLight>> findList(String userList) {
+		String[] users = userList.split(",");
+		NoteResult<List<PersonLight>> nr = new NoteResult<List<PersonLight>>();
+		try {
+			nr.setAll(0, "findUsers成功", userservice.findList(users));
+		} catch (Exception e) {
+			nr.setAll(1, "findUsers失败", userservice.findList(users));
+			e.printStackTrace();
+			return nr;
+		}
+		return nr;
 	}
 	 
 
