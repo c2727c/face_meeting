@@ -124,16 +124,16 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				time: 1500
 			});
 		} else {
-			// console.log(mTitle)
-			// console.log(mInfo)
-			// console.log(mSize)
-			// console.log(mSpan)
-			// console.log(pId_FQ)
-			// console.log(rId)
-			// console.log(startDate)
-			// console.log(startTime)
-			// console.log(endTime)
-			// console.log(attendList)
+			console.log(mTitle)
+			console.log(mInfo)
+			console.log(mSize)
+			console.log(mSpan)
+			console.log(pId_FQ)
+			console.log(rId)
+			console.log(startDate)
+			console.log(startTime)
+			console.log(endTime)
+			console.log(attendList)
 			var url = path + "/meeting/add.do";
 			// console.log("请求controller的url是:" + url)
 			$.ajax({
@@ -158,7 +158,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					layer.msg('会议创建成功！', {
 						icon: 1,
 						time: 1500
-					},function(){
+					}, function () {
 						window.location.href = "meetAdd.html"
 					});
 
@@ -227,14 +227,16 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			success: function (data) {
 				// console.log("传过来的是：")
 				// console.log("一次")
-				// console.log(data)
+				console.log(data)
 				// console.log("data.data是：" + JSON.stringify(data.data))
 				// $("#test1").html(JSON.stringify(data));
-
-				var html = template('roomList', data);
-				document.getElementById('content').innerHTML = html;
-				//更新渲染
-				form.render("radio");
+				var str = data.data;
+				if (str != '') {
+					var html = template('roomList', data);
+					document.getElementById('content').innerHTML = html;
+					//更新渲染
+					form.render("radio");
+				}
 
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {

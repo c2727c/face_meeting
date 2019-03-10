@@ -67,6 +67,8 @@ public class MeetingAddController {
 	public NoteResult<Object> add(String mTitle, String mInfo, int mSize, int mSpan, String pId_FQ, String rId,
 			String startDate, String startTime, String endTime, String attendList) {
 		NoteResult<Object> nr = new NoteResult<Object>();
+			System.err.println("测试点mInfo");
+			System.err.println(mInfo);
 		Meeting m;
 		try {
 			m = new Meeting(mTitle, mInfo, mSize, mSpan, pId_FQ);

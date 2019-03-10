@@ -170,7 +170,12 @@ layui.use(["element", "layer", "jquery", "form"], function () {
 function getAttend() {
     attend = ''
     $("input:checkbox[cname!='all']:checked").each(function(i){
-        attend = attend +','+ $(this).data('pid');
+        if (attend == '') {
+            attend = $(this).data('pid')
+        } else {
+            attend = attend +','+ $(this).data('pid');
+        }
+        
     });
     // console.log(attend)
     return attend;

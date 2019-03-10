@@ -67,8 +67,8 @@ public class MeetingTest {
 	}
 	@Test
 	public void addTest() {
-		mac.add("KKK", "KKK", 5, 15, "t15", "A001", "2016-03-09", "00:00:00",  "00:00:00", "t15,t37,t38");
-
+//		mac.add("KKK", "KKK", 5, 15, "t15", "A001", "2019-03-15", "00:00:00",  "01:00:00", "t15,t37,t38");
+		mac.add("KKK标题", "KKK内容", 5, 15, "user01", "A001", "2019-03-15", "00:00:00",  "01:00:00", ",user01,user02,user03");
 		
 	}
 
