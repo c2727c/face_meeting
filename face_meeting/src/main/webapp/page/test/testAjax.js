@@ -9,22 +9,22 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// console.log(datatime)
 
 	// 请求部门下的人员
-	var url = path + "/user/group/findAllDept2.do";
-	console.log("请求controller的url是:" + url)
-	$.ajax({
-		url: url,
-		type: "get",
-		dataType: "json",
-		success: function (data) {
-			if (data.status == 0) {
-				console.log(data)
-				$("#test1").html(JSON.stringify(data));
-			}
-		},
-		error: function () {
-			console.log("ajax请求失败");
-		}
-	});
+	// var url = path + "/user/group/findAllDept2.do";
+	// console.log("请求controller的url是:" + url)
+	// $.ajax({
+	// 	url: url,
+	// 	type: "get",
+	// 	dataType: "json",
+	// 	success: function (data) {
+	// 		if (data.status == 0) {
+	// 			console.log(data)
+	// 			$("#test1").html(JSON.stringify(data));
+	// 		}
+	// 	},
+	// 	error: function () {
+	// 		console.log("ajax请求失败");
+	// 	}
+	// });
 
 	// var url = path + '/user/getPerson.do';
 	// var userId = 'user01';
@@ -87,5 +87,26 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 		console.log("ajax请求失败");
 	// 	}
 	// });
+
+	var attendList = 'user01,user02,user03'
+	var url = path + "/meeting/getPerson.do";
+	console.log("请求controller的url是:" + url)
+	$.ajax({
+		url: url,
+		type: "post",
+		data: {
+			'attendList': attendList,
+		},
+		dataType: "json",
+		success: function (data) {
+			console.log("传过来的是：")
+			console.log(data)
+			console.log("data.data是：" + JSON.stringify(data.data))
+			$("#test1").html(JSON.stringify(data));
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			console.log("ajax请求失败");
+		}
+	});
 
 });

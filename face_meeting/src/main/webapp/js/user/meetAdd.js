@@ -7,7 +7,7 @@ var rId = 'null'
 var startDate = '2019-03-10'
 var startTime = '18:00'
 var endTime = '19:00'
-var attendList = 'null'
+var attendList = ''
 
 
 layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function () {
@@ -33,15 +33,15 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				}, function (index1) {
 					var body = layer.getChildFrame('body', index);
 					var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-					attendList = iframeWin.getAttend();
+					attendList = iframeWin.getAttend(attendList);
 					layer.close(index)
 					layer.close(index1)
+					getPersonList()
 				}, function (index1) {
 					layer.close(index1)
 				});
 				return false;
 			},
-
 		});
 	})
 
@@ -113,7 +113,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		endTime = $(".endTime").text()
 		pId_FQ = userId
 		mSpan = (timeTonum(endTime) - timeTonum(startTime)) * 5
-		if (attendList == 'null') {
+		if (attendList == '') {
 			layer.msg('请选择参与人员', {
 				icon: 5,
 				time: 1500
@@ -227,7 +227,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			success: function (data) {
 				// console.log("传过来的是：")
 				// console.log("一次")
-				console.log(data)
+				// console.log(data)
 				// console.log("data.data是：" + JSON.stringify(data.data))
 				// $("#test1").html(JSON.stringify(data));
 				var str = data.data;
@@ -245,5 +245,9 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		});
 	}
 
+	//调用ajax获得已选人员列表
+	function getPersonList() {
+
+	}
 
 })

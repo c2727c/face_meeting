@@ -16,17 +16,45 @@
 
 <body>
 
-    <div class="layui-row"  style="text-align: center; height:500px"></div>
-    <div class="layui-row"  style="text-align: center; height:500px"></div>
-    <div class="layui-row"  style="text-align: center; height:500px">
-
-        <i class="layui-icon layui-icon-add-1" style="font-size: 90px; color: #009688;"></i>   
-    </div>
-
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
     <script>
+        //数组去重
+        var arr = ['12', '45', '12', '23', '12', '23'];
+        var ass = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (ass.indexOf(arr[i]) == -1) {
+                ass.push(arr[i])
+            }
+        }
+        console.log(ass)
+        //连接
 
+        ass = [];
+        var st = ass.join(',')
+        console.log('join:')
+        console.log(st)
+
+
+        function createFunction() {
+            var result = new Array();
+            for (var i = 0; i < 10; i++) {
+                result[i] = i;
+            }
+            return ['test1','test2'];
+        }
+
+        var test = createFunction();
+        console.log(test)
+        console.log(test[0])
+
+        var st = 'user01,user02,user03'
+        var sd = st.split(',')
+        console.log('sd:'+sd)
+        console.log(sd)
+
+        console.log('===========')
+        
     </script>
 </body>
 
