@@ -59,7 +59,7 @@
 	</select>
 	<select id="findByFields" 
 	parameterType="Person" resultType="PersonLight">
-	select * from person
+	select pId,pName,pRole,pDept,pIcon from person
 	<where>
 	<if test="pName!=null">and pName like #{pName}</if>
 	<if test="pGender!=null">and pGender=#{pGender}</if>
@@ -119,7 +119,15 @@
 			#{p}
 		</foreach>
 	</delete>
-	
+	<select id="findList" resultType="PersonLight">
+	    select *
+        from person where pId in
+        <foreach collection="array" item="pId" index="index"
+            open="(" close=")" separator=",">
+            #{pId}
+        </foreach>
+	    
+	</select>
 	
 	<!-- 表格所需的一些操作 -->
 	<!--分页查询数据，根据limit和page进行分页-->

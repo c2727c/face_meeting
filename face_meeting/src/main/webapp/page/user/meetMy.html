@@ -8,6 +8,7 @@
 
 
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/my.css" />
     <link rel="icon" href="../../images/favicon.ico">
     <style>
         .myMeet-head {
@@ -16,13 +17,13 @@
     </style>
 </head>
 
-<body>
+<body class="bg" >
     <!-- 导航条 -->
     <div class="layui-header">
-        <ul class="layui-nav">
+        <ul class="layui-nav layui-bg-green">
             <li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
         </ul>
-        <ul class="layui-nav layui-layout-right">
+        <ul class="layui-nav layui-layout-right layui-bg-green">
             <!-- 会议预定 -->
             <li class="layui-nav-item">
                 <a class="" href="javascript:;">预定会议</a>
@@ -68,29 +69,33 @@
             </li>
         </ul>
     </div>
-    <br>
+
     <!-- 我的会议 -->
     <div class="layui-container">
-        <div class="layui-inline">
-            <input type="text" class="layui-input" id="test1" autocomplete="off">
-            <br>
-        </div>
-        <div class="layui-inline">
-            <form class="layui-form" action="">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">筛选</label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="sex" value="0" title="我参加的" lay-filter="my1" checked>
-                        <input type="radio" name="sex" value="1" title="我创建的" lay-filter="my2">
-                    </div>
+        <div class="layui-row">
+            <div class="layui-col-md8 layui-col-lg8 inner-box">
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" id="test1" autocomplete="off">
+                    <br>
                 </div>
-            </form>
-        </div>
-        <ul class="layui-timeline">
-            <div id="content">
-                <!-- 填入模板 -->
+                <div class="layui-inline">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">筛选</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="sex" value="0" title="我参加的" lay-filter="my1" checked>
+                                <input type="radio" name="sex" value="1" title="我创建的" lay-filter="my2">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <ul class="layui-timeline">
+                    <div id="content">
+                        <!-- 填入模板 -->
+                    </div>
+                </ul>
             </div>
-        </ul>
+        </div>
     </div>
 
 
@@ -105,7 +110,7 @@
 
     <script id="oneMeeting" type="text/html">
         <div class="layui-row">
-                <div class="layui-col-md6" style="padding: 5px; background-color: #F2F2F2;">
+                <div class="" style="padding: 5px; background-color: #F2F2F2;">
                     <div class="layui-card  btnInfoMeet lookMeet"  data-mNo="{{ mNo }}" style="cursor:pointer">
                         <div class="layui-card-header">
                             <div class="layui-row myMeet-head">
@@ -183,7 +188,7 @@
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
             <div class="layui-timeline-content layui-text">
-                <h3 class="layui-timeline-title">无</h3>
+                <h3 class="layui-timeline-title">当前七天内无会议</h3>
             </div>
         </li>
         <li class="layui-timeline-item">

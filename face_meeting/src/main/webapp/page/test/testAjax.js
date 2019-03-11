@@ -8,22 +8,23 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// var datatime = '2019-03-02'
 	// console.log(datatime)
 
-	var url = path + "/user/group/findAllGroup.do";
-	console.log("请求controller的url是:" + url)
-	$.ajax({
-		url: url,
-		type: "get",
-		dataType: "json",
-		success: function (data) {
-			if (data.status == 0) {
-				console.log(data)
-				$("#test1").html(JSON.stringify(data));
-			}
-		},
-		error: function () {
-			console.log("ajax请求失败");
-		}
-	});
+	// 请求部门下的人员
+	// var url = path + "/user/group/findAllDept2.do";
+	// console.log("请求controller的url是:" + url)
+	// $.ajax({
+	// 	url: url,
+	// 	type: "get",
+	// 	dataType: "json",
+	// 	success: function (data) {
+	// 		if (data.status == 0) {
+	// 			console.log(data)
+	// 			$("#test1").html(JSON.stringify(data));
+	// 		}
+	// 	},
+	// 	error: function () {
+	// 		console.log("ajax请求失败");
+	// 	}
+	// });
 
 	// var url = path + '/user/getPerson.do';
 	// var userId = 'user01';
@@ -47,21 +48,33 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 	}
 	// });
 
-	//获取房间
-	// var mSize = '20';
-	// var startDate = '2019-03-05'
-	// var startTime = '17:00'
-	// var endTime = '17:30'
-	// var url = path + "/meeting/recommendRoom.do";
+	//提交会议
+	// var mTitle = '吃饭'
+	// var mInfo = '无'
+	// var mSize = '20'
+	// var mSpan = '60'
+	// var pId_FQ = 'user01'
+	// var rId = 'CR001'
+	// var startDate = '2019-03-10'
+	// var startTime = '18:00'
+	// var endTime = '19:00'
+	// var attendList = 'user01,user02,user03'
+	// var url = path + "/meeting/add.do";
 	// console.log("请求controller的url是:" + url)
 	// $.ajax({
 	// 	url: url,
 	// 	type: "post",
 	// 	data: {
+	// 		'mTitle': mTitle,
+	// 		'mInfo': mInfo,
 	// 		'mSize': mSize,
+	// 		'mSpan': mSpan,
+	// 		'pId_FQ': pId_FQ,
+	// 		'rId': rId,
 	// 		'startDate': startDate,
 	// 		'startTime': startTime,
-	// 		'endTime': endTime, 
+	// 		'endTime': endTime,
+	// 		'attendList': attendList,
 	// 	},
 	// 	dataType: "json",
 	// 	success: function (data) {
@@ -74,5 +87,26 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 		console.log("ajax请求失败");
 	// 	}
 	// });
+
+	var attendList = 'user01,user02,user03'
+	var url = path + "/user/findUsers.do";
+	console.log("请求controller的url是:" + url)
+	$.ajax({
+		url: url,
+		type: "post",
+		data: {
+			'userList': attendList,
+		},
+		dataType: "json",
+		success: function (data) {
+			console.log("传过来的是：")
+			console.log(data)
+			console.log("data.data是：" + JSON.stringify(data.data))
+			$("#test1").html(JSON.stringify(data));
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			console.log("ajax请求失败");
+		}
+	});
 
 });

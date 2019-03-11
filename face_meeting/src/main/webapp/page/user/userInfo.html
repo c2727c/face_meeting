@@ -12,16 +12,17 @@
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="../../lib/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="../../css/public.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="../../css/my.css" />
 	<link rel="icon" href="../../images/favicon.ico">
 </head>
 
 <body>
 	<!-- 导航条 -->
 	<div class="layui-header">
-		<ul class="layui-nav">
+		<ul class="layui-nav layui-bg-green">
 			<li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
 		</ul>
-		<ul class="layui-nav layui-layout-right">
+		<ul class="layui-nav layui-layout-right layui-bg-green">
 			<!-- 会议预定 -->
 			<li class="layui-nav-item">
 				<a class="" href="javascript:;">预定会议</a>
@@ -75,7 +76,7 @@
 					<img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace" src="../../images/face.jpg">
 				</div>
 				<button type="button" name="file" id="iconChange" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i>
-					换头像
+					更换头像
 				</button>
 			</div>
 			<div class="layui-col-md6 layui-col-xs12">
@@ -88,8 +89,8 @@
 				<div class="layui-form-item" pane="">
 					<label class="layui-form-label">性别</label>
 					<div class="layui-input-block userSex">
-						<input class="pGender1" type="radio" name="pGender" value="男" title="男">
-						<input class="pGender2" type="radio" name="PGender" value="女" title="女">
+						<input class="pGender1" type="radio" name="pGender" value="男" title="男" checked="">
+						<input class="pGender2" type="radio" name="pGender" value="女" title="女">
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -112,8 +113,8 @@
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit lay-filter="changeUser">立即提交</button>
-						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						<button class="layui-btn" lay-submit lay-filter="changeUser">保存修改</button>
+						<button type="reset" class="layui-btn layui-btn-primary">清空输入</button>
 					</div>
 				</div>
 			</div>
@@ -156,17 +157,8 @@
 						"pTel": data.data.pTel,
 						"pDept": data.data.pDept,
 						"pRole": data.data.pRole,
+						"pGender": data.data.pGender,
 					});
-					//性别单选框赋值
-					// $("input[name=pGender][value='男']").attr("checked", data.data.pGender == "男" ? true : false);
-					// $("input[name=pGender][value='女']").attr("checked", data.data.pGender == "女" ? true : false);
-					if (data.data.pGender == "男") {
-						console.log(1)
-						$(".pGender1").attr("checked", true);
-					} else {
-						console.log(2)
-						$(".pGender2").attr("checked", true);
-					}
 					form.render(); //更新全部  
 
 				},
@@ -232,7 +224,7 @@
 					data: JSON.stringify({
 						'pId': userId,
 						'pName': data.field.pName,
-						'pGender1': data.field.pGender,
+						'pGender': data.field.pGender,
 						'pTel': data.field.pTel,
 					}),
 					contentType: 'application/json;charset=UTF-8', //这里的这行是关键
@@ -247,7 +239,7 @@
 							});
 						}
 					},
-					error: function (XMLHttpRequest, textStatus, errorThrown) {
+					error: function () {
 						console.log("ajax请求失败");
 					}
 				});

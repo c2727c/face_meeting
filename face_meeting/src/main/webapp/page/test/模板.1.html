@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+    <style type="text/css">
+        div {
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script>
+        //数组去重
+        var arr = ['12', '45', '12', '23', '12', '23'];
+        var ass = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (ass.indexOf(arr[i]) == -1) {
+                ass.push(arr[i])
+            }
+        }
+        console.log(ass)
+        //连接
+
+        ass = [];
+        var st = ass.join(',')
+        console.log('join:')
+        console.log(st)
+
+
+        function createFunction() {
+            var result = new Array();
+            for (var i = 0; i < 10; i++) {
+                result[i] = i;
+            }
+            return ['test1','test2'];
+        }
+
+        var test = createFunction();
+        console.log(test)
+        console.log(test[0])
+
+        var st = 'user01,user02,user03'
+        var sd = st.split(',')
+        console.log('sd:'+sd)
+        console.log(sd)
+
+        console.log('===========')
+        
+    </script>
+</body>
+
+</html>

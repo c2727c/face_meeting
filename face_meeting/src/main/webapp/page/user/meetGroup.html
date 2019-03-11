@@ -8,6 +8,7 @@
   <link rel="icon" href="../../favicon.ico" />
   <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
   <link rel="stylesheet" type="text/css" href="../../lib/font_iconfont/iconfont.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/my.css" />
 
   <title>我的小组</title>
 </head>
@@ -21,13 +22,13 @@
   }
 </style>
 
-<body>
+<body class="bg">
   <!-- 导航条 -->
   <div class="layui-header">
-    <ul class="layui-nav">
+    <ul class="layui-nav layui-bg-green">
       <li class="layui-nav-item"><a class="" href="index.html"><i class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
     </ul>
-    <ul class="layui-nav layui-layout-right">
+    <ul class="layui-nav layui-layout-right layui-bg-green">
       <!-- 会议预定 -->
       <li class="layui-nav-item">
         <a class="" href="javascript:;">预定会议</a>
@@ -74,9 +75,8 @@
     </ul>
   </div>
   <div class="layui-container">
-    <br>
     <div class="layui-row">
-      <div class="layui-col-md6">
+      <div class="layui-col-md8 layui-col-lg8 inner-box">
         <div class="layui-row">
           <div class="layui-col-xs2">
             <button class="layui-btn btnAddPeople" style="margin: 4px;">
@@ -86,8 +86,12 @@
           </div>
         </div>
         <br />
-        <div id="content">
-          <!-- 填入模板 -->
+        <div class="layui-row">
+          <div class="layui-col-md10">
+            <div id="content">
+              <!-- 填入模板 -->
+            </div>
+          </div>
         </div>
 
         <br>
@@ -121,8 +125,8 @@
             &nbsp;
             {{$value.gId}}
           </div>
-          <div class="layui-col-xs6" style="text-align:right">
-            <div class="layui-btn-group btnEdit  noshow">
+          <div class="layui-col-xs6 btnEdit" style="text-align:right">
+            <div class="layui-btn-group noshow">
               <button type="button" class="layui-btn layui-btn-sm layui-btn-danger btnDelGroup" data-gid="{{$value.gId}}" data-ginfo="{{$value.gInfo}}">
                 <i class="layui-icon layui-icon-close"></i>
               </button>
@@ -151,6 +155,7 @@
   <% } %>
   
   </script>
+
 
 </body>
 

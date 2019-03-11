@@ -61,12 +61,11 @@
 			<result column="endTime" property="endTime" />
 		</collection>
 	</resultMap>
-	
-	
-	
-	<insert id="save" useGeneratedKeys="true" keyProperty="mNo"
+	<insert id="save" useGeneratedKeys="true" 
+	    keyProperty="mNo" 
+	    keyColumn="mNo" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
-		insert into Meeting values(NULL,#{mTitle},DEFAULT,#{mSize},#{mSpan},DEFAULT,#{pId_FQ},'pass',DEFAULT);
+		insert into Meeting values(NULL,#{mTitle},#{mInfo},#{mSize},#{mSpan},DEFAULT,#{pId_FQ},'pass',DEFAULT);
 	</insert>
 	<update id="update" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
