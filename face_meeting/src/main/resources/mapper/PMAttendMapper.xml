@@ -13,6 +13,9 @@
 	<delete id="delete" >
 		delete from pm_attend where mNo=#{mNo} and rId = #{rId};
 	</delete>
+	<delete id="deleteAll" >
+		delete from pm_attend where mNo=#{mNo};
+	</delete>
 	<update id="update" 
 		parameterType="Attend">
 		update pm_attend set state=#{state} where mNo=#{mNo} and pId=#{pId};

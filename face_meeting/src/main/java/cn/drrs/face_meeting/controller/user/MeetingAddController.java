@@ -26,7 +26,6 @@ import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.service.PMAttendService;
 import cn.drrs.face_meeting.service.RoomService;
 import cn.drrs.face_meeting.util.NoteResult;
-import cn.drrs.face_meeting.util.UUIDUtil;
 
 @Controller("meetingAddController")
 @RequestMapping("/meeting")
@@ -67,8 +66,8 @@ public class MeetingAddController {
 	public NoteResult<Object> add(String mTitle, String mInfo, int mSize, int mSpan, String pId_FQ, String rId,
 			String startDate, String startTime, String endTime, String attendList) {
 		NoteResult<Object> nr = new NoteResult<Object>();
-			System.err.println("测试点mInfo");
-			System.err.println(mInfo);
+		System.err.println("测试点mInfo");
+		System.err.println(mInfo);
 		Meeting m;
 		try {
 			m = new Meeting(mTitle, mInfo, mSize, mSpan, pId_FQ);
@@ -81,13 +80,53 @@ public class MeetingAddController {
 			List<Attend> alist = new ArrayList<Attend>();
 			System.err.println("测试点b");
 			for (String pId : attends) {
-				System.err.println("测试点c：pId="+pId);
+				System.err.println("测试点c：pId=" + pId);
 				alist.add(new Attend(m.getmNo(), pId, "noshow"));
 			}
 			attendService.insert(alist);
 			nr.setAll(0, "插入会议并安排会程成功", null);
 		} catch (Exception e) {
 			nr.setAll(0, "插入会议并安排会程失败", null);
+			return nr;
+		}
+		return nr;
+	}
+
+	// 编辑会议
+	@RequestMapping("/meetedit.do")
+	@ResponseBody
+	public NoteResult<Object> meetedit(int mNo, String mTitle, String mInfo, int mSize, int mSpan, String pId_FQ,
+			String rId, String startDate, String startTime, String endTime, String attendList) {
+
+		NoteResult<Object> nr = new NoteResult<Object>();
+		System.err.println("测试点mInfo");
+		System.err.println(mInfo);
+		Meeting m;
+		// 更新meeting
+		m = new Meeting(mNo, mTitle, mInfo, mSize, mSpan);
+		service.update(m);
+		System.err.println(m);		
+		try {
+			// 更新m_event
+			Event e = new Event(mNo, rId, LocalDate.parse(startDate), LocalTime.parse(startTime), LocalTime.parse(endTime));
+			eventService.update(e);
+			System.err.println(e);
+			// 处理更新人员
+			// 1.删除原来的所有人员
+			attendService.deleteAll(mNo);
+			// 2.插入新的更新人员
+			System.err.println("测试点a");
+			String[] attends = attendList.split(",");
+			List<Attend> alist = new ArrayList<Attend>();
+			System.err.println("测试点b");
+			for (String pId : attends) {
+				System.err.println("测试点c：pId=" + pId);
+				alist.add(new Attend(m.getmNo(), pId, "noshow"));
+			}
+			attendService.insert(alist);
+			nr.setAll(0, "更新会议成功", null);
+		} catch (Exception e) {
+			nr.setAll(0, "更新会议失败", null);
 			return nr;
 		}
 		return nr;

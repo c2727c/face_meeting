@@ -45,6 +45,11 @@ public class PMAttendServiceImple implements PMAttendService{
 		nr.setAll(0, "删除参会关系成功", dao.delete(mNo,pId));
 		return nr;
 	}
+	public NoteResult<Object> deleteAll(int mNo){
+		NoteResult<Object> nr=new NoteResult<Object>();
+		nr.setAll(0, "删除mNo参会关系成功", dao.deleteAll(mNo));
+		return nr;
+	}
 	public NoteResult<Object> delete(List<Attend> alist){
 		NoteResult<Object> nr=new NoteResult<Object>();
 		try {

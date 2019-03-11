@@ -8,13 +8,12 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     var form = layui.form;
     var userId = localStorage.getItem('userId')
 
+    parent.attendList = getAttend(parent.attendList)
     getMyGroup();
     getDept();
 
-
     // 取得我加入的组
     function getMyGroup() {
-
         var url = path + "/user/group/findMyGroup.do";
         // console.log("请求controller的url是:" + url)
         $.ajax({
@@ -69,8 +68,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     }
 
     // 取得公司部门
-    function getDept() {
-        
+    function getDept() {  
         var url = path + "/user/group/findAllDept2.do";
         // console.log("请求controller的url是:" + url)
         $.ajax({
@@ -231,5 +229,6 @@ function getAttend(attend) {
     var result = ass.join(',')
     // console.log('4.result:')
     // console.log(result)
+    parent.attendList = result;
     return result;
 }

@@ -47,6 +47,14 @@ public class Meeting {
 		this.mSpan = mSpan;
 		this.tName = tName;
 	}
+	public Meeting(int mNo, String mTitle, String mInfo, int mSize,int mSpan) {
+		super();
+		this.mNo = mNo;
+		this.mTitle = mTitle;
+		this.mInfo = mInfo;
+		this.mSize = mSize;
+		this.mSpan = mSpan;
+	}
 	public int getmNo() {
 		return mNo;
 	}

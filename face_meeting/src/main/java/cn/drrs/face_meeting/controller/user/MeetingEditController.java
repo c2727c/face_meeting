@@ -1,5 +1,8 @@
 package cn.drrs.face_meeting.controller.user;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,14 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
-import cn.drrs.face_meeting.entity.Person;
-import cn.drrs.face_meeting.entity.Room;
-import cn.drrs.face_meeting.entity.RoomRestrict;
 import cn.drrs.face_meeting.service.MREventService;
 import cn.drrs.face_meeting.service.MeetingService;
-import cn.drrs.face_meeting.service.RoomService;
 import cn.drrs.face_meeting.util.NoteResult;
 
 @Controller("meetingEditController")
@@ -36,6 +36,13 @@ public class MeetingEditController {
 		return eventService.update(e);
 	}
 	
+	//更新会议描述
+	@RequestMapping("/update.do") 
+	@ResponseBody
+	public NoteResult<Object> update(@RequestBody(required = false) Meeting m) {
+		return meetingService.update(m);
+	}	
+	
 	//取消时间地点安排
 	@RequestMapping("/cancelMeeting.do") 
 	@ResponseBody
@@ -43,12 +50,9 @@ public class MeetingEditController {
 		return eventService.delete(m.getmNo(),null);
 	}
 	
-	//更新会议描述
-	@RequestMapping("/update.do") 
-	@ResponseBody
-	public NoteResult<Object> update(@RequestBody(required = false) Meeting m) {
-		return meetingService.update(m);
-	}	
+	
+	
+
 	
 	//删除会议
 	@RequestMapping("/delete.do") 

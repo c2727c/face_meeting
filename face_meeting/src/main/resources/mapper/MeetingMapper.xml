@@ -69,7 +69,7 @@
 	</insert>
 	<update id="update" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
-		UPDATE meeting SET mTitle=#{mTitle},mInfo=#{mInfo},mSize=#{mSize},mSpan=#{mSpan},tName=#{tName}
+		UPDATE Meeting SET mTitle=#{mTitle},mInfo=#{mInfo},mSize=#{mSize},mSpan=#{mSpan}
 			WHERE mNo=#{mNo};
 	</update>
 	<delete id="deleteBymNo" 

@@ -37,9 +37,9 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 // console.log(index);
                 parent.layer.close(index); //再执行关闭
-                parent.gotoEditMeet(index, data.data)
+                parent.gotoEditMeet(data.data.mNo)
             });
-            
+
             //询问框是否删除
             $(".btnDelGroup").click(function () {
                 layer.confirm('确定删除当前会议？', {
@@ -94,7 +94,7 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 });
             });
 
-            
+
             //上传文件
             var uploadInst = upload.render({
                 elem: '#uploadfile',

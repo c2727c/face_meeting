@@ -19,7 +19,7 @@ layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
         $('input:radio').each(function () {
             if (this.checked) {
                 is_Middle = $(this).val();
-                if(is_Middle == 0) {
+                if (is_Middle == 0) {
                     urladd = url1;
                 } else {
                     urladd = url2;
@@ -123,8 +123,11 @@ layui.use(['element', 'layer', 'jquery', 'laydate', 'form'], function () {
         }
     });
 
-    window.gotoEditMeet = function (index, data) {
-        window.location.href = "meetAdd.html"
+    window.gotoEditMeet = function (data) {
+        // console.log('gotoEdit')
+        setTimeout(function () {
+            window.location.href = "meetMy-Info-edit.html?mNo="+data;
+        },400);
     }
 
 });

@@ -10,6 +10,7 @@ public interface PMAttendDao {
 	public int insert(Attend a);
 	//删除参会关系
 	public int delete(@Param("mNo")int mNo,@Param("pId")String pId);
+	public int deleteAll(@Param("mNo")int mNo);
 	//修改参会状态
 	public int update(Attend a);
 

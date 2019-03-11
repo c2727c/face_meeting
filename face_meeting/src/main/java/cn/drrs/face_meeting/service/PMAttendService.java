@@ -12,6 +12,7 @@ public interface PMAttendService {
 	public NoteResult<Object> insert(List<Attend> alist);
 	//删除参会关系
 	public NoteResult<Object> delete(int mNo,String pId);
+	public NoteResult<Object> deleteAll(int mNo);
 	public NoteResult<Object> delete(List<Attend> alist);
 	//修改参会状态
 	public NoteResult<Object> update(Attend a);

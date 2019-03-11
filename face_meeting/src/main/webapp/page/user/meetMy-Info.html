@@ -68,7 +68,7 @@
       <ul class="layui-tab-title layui-row">
         <li class="layui-this layui-col-xs4"><i class="layui-icon layui-icon-notice"></i> 通知公告</li>
         <li class="layui-col-xs4"><i class="layui-icon layui-icon-user"></i> 参会名单</li>
-        <!-- <li class="layui-col-xs4"><i class="layui-icon layui-icon-file"></i> 会议文件</li> -->
+        <li class="layui-col-xs4"><i class="layui-icon layui-icon-file"></i> 会议文件</li>
       </ul>
       <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item  layui-show">
@@ -117,8 +117,7 @@
           <br>
           <div class="layui-row">
             <div id="contentPeople">
-              <!-- 人员模板 -->
-              
+              <!-- 人员模板 -->              
             </div>
           </div>
 
@@ -237,7 +236,7 @@
     {{ each mAttendList value index}}
     <div class="layui-col-xs2">
         <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
-        <div class="layui-row" style="text-align: center;">{{value.pName}}</div>
+        <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
     </div>
     {{/each}}
   </script>
