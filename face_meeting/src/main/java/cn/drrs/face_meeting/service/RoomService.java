@@ -41,5 +41,6 @@ public interface RoomService {
 	public NoteResult<List<Room>> transfer(Event e,int span);
 	public ResponseData findPageRoom(int page, int limit);
 	public NoteResult<String> batchRoomDelete(List<String> orderNoList);
+	public Room findByrId(String rId);
 
 }

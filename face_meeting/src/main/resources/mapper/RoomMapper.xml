@@ -50,12 +50,17 @@
 			rId NOT IN( SELECT rId FROM room NATURAL JOIN mr_event 
 			WHERE #{startDate}=startDate AND #{startTime}&lt;endTime AND #{endTime}>startTime);
 	</select>
-	
+	<select id="findByrId"
+			parameterType="String"
+			resultMap="roomMap">
+			select * from room where rId=#{rId};
+	</select>
 	<select id="selectEvents"
 			parameterType="String"
 			resultMap="cn.drrs.face_meeting.dao.MREventDao.eventMap">
 			select * from mr_event where rId=#{rId};
 	</select>
+	
 	<!--分页查询数据，根据limit和page进行分页-->
     <select id="findRoomByPage" parameterType="Map" resultType="cn.drrs.face_meeting.entity.Room">
         SELECT rId,rName,rInfo,rSize,rAddr,tName
