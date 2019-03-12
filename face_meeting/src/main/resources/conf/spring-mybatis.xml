@@ -59,5 +59,29 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.smtp.host}" />
+		<property name="username" value="${mail.smtp.username}" />
+		<property name="password" value="${mail.smtp.password}" />
+		<property name="defaultEncoding"
+			value="${mail.smtp.defaultEncoding}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
+        <!-- 发件人email -->
+        <property name="from" value="${mail.smtp.username}" />
+    </bean>
+
+    <bean id="mailUtil" class="cn.drrs.face_meeting.util.MailUtil">
+        <property name="mailSender" ref="mailSender"></property>
+        <property name="simpleMailMessage" ref="simpleMailMessage"></property>
+    </bean>
 </beans>
 

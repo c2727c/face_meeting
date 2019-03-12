@@ -153,4 +153,9 @@ public class RoomServiceImple implements RoomService{
 		return rs;
 	}
 
+	public Room findByrId(String rId) {
+		
+		return roomDao.findByrId(rId);
+	}
+
 }

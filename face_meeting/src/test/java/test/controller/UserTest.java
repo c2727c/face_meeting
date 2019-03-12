@@ -7,9 +7,11 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.drrs.face_meeting.controller.user.RoomController;
 import cn.drrs.face_meeting.controller.user.UserControllerxdw;
 import cn.drrs.face_meeting.entity.Person;
 import cn.drrs.face_meeting.entity.PersonLight;
+import cn.drrs.face_meeting.entity.Room;
 import cn.drrs.face_meeting.service.PersonService;
 import cn.drrs.face_meeting.util.NoteResult;
 import net.sf.json.JSONObject;
@@ -17,6 +19,7 @@ import net.sf.json.JSONObject;
 public class UserTest {
 	UserControllerxdw ucl;
 	PersonService ps;
+	RoomController rc ;
 	
 	@Before
 	public void init() {
@@ -26,6 +29,7 @@ public class UserTest {
 				new ClassPathXmlApplicationContext(conf);
 		ucl=ctx.getBean("userControllerxdw", UserControllerxdw.class);
 		ps = ctx.getBean("personService", PersonService.class);
+		rc = ctx.getBean("roomController", RoomController.class);
 	}
 
 	@Test
@@ -48,6 +52,14 @@ public class UserTest {
 	public void listTest() {
 		String list = "user01，user02,user03";
 		NoteResult<List<PersonLight>> nr = ucl.findList(list);
+		nr.printJSON();
+	}
+	
+	
+	@Test 
+	public void findRoom(){
+		NoteResult<Room> nr = new NoteResult<Room>();
+		nr = rc.findByrId("A001");
 		nr.printJSON();
 	}
 }

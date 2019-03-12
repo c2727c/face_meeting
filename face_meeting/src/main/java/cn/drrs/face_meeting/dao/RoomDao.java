@@ -33,5 +33,6 @@ public interface RoomDao {
 	public int queryRoomCount();
 	public List<Room> findRoomByPage(Map<String, Integer> map);
 	public boolean batchRoomDelete(List<String> orderNoList);
+	public Room findByrId(String rId);
 
 }
