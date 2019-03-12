@@ -124,5 +124,17 @@
 			<version>2.5</version>
 		</dependency>
 
+		<!-- 添加邮件发送的依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.0.RELEASE</version>
+		</dependency>
+		<!--邮件发送 -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 	</dependencies>
 </project>
