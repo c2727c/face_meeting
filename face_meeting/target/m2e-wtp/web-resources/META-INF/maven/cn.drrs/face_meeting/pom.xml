@@ -124,12 +124,17 @@
 			<version>2.5</version>
 		</dependency>
 
-		<!-- 实现邮件发送提醒消息 -->
+		<!-- 添加邮件发送的依赖 -->
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.5.0-b01</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.0.RELEASE</version>
 		</dependency>
-
+		<!--邮件发送 -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 	</dependencies>
 </project>
