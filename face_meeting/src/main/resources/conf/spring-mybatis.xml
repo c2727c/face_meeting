@@ -17,24 +17,47 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
 	<!-- 配置数据库连接参数及连接池 -->
-	<bean id="dbcp" 
-	class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/ccode?serverTimezone=Asia/Shanghai&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8"></property> 
-		
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/ccode?serverTimezone=Asia/Shanghai&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8"></property>
+
 	</bean>
 	<!-- 配置SqlSessionFactory -->
 	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dbcp"></property>
-		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+		<property name="mapperLocations"
+			value="classpath:mapper/*.xml"></property>
 		<!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-	</bean>	
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
+	</bean>
 	<!-- 配置mapper扫描 -->
-	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean id="mapperScanner"
+		class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="cn.drrs.face_meeting.dao"></property>
-	</bean>	
+	</bean>
+
+	<!--邮件配置 -->
+	<context:property-placeholder
+		location="classpath:config/mail.properties" ignore-unresolvable="true" />
+	<!--配置邮件接口 -->
+	<bean id="javaMailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.smtp.host}" />
+		<property name="username" value="${mail.smtp.username}" />
+		<property name="password" value="${mail.smtp.password}" />
+		<property name="defaultEncoding"
+			value="${mail.smtp.defaultEncoding}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
 

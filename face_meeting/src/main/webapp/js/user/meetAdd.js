@@ -24,7 +24,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			type: 2,
 			title: ["选择人员"],
 			content: "meetAdd-people.html",
-			// area: ["411px", "98%"],
+			area: ["411px", "98%"],
 			skin: 'layui-layer-molv',
 			cancel: function (index, layero) {
 				layer.confirm('选择完成？', {

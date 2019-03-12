@@ -54,22 +54,7 @@
 
 	</div>
 
-	<!-- <table class="layui-table"
-		lay-data="{cellMinWidth:50, height:400, url:'../../admin/group/getGroupMember.do', method='post' ,where:{gId:gId}, page:true, id:'userList'}"
-		lay-filter="demo">
-		<thead>
-			<tr>
-				<th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-				<th lay-data="{field:'pId',sort:true}">员工编号</th>
-				<th lay-data="{field:'pName',sort:true}">姓名</th>
-				<th lay-data="{field:'pRole', sort: true}">职务</th>
-				<th lay-data="{field:'pDept', sort: true}">部门</th>
-				<th lay-data="{field:'pPhone', sort: true}">联系方式</th>
-				<th
-					lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">数据操作</th>
-			</tr>
-		</thead>
-	</table> -->
+
 	<div class="layui-row"><button class="layui-btn layui-btn-primary">小组成员</button><button class="layui-btn" onclick="addGroupMember();"><i class="layui-icon">&#xe608;</i>添加小组成员</button><button class="layui-btn layui-btn-danger" onclick="deleteGroupMember();"><i class="layui-icon">&#xe640;</i>删除小组成员</button></div>
 	<table id="groupMember" lay-filter="groupMember"></table>
 	<script type="text/html" id="barDemo">
@@ -83,8 +68,8 @@
 		layer.open({
 			type:2,
 			title:"请选择要添加的小组成员",
-			content:"personDeptList.html",
-			area:['40%','100%'],
+			content:"groupPeopleAdd.html",
+			area:['50%','100%'],
 		});
 	}
 	//删除小组成员
@@ -136,17 +121,6 @@
         });
       }).on('mouseleave', '#editMeet', function () {
         layer.close(tip_index);
-      });
-
-      //添加人员
-      $(".btnAddPeople").on('click', function () {
-        layer.open({
-          type: 2,
-          title: '添加人员',
-          content: 'meetAdd-people.html',
-          scrollbar: false,
-          area: ["411px", "98%"],
-        });
       });
 
       //编辑会议
