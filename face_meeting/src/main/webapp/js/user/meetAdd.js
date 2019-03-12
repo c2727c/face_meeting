@@ -33,7 +33,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				}, function (index1) {
 					var body = layer.getChildFrame('body', index);
 					var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-					attendList = iframeWin.getAttend(attendList);
+					attendList = iframeWin.getAttend();
 					layer.close(index)
 					layer.close(index1)
 					getPersonList(attendList)

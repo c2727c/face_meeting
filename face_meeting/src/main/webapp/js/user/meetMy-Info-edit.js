@@ -36,9 +36,11 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			console.log(mEventList)
 			rId = mEventList['rId']
 			console.log(rId)
-			html = template('roomAlways', {'data': rId});
-            document.getElementById('content3').innerHTML = html;
-			
+			html = template('roomAlways', {
+				'data': rId
+			});
+			document.getElementById('content3').innerHTML = html;
+
 			// console.log('rId:', rId)
 			mTitle = data['data']['mTitle']
 			mInfo = data['data']['mInfo']
@@ -124,6 +126,15 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			content: "meetAdd-people.html",
 			area: ["411px", "98%"],
 			skin: 'layui-layer-molv',
+			success: function (layero, index) {
+				// console.log(layero, index);
+				if (attendList != '') {
+					var body = layer.getChildFrame('body', index);
+					var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+					iframeWin.tipDepart();
+					console.log('tips')
+				}
+			},
 			cancel: function (index, layero) {
 				layer.confirm('选择完成？', {
 					btn: ['保存离开', '继续选择'], //按钮
@@ -131,7 +142,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				}, function (index1) {
 					var body = layer.getChildFrame('body', index);
 					var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-					attendList = iframeWin.getAttend(attendList);
+					attendList = iframeWin.getAttend();
 					layer.close(index)
 					layer.close(index1)
 					getPersonList(attendList)
@@ -173,7 +184,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			pId_FQ = userId
 			var url = path + "/meeting/meetedit.do";
 			console.log(url)
-			
+
 			$.ajax({
 				url: url,
 				type: "post",
@@ -286,7 +297,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 
 	//调用ajax获得已选人员列表
 	function getPersonList(attendList) {
-		console.log('attendList:' + attendList)
+		console.log('url:' + attendList)
 		var url = path + "/user/findUsers.do";
 		// console.log("请求controller的url是:" + url)
 		$.ajax({

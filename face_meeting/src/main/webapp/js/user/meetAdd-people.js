@@ -1,5 +1,6 @@
 var proposals = [];
 var attend = '';
+var attendList = parent.attendList;
 
 layui.use(["element", "layer", "jquery", "form"], function () {
     var element = layui.element;
@@ -8,9 +9,10 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     var form = layui.form;
     var userId = localStorage.getItem('userId')
 
-    parent.attendList = getAttend(parent.attendList)
     getMyGroup();
     getDept();
+
+
 
     // 取得我加入的组
     function getMyGroup() {
@@ -53,6 +55,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                     });
                     checkedPerson();
 
+
                 } else {
                     layer.msg("请求我的工作组失败", {
                         time: '1000',
@@ -68,7 +71,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     }
 
     // 取得公司部门
-    function getDept() {  
+    function getDept() {
         var url = path + "/user/group/findAllDept2.do";
         // console.log("请求controller的url是:" + url)
         $.ajax({
@@ -137,16 +140,54 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             attendArry = attendList.split(',');
             // console.log('attendArry:')
             // console.log(attendArry)
-            $("input:checkbox[data-pid]").each(function (i) {
+            $("#depart input:checkbox[data-pid]").each(function (i) {
                 var test = $(this).data('pid');
                 // console.log(test)
                 if (attendArry.indexOf(test) != -1) {
                     //选中
-                    $(this).attr("checked", 'true');
+                    // $(this).attr("checked", 'true');
+                    $(this).prop("checked", true)
                 }
             });
             form.render('checkbox');
         }
+    }
+
+    //获得参与人员
+    window.getAttend = function () {
+        var attendArry = [];
+
+        $("input:checkbox[cname!='all']:checked").each(function (i) {
+            attendArry.push($(this).data('pid'))
+        });
+        // console.log('2.attendArry:')
+        // console.log(attendArry)
+
+        //数组去重
+        var ass = [];
+        for (var i = 0; i < attendArry.length; i++) {
+            if (ass.indexOf(attendArry[i]) == -1) {
+                ass.push(attendArry[i])
+            }
+        }
+        // console.log('3.ass:')
+        // console.log(ass)
+
+        var result = ass.join(',')
+        // console.log('4.result:')
+        // console.log(result)
+        attendList = result;
+        // console.log('attendList:', attendList)
+
+        return result;
+    }
+
+    //提示已在depart中
+    window.tipDepart = function () {
+        layer.msg('已选人员已经勾选在部门中，不在我的小组显示', {
+                time: 2500
+            }
+        )
     }
 
     //提示名字
@@ -182,53 +223,6 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             // console.log('移除')
         })
     }
+
+
 });
-
-// function getAttend() {
-//     attend = ''
-//     $("input:checkbox[cname!='all']:checked").each(function(i){
-//         if (attend == '') {
-//             attend = $(this).data('pid')
-//         } else {
-//             attend = attend +','+ $(this).data('pid');
-//         }
-//     });
-//     // console.log(attend)
-//     return attend;
-// }
-
-function getAttend(attend) {
-    var attendArry = [];
-    if (attend != '') {
-        attendArry = attend.split(',');
-    }
-    // console.log('1.attendArry:')
-    // console.log(attendArry)
-
-    $("input:checkbox[cname!='all']:checked").each(function (i) {
-        // if (attend == '') {
-        //     attend = $(this).data('pid')
-        // } else {
-        //     attend = attend +','+ $(this).data('pid');
-        // }
-        attendArry.push($(this).data('pid'))
-    });
-    // console.log('2.attendArry:')
-    // console.log(attendArry)
-
-    //数组去重
-    var ass = [];
-    for (var i = 0; i < attendArry.length; i++) {
-        if (ass.indexOf(attendArry[i]) == -1) {
-            ass.push(attendArry[i])
-        }
-    }
-    // console.log('3.ass:')
-    // console.log(ass)
-
-    var result = ass.join(',')
-    // console.log('4.result:')
-    // console.log(result)
-    parent.attendList = result;
-    return result;
-}
