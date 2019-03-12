@@ -124,5 +124,17 @@ public class UserControllerxdw {
 		return nr;
 	}
 	 
+	@Resource
+	PersonService userService;
+	@RequestMapping("/registerNew.do")
+	@ResponseBody
+	public NoteResult<Person> register(@RequestBody(required = false) Person user) {
+		System.err.println(user);
+		List<Person> users=new ArrayList<Person>();
+		users.add(user);
+		NoteResult<Person> result=userService.insert(users);
+		return result;
+	}
+	
 
 }
