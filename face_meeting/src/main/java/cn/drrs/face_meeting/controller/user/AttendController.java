@@ -21,24 +21,23 @@ public class AttendController {
 	@Resource
 	private PMAttendService attendService;
 	
-	//为会议添加参会者
-	@RequestMapping("/addAttendants.do") 
-	@ResponseBody
-	public NoteResult<Object> addAttendants(@RequestBody(required = false) List<Attend> alist ) {
-		return attendService.insert(alist);
-	}
-	//为会议删除参会者
-	@RequestMapping("/delAttendants.do") 
-	@ResponseBody
-	public NoteResult<Object> delAttendants(@RequestBody(required = false) List<Attend> alist ) {
-		return attendService.delete(alist);
-	}
+//	//为会议添加参会者
+//	@RequestMapping("/addAttendants.do") 
+//	@ResponseBody
+//	public NoteResult<Object> addAttendants(@RequestBody(required = false) List<Attend> alist ) {
+//		return attendService.insert(alist);
+//	}
+//	//为会议删除参会者
+//	@RequestMapping("/delAttendants.do") 
+//	@ResponseBody
+//	public NoteResult<Object> delAttendants(@RequestBody(required = false) List<Attend> alist ) {
+//		return attendService.delete(alist);
+//	}
 	//请假
 	@RequestMapping("/askForLeave.do") 
 	@ResponseBody
-	public NoteResult<Object> askForLeave(@RequestBody(required = false) Attend attend) {
-		System.out.println(attend);
-		attend.setState("请假");
+	public NoteResult<Object> askForLeave(int mNo, String pId) {
+		Attend attend = new Attend(mNo, pId, "canceled");
 		return attendService.update(attend);
 	}
 	
