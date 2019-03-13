@@ -160,6 +160,15 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             layer.close(tip_index);
         });
 
+        //提示我要请假
+        var tip_index = 0;
+        $(document).on('mouseenter', '.askForLeave', function () {
+            tip_index = layer.tips('我要请假', '.askForLeave', {
+                time: 1000
+            });
+        }).on('mouseleave', '.askForLeave', function () {
+            layer.close(tip_index);
+        });
 
     }
 
@@ -188,4 +197,46 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             }
         });
     }
+
+
+    $(".infoAttend").click(function () {
+
+        $(".peoAll").slideToggle();
+    });
+
+    $(".askForLeave").click(function () {
+        layer.prompt({
+            formType: 2,
+            value: '',
+            title: '请假理由',
+            // area: ['100%', '%'] //自定义文本域宽高
+        }, function (value, index, elem) {
+            alert(value); //得到value
+            layer.close(index);
+        });
+    })
+
+    function askLeave() {
+        var url = path + "/attend/askForLeave.do";
+        console.log("请求controller的url是:" + url)
+        $.ajax({
+            url: url,
+            type: "post",
+            data: {
+                'mNo': mNo,
+                'pId': userId,
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log("传过来的是：")
+                console.log(data)
+
+                $("#test1").html(JSON.stringify(data));
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("ajax请求失败");
+            }
+        });
+    }
+
 });

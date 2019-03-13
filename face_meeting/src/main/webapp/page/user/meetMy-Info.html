@@ -51,7 +51,21 @@
     .point {
        cursor: pointer;
     }
-  </style>
+    .peoAll {
+      display: none;
+    }
+    .layui-colla-title {
+      position: relative;
+      height: 42px;
+      line-height: 42px;
+      padding: 0 15px 0 35px;
+      color: #333;
+      background-color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      overflow: hidden;
+    }
+    </style>
 </head>
 
 
@@ -80,15 +94,23 @@
           <div style="padding: 5px; background-color: #F2F2F2;">
             <!-- 出勤 -->
             <div class="layui-card">
-              <div class="layui-card-header" style="color:#c2c2c2">出勤报表</div>
+              <div class="layui-card-header layui-row" style="color:#c2c2c2">
+                <div class="layui-col-xs8">出勤报表</div>
+                <div class="layui-col-xs4" style="text-align:right">
+                  <button class="layui-btn  layui-btn-sm askForLeave" >
+                    <i class="iconfont icon-qingjia point" style="font-size: 30px;"></i>
+                  </button>
+                </div>
+
+              </div>
               <div class="layui-card-body">
                 <div class="layui-row">
                   <div class="layui-col-xs4">
                     <div class="layui-row centerAll">
-                      <i class="iconfont icon-sys-dangrishishichuqinbaobiao infoAttend" style="font-size: 30px;"></i>
+                      <i class="iconfont icon-sys-dangrishishichuqinbaobiao infoAttend  point" style="font-size: 30px;"></i>
                     </div>
-                    <div class="layui-row centerAll point">
-                      详情报表
+                    <div class="layui-row centerAll">
+                      报表详情
                     </div>
                   </div>
                   <div class="layui-col-xs4  centerAll">
@@ -99,6 +121,52 @@
                   <div class="layui-col-xs4 centerAll">
                     <div class="layui-inline" style="padding-top: 20px;">
                       请假：1
+                    </div>
+                  </div>
+                </div>
+                <div class="layui-row peoAll">
+                  <div class="layui-collapse">
+                    <div class="layui-colla-item layui-row">
+                      <h2 class="layui-colla-title">
+                        <i class="iconfont icon-yidao" style="font-size: 30px; "></i>
+                        已到
+                      </h2>
+                      <div class="layui-colla-content layui-row">
+                        <div class="layui-col-xs3">
+                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
+                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
+                        </div>
+                        <div class="layui-col-xs3">
+                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
+                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
+                        </div>
+                        <div class="layui-col-xs3">
+                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
+                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
+                        </div>
+                        <div class="layui-col-xs3">
+                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
+                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
+                        </div>
+                        <div class="layui-col-xs3">
+                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
+                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-colla-item layui-row">
+                      <h2 class="layui-colla-title">
+                        <i class="iconfont icon-not-to" style="font-size: 30px; "></i>
+                        未到
+                      </h2>
+                      <div class="layui-colla-content layui-show">内容区域</div>
+                    </div>
+                    <div class="layui-colla-item layui-row">
+                      <h2 class="layui-colla-title">
+                        <i class="iconfont icon-qingjia1" style="font-size: 30px; "></i>
+                        请假
+                      </h2>
+                      <div class="layui-colla-content layui-show">内容区域</div>
                     </div>
                   </div>
                 </div>
@@ -196,7 +264,7 @@
     {{/if}}
   </script>
   <script id="meetInfo" type="text/html">
-  <div class="layui-card">
+    <div class="layui-card">
     <div class="layui-card-header">
       <div class="layui-row">
         <h3 class="layui-col-xs8" style="font-weight:bold">{{ mTitle }}</h3>

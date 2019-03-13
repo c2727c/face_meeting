@@ -37,6 +37,7 @@ public class AttendController {
 	@RequestMapping("/askForLeave.do") 
 	@ResponseBody
 	public NoteResult<Object> askForLeave(@RequestBody(required = false) Attend attend) {
+		System.out.println(attend);
 		attend.setState("请假");
 		return attendService.update(attend);
 	}
