@@ -1,3 +1,5 @@
+var roomData = ''
+var rId = ''
 layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
     var element = layui.element;
     var layer = layui.layer;
@@ -25,6 +27,12 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             //更新人员列表
             html = template('peopleList', data.data);
             document.getElementById('contentPeople').innerHTML = html;
+
+            rId = data['data']['mEventList'][0]['rId']
+            console.log('rId:', rId)
+            getRoom(rId)
+            // console.log('roomData:')
+            // console.log(roomData)
 
             if (parent.urladd == parent.url1) {
                 // console.log("隐藏")
@@ -115,6 +123,8 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
         }
     })
 
+    tipAll();
+
     //鼠标移动提示
     function tipAll() {
         //tip删除
@@ -140,8 +150,42 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             layer.close(tip_index);
         });
 
+        //提示出勤情况
+        var tip_index = 0;
+        $(document).on('mouseenter', '.infoAttend', function () {
+            tip_index = layer.tips('查看详情', '.infoAttend', {
+                time: 1000
+            });
+        }).on('mouseleave', '.infoAttend', function () {
+            layer.close(tip_index);
+        });
+
 
     }
 
-
+    //获取会议室详情
+    function getRoom(rId) {
+        var url = path + "/room/roomInfo.do";
+        console.log("请求controller的url是:" + url)
+        $.ajax({
+            url: url,
+            type: "post",
+            data: {
+                'rId': rId,
+            },
+            dataType: "json",
+            success: function (data) {
+                // console.log(data)
+                var rName = data['data']['rName']
+                var rAddr = data['data']['rAddr']
+                var rSize = data['data']['rSize']
+                $(".rName").html(rName)
+                $(".rAddr").html(rAddr)
+                $(".rSize").html(rSize)
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("ajax请求失败");
+            }
+        });
+    }
 });

@@ -88,20 +88,20 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 	}
 	// });
 
-	var attendList = 'user01,user02,user03'
-	var url = path + "/user/findUsers.do";
+	var rId = "CR301";
+	var url = path + "/room/roomInfo.do";
 	console.log("请求controller的url是:" + url)
 	$.ajax({
 		url: url,
 		type: "post",
 		data: {
-			'userList': attendList,
+			'rId': rId,
 		},
 		dataType: "json",
 		success: function (data) {
 			console.log("传过来的是：")
 			console.log(data)
-			console.log("data.data是：" + JSON.stringify(data.data))
+			// console.log("data.data是：" + JSON.stringify(data.data))
 			$("#test1").html(JSON.stringify(data));
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {

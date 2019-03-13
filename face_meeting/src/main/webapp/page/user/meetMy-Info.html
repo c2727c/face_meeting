@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="icon" href="../../images/ico/favicon.ico">
+  <link rel="icon" href="../../images/ico/favicon.ico">
   <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
   <link rel="stylesheet" type="text/css" href="../../lib/font_iconfont/iconfont.css" />
   <link rel="stylesheet" type="text/css" href="../../css/my.css" />
@@ -16,11 +16,9 @@
       width: 40px;
       height: 40px;
       line-height: 40px;
-      margin: 0 auto 10px;
       text-align: center;
-      background-color: #1E9FFF;
+      background-color: #009688;
       cursor: pointer;
-      color: #fff;
       border-radius: 50%;
     }
 
@@ -47,6 +45,12 @@
       border-radius: 8%;
       padding: 8px;
     }
+    .centerAll {
+        text-align: center;
+    }
+    .point {
+       cursor: pointer;
+    }
   </style>
 </head>
 
@@ -64,14 +68,44 @@
     </div>
     <hr>
     <!-- 三个按钮 -->
-    <div class="layui-tab" lay-filter="docDemoTabBrief">
+    <div class="layui-tab  layui-tab-brief" lay-filter="docDemoTabBrief">
       <ul class="layui-tab-title layui-row">
-        <li class="layui-this layui-col-xs4"><i class="layui-icon layui-icon-notice"></i> 通知公告</li>
-        <li class="layui-col-xs4"><i class="layui-icon layui-icon-user"></i> 参会名单</li>
+        <li class="layui-col-xs4 layui-this"><i class="layui-icon layui-icon-notice"></i> 通知公告</li>
+        <li class="layui-col-xs4 "><i class="layui-icon layui-icon-user"></i> 参会名单</li>
         <li class="layui-col-xs4"><i class="layui-icon layui-icon-file"></i> 会议文件</li>
       </ul>
       <div class="layui-tab-content" style="height: 100px;">
+        <!-- 通知列表 -->
         <div class="layui-tab-item  layui-show">
+          <div style="padding: 5px; background-color: #F2F2F2;">
+            <!-- 出勤 -->
+            <div class="layui-card">
+              <div class="layui-card-header" style="color:#c2c2c2">出勤报表</div>
+              <div class="layui-card-body">
+                <div class="layui-row">
+                  <div class="layui-col-xs4">
+                    <div class="layui-row centerAll">
+                      <i class="iconfont icon-sys-dangrishishichuqinbaobiao infoAttend" style="font-size: 30px;"></i>
+                    </div>
+                    <div class="layui-row centerAll point">
+                      详情报表
+                    </div>
+                  </div>
+                  <div class="layui-col-xs4  centerAll">
+                    <div class="layui-inline" style="padding-top: 20px;">
+                      出勤率：23/25
+                    </div>
+                  </div>
+                  <div class="layui-col-xs4 centerAll">
+                    <div class="layui-inline" style="padding-top: 20px;">
+                      请假：1
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div style="padding: 5px; background-color: #F2F2F2;">
             <div class="layui-card">
               <div class="layui-card-header">
@@ -82,34 +116,6 @@
               </div>
             </div>
           </div>
-          <div style="padding: 5px; background-color: #F2F2F2;">
-            <!-- 出勤 -->
-            <div class="layui-card">
-              <div class="layui-card-header" style="color:#c2c2c2">出勤报表</div>
-              <div class="layui-card-body">
-                <div class="layui-row ">
-                  <div class="layui-col-xs4 meet-circle">
-                    <i class="layui-icon layui-icon-form" style="font-size: 30px;"></i>
-                  </div>
-
-                  <div class="layui-col-xs8 layui-col-xs-offset2">
-                    <div class="layui-row">
-                      <div class="layui-col-xs8">出勤率：23/25</div>
-                      <div class="layui-col-xs4">请假：1</div>
-                    </div>
-                    <div class="layui-row">
-                      <div class="layui-col-xs3  layui-col-xs-offset8">
-                        <button class="layui-btn layui-btn-sm  layui-btn-normal">详情<i class="layui-icon layui-icon-next"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
           <br>
         </div>
         <!-- 参会人员 -->
@@ -117,11 +123,12 @@
           <br>
           <div class="layui-row">
             <div id="contentPeople">
-              <!-- 人员模板 -->              
+              <!-- 人员模板 -->
             </div>
           </div>
 
         </div>
+
         <!-- 会议文件 -->
         <div class="layui-tab-item">
           <br>
@@ -189,48 +196,54 @@
     {{/if}}
   </script>
   <script id="meetInfo" type="text/html">
-    <div class="layui-card">
-        <div class="layui-card-header">
-          <div class="layui-row">
-            <h3 class="layui-col-xs8" style="font-weight:bold">{{ mTitle }}</h3>
-            <div class="hidediv layui-col-xs4" style="text-align:right">
-              <div class="layui-btn-group">
-                <button class="layui-btn layui-btn-sm " id="editMeet">
-                  <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
-                </button>
-                <button class="layui-btn layui-btn-sm  btnDelGroup">
-                  <i class="layui-icon layui-icon-delete" style="font-size: 30px;"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="layui-card-body">
-          <div class="layui-row">
-            <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
-            <div class="layui-col-xs10">{{ mInfo }}</div>
-          </div>
-          <br>
-          <div class="layui-row">
-            <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
-            <div class="layui-col-xs10">
-              
-              {{ each mEventList}}
-                {{include 'time' $value}} <!--引入子模板-->
-              {{/each}}
-            </div>
-          </div>
-          <br>
-          <div class="layui-row">
-            <div class="layui-col-xs2" style="color:#c2c2c2">地点：</div>
-            <div class="layui-col-xs10">
-              {{ each mEventList}}
-                {{ $value.rId }}
-              {{/each}}
-            </div>
+  <div class="layui-card">
+    <div class="layui-card-header">
+      <div class="layui-row">
+        <h3 class="layui-col-xs8" style="font-weight:bold">{{ mTitle }}</h3>
+        <div class="hidediv layui-col-xs4" style="text-align:right">
+          <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-sm " id="editMeet">
+              <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
+            </button>
+            <button class="layui-btn layui-btn-sm  btnDelGroup">
+              <i class="layui-icon layui-icon-delete" style="font-size: 30px;"></i>
+            </button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="layui-card-body">
+      <div class="layui-row">
+        <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
+        <div class="layui-col-xs10">{{ mInfo }}</div>
+      </div>
+      <br>
+      <div class="layui-row">
+        <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
+        <div class="layui-col-xs10">
+
+          {{ each mEventList}}
+          {{include 'time' $value}}
+          <!--引入子模板-->
+          {{/each}}
+        </div>
+      </div>
+      <br>
+      <div class="layui-row">
+        <div class="layui-col-xs2" style="color:#c2c2c2">房间：</div>
+        <div class="layui-col-xs10">
+          <div class="layui-row">
+            <div class=" layui-inline">名字：<div class="rName layui-inline"></div></div>
+            <div class=" layui-inline">&nbsp;&nbsp;&nbsp;位置：<div class="rAddr layui-inline"></div></div>
+            <div class=" layui-inline">&nbsp;&nbsp;&nbsp;大小：<div class="rSize layui-inline"></div></div>
+          </div>
+          <!-- <div class="layui-row">
+            简介：<div></div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
   </script>
   <script id="peopleList" type="text/html">
     {{ each mAttendList value index}}

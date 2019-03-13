@@ -35,13 +35,15 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			var mEventList = data['data']['mEventList'][0];
 			console.log(mEventList)
 			rId = mEventList['rId']
-			console.log(rId)
-			html = template('roomAlways', {
-				'data': rId
-			});
-			document.getElementById('content3').innerHTML = html;
-
+			// console.log(rId)
+			getRoom(rId)
+			// html = template('roomAlways', {
+			// 	'data': rId
+			// });
+			// document.getElementById('content3').innerHTML = html;
 			// console.log('rId:', rId)
+
+
 			mTitle = data['data']['mTitle']
 			mInfo = data['data']['mInfo']
 			mSize = data['data']['mSize']
@@ -83,7 +85,19 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					getRoomList();
 				}
 			});
-			startDate = mEventList['startDate']['year'] + '-' + mEventList['startDate']['monthValue'] + '-' + mEventList['startDate']['dayOfMonth']
+
+			var month, day;
+			if  (mEventList['startDate']['monthValue'] < 10) {
+				month = '0' +  mEventList['startDate']['monthValue'];
+			} else {
+				month =  mEventList['startDate']['monthValue']
+			}
+			if  (mEventList['startDate']['dayOfMonth'] < 10) {
+				day = '0' +  mEventList['startDate']['dayOfMonth'];
+			} else {
+				day = mEventList['startDate']['dayOfMonth']
+			}
+			startDate = mEventList['startDate']['year'] + '-' + month + '-' + day;
 
 			// console.log('startDate:', startDate)
 			//日期选择器
@@ -112,6 +126,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			}
 			// console.log(attendList)
 			getPersonList(attendList)
+			getRoomList()
 		},
 		error: function () {
 			console.log("ajax请求失败");
@@ -288,6 +303,35 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					form.render("radio");
 				}
 
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				console.log("ajax请求失败");
+			}
+		});
+	}
+
+
+	//获取会议室详情
+	function getRoom(rId) {
+		var url = path + "/room/roomInfo.do";
+		console.log("请求controller的url是:" + url)
+		$.ajax({
+			url: url,
+			type: "post",
+			data: {
+				'rId': rId,
+			},
+			dataType: "json",
+			success: function (data) {
+				// console.log(data)
+				var rName = data['data']['rName']
+				var rAddr = data['data']['rAddr']
+				var rSize = data['data']['rSize']
+				$(".rName").attr('title', rName + '(原本选择房间)')
+				$(".rName").attr('value', rId)
+				$(".rAddr").html(rAddr)
+				$(".rSize").html(rSize)
+				form.render('radio')
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				console.log("ajax请求失败");
