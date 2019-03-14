@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import cn.drrs.face_meeting.service.MREventService;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.service.PMAttendService;
 import cn.drrs.face_meeting.service.RoomService;
+import cn.drrs.face_meeting.util.MailUtil;
 import cn.drrs.face_meeting.util.NoteResult;
 
 @Controller("meetingAddController")
@@ -41,7 +43,8 @@ public class MeetingAddController {
 	private PMAttendService attendService;
 	@Resource
 	private AnalyseService analyseService;
-
+	@Autowired
+	private MailUtil mailUtil;
 	// 根据选择的日期，显示当日剩余可用会议室时间轴分布
 	public NoteResult<Map<Time, Integer>> dailyAvilable(String dateInString) {
 		NoteResult<Map<Time, Integer>> result;
@@ -85,6 +88,17 @@ public class MeetingAddController {
 			}
 			attendService.insert(alist);
 			nr.setAll(0, "插入会议并安排会程成功", null);
+			//以下为邮件发送
+			System.out.println("groupEmailSend\n");
+			List<String> qqList = new ArrayList<String>();
+			//用户Id为邮箱地址
+			for (String pId : attends) {
+				qqList.add(pId);
+			}
+			String rName = roomService.findByrId(rId).getrName(); 
+			System.out.println("Receivers"+qqList);
+			//mailUtil.send(qqList, mTitle, "你有一个新的会议:\r\n时间："+startDate+"  "+startTime+"\r\n地点："+rName+"\r\n会议详情:\r\n"+mInfo+"\r\n详情登陆智能会议室管理系统");
+			
 		} catch (Exception e) {
 			nr.setAll(0, "插入会议并安排会程失败", null);
 			return nr;
