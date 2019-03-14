@@ -4,9 +4,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.drrs.face_meeting.entity.Room;
-import cn.drrs.face_meeting.service.MessageService;
 import cn.drrs.face_meeting.service.RoomService;
 import cn.drrs.face_meeting.util.NoteResult;
 
@@ -17,6 +17,8 @@ public class RoomController {
 	private RoomService service;
 	
 	//按ID查找会议室详情
+	@RequestMapping("/roomInfo.do")
+	@ResponseBody
 	public NoteResult<Room> findByrId(String rId){
 		NoteResult<Room> nr = new NoteResult<Room>();
 		try {

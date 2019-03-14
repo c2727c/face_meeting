@@ -70,6 +70,4 @@ public class SendMailController {
         }
         return "发送成功";
     }
-
-
 }
