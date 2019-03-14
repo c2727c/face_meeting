@@ -172,6 +172,33 @@ public class MeetingServiceImple implements MeetingService{
 		result.setMsg("按编号取唯一会议");
 		return result;
 	}
+	public NoteResult<JSONObject> findReport(int mNo) {
+		NoteResult<JSONObject> result = new NoteResult<JSONObject>();
+		Meeting m =meetingDao.findFullInfoBymNo(mNo);
+		List<PersonLight> checkedin= new ArrayList<PersonLight>(); 
+		List<PersonLight> noshow= new ArrayList<PersonLight>(); 
+		List<PersonLight> cancel= new ArrayList<PersonLight>(); 
+		for(PersonLight p:m.getmAttendList()) {
+			if(p.getState().equals("noshow")) {
+				noshow.add(p);
+			}else if(p.getState().equals("cancel")) {
+				cancel.add(p);
+			}else {
+				checkedin.add(p);
+			}
+		}
+		JSONObject jo = new JSONObject();
+		jo.put("checkedin", checkedin);
+		jo.put("noshow", noshow);
+		jo.put("cancel", cancel);
+		jo.put("checkedinNum", checkedin.size());
+		jo.put("noshowNum", noshow.size());
+		jo.put("cancelNum", cancel.size());
+		result.setData(jo);
+		result.setStatus(0);
+		result.setMsg("查询出勤报表");
+		return result;
+	}
 
 
 	public NoteResult<List<Meeting>> findAllRoom(int before, int after) {

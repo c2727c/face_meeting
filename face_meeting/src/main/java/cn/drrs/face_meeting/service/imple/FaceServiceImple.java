@@ -13,6 +13,7 @@ import cn.drrs.face_meeting.dao.PersonDao;
 import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.service.FaceService;
 import cn.drrs.face_meeting.util.NoteResult;
 
@@ -84,7 +85,7 @@ public class FaceServiceImple implements FaceService {
 
 	public NoteResult<Object> CheckIn(Meeting m, String pId) {
 		NoteResult<Object> nr = new NoteResult<Object>();
-		for(Person tmp : m.getmAttendList()) {
+		for(PersonLight tmp : m.getmAttendList()) {
 			//验证成功
 			if(tmp.getpId().equals(pId)) {
 				//签到

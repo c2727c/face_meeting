@@ -1,5 +1,6 @@
 package test.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.junit.Before;
@@ -63,6 +64,14 @@ public class GroupTest {
 		
 		
 
+	}
+	
+	@Test
+	public void encodeTest() {
+		String aa = "啊啊啊啊";
+		Base64.Encoder e = Base64.getEncoder();
+		String base64S = e.encodeToString(aa.getBytes());
+		System.out.println(base64S);
 	}
 	
 	

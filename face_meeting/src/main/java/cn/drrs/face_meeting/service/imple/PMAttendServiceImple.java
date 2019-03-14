@@ -12,6 +12,7 @@ import cn.drrs.face_meeting.dao.PMAttendDao;
 import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.service.PMAttendService;
 import cn.drrs.face_meeting.service.imple.UsbRelayServiceImple;
 import cn.drrs.face_meeting.util.NoteResult;
@@ -76,7 +77,7 @@ public class PMAttendServiceImple implements PMAttendService{
 	public NoteResult<Object> checkin(Attend attend) {
 		NoteResult<Object> nr=new NoteResult<Object>();
 		Meeting m = meetingDao.findFullInfoBymNo(attend.getmNo());
-		for(Person p:m.getmAttendList()) {
+		for(PersonLight p:m.getmAttendList()) {
 			if(p.getpId().equals(attend.getpId())) {
 				//验证成功
 				try {
