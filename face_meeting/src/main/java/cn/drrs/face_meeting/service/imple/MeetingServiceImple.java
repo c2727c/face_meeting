@@ -172,8 +172,8 @@ public class MeetingServiceImple implements MeetingService{
 		result.setMsg("按编号取唯一会议");
 		return result;
 	}
-	public NoteResult<JSONObject> findReport(int mNo) {
-		NoteResult<JSONObject> result = new NoteResult<JSONObject>();
+	public NoteResult<Report> findReport(int mNo) {
+		NoteResult<Report> result = new NoteResult<Report>();
 		Meeting m =meetingDao.findFullInfoBymNo(mNo);
 		List<PersonLight> checkedin= new ArrayList<PersonLight>(); 
 		List<PersonLight> noshow= new ArrayList<PersonLight>(); 
@@ -187,14 +187,15 @@ public class MeetingServiceImple implements MeetingService{
 				checkedin.add(p);
 			}
 		}
-		JSONObject jo = new JSONObject();
-		jo.put("checkedin", checkedin);
-		jo.put("noshow", noshow);
-		jo.put("canceled", cancel);
-		jo.put("checkedinNum", checkedin.size());
-		jo.put("noshowNum", noshow.size());
-		jo.put("cancelNum", cancel.size());
-		result.setData(jo);
+		Report rp = new Report();
+		rp.setmNo(m.getmNo());
+		rp.setCanceled(cancel);
+		rp.setCheckedin(checkedin);
+		rp.setNoshow(noshow);
+		rp.setCanceledNum(cancel.size());
+		rp.setCheckedinNum(checkedin.size());
+		rp.setNoshowNum(noshow.size());
+		result.setData(rp);
 		result.setStatus(0);
 		result.setMsg("查询出勤报表");
 		return result;
