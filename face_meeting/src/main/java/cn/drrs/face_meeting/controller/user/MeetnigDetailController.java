@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
+import cn.drrs.face_meeting.entity.Report;
 import cn.drrs.face_meeting.service.MeetingService;
 import cn.drrs.face_meeting.util.NoteResult;
 import net.sf.json.JSONObject;
@@ -32,7 +33,7 @@ public class MeetnigDetailController {
 	//查询出勤报表
 	@RequestMapping("/report.do")
 	@ResponseBody
-	public NoteResult<JSONObject> report(int mNo){
+	public NoteResult<Report> report(int mNo){
 		return service.findReport(mNo);
 	}
 	
