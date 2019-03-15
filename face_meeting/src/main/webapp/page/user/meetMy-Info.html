@@ -97,7 +97,7 @@
               <div class="layui-card-header layui-row" style="color:#c2c2c2">
                 <div class="layui-col-xs8">出勤报表</div>
                 <div class="layui-col-xs4" style="text-align:right">
-                  <button class="layui-btn  layui-btn-sm askForLeave" >
+                  <button class="layui-btn  layui-btn-sm askForLeave">
                     <i class="iconfont icon-qingjia point" style="font-size: 30px;"></i>
                   </button>
                 </div>
@@ -115,75 +115,24 @@
                   </div>
                   <div class="layui-col-xs4  centerAll">
                     <div class="layui-inline" style="padding-top: 20px;">
-                      出勤率：23/25
+                      出勤率：<div class="showPeople layui-inline">23/25</div>
                     </div>
                   </div>
                   <div class="layui-col-xs4 centerAll">
                     <div class="layui-inline" style="padding-top: 20px;">
-                      请假：1
+                      请假：<div class="showCancel layui-inline">1</div>
                     </div>
                   </div>
                 </div>
                 <div class="layui-row peoAll">
-                  <div class="layui-collapse">
-                    <div class="layui-colla-item layui-row">
-                      <h2 class="layui-colla-title">
-                        <i class="iconfont icon-yidao" style="font-size: 30px; "></i>
-                        已到
-                      </h2>
-                      <div class="layui-colla-content layui-row layui-show">
-                        <div class="layui-col-xs3">
-                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
-                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
-                        </div>
-                        <div class="layui-col-xs3">
-                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
-                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
-                        </div>
-                        <div class="layui-col-xs3">
-                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
-                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
-                        </div>
-                        <div class="layui-col-xs3">
-                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
-                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
-                        </div>
-                        <div class="layui-col-xs3">
-                          <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
-                          <div class="layui-row" style="text-align: center; font-size: 10px;">咚咚咚</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="layui-colla-item layui-row">
-                      <h2 class="layui-colla-title">
-                        <i class="iconfont icon-not-to" style="font-size: 30px; "></i>
-                        未到
-                      </h2>
-                      <div class="layui-colla-content layui-show">内容区域</div>
-                    </div>
-                    <div class="layui-colla-item layui-row">
-                      <h2 class="layui-colla-title">
-                        <i class="iconfont icon-qingjia1" style="font-size: 30px; "></i>
-                        请假
-                      </h2>
-                      <div class="layui-colla-content layui-show">内容区域</div>
-                    </div>
-                  </div>
+
+                  <div id="attendanceHtml"></div>
+
                 </div>
               </div>
             </div>
           </div>
 
-          <div style="padding: 5px; background-color: #F2F2F2;">
-            <div class="layui-card">
-              <div class="layui-card-header">
-                <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="username">xxx部长</cite>
-              </div>
-              <div class="layui-card-body">
-                通知：请大家带上笔
-              </div>
-            </div>
-          </div>
           <br>
         </div>
         <!-- 参会人员 -->
@@ -320,6 +269,52 @@
         <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
     </div>
     {{/each}}
+  </script>
+  <script id="attendance" type="text/html">
+  <div class="layui-collapse">
+    <div class="layui-colla-item layui-row">
+      <h2 class="layui-colla-title">
+        <i class="iconfont icon-yidao" style="font-size: 30px; "></i>
+        已到
+      </h2>
+      <div class="layui-colla-content layui-row layui-show">
+        {{ each checkedin value index}}
+        <div class="layui-col-xs3">
+          <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
+          <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
+        </div>
+        {{ /each}}
+      </div>
+    </div>
+    <div class="layui-colla-item layui-row">
+      <h2 class="layui-colla-title">
+        <i class="iconfont icon-not-to" style="font-size: 30px; "></i>
+        未到
+      </h2>
+      <div class="layui-colla-content layui-show">
+          {{ each noshow value index}}
+          <div class="layui-col-xs3">
+            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
+            <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
+          </div>
+          {{ /each}}
+      </div>
+    </div>
+    <div class="layui-colla-item layui-row">
+      <h2 class="layui-colla-title">
+        <i class="iconfont icon-qingjia1" style="font-size: 30px; "></i>
+        请假
+      </h2>
+      <div class="layui-colla-content layui-show">
+          {{ each canceled value index}}
+          <div class="layui-col-xs3">
+            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
+            <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
+          </div>
+          {{ /each}}
+      </div>
+    </div>
+  </div>
   </script>
 
 
