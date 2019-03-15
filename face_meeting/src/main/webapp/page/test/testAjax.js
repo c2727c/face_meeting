@@ -88,16 +88,15 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 	}
 	// });
 
-	var mNo = 24;
+	var mNo = 25;
 	var userId = 'user01'
-	var url = path + "/attend/askForLeave.do";
+	var url = path + "/meeting/report.do";
         console.log("请求controller的url是:" + url)
         $.ajax({
             url: url,
             type: "post",
             data: {
                 'mNo': mNo,
-                'pId': userId,
             },
             dataType: "json",
             success: function (data) {
