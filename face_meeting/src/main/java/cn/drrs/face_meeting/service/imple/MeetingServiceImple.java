@@ -181,7 +181,7 @@ public class MeetingServiceImple implements MeetingService{
 		for(PersonLight p:m.getmAttendList()) {
 			if(p.getState().equals("noshow")) {
 				noshow.add(p);
-			}else if(p.getState().equals("cancel")) {
+			}else if(p.getState().equals("canceled")) {
 				cancel.add(p);
 			}else {
 				checkedin.add(p);
@@ -190,7 +190,7 @@ public class MeetingServiceImple implements MeetingService{
 		JSONObject jo = new JSONObject();
 		jo.put("checkedin", checkedin);
 		jo.put("noshow", noshow);
-		jo.put("cancel", cancel);
+		jo.put("canceled", cancel);
 		jo.put("checkedinNum", checkedin.size());
 		jo.put("noshowNum", noshow.size());
 		jo.put("cancelNum", cancel.size());
