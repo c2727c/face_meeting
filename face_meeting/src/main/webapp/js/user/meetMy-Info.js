@@ -240,13 +240,13 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 console.log(data)
                 var html = template('attendance', data.data);
                 document.getElementById('attendanceHtml').innerHTML = html;
+                element.render('collapse');
 
                 var cancelNum = data['data']['cancelNum']
                 var checkedinNum = data['data']['checkedinNum']
                 var noshowNum = data['data']['noshowNum']
-                $(".showPeople").html(checkedinNum+'/'+(checkedinNum+noshowNum))
+                $(".showPeople").html(checkedinNum + '/' + (checkedinNum + noshowNum))
                 $(".showCancel").html(cancelNum)
-                
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
