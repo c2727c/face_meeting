@@ -20,7 +20,7 @@ public interface MREventService {
 	// 查找会程（按会议）
 	public NoteResult<List<Event>> findBymNo(int mNo);
 	// 查找会程（按多字段）
-	//public NoteResult<List<Event>> findByFields(int mNo,String rId,Date startDate);
+	public NoteResult<List<Event>> findByFields(int mNo,String rId,Date startDate);
 	public NoteResult<Object> update(Event e);
 	public NoteResult<List<Event>> getMyEvents(String pId,LocalDate ld,int option);
 	

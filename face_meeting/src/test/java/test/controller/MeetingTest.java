@@ -49,7 +49,7 @@ public class MeetingTest {
 		nr=mdc.detail(22);
 		System.err.println(JSONObject.fromObject(nr).toString());
 		NoteResult<JSONObject> nr2 = new NoteResult<JSONObject>();
-		nr2=mdc.report(22);
+//		nr2=mdc.report(22);
 		System.err.println(JSONObject.fromObject(nr2).toString());
 	}
 	@Test

@@ -73,7 +73,7 @@ public class MREventServiceImple implements MREventService{
 	public NoteResult<List<Event>> findByrIdDate(String rId,Date date) {
 		return findByFields(0,rId,date);
 	}
-	private NoteResult<List<Event>> findByFields(int mNo,String rId,Date startDate) {
+	public NoteResult<List<Event>> findByFields(int mNo,String rId,Date startDate) {
 		NoteResult<List<Event>> nr = new NoteResult<List<Event>>();
 		List<Event> list = mREventDao.findByFields(mNo,rId,startDate);
 		nr.setStatus(0);
