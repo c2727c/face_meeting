@@ -110,7 +110,7 @@
 	<select id="selectmAttendList" 
 		parameterType="int"
 		resultType="PersonLight">
-		select pId,pName,pRole,pDept,pIcon,state from person natural join pm_attend where mNo=#{mNo};
+		select person.* from person natural join pm_attend where mNo=#{mNo};
 	</select>
 	<select id="selectmInformList" 
 		parameterType="int"
