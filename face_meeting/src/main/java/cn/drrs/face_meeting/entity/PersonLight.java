@@ -23,7 +23,7 @@ public class PersonLight implements Serializable {
 	private String pRole = null;
 	private String pDept = null;
 	private byte[] pIcon = null;
-	private String state = null;
+	private String state = "";
 	
 	public PersonLight() {
 		super();
@@ -32,6 +32,14 @@ public class PersonLight implements Serializable {
 		super();
 		this.pId = pId;
 		this.setpName("--");
+	}
+	public PersonLight(Person p) {
+		this.pId = p.getpId();
+		this.pName = p.getpName();
+		this.pRole = p.getpRole();
+		this.pDept = p.getpDept();
+		this.pIcon = p.getpIcon();
+		this.state = "";
 	}
 
 	public String getpId() {
