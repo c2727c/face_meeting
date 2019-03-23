@@ -60,6 +60,7 @@
 	<script src="../../js/user/common.js" type="text/javascript"></script>
 	<script src="../../js/user/headName.js" type="text/javascript"></script>
 	<script>
+	window.onload = function () {
 		if (pIcon != null && pIcon != 'null') {
 			$(".userAvatar").attr("src", "data:image/jpeg;base64," + pIcon);
 		}
@@ -171,6 +172,7 @@
 				}
 			})
 		});
+	}
 	</script>
 </body>
 

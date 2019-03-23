@@ -198,7 +198,9 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             title: '请假理由',
             // area: ['100%', '%'] //自定义文本域宽高
         }, function (value, index, elem) {
-            alert(value); //得到value
+            // alert(value); //得到value
+            askLeave()
+
             layer.close(index);
         });
     })
@@ -217,8 +219,7 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             success: function (data) {
                 console.log("传过来的是：")
                 console.log(data)
-
-                $("#test1").html(JSON.stringify(data));
+                report();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log("ajax请求失败");
@@ -242,7 +243,7 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 document.getElementById('attendanceHtml').innerHTML = html;
                 element.render('collapse');
 
-                var cancelNum = data['data']['cancelNum']
+                var cancelNum = data['data']['canceledNum']
                 var checkedinNum = data['data']['checkedinNum']
                 var noshowNum = data['data']['noshowNum']
                 $(".showPeople").html(checkedinNum + '/' + (checkedinNum + noshowNum))
