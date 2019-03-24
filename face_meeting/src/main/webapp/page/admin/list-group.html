@@ -66,7 +66,6 @@
 		        table.on('tool(demo)', function(obj){
 		            var data = obj.data;
 		            if(obj.event === 'detail'){
-		                layer.msg('ID：'+ data.gId + ' 的查看操作');
 		                console.log(data);
 		                //发送ajax请求得到该组的成员数据信息
 		                /* $.ajax({
@@ -107,7 +106,7 @@
 				        		dataType:"json",
 				        		success:function(data){
 				        			if(data.status==0){
-				        				layer.msg(data.msg,{icon:6,time:1000});
+				        				layer.msg("删除成功",{icon:6,time:1000});
 				        				//删除后要更新界面,userList中对应的是lay-data中的id
 				        				table.reload('groupList',{
 				        					url:'../../admin/group/getPageofGroup.do',
@@ -132,16 +131,11 @@
 		                		form.render();
 		                	},
 		                	end:function(){
-		                		layer.msg("更新成功",{icon:6,time:1000});
 		                		table.reload('groupList',{
 		                			url:"../../admin/group/getPageofGroup.do",
 		                		});
 								//关闭当前页面，刷新添加后的表格
-								var index = parent.layer.getFrameIndex(window.name);  
-								//window.parent.location.reload(); //刷新父页面这样做会刷新全部，不推荐
-						        /* parent.table.reload('userList',{
-						        	url:"../../admin/room/getPageRoom.do",
-						        }); */
+								var index = parent.layer.getFrameIndex(window.name);
 						        parent.layer.close(index);
 		                	},
 		                });

@@ -88,15 +88,11 @@
 					dataType:"json",
 					success:function(data){
 						if(data.status==0){
-							layer.msg(data.msg,{icon:6,time:1000});
 							console.log(data.msg);
 							//关闭当前页面，刷新添加后的表格
 							var index = parent.layer.getFrameIndex(window.name);  
-							//window.parent.location.reload(); //刷新父页面这样做会刷新全部，不推荐
-					        /* parent.table.reload('userList',{
-					        	url:"../../admin/room/getPageRoom.do",
-					        }); */
 					        parent.layer.close(index);
+					        parent.layer.msg(data.msg,{icon:6,time:1000});//子窗口关闭之后后面的语句会接着执行
 						}else if(data.status==1){
 							layer.msg(data.msg,{icon:5,time:1000});
 						}

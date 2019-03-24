@@ -24,7 +24,6 @@ public class UserRegistController {
 	public NoteResult<Person> execute(@RequestBody(required = false) Person user) {
 		System.out.println("one /user/register.do REQUEST");
 		System.out.println(user);
-		user.setpId(user.getpTel().substring(user.getpTel().length()-6, user.getpTel().length()));
 		List<Person> users=new ArrayList<Person>();
 		users.add(user);
 		NoteResult<Person> result=userService.insert(users);

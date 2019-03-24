@@ -103,10 +103,7 @@
 		            			body.find(".pName").val(data.pName);
 		            			console.log(body.find(".pName"));
 		            			body.find(".pTel").val(data.pTel);
-		            			body.find("#form").val({
-		            				"pGender":data.pGender,
-		            			});//无用，对弹出框中的radio无法进行渲染·
-		            			body.find("pGender").val(data.pGender);
+		            			body.find(".pGender").val(data.pGender);
 		            			body.find(".pDept").val(data.pDept);
 		            			body.find(".pRole").val(data.pRole);
 		            			form.render();
@@ -127,7 +124,7 @@
 				        		dataType:"json",
 				        		success:function(data){
 				        			if(data.status==0){
-				        				layer.msg(data.msg,{icon:6,time:1000});
+				        				layer.msg("删除成功",{icon:6,time:1000});
 				        				//删除后要更新界面
 				        				table.reload('userList',{
 				        					url:'../../admin/user/getPageofUser.do',
@@ -140,7 +137,6 @@
 				        	})
 		                });
 		            } else if(obj.event === 'edit'){
-		                layer.msg('编辑行：<br>'+ JSON.stringify(data))
 		                layer.open({
 		                	type:2,
 		                	title:"编辑用户"+data.pName+"的资料",
@@ -166,7 +162,6 @@
 		            getCheckData: function(){ //获取选中数据
 		                var checkStatus = table.checkStatus('userList')
 		                        ,data = checkStatus.data;
-		                layer.alert(JSON.stringify(data));
 		                return data;
 		            }
 		            ,getCheckLength: function(){ //获取选中数目

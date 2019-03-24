@@ -16,6 +16,13 @@
 <body class="layui-layout-body">
     <div class="page-content-wrap">
         <form class="layui-form" action="" lay-filter="userAdd">
+        	<div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="email" required lay-verify="required|email" placeholder="请输入用户邮箱" autocomplete="off"
+                        class="layui-input" style="width: 200px;">
+                </div>
+            </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名称</label>
                 <div class="layui-input-block">
@@ -86,7 +93,7 @@
                     type: "post",
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify({
-                        "pId": data.field.tel,
+                        "pId": data.field.email,
                         "pName":data.field.name,
                         "pPass": data.field.password,
                         "pTel": data.field.tel,
@@ -114,7 +121,6 @@
                             //关闭子窗口，刷新父窗口
                             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 							parent.layer.close(index); //再执行关闭当前iframe页面
-							parent.location.reload();//刷新父页面
                         }
                     },
                     complete: function () {
