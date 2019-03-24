@@ -51,9 +51,7 @@ public class TestMeetingService {
 	public void testFindBymNo() {
 		NoteResult<List<Meeting>> nr;
 		Meeting m = ms.findBymNo(2).getData();
-		for(Person p:m.getmAttendList()) {
-			System.err.println(p.toString());
-		}
+
 		
 	}
 	
@@ -65,9 +63,7 @@ public class TestMeetingService {
 		nr=ms.findByFields(m);
 		nr.toString();
 		m = nr.getData().get(0);
-		for(Person p:m.getmAttendList()) {
-			System.err.println(p.toString());
-		}
+
 		
 	}
 	

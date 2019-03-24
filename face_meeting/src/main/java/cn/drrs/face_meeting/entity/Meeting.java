@@ -22,7 +22,7 @@ public class Meeting {
 	private Person creator;
 	//集合映射
 	private	List<Event> mEventList; 
-	private	List<Person> mAttendList;
+	private	List<PersonLight> mAttendList;
 	private	List<Person> mInformList;
 	//DONE 参会&报送名单映射
 	
@@ -133,10 +133,10 @@ public class Meeting {
 		}*/
 		this.mEventList = mEventList;
 	}
-	public List<Person> getmAttendList() {
+	public List<PersonLight> getmAttendList() {
 		return mAttendList;
 	}
-	public void setmAttendList(List<Person> mAttendList) {
+	public void setmAttendList(List<PersonLight> mAttendList) {
 		this.mAttendList = mAttendList;
 	}
 	public List<Person> getmInformList() {

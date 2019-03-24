@@ -1,5 +1,6 @@
 var roomData = ''
 var rId = ''
+var mNo = ''
 layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
     var element = layui.element;
     var layer = layui.layer;
@@ -10,7 +11,7 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
     //取得会议详情
     var url = path + "/meeting/detail.do";
     // console.log("请求controller的url是:" + url)
-    var mNo = parent.mNo;
+    mNo = parent.mNo;
     // console.log('iframe-mNo:' + mNo)
     $.ajax({
         url: url,
@@ -39,6 +40,8 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 $(".hidediv").css("display", "none");
             }
             tipAll();
+
+            report();
 
             //编辑会议,负责关闭页面并跳转
             $("#editMeet").on('click', function () {
@@ -90,19 +93,6 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 });
             });
 
-
-            //添加人员
-            $(".btnAddPeople").on('click', function () {
-                layer.open({
-                    type: 2,
-                    title: '添加人员',
-                    content: 'meetAdd-people.html',
-                    scrollbar: false,
-                    area: ["411px", "98%"],
-                });
-            });
-
-
             //上传文件
             var uploadInst = upload.render({
                 elem: '#uploadfile',
@@ -114,8 +104,6 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                     //请求异常回调
                 }
             });
-
-
 
         },
         error: function () {
@@ -198,9 +186,8 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
         });
     }
 
-
     $(".infoAttend").click(function () {
-
+        report();
         $(".peoAll").slideToggle();
     });
 
@@ -211,7 +198,9 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             title: '请假理由',
             // area: ['100%', '%'] //自定义文本域宽高
         }, function (value, index, elem) {
-            alert(value); //得到value
+            // alert(value); //得到value
+            askLeave()
+
             layer.close(index);
         });
     })
@@ -230,8 +219,36 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
             success: function (data) {
                 console.log("传过来的是：")
                 console.log(data)
+                report();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("ajax请求失败");
+            }
+        });
+    }
 
-                $("#test1").html(JSON.stringify(data));
+    function report() {
+        var url = path + "/meeting/report.do";
+        console.log("请求controller的url是:" + url)
+        $.ajax({
+            url: url,
+            type: "post",
+            data: {
+                'mNo': mNo,
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                var html = template('attendance', data.data);
+                document.getElementById('attendanceHtml').innerHTML = html;
+                element.render('collapse');
+
+                var cancelNum = data['data']['canceledNum']
+                var checkedinNum = data['data']['checkedinNum']
+                var noshowNum = data['data']['noshowNum']
+                $(".showPeople").html(checkedinNum + '/' + (checkedinNum + noshowNum))
+                $(".showCancel").html(cancelNum)
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log("ajax请求失败");

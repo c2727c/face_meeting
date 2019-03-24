@@ -23,6 +23,8 @@ public class PersonLight implements Serializable {
 	private String pRole = null;
 	private String pDept = null;
 	private byte[] pIcon = null;
+	private byte[] pFace = null;
+	private String state = "";
 	
 	public PersonLight() {
 		super();
@@ -31,6 +33,15 @@ public class PersonLight implements Serializable {
 		super();
 		this.pId = pId;
 		this.setpName("--");
+	}
+	public PersonLight(Person p) {
+		this.pId = p.getpId();
+		this.pName = p.getpName();
+		this.pRole = p.getpRole();
+		this.pDept = p.getpDept();
+		this.pIcon = p.getpIcon();
+		this.pFace = p.getpFace();
+		this.state = "";
 	}
 
 	public String getpId() {
@@ -63,6 +74,18 @@ public class PersonLight implements Serializable {
 	}
 	public void setpIcon(byte[] pIcon) {
 		this.pIcon = pIcon;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public byte[] getpFace() {
+		return pFace;
+	}
+	public void setpFace(byte[] pFace) {
+		this.pFace = pFace;
 	}
 
 

@@ -28,7 +28,7 @@
 			select="selectmEventList">
 		</collection>
 		<collection property="mAttendList" column="mNo"
-			ofType="cn.drrs.face_meeting.entity.Person"
+			ofType="PersonLight"
 			javaType="java.util.ArrayList"
 			select="selectmAttendList">
 		</collection>
@@ -109,7 +109,7 @@
 	</select>
 	<select id="selectmAttendList" 
 		parameterType="int"
-		resultType="Person">
+		resultType="PersonLight">
 		select person.* from person natural join pm_attend where mNo=#{mNo};
 	</select>
 	<select id="selectmInformList" 

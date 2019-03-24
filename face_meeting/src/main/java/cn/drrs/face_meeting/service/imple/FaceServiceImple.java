@@ -13,6 +13,7 @@ import cn.drrs.face_meeting.dao.PersonDao;
 import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.service.FaceService;
 import cn.drrs.face_meeting.util.NoteResult;
 
@@ -57,10 +58,10 @@ public class FaceServiceImple implements FaceService {
 		}
 		return nr;
 	}
-	public NoteResult<Person> faceRecognition(byte[] faceBytes){
+	public NoteResult<PersonLight> faceRecognition(byte[] faceBytes){
 		AFR_FSDKFace feature = new AFR_FSDKFace (faceBytes);
 		AFR_FSDKEngine engine = new AFR_FSDKEngine();
-		NoteResult<Person> nr = new NoteResult<Person>();
+		NoteResult<PersonLight> nr = new NoteResult<PersonLight>();
 		AFR_FSDKMatching score = new AFR_FSDKMatching();
 		//记录匹配度的最大值
 		float max = 0.0f;
@@ -75,7 +76,7 @@ public class FaceServiceImple implements FaceService {
 			} 
 		}
 		if (max > 0.6f) {
-			nr.setAll(0, "匹配成功，用户id"+p.getpId()+"匹配度："+max, p);
+			nr.setAll(0, "匹配成功，用户id"+p.getpId()+"匹配度："+max, new PersonLight(p));
 		}else{
 			nr.setAll(1,"匹配失败",null);
 		}
@@ -84,7 +85,7 @@ public class FaceServiceImple implements FaceService {
 
 	public NoteResult<Object> CheckIn(Meeting m, String pId) {
 		NoteResult<Object> nr = new NoteResult<Object>();
-		for(Person tmp : m.getmAttendList()) {
+		for(PersonLight tmp : m.getmAttendList()) {
 			//验证成功
 			if(tmp.getpId().equals(pId)) {
 				//签到

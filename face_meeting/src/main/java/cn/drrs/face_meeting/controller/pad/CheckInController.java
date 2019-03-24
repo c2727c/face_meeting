@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.drrs.face_meeting.entity.Attend;
 import cn.drrs.face_meeting.entity.Person;
+import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.service.FaceService;
 import cn.drrs.face_meeting.service.PMAttendService;
 import cn.drrs.face_meeting.service.imple.FaceServiceImple;
@@ -27,7 +28,7 @@ public class CheckInController {
 	//1.平板端给服务器提取出的人脸特征码，服务器返回给前端该用户的信息
 	@RequestMapping("/recognize.do") 
 	@ResponseBody
-	public NoteResult<Person> recognize(String face) {
+	public NoteResult<PersonLight> recognize(String face) {
 		final Base64.Decoder decoder = Base64.getDecoder();
 		byte[] faceBytes = decoder.decode(face);
 		return faceService.faceRecognition(faceBytes);
@@ -36,8 +37,8 @@ public class CheckInController {
 	//2.平板端提出签到并开门的请求（mNo，pId），服务器验证该用户是否属于该会议，若属于则更新参会状态，查找到对应房间的rId然后开启硬件
 	@RequestMapping("/checkin.do") 
 	@ResponseBody
-	public NoteResult<Object> checkin(@RequestBody(required = false) Attend attend) {
-		return attendService.checkin(attend);
+	public NoteResult<Object> checkin(int mNo,String pId) {
+		return attendService.checkin(new Attend(mNo,pId,""));
 	}
 
 }

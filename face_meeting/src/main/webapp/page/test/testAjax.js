@@ -88,28 +88,25 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 	}
 	// });
 
-	var mNo = 24;
-	var userId = 'user01'
-	var url = path + "/attend/askForLeave.do";
-        console.log("请求controller的url是:" + url)
-        $.ajax({
-            url: url,
-            type: "post",
-            data: {
-                'mNo': mNo,
-                'pId': userId,
-            },
-            dataType: "json",
-            success: function (data) {
-                console.log("传过来的是：")
-                console.log(data)
-
-                $("#test1").html(JSON.stringify(data));
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log("ajax请求失败");
-            }
-        });
+	var mNo = 25;
+//	var userId = 'user01'
+	var url = path + "/meeting/report.do";
+    layer.msg(url);
+	$.ajax({
+		url: url,
+		type: "post",
+		data: {
+			'mNo': mNo,
+		},
+		dataType: "json",
+		success: function (data) {
+            layer.alert('只想弱弱提示');
+			$("#test1").html(JSON.stringify(data));
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			layer.alert("ajax请求失败");
+		}
+	});
 
 
 });

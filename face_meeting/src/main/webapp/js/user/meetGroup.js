@@ -34,7 +34,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             },
             dataType: "json",
             success: function (data) {
-                // console.log(data)
+                console.log(data)
                 if (data.status == 0) {
                     // console.log("读入")
                     var html = template('meetGroup', {

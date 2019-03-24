@@ -172,6 +172,34 @@ public class MeetingServiceImple implements MeetingService{
 		result.setMsg("按编号取唯一会议");
 		return result;
 	}
+	public NoteResult<Report> findReport(int mNo) {
+		NoteResult<Report> result = new NoteResult<Report>();
+		Meeting m =meetingDao.findFullInfoBymNo(mNo);
+		List<PersonLight> checkedin= new ArrayList<PersonLight>(); 
+		List<PersonLight> noshow= new ArrayList<PersonLight>(); 
+		List<PersonLight> cancel= new ArrayList<PersonLight>(); 
+		for(PersonLight p:m.getmAttendList()) {
+			if(p.getState().equals("noshow")) {
+				noshow.add(p);
+			}else if(p.getState().equals("canceled")) {
+				cancel.add(p);
+			}else {
+				checkedin.add(p);
+			}
+		}
+		Report rp = new Report();
+		rp.setmNo(m.getmNo());
+		rp.setCanceled(cancel);
+		rp.setCheckedin(checkedin);
+		rp.setNoshow(noshow);
+		rp.setCanceledNum(cancel.size());
+		rp.setCheckedinNum(checkedin.size());
+		rp.setNoshowNum(noshow.size());
+		result.setData(rp);
+		result.setStatus(0);
+		result.setMsg("查询出勤报表");
+		return result;
+	}
 
 
 	public NoteResult<List<Meeting>> findAllRoom(int before, int after) {

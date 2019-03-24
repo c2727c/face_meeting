@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import cn.drrs.face_meeting.entity.Meeting;
+import cn.drrs.face_meeting.entity.Report;
 import cn.drrs.face_meeting.entity.ResponseData;
 import cn.drrs.face_meeting.util.NoteResult;
 import net.sf.json.JSONObject;
@@ -39,4 +40,5 @@ public interface MeetingService {
 //	public NoteResult<List<Meeting>> getMyMeetings(String pId,int option);
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option);
 	public NoteResult<Meeting> findFullInfoBymNo(int mNo);
+	public NoteResult<Report> findReport(int mNo);
 }
