@@ -2,8 +2,6 @@ package cn.drrs.face_meeting.service.imple;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
-
 import com.arcsoft.facerecognition.AFR_FSDKEngine;
 import com.arcsoft.facerecognition.AFR_FSDKFace;
 import com.arcsoft.facerecognition.AFR_FSDKMatching;

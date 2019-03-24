@@ -2,9 +2,10 @@ package cn.drrs.face_meeting.service.imple;
 
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.stereotype.Service;
-
 import com.usbrelay.UrDllBridge;
+
+
+
 
 //@Service("usbService")
 public class UsbRelayServiceImple {

@@ -55,7 +55,7 @@ layui.use(['form','layer','jquery'],function(){
                          icon: 6,//成功的表情
                          time: 1000 //1秒关闭（如果不配置，默认是3秒）
                      }, function(){
-                    	 window.location.href = "../../page/user_new/index.html";
+                    	 window.location.href = "../../page/admin/index.html";
                      });
                  }
             },

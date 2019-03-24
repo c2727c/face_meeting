@@ -77,6 +77,7 @@
             var element = layui.element;
 			var form = layui.form;
 			var layer = parent.layer===undefined?layui.layer:top.layer;
+            form.render()
 			//submit()中对应的是button的filter？？而不是form的
 			form.on('submit(addUserButton)',function(data){
 				console.log("111");

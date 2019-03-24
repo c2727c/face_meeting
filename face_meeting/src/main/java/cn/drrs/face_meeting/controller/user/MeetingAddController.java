@@ -97,7 +97,7 @@ public class MeetingAddController {
 			}
 			String rName = roomService.findByrId(rId).getrName(); 
 			System.out.println("Receivers"+qqList);
-			//mailUtil.send(qqList, mTitle, "你有一个新的会议:\r\n时间："+startDate+"  "+startTime+"\r\n地点："+rName+"\r\n会议详情:\r\n"+mInfo+"\r\n详情登陆智能会议室管理系统");
+//			mailUtil.send(qqList, mTitle, "你有一个新的会议:\r\n时间："+startDate+"  "+startTime+"\r\n地点："+rName+"\r\n会议详情:\r\n"+mInfo+"\r\n详情登陆智能会议室管理系统");
 			
 		} catch (Exception e) {
 			nr.setAll(0, "插入会议并安排会程失败", null);
