@@ -40,14 +40,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-block">
-                    <input type="password" name="password" required lay-verify="required|password" placeholder="默认密码123456"
+                    <input type="password" name="password" required lay-verify="required|password" id="password"
                          class="layui-input" style="width: 200px;">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码确认</label>
                 <div class="layui-input-block">
-                    <input type="password" name="passwordConfirm" required lay-verify="required|passwordConfirm" placeholder="默认密码123456"
+                    <input type="password" name="passwordConfirm" required lay-verify="required|passwordConfirm"  id = "passwordConfirm"
                         class="layui-input" style="width: 200px;">
                 </div>
             </div>
@@ -114,7 +114,7 @@
                                 icon: 5
                             }); //失败的表情
                         } else if (data.status == 0) {
-                            layer.msg(data.msg, {
+                            layer.msg("添加用户信息成功", {
                                 icon: 6, //成功的表情
                                 time: 1000 //1秒关闭（如果不配置，默认是3秒）
                             });

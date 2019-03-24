@@ -132,7 +132,7 @@
 	<!-- 表格所需的一些操作 -->
 	<!--分页查询数据，根据limit和page进行分页-->
     <select id="getPageofUser" parameterType="Map" resultType="cn.drrs.face_meeting.entity.Person">
-        SELECT pId,pName,pGender,pRole,pDept,pPrivilege,pIcon
+        SELECT *
         FROM  Person
         <if test="page!=null and limit!=null">
             limit #{page},#{limit}
