@@ -136,5 +136,59 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.1</version>
 		</dependency>
+
+		<!-- packaging指定打包文件为war类型需要引入maven打包的依赖包 -->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+
 	</dependencies>
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<!-- 对丢失web.xml检测机制进行忽略， Dynamic Web Module 3.0 工程时代不需要web.xml文件注册相关内容的，所以工程默认不生成web.xml。 -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<!-- true:跳过测试 -->
+					<skip>true</skip>
+					<encoding>UTF-8</encoding>
+					<!-- 既用maven编译，又使用lib下的Jar包 时必须加上此配置 -->
+					<compilerArgs>
+						<!-- 参数名和参数值成对出现，即第一个是名，第二个是值 -->
+						<arg>-extdirs</arg>
+						<arg>${project.basedir}/src/main/webapp/WEB-INF/lib</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+
 </project>
