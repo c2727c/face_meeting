@@ -84,7 +84,7 @@ public class PMAttendServiceImple implements PMAttendService{
 					attend.setState("到场");
 					update(attend);
 					String rId = m.getmEventList().get(0).getrId();
-					usbRelayService.openDoor(rId);
+//					usbRelayService.openDoor(rId);
 					nr.setAll(0, "签到并开启门禁成功", null);
 					return nr;
 				} catch (Exception e) {

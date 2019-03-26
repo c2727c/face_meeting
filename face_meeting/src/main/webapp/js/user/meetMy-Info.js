@@ -243,11 +243,11 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
                 document.getElementById('attendanceHtml').innerHTML = html;
                 element.render('collapse');
 
-                var cancelNum = data['data']['canceledNum']
+                var canceledNum = data['data']['canceledNum']
                 var checkedinNum = data['data']['checkedinNum']
                 var noshowNum = data['data']['noshowNum']
                 $(".showPeople").html(checkedinNum + '/' + (checkedinNum + noshowNum))
-                $(".showCancel").html(cancelNum)
+                $(".showCancel").html(canceledNum)
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

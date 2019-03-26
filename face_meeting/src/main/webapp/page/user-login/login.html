@@ -63,6 +63,8 @@
 	window.onload = function () {
 		if (pIcon != null && pIcon != 'null') {
 			$(".userAvatar").attr("src", "data:image/jpeg;base64," + pIcon);
+		}else {
+			$('.userAvatar').attr('src', "../../images/default.jpg");
 		}
 		layui.config({
 			base: '../../lib/layui_exts/'
