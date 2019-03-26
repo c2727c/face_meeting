@@ -1,4 +1,6 @@
 # 说明
 
-关于controller的测试，可以在网页文件夹下test的testAjax.js中修改url链接，从而显示不同的返回内容
-http://localhost:8080/face_meeting/page/test/testAjax.html
+
+war包成功，运行后生成的的war包实在与database平行的target目录下。
+
+放到服务器时，记得把face_meeting-0.0.1-SNAPSHOT.war改成face_meeting再放到tomcat的webapps目录下
