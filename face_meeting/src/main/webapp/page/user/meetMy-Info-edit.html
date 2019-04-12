@@ -39,13 +39,13 @@
 					<dd>
 						<a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i> 我的小组</a>
 					</dd>
-					<dd>
+<!-- 					<dd>
 						<a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
 					</dd>
 
 					<dd>
 						<a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
-					</dd>
+					</dd> -->
 				</dl>
 			</li>
 
@@ -224,11 +224,14 @@
 				<div class="layui-row " style="padding: 10px; background-color: #F2F2F2;">
 					<div class="layui-card  layui-row">
           <div class="layui-card-header">
-            <input type="radio" name="rId" value="{{value.rId}}" title="{{value.rName}}"/>
+            <input type="radio" name="rId" value="{{value.rId}}" title="{{value.rName}}{{ value.rAddr }}"/>
 					</div>
           <div class="layui-card-body">
-            位置：{{ value.rAddr }} &nbsp; &nbsp;
-            容纳人数：{{ value.rSize }}
+<div class="layui-row">
+<div class="layui-col-xs12">
+	房间信息：{{ value.rInfo }}，可容纳{{ value.rSize }}人
+</div>
+</div>
           </div>
         </div>
       </div>

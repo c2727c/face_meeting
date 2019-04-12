@@ -213,7 +213,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		// console.log(endTime)
 
 		var url = path + "/meeting/recommendRoom.do";
-		// console.log("请求controller的url是:" + url)
+//		 console.log("请求controller的url是:" + url)
 		$.ajax({
 			url: url,
 			type: "post",
@@ -227,7 +227,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			success: function (data) {
 				// console.log("传过来的是：")
 				// console.log("一次")
-				// console.log(data)
+//				 console.log(data)
 				// console.log("data.data是：" + JSON.stringify(data.data))
 				// $("#test1").html(JSON.stringify(data));
 				var str = data.data;
