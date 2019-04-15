@@ -45,7 +45,10 @@ public class MeetingAddController {
 	private AnalyseService analyseService;
 	@Autowired
 	private MailUtil mailUtil;
+
 	// 根据选择的日期，显示当日剩余可用会议室时间轴分布
+	@RequestMapping("/dailyAvilable.do")
+	@ResponseBody
 	public NoteResult<Map<Time, Integer>> dailyAvilable(String dateInString) {
 		NoteResult<Map<Time, Integer>> result;
 		Date date = Date.valueOf(dateInString);
@@ -88,17 +91,17 @@ public class MeetingAddController {
 			}
 			attendService.insert(alist);
 			nr.setAll(0, "插入会议并安排会程成功", null);
-			//以下为邮件发送
+			// 以下为邮件发送
 			System.out.println("groupEmailSend\n");
 			List<String> qqList = new ArrayList<String>();
-			//用户Id为邮箱地址
+			// 用户Id为邮箱地址
 			for (String pId : attends) {
 				qqList.add(pId);
 			}
-			String rName = roomService.findByrId(rId).getrName(); 
-			System.out.println("Receivers"+qqList);
+			String rName = roomService.findByrId(rId).getrName();
+			System.out.println("Receivers" + qqList);
 //			mailUtil.send(qqList, mTitle, "你有一个新的会议:\r\n时间："+startDate+"  "+startTime+"\r\n地点："+rName+"\r\n会议详情:\r\n"+mInfo+"\r\n详情登陆智能会议室管理系统");
-			
+
 		} catch (Exception e) {
 			nr.setAll(0, "插入会议并安排会程失败", null);
 			return nr;
@@ -119,10 +122,11 @@ public class MeetingAddController {
 		// 更新meeting
 		m = new Meeting(mNo, mTitle, mInfo, mSize, mSpan);
 		service.update(m);
-		System.err.println(m);		
+		System.err.println(m);
 		try {
 			// 更新m_event
-			Event e = new Event(mNo, rId, LocalDate.parse(startDate), LocalTime.parse(startTime), LocalTime.parse(endTime));
+			Event e = new Event(mNo, rId, LocalDate.parse(startDate), LocalTime.parse(startTime),
+					LocalTime.parse(endTime));
 			eventService.update(e);
 			System.err.println(e);
 			// 处理更新人员
