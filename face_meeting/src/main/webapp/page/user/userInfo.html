@@ -16,7 +16,7 @@
 	<link rel="icon" href="../../images/ico/favicon.ico">
 </head>
 
-<body>
+<body class="bg">
 	<!-- 导航条 -->
 	<div class="layui-header">
 		<ul class="layui-nav layui-bg-green">
@@ -36,13 +36,13 @@
 					<dd>
 						<a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i> 我的小组</a>
 					</dd>
-					<dd>
+<!-- 					<dd>
 						<a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
 					</dd>
 
 					<dd>
 						<a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
-					</dd>
+					</dd> -->
 				</dl>
 			</li>
 
@@ -68,10 +68,12 @@
 			</li>
 		</ul>
 	</div>
-	<br>
+
 	<div class="layui-container">
+		<div class="layui-row">
+		<div class="layui-col-md8 layui-col-lg8 inner-box">
 		<form class="layui-form layui-row" lay-filter="userInfo">
-			<div class="layui-col-md3 layui-col-xs12 user_right">
+			<div class="layui-col-md4 layui-col-xs12 user_right">
 				<div class="layui-upload-list">
 					<img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace" src="../../images/default.jpg">
 				</div>
@@ -80,6 +82,7 @@
 				</button>
 			</div>
 			<div class="layui-col-md6 layui-col-xs12">
+				<br>
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-block">
@@ -119,6 +122,8 @@
 				</div>
 			</div>
 		</form>
+		</div>
+		</div>
 	</div>
 	<script type="text/javascript" src="../../lib/layui/layui.js"></script>
 	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>

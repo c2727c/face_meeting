@@ -18,7 +18,7 @@ Author: Lorenzo Cioni - https://github.com/lorecioni
 			width: 200,
 			height: 16,
 			showButton: true,
-			buttonText: '查找人员',
+			buttonText: '查找',
 			onSubmit: function(text){},
 			onBlur: function(){}
 		}, params);
