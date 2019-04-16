@@ -15,25 +15,75 @@
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
+        var dataAxis = ["00:00:00", "01:00:00", "02:00:00", "03:00:00", "04:00:00", "05:00:00", "06:00:00", "07:00:00",
+            "08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00",
+            "16:00:00", "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00", "23:00:00"
+        ]
+        var data = [6, 6, 6, 6, 6, 6, 6, 5, 4, 4, 5, 6, 6, 6, 2, 6, 6, 6, 4, 6, 6, 6, 6, 6]
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'ECharts 入门示例'
+                text: '一天房间数分布',
+                subtext: '纯属虚构'
             },
-            tooltip: {},
-            legend: {
-                data:['销量']
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {}
+                }
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                type: 'category',
+                boundaryGap: false,
+                data: dataAxis
             },
-            yAxis: {},
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} 间'
+                },
+                axisPointer: {
+                    snap: true
+                }
+            },
+            visualMap: {
+                show: false,
+                dimension: 0,
+                pieces: [{
+                    lte: 6,
+                    color: 'green'
+                }, {
+                    gt: 6,
+                    lte: 8,
+                    color: 'red'
+                }, {
+                    gt: 8,
+                    lte: 14,
+                    color: 'green'
+                }, {
+                    gt: 14,
+                    lte: 17,
+                    color: 'red'
+                }, {
+                    gt: 17,
+                    color: 'green'
+                }]
+            },
             series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                name: '可用房间数',
+                type: 'line',
+                smooth: true,
+                data: data,
+
             }]
         };
+
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
