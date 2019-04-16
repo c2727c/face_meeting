@@ -5,11 +5,31 @@
  
 <!-- namespace 的值是 接口
   每个Mapper 接口对应一个配置文件  -->
+  
 <mapper namespace="cn.drrs.face_meeting.dao.AnalyseDao">
+    <resultMap type="cn.drrs.face_meeting.entity.dto.EChart" id="chartMap">
+		<collection property="dataAxis" column="count_point"
+			ofType="String"
+			javaType="java.util.ArrayList"
+			select = "selectDataAxis"
+			>
+		</collection>
+		<collection property="data" column="avilable_count"
+			ofType="Integer"
+			javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
 	<select id="dailyAvilable" 
 		parameterType="java.sql.Date"
 		resultType="java.util.Map">
 		SELECT count_point,(SELECT COUNT(*) FROM Room)-(SELECT COUNT(*) FROM MR_event WHERE startTime&lt;=count_point AND endTime>=count_point AND startDate=#{day}) 
 		AS 'avilable_count'FROM time_table;
 	</select>
+	<select id="dailyAvilable2" 
+		parameterType="java.sql.Date"
+		resultType="cn.drrs.face_meeting.entity.dto.AvilableCount">
+		SELECT count_point,(SELECT COUNT(*) FROM Room)-(SELECT COUNT(*) FROM MR_event WHERE startTime&lt;=count_point AND endTime>=count_point AND startDate=#{day}) 
+		AS 'avilable_count'FROM time_table;
+	</select>
+
 </mapper>
