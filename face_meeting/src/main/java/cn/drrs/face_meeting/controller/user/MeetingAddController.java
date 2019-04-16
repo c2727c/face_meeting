@@ -21,6 +21,7 @@ import cn.drrs.face_meeting.entity.Event;
 import cn.drrs.face_meeting.entity.Meeting;
 import cn.drrs.face_meeting.entity.Room;
 import cn.drrs.face_meeting.entity.RoomRestrict;
+import cn.drrs.face_meeting.entity.dto.EChart;
 import cn.drrs.face_meeting.service.AnalyseService;
 import cn.drrs.face_meeting.service.MREventService;
 import cn.drrs.face_meeting.service.MeetingService;
@@ -49,10 +50,10 @@ public class MeetingAddController {
 	// 根据选择的日期，显示当日剩余可用会议室时间轴分布
 	@RequestMapping("/dailyAvilable.do")
 	@ResponseBody
-	public NoteResult<Map<Time, Integer>> dailyAvilable(String dateInString) {
-		NoteResult<Map<Time, Integer>> result;
+	public NoteResult<EChart> dailyAvilable(String dateInString) {
+		NoteResult<EChart> result;
 		Date date = Date.valueOf(dateInString);
-		result = analyseService.dailyAvilable(date);
+		result = analyseService.dailyAvilable2(date);
 		return result;
 	}
 
