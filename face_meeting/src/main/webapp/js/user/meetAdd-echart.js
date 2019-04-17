@@ -79,7 +79,7 @@ function getEchart(dateInString) {
                             }],
                             global: false // 缺省为 false
                         },
-                        width: 2,
+                        width: 0,
                     },
                     areaStyle: {
                         color: {
@@ -90,10 +90,10 @@ function getEchart(dateInString) {
                             y2: 1,
                             colorStops: [{
                                 offset: 0,
-                                color: '#FF5722' // 0% 处的颜色
+                                color: '#F0FFFF' // 0% 处的颜色
                             }, {
                                 offset: 1,
-                                color: '#009688' // 100% 处的颜色
+                                color: '#48D1CC' // 100% 处的颜色
                             }],
                             global: false // 缺省为 false
                         }
