@@ -21,7 +21,7 @@ function getEchart(dateInString) {
                 },
                 grid: {
                     top: '5%',
-                    bottom: '10%',
+                    bottom: '15%',
                     left: '5%',
                     right: '5%',
                 },
@@ -39,11 +39,24 @@ function getEchart(dateInString) {
                 yAxis: {
                     type: 'value',
                     axisLabel: {
-                        formatter: '{value} '
+                        formatter: '{value}'
                     },
                     axisPointer: {
                         snap: true
+                    },
+                    axisLine: { //axisLine决定是否显示坐标刻度
+                        show: false,
+                    },
+                    axisLabel: { //决定是否显示数据
+                        show: false,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
                     }
+
                 },
                 series: [{
                     name: '可用房间数',
@@ -59,16 +72,32 @@ function getEchart(dateInString) {
                             y2: 1,
                             colorStops: [{
                                 offset: 0,
-                                color: '#5FB878' // 0% 处的颜色
+                                color: '#FF5722' // 0% 处的颜色
                             }, {
                                 offset: 1,
-                                color: '#1E9FFF' // 100% 处的颜色
+                                color: '#009688' // 100% 处的颜色
                             }],
                             global: false // 缺省为 false
                         },
                         width: 2,
                     },
-
+                    areaStyle: {
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0,
+                                color: '#FF5722' // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: '#009688' // 100% 处的颜色
+                            }],
+                            global: false // 缺省为 false
+                        }
+                    },
                 }]
 
             };
