@@ -38,9 +38,6 @@ function getEchart(dateInString) {
                 },
                 yAxis: {
                     type: 'value',
-                    axisLabel: {
-                        formatter: '{value}'
-                    },
                     axisPointer: {
                         snap: true
                     },
@@ -49,6 +46,9 @@ function getEchart(dateInString) {
                     },
                     axisLabel: { //决定是否显示数据
                         show: false,
+                        formatter: function (v) {
+                            return parseInt(v) //表示整数。其他数值类型以此类推
+                        }
                     },
                     axisTick: {
                         show: false,
