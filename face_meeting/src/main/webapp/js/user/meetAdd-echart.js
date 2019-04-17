@@ -63,6 +63,7 @@ function getEchart(dateInString) {
                     type: 'line',
                     smooth: true,
                     data: data,
+                    symbol:'none',
                     lineStyle: {
                         color: {
                             type: 'linear',
@@ -90,10 +91,10 @@ function getEchart(dateInString) {
                             y2: 1,
                             colorStops: [{
                                 offset: 0,
-                                color: '#F0FFFF' // 0% 处的颜色
+                                color: '#48D1CC' // 0% 处的颜色
                             }, {
                                 offset: 1,
-                                color: '#48D1CC' // 100% 处的颜色
+                                color: '#F0FFFF' // 100% 处的颜色
                             }],
                             global: false // 缺省为 false
                         }
