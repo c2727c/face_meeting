@@ -27,7 +27,7 @@ public class EChart {
 		dataAxis = new ArrayList<String> ();
 		data= new ArrayList<Integer> ();
 		for(AvilableCount ac  : lav) {
-			dataAxis.add(ac.getCount_point().toString());
+			dataAxis.add(ac.getCount_point().toString().substring(0, 5));
 			data.add(ac.getAvilable_count());
 		}
 	}
