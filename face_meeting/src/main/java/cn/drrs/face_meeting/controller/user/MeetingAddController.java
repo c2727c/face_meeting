@@ -48,6 +48,7 @@ public class MeetingAddController {
 	private MailUtil mailUtil;
 
 	// 根据选择的日期，显示当日剩余可用会议室时间轴分布
+	// 测试链接http://localhost:8080/face_meeting/meeting/dailyAvilable.do?dateInString=2019-04-16
 	@RequestMapping("/dailyAvilable.do")
 	@ResponseBody
 	public NoteResult<EChart> dailyAvilable(String dateInString) {

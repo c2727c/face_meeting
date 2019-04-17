@@ -87,13 +87,13 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			});
 
 			var month, day;
-			if  (mEventList['startDate']['monthValue'] < 10) {
-				month = '0' +  mEventList['startDate']['monthValue'];
+			if (mEventList['startDate']['monthValue'] < 10) {
+				month = '0' + mEventList['startDate']['monthValue'];
 			} else {
-				month =  mEventList['startDate']['monthValue']
+				month = mEventList['startDate']['monthValue']
 			}
-			if  (mEventList['startDate']['dayOfMonth'] < 10) {
-				day = '0' +  mEventList['startDate']['dayOfMonth'];
+			if (mEventList['startDate']['dayOfMonth'] < 10) {
+				day = '0' + mEventList['startDate']['dayOfMonth'];
 			} else {
 				day = mEventList['startDate']['dayOfMonth']
 			}
@@ -111,9 +111,13 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					// console.log(value); //得到日期生成的值，如：2017-08-18
 					// console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
 					startDate = value;
+					getEchart(startDate);
 					getRoomList();
 				}
 			});
+			//第一次加载图表
+			startDate = $(".startDate").val()
+			getEchart(startDate)
 
 			//人员
 			var mAttendList = data['data']['mAttendList']
