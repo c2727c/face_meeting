@@ -331,10 +331,10 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				var rName = data['data']['rName']
 				var rAddr = data['data']['rAddr']
 				var rSize = data['data']['rSize']
-				$(".rName").attr('title', rName + '(原本选择房间)')
+				var rInfo = data['data']['rInfo']
+				$(".rName").attr('title', rName + rAddr + '(原本选择)')
 				$(".rName").attr('value', rId)
-				$(".rAddr").html(rAddr)
-				$(".rSize").html(rSize)
+				$(".rInfo").html(rInfo + '，可容纳' + rSize + '人')
 				form.render('radio')
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {

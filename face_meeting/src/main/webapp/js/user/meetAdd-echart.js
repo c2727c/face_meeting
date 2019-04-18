@@ -28,7 +28,10 @@ function getEchart(dateInString) {
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
-                        type: 'cross'
+                        type: 'cross',
+                        lable: {
+                        	precision: '0',
+                        }
                     },
                     formatter: function (params) {
                         var result = ''
@@ -46,6 +49,7 @@ function getEchart(dateInString) {
                 },
                 yAxis: {
                     type: 'value',
+                    minInterval: 1,
                     axisPointer: {
                         snap: true
                     },

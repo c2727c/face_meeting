@@ -72,9 +72,18 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		var value = myHour * 12 + Math.ceil(myMin / 5)
 		return value;
 	}
+	//得到初始时间，当前时间10分钟之后为开始时间
 	var nowTime = initMytime();
-	$("#sTime").html(getTimeValue(nowTime + 2))
-	$("#eTime").html(getTimeValue(nowTime + 2 + 12))
+	var nowTimeS = nowTime + 2;
+	var nowTimeE = nowTime + 14;
+	if (nowTimeS < 288 && nowTimeE >= 288) {
+		nowTimeE = 287;
+	} else if (nowTimeS >= 288 && nowTimeE >= 288) {
+		nowTimeS = 287;
+		nowTimeE = 287;
+	}
+	$("#sTime").html(getTimeValue(nowTimeS))
+	$("#eTime").html(getTimeValue(nowTimeE))
 	getRoomList();
 
 	//滑动滑块提示时间
@@ -83,7 +92,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		max: 287, //288*5 min = 一天, 12*5 min= 1h
 		step: 1,
 		range: true,
-		value: [nowTime, nowTime + 12],
+		value: [nowTimeS, nowTimeE],
 		//theme: '#1E9FFF',
 		setTips: function (value) {
 			return getTimeValue(value);
