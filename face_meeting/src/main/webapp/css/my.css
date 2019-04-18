@@ -80,3 +80,9 @@
     top: 0;
     font-size: 14px;
 }
+
+/* 时间轴调整 */
+.tomove {
+    position: relative;
+    bottom: 35px;
+}

@@ -146,13 +146,13 @@
 								<input type="text" name="startDate" class="layui-input startDate" id="chosedate" />
 							</div>
 						</div>
-						<div class="layui-col-md6">
-							<!-- <label class="layui-form-label echartButton" style="cursor: pointer">显示图表</label> -->
+						<!-- <div class="layui-col-md6">
+							<label class="layui-form-label echartButton" style="cursor: pointer">显示图表</label>
 							<button class="layui-btn echartButton" type="button">
 								<i class="layui-icon layui-icon-chart-screen"></i>
 								显示图表
 							</button>
-						</div>
+						</div> -->
 					</div>
 					<!-- 可视图 -->
 					<div class="layui-row layui-col-space10 echart">
@@ -160,16 +160,19 @@
 							<div style="padding: 5px; background-color: #F2F2F2;">
 								<div class="layui-card">
 									<div class="layui-card-header">
-										当天房间数分布
+										选择时间
 									</div>
 									<div class="layui-card-body">
-										<div id="main" style="width: 100%;height:200px;"></div>
+										<div id="main" style="width: 100%;height:130px;"></div>
+									</div>
+									<div class="layui-row tomove">
+										<div id="slideTest1" style="width: 85%; margin:0 auto;"></div>
 									</div>
 								</div>
 							</div>
-							<br>
 						</div>
 					</div>
+
 					<div class="layui-row layui-col-space10">
 						<div class="layui-col-md6 layui-col-xs6">
 							<label class="layui-form-label">开始时间</label>
@@ -188,13 +191,7 @@
 							</div>
 						</div>
 					</div>
-					<br />
-					<br />
-					<div class="layui-row layui-col-space10">
-						<div id="slideTest1"></div>
-					</div>
-					<br />
-					<br />
+
 					<!-- 会议选择 -->
 					<div class="layui-row layui-col-space10">
 						<div class="layui-row">

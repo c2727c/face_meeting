@@ -29,6 +29,14 @@ function getEchart(dateInString) {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'cross'
+                    },
+                    formatter: function (params) {
+                        var result = ''
+                        var dotHtml = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#009688"></span>'
+                        params.forEach(function (item) {
+                            result += item.axisValue + "</br>" + dotHtml + '可用房间数：' + item.data
+                        })
+                        return result
                     }
                 },
                 xAxis: {
@@ -63,7 +71,7 @@ function getEchart(dateInString) {
                     type: 'line',
                     smooth: true,
                     data: data,
-                    symbol:'none',
+                    symbol: 'none',
                     lineStyle: {
                         color: {
                             type: 'linear',
