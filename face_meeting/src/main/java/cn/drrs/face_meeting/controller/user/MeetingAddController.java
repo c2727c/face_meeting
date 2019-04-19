@@ -63,7 +63,7 @@ public class MeetingAddController {
 	@RequestMapping("/recommendRoom.do")
 	@ResponseBody
 	public NoteResult<List<Room>> recommendRoom(int mSize, String startDate, String startTime, String endTime) {
-		RoomRestrict rr = new RoomRestrict(15, null, LocalDate.parse(startDate), LocalTime.parse(startTime),
+		RoomRestrict rr = new RoomRestrict(mSize, null, LocalDate.parse(startDate), LocalTime.parse(startTime),
 				LocalTime.parse(endTime));
 		return roomService.findByRoomRestrict(rr);
 	}

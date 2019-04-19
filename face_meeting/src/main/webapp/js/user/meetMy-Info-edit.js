@@ -305,7 +305,14 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 					document.getElementById('content').innerHTML = html;
 					//更新渲染
 					form.render("radio");
+				} else {
+					// console.log('当前无会议室')
+					var html = template('noroom', data);
+					document.getElementById('content').innerHTML = html;
+					//更新渲染
+					form.render("radio");
 				}
+
 
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {

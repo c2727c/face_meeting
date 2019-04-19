@@ -172,7 +172,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 						icon: 1,
 						time: 1500
 					}, function () {
-						window.location.href = "meetAdd.html"
+						window.location.href = "meetMy.html"
 					});
 
 				},
@@ -238,14 +238,18 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			},
 			dataType: "json",
 			success: function (data) {
-				// console.log("传过来的是：")
-				// console.log("一次")
-//				 console.log(data)
+				// console.log("传过来的是房间信息：")
+				//  console.log(data)
 				// console.log("data.data是：" + JSON.stringify(data.data))
-				// $("#test1").html(JSON.stringify(data));
 				var str = data.data;
 				if (str != '') {
 					var html = template('roomList', data);
+					document.getElementById('content').innerHTML = html;
+					//更新渲染
+					form.render("radio");
+				} else {
+					// console.log('当前无会议室')
+					var html = template('noroom', data);
 					document.getElementById('content').innerHTML = html;
 					//更新渲染
 					form.render("radio");
