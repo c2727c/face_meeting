@@ -20,6 +20,11 @@
 		parameterType="Attend">
 		update pm_attend set state=#{state} where mNo=#{mNo} and pId=#{pId};
 	</update>
+	<select id="conflictTest"
+		resultType="String">
+	    SELECT DISTINCT pId FROM person NATURAL JOIN pm_attend NATURAL JOIN mr_event 
+			WHERE startDate=#{startDate} AND #{startTime}&lt;endTime AND #{endTime}>startTime;
+	</select>
 	
 
 </mapper>

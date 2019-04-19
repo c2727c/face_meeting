@@ -1,6 +1,8 @@
 package cn.drrs.face_meeting.service.imple;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -96,6 +98,11 @@ public class PMAttendServiceImple implements PMAttendService{
 		}
 		nr.setAll(2, "不在该会议参会名单", null);
 		return nr;
+	}
+	@Override
+	public List<String> conflictTest(LocalDate startDate, LocalTime startTime, LocalTime endTime) {
+		List<String> confli =  dao.conflictTest(startDate,startTime,endTime);
+		return confli;
 	}
 
 }

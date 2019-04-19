@@ -57,6 +57,24 @@ public class MeetingAddController {
 		result = analyseService.dailyAvilable2(date);
 		return result;
 	}
+	
+	@RequestMapping("/conflictTest.do")
+	@ResponseBody
+	public NoteResult<List<String>> conflictTest(String attendList,String startDate, String startTime, String endTime) {
+		NoteResult<List<String>> nr = new NoteResult<List<String>>();
+		String[] attends = attendList.split(",");
+		List<String> conf = attendService.conflictTest(LocalDate.parse(startDate), LocalTime.parse(startTime),
+				LocalTime.parse(endTime));
+		List<String> re = new ArrayList<String>();
+		for(String s :attends) {
+			for(String c :conf) {
+				if(s.equals(c))re.add(s);
+				break;
+			}
+		}
+		nr.setAll(0, "会程冲突名单", conf);
+		return nr;
+	}
 
 	// 根据前端填写的表单，传上来房间限制RoomStrict，返回推荐可用的房间列表
 	// onblur就提交一次，更新推荐的房间列表

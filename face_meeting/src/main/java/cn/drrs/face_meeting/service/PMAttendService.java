@@ -1,5 +1,7 @@
 package cn.drrs.face_meeting.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import cn.drrs.face_meeting.entity.Attend;
@@ -17,6 +19,7 @@ public interface PMAttendService {
 	//修改参会状态
 	public NoteResult<Object> update(Attend a);
 	public NoteResult<Object> checkin(Attend attend);
+	public List<String> conflictTest(LocalDate startDate,LocalTime startTime,LocalTime endTime);
 	//按会议查询参会名单 Meeting集合映射
 	//public NoteResult<List<Person>> findAtdBymNo(int mNo);
 	
