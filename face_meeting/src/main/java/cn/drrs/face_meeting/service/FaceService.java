@@ -10,12 +10,12 @@ import cn.drrs.face_meeting.entity.PersonLight;
 import cn.drrs.face_meeting.util.NoteResult;
 
 public interface FaceService {
-	//提供人脸特征，返回匹配用户
-	public NoteResult<Person> faceRecognition(AFR_FSDKFace feature);
-	public NoteResult<PersonLight> faceRecognition(byte[] faceBytes);
-	//指定用户、会议，进行签到并开门2-22
-	public NoteResult<Object> CheckIn(Meeting m,String pId);
-	
-	
+//	//提供人脸特征，返回匹配用户
+////	public NoteResult<Person> faceRecognition(AFR_FSDKFace feature);
+//	public NoteResult<PersonLight> faceRecognition(byte[] faceBytes);
+//	//指定用户、会议，进行签到并开门2-22
+//	public NoteResult<Object> CheckIn(Meeting m,String pId);
+//	
+//	
 
 }

@@ -28,7 +28,7 @@ public class TestPersonService {
 	//测试登陆
 	@Test//正确输入
 	public void testLoginCorrect() {
-		NoteResult<Person> nr =ps.checkLogin("cCode", "t15", "123456");
+		NoteResult<Person> nr =ps.checkLogin("cCode", "941053481@qq.com", "123456");
 		nr.toString();
 	}//ok 2/5
 	//测试查找

@@ -72,7 +72,7 @@ public class MeetingAddController {
 				break;
 			}
 		}
-		nr.setAll(0, "会程冲突名单", conf);
+		nr.setAll(0, "会程冲突名单", re);
 		return nr;
 	}
 
