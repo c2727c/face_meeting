@@ -43,6 +43,7 @@ public class MeetingTest {
 		nr=mlc.getMyAttends("t15","2019-03-01");
 		System.err.println(JSONObject.fromObject(nr).toString());
 	}
+	
 	@Test
 	public void testDetail() {
 		NoteResult<Meeting> nr = new NoteResult<Meeting>();
@@ -70,9 +71,15 @@ public class MeetingTest {
 	}
 	@Test
 	public void addTest() {
-//		mac.add("KKK", "KKK", 5, 15, "t15", "A001", "2019-03-15", "00:00:00",  "01:00:00", "t15,t37,t38");
+		mac.add("KKK", "KKK", 5, 15, "t15", "A001", "2019-03-15", "00:00:00",  "01:00:00", "t15,t37,t38");
 		mac.add("KKK标题", "KKK内容", 5, 15, "user01", "A001", "2019-03-15", "00:00:00",  "01:00:00", ",user01,user02,user03");
 		
+	}
+	
+	@Test
+	public void confliTest() {
+		NoteResult<List<String>> nr = mac.conflictTest("user01,user02,user03,1659010991@qq.com", "2019-03-25", "15:30:00",  "16:00:00");
+		nr.printJSON();
 	}
 
 }
