@@ -75,7 +75,7 @@ public class MeetingTest {
 		mac.add("KKK标题", "KKK内容", 5, 15, "user01", "A001", "2019-03-15", "00:00:00",  "01:00:00", ",user01,user02,user03");
 		
 	}
-	
+	 
 	@Test
 	public void confliTest() {
 		NoteResult<List<String>> nr = mac.conflictTest("user01,user02,user03,1659010991@qq.com", "2019-03-25", "15:30:00",  "16:00:00");

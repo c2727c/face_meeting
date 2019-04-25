@@ -264,7 +264,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 
 	//调用ajax获得已选人员列表
 	function getPersonList(attendList) {
-		// console.log('attendList:'+attendList)		
+		console.log('attendList:'+attendList)		
 		var url = path + "/user/findUsers.do";
 		// console.log("请求controller的url是:" + url)
 		$.ajax({

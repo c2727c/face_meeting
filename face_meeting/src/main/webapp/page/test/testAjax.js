@@ -88,23 +88,52 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	// 	}
 	// });
 
-	var mNo = 25;
-//	var userId = 'user01'
-	var url = path + "/meeting/report.do";
-    layer.msg(url);
+// 	var mNo = 25;
+// //	var userId = 'user01'
+// 	var url = path + "/meeting/report.do";
+//     layer.msg(url);
+// 	$.ajax({
+// 		url: url,
+// 		type: "post",
+// 		data: {
+// 			'mNo': mNo,
+// 		},
+// 		dataType: "json",
+// 		success: function (data) {
+//             layer.alert('只想弱弱提示');
+// 			$("#test1").html(JSON.stringify(data));
+// 		},
+// 		error: function (XMLHttpRequest, textStatus, errorThrown) {
+// 			layer.alert("ajax请求失败");
+// 		}
+// 	});
+
+	var url = path + "/meeting/conflictTest.do";
+	console.log('url:'+url)
+	var attendList = '1210051224@qq.com,1659010991@qq.com'
+	var startDate = '2019-04-14'
+	var startTime = '22:00'
+	var endTime = '23:00'
+    // layer.msg(url);
 	$.ajax({
 		url: url,
 		type: "post",
 		data: {
-			'mNo': mNo,
+			'attendList': attendList,
+			'startDate': startDate,
+			'startTime': startTime,
+			'endTime': endTime,
 		},
 		dataType: "json",
 		success: function (data) {
-            layer.alert('只想弱弱提示');
-			$("#test1").html(JSON.stringify(data));
+			layer.alert('只想弱弱提示');
+			layer.alert(data)
+			console.log(data)
+			// $("#test1").html(JSON.stringify(data));
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
-			layer.alert("ajax请求失败");
+			// layer.alert("ajax请求失败");
+			console.log('ajax请求失败')
 		}
 	});
 
