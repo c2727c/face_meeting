@@ -31,7 +31,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre32_1.8"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0"/>
+	<classpathentry kind="lib" path="libs/ageestimation.jar"/>
+	<classpathentry kind="lib" path="libs/facedetection.jar"/>
+	<classpathentry kind="lib" path="libs/facerecognition.jar"/>
+	<classpathentry kind="lib" path="libs/facetracking.jar"/>
+	<classpathentry kind="lib" path="libs/genderestimation.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
