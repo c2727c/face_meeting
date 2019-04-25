@@ -63,7 +63,6 @@
 	</resultMap>
 	<insert id="save" useGeneratedKeys="true" 
 	    keyProperty="mNo" 
-	    keyColumn="mNo" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
 		insert into Meeting values(NULL,#{mTitle},#{mInfo},#{mSize},#{mSpan},DEFAULT,#{pId_FQ},'pass',DEFAULT);
 	</insert>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" href="../../images/ico/favicon.ico">
+<title>修改密码</title>
+<link rel="stylesheet" type="text/css"
+	href="../../lib/layui/css/layui.css" />
+<link rel="stylesheet" type="text/css" href="../../css/my.css" />
+</head>
+
+<body class="bg">
+
+	<!-- 导航条 -->
+	<div class="layui-header">
+		<ul class="layui-nav layui-bg-green">
+			<li class="layui-nav-item"><a class="" href="index.html"><i
+					class="layui-icon layui-icon-home"></i> 会议室管理</a></li>
+		</ul>
+		<ul class="layui-nav layui-layout-right layui-bg-green">
+			<!-- 会议预定 -->
+			<li class="layui-nav-item"><a class="" href="javascript:;">预定会议</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a href="meetAdd.html"><i
+							class="layui-icon layui-icon-add-circle"></i> 发起会议</a>
+					</dd>
+					<dd>
+						<a href="meetMy.html"><i class="layui-icon layui-icon-form"></i>
+							我的会议</a>
+					</dd>
+					<dd>
+						<a href="meetGroup.html"><i class="layui-icon layui-icon-user"></i>
+							我的小组</a>
+					</dd>
+					<!--                     <dd>
+                        <a href="meetMessage.html"><i class="layui-icon layui-icon-notice"></i> 消息中心</a>
+                    </dd>
+
+                    <dd>
+                        <a href="meetFile.html"><i class="layui-icon layui-icon-file"></i> 会议文件</a>
+                    </dd> -->
+				</dl></li>
+
+			<!-- 个人设置 -->
+			<li class="layui-nav-item" id="userInfo"><a href="javascript:;">
+					<img src="../../images/face.jpg" id="pIcon"
+					class="layui-nav-img userAvatar" width="35" height="35"> <cite
+					class="username" id="pName">咚咚咚</cite>
+			</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a href="userInfo.html" class=""> <i
+							class="layui-icon layui-icon-tabs"></i><cite>个人资料</cite>
+						</a>
+					</dd>
+					<dd>
+						<a href="userChangepwd.html" class=""> <i
+							class="layui-icon layui-icon-edit"></i><cite>修改密码</cite>
+						</a>
+					</dd>
+					<dd>
+						<a href="../user-login/login.html" class="signOut"><i
+							class=" layui-icon layui-icon-close-fill"></i><cite>退出账号</cite></a>
+					</dd>
+				</dl></li>
+		</ul>
+	</div>
+
+
+	<div class="layui-container">
+		<div class="layui-row">
+			<div class="layui-col-md8 layui-col-lg8 inner-box">
+				<br>
+				<form class="layui-form layui-row changePwd">
+					<div class="layui-col-xs12 layui-col-sm6 layui-col-md6">
+						<div class="layui-form-item">
+							<label class="layui-form-label">旧密码</label>
+							<div class="layui-input-block">
+								<input type="password" name="pOldPass" placeholder="请输入旧密码"
+									lay-verify="required|oldPwd" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">新密码</label>
+							<div class="layui-input-block">
+								<input type="password" name="pPass" required
+									lay-verify="required" placeholder="新密码" autocomplete="off"
+									class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">确认密码</label>
+							<div class="layui-input-block">
+								<input type="password" name="pPass2" required
+									lay-verify="required|passwordConfirm" placeholder="确认密码"
+									autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit lay-filter="changePwd">提交修改</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重新输入</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../lib/layui/layui.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+	<script src="../../js/user/headName.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/user/common.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script>
+		//JavaScript代码区域
+		layui.use([ 'element', 'layer', 'jquery', 'form' ], function() {
+			var element = layui.element;
+			var layer = layui.layer;
+			var $ = layui.$;
+			var form = layui.form;
+
+			//自定义验证规则
+			form.verify({
+				password : [ /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格' ],
+				passwordConfirm : function(value) {
+					var password = $("#password").val();
+					var passwordConfirm = $("#passwordConfirm").val();
+					if (password != passwordConfirm) {
+						return '密码不一致';
+					}
+				}
+			});
+
+			//监听提交
+			form.on('submit(changePwd)', function(data) {
+				$.ajax({
+					url : path + "/user/changePwd.do",
+					type : "post",
+					data : {
+						"pId" : userId,
+						"pOldpass" : data.field.pOldPass,
+						"pPass" : data.field.pPass,
+					},
+					dataType : "json",
+					success : function(data) {
+						console.log(data)
+						if (data.status == 1) {
+							layer.msg(data.msg, {
+								icon : 5
+							}); //失败的表情
+						} else if (data.status == 0) {
+							layer.msg('修改密码成功', {
+								icon : 6, //成功的表情
+								time : 1000
+							//1秒关闭（如果不配置，默认是3秒）
+							});
+						}
+					},
+					error : function() {
+						alert("ajax请求失败")
+					},
+				});
+				return false;
+			});
+
+		});
+	</script>
+</body>
+
+</html>
