@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="../../images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../lib/font_iconfont/iconfont.css" />
+  <title>会议详情</title>
+
+  <style>
+    .meet-circle {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 auto 10px;
+      text-align: center;
+      background-color: #1E9FFF;
+      cursor: pointer;
+      color: #fff;
+      border-radius: 50%;
+    }
+
+    .people-circle {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 auto 10px;
+      text-align: center;
+      border-width: 2px;
+      border-color: #1E9FFF;
+      border-style: solid;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .my-box {
+      border-style: solid;
+      border-width: 1px;
+      border-color: #c2c2c2;
+      text-align: center;
+      /* box-shadow:0px 0px  1px 1px #aaa; */
+      height: 80px;
+      border-radius: 8%;
+      padding: 8px;
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <div class="layui-container">
+    <br>
+    <!-- 会议信息 -->
+    <div style="padding: 5px; background-color: #F2F2F2;">
+      <div id="content">
+        <!-- 填入模板 -->
+      </div>
+
+    </div>
+    <hr>
+    <!-- 三个按钮 -->
+    <div class="layui-tab" lay-filter="docDemoTabBrief">
+      <ul class="layui-tab-title layui-row">
+        <li class="layui-this layui-col-xs4"><i class="layui-icon layui-icon-notice"></i> 通知公告</li>
+        <li class="layui-col-xs4"><i class="layui-icon layui-icon-user"></i> 参会名单</li>
+        <li class="layui-col-xs4"><i class="layui-icon layui-icon-file"></i> 会议文件</li>
+      </ul>
+      <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item  layui-show">
+          <div style="padding: 5px; background-color: #F2F2F2;">
+            <div class="layui-card">
+              <div class="layui-card-header">
+                <img src="../../images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="username">xxx部长</cite>
+              </div>
+              <div class="layui-card-body">
+                通知：请大家带上笔
+              </div>
+            </div>
+          </div>
+          <div style="padding: 5px; background-color: #F2F2F2;">
+            <!-- 出勤 -->
+            <div class="layui-card">
+              <div class="layui-card-header" style="color:#c2c2c2">出勤报表</div>
+              <div class="layui-card-body">
+                <div class="layui-row ">
+                  <div class="layui-col-xs4 meet-circle">
+                    <i class="layui-icon layui-icon-form" style="font-size: 30px;"></i>
+                  </div>
+
+                  <div class="layui-col-xs8 layui-col-xs-offset2">
+                    <div class="layui-row">
+                      <div class="layui-col-xs8">出勤率：23/25</div>
+                      <div class="layui-col-xs4">请假：1</div>
+                    </div>
+                    <div class="layui-row">
+                      <div class="layui-col-xs3  layui-col-xs-offset8">
+                        <button class="layui-btn layui-btn-sm  layui-btn-normal">详情<i class="layui-icon layui-icon-next"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br>
+        </div>
+        <div class="layui-tab-item">
+          <br>
+          <div class="layui-row">
+            <div class="layui-col-xs3 hidediv">
+              <div class="layui-row people-circle btnAddPeople"><i class="layui-icon layui-icon-add-1" style="font-size: 30px; color: #1E9FFF;"></i></div>
+              <div class="layui-row" style="text-align: center;">邀请</div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row" style="text-align: center;"><img src="../../images/face.jpg" class="people-circle"></div>
+              <div class="layui-row" style="text-align: center;">咚咚咚</div>
+            </div>
+            <!-- 后续例子 -->
+            <div class="layui-col-xs3">
+              <div class="layui-row" style="text-align: center;"><img src="../../images/face1.jpg" class="people-circle"></div>
+              <div class="layui-row" style="text-align: center;">咚咚咚</div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row" style="text-align: center;"><img src="../../images/face2.jpg" class="people-circle"></div>
+              <div class="layui-row" style="text-align: center;">咚咚咚</div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row" style="text-align: center;"><img src="../../images/face3.jpg" class="people-circle"></div>
+              <div class="layui-row" style="text-align: center;">咚咚咚</div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row" style="text-align: center;"><img src="../../images/face4.jpg" class="people-circle"></div>
+              <div class="layui-row" style="text-align: center;">咚咚咚</div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="layui-tab-item">
+          <br>
+          <div class="layui-row layui-col-space10">
+            <div class="layui-col-xs3">
+              <div class="layui-row my-box" id="uploadfile">
+                <i class="layui-icon layui-icon-upload-circle" style="font-size: 50px; color: #1E9FFF;"></i>
+                <div class="layui-row">上传文件</div>
+              </div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row my-box">
+                <i class="iconfont icon-DOC" style="font-size: 50px; "></i>
+                <div class="layui-row">会议章程</div>
+              </div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row my-box">
+                <i class="iconfont icon-PPT" style="font-size: 50px;"></i>
+                <div class="layui-row">会议ppt</div>
+              </div>
+            </div>
+            <div class="layui-col-xs3">
+              <div class="layui-row my-box">
+                <i class="iconfont icon-yasuobao" style="font-size: 50px;"></i>
+                <div class="layui-row">其它资料</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br>
+
+  </div>
+
+  <!-- 详情模板 -->
+  <script id="time" type="text/html">
+    {{ startDate.year}}-{{ startDate.monthValue}}-{{startDate.dayOfMonth}}
+    &nbsp &nbsp
+    {{ startDate.dayOfWeek }}
+    <br>
+    {{if startTime.hour< 10}}
+        0{{startTime.hour}}:
+    {{ else if startTime.hour >= 10}}
+        {{startTime.hour}}:
+    {{/if}}
+    {{if startTime.minute< 10}}
+        0{{startTime.minute}}
+    {{ else if startTime.minute >= 10}}
+        {{startTime.minute}}
+    {{/if}}
+    -
+    {{if endTime.hour< 10}}
+        0{{endTime.hour}}:
+    {{ else if endTime.hour >= 10}}
+        {{endTime.hour}}:
+    {{/if}}
+    {{if endTime.minute< 10}}
+        0{{endTime.minute}}
+    {{ else if endTime.minute >= 10}}
+        {{endTime.minute}}
+    {{/if}}
+  </script>
+  <script id="meetInfo" type="text/html">
+    <div class="layui-card">
+        <div class="layui-card-header">
+          <div class="layui-row">
+            <h3 class="layui-col-xs10" style="font-weight:bold">{{ mTitle }}</h3>
+            <div class="hidediv">
+              <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
+                <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
+              </button>
+              <button class="layui-btn layui-btn-sm  layui-btn-normal" id="editMeet">
+                <i class="layui-icon layui-icon-delete btnDelGroup" style="font-size: 30px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div class="layui-row">
+            <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
+            <div class="layui-col-xs10">{{ mInfo }}</div>
+          </div>
+          <br>
+          <div class="layui-row">
+            <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
+            <div class="layui-col-xs10">
+              
+              {{ each mEventList}}
+                {{include 'time' $value}} <!--引入子模板-->
+              {{/each}}
+            </div>
+          </div>
+          <br>
+          <div class="layui-row">
+            <div class="layui-col-xs2" style="color:#c2c2c2">地点：</div>
+            <div class="layui-col-xs10">
+              {{ each mEventList}}
+                {{ $value.rId }}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+  </script>
+
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/art-template/template-web.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+  <script src="../../js/user/common.js" type="text/javascript"></script>
+  <script src="../../js/user/headName.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>
+    layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
+      var element = layui.element;
+      var layer = layui.layer;
+      var form = layui.form;
+      var $ = layui.$;
+      var upload = layui.upload;
+
+      //取得会议详情
+      var url = path + "/meeting/detail.do";
+      // console.log("请求controller的url是:" + url)
+      var mNo = parent.mNo;
+      // console.log('iframe-mNo:' + mNo)
+      $.ajax({
+        url: url,
+        type: "post",
+        data: {
+          "mNo": mNo,
+        },
+        dataType: "json",
+        success: function (data) {
+          // console.log("data.data是：" + JSON.stringify(data.data))
+          var html = template('meetInfo', data.data);
+          document.getElementById('content').innerHTML = html;
+
+          if (parent.urladd == parent.url1) {
+            console.log("隐藏")
+            $(".hidediv").css("display", "none");
+          }
+
+          //提示编辑
+          var tip_index = 0;
+          $(document).on('mouseenter', '#editMeet', function () {
+            tip_index = layer.tips('编辑会议', '#editMeet', {
+              time: 1000
+            });
+          }).on('mouseleave', '#editMeet', function () {
+            layer.close(tip_index);
+          });
+
+          //询问框是否删除
+          $(".btnDelGroup").click(function () {
+            layer.confirm('确定删除当前会议？', {
+              btn: ['确定', '取消'] //按钮
+            }, function () {
+              layer.msg('删除完成', {
+                icon: 1,
+                time: 1000,
+              });
+            }, function () {
+
+            });
+          });
+
+          //tip删除
+          var tip_index = 0;
+          $(".btnDelGroup").mouseenter(function () {
+            var index = $(".btnDelGroup").index(this);
+            var str = '.btnDelGroup:eq(' + index + ')';
+            tip_index = layer.tips('退出工作组', str, {
+              time: 1000
+            });
+          });
+          $(".btnDelGroup").mouseleave(function () {
+            layer.close(tip_index);
+          });
+
+          //添加人员
+          $(".btnAddPeople").on('click', function () {
+            layer.open({
+              type: 2,
+              title: '添加人员',
+              content: 'meetAdd-people.html',
+              scrollbar: false,
+              area: ["411px", "98%"],
+            });
+          });
+
+          //编辑会议,负责关闭页面并跳转
+          $("#editMeet").on('click', function () {
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            // console.log(index);
+            parent.gotoEditMeet(index, data.data)
+            // parent.layer.close(index); //再执行关闭   
+          });
+
+          //上传文件
+          var uploadInst = upload.render({
+            elem: '#uploadfile',
+            url: '/upload/', //上传接口
+            done: function (res) {
+              //上传完毕回调
+            },
+            error: function () {
+              //请求异常回调
+            }
+          });
+        },
+        error: function () {
+          console.log("ajax请求失败");
+        }
+      })
+
+
+    });
+  </script>
+</body>
+
+</html>
