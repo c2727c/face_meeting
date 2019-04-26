@@ -109,6 +109,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			startTime = value[0];
 			endTime = value[1];
 			getRoomList();
+			testConflict();
 		}
 	});
 
@@ -226,7 +227,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		// console.log(endTime)
 
 		var url = path + "/meeting/recommendRoom.do";
-//		 console.log("请求controller的url是:" + url)
+		//		 console.log("请求controller的url是:" + url)
 		$.ajax({
 			url: url,
 			type: "post",
@@ -264,7 +265,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 
 	//调用ajax获得已选人员列表
 	function getPersonList(attendList) {
-		console.log('attendList:'+attendList)		
+		console.log('attendList:' + attendList)
 		var url = path + "/user/findUsers.do";
 		// console.log("请求controller的url是:" + url)
 		$.ajax({
@@ -288,5 +289,73 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			}
 		});
 	}
+
+	//测试人员冲突
+	function testConflict() {
+		var url = path + "/meeting/conflictTest.do";
+		console.log('url:' + url)
+		startDate = $(".startDate").val()
+		startTime = $(".startTime").text()
+		endTime = $(".endTime").text()
+
+		$.ajax({
+			url: url,
+			type: "post",
+			data: {
+				'attendList': attendList,
+				'startDate': startDate,
+				'startTime': startTime,
+				'endTime': endTime,
+			},
+			dataType: "json",
+			success: function (data) {
+				console.log(data)
+				if (data.data != "") {
+					var dataPeo = data.data[0];
+					// console.log('dataPeo:')
+					// console.log(dataPeo)
+					var attendArry = [];
+					attendArry = dataPeo.split(',');
+					// console.log('attendArry:')
+					// console.log(attendArry)
+					$(".peoName").each(function (i) {
+						var test = $(this).data('pid');
+						// console.log("这是data-pid")
+						// console.log(test)
+						$(this).removeClass("conflictName");
+						for (j = 0; j < attendArry.length; j++) {
+							if (test == attendArry[j]) {
+								$(this).addClass("conflictName");
+							}
+						}
+					});
+
+					//提示冲突人员
+					layer.tips('该时间段有人员冲突', '.layui-slider-bar', {
+						tips: [1, '#FF5722']
+					});
+
+				} else {
+					$(".peoName").each(function (i) {
+						$(this).removeClass("conflictName");
+					})
+				}
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				console.log('ajax请求失败')
+			}
+		});
+
+	}
+
+	//提示冲突人员
+	var tip_index = 0;
+	$(document).on('mouseenter', '.conflictName', function () {
+		tip_index = layer.tips('该时间段冲突', '.conflictName', {
+			time: 2000
+		});
+	}).on('mouseleave', '.conflictName', function () {
+		layer.close(tip_index);
+	});;
 
 })

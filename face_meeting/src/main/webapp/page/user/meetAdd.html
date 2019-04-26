@@ -45,7 +45,6 @@
 						<a href="meetMessage.html"><i
 							class="layui-icon layui-icon-notice"></i> 消息中心</a>
 					</dd>
-
 					<dd>
 						<a href="meetFile.html"><i class="layui-icon layui-icon-file"></i>
 							会议文件</a>
@@ -156,24 +155,6 @@
 							</button>
 						</div> -->
 					</div>
-					<!-- 可视图 -->
-					<div class="layui-row layui-col-space10 echart">
-						<div class="layui-row">
-							<div style="padding: 5px; background-color: #F2F2F2;">
-								<div class="layui-card">
-									<div class="layui-card-header">
-										选择时间
-									</div>
-									<div class="layui-card-body">
-										<div id="main" style="width: 100%;height:130px;"></div>
-									</div>
-									<div class="layui-row tomove">
-										<div id="slideTest1" style="width: 85%; margin:0 auto;"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 					<div class="layui-row layui-col-space10">
 						<div class="layui-col-md6">
 							<label class="layui-form-label">开始时间</label>
@@ -189,6 +170,25 @@
 								<div class="layui-input endTime" name="endTime" style="padding: 11px;" id="eTime">8:00
 								</div>
 								<!-- <input type="text" value="08:00" placeholder="" lay-verify="required" class="layui-input" /> -->
+							</div>
+						</div>
+					</div>
+
+					<!-- 可视图 -->
+					<div class="layui-row layui-col-space10 echart">
+						<div class="layui-row">
+							<div style="padding: 5px; background-color: #F2F2F2;">
+								<div class="layui-card">
+									<div class="layui-card-header">
+										选择时间
+									</div>
+									<div class="layui-card-body">
+										<div id="main" style="width: 100%;height:130px;"></div>
+									</div>
+									<div class="layui-row tomove">
+										<div id="slideTest1" style="width: 85%; margin:0 auto;"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -243,11 +243,11 @@
 	</script>
 	<script id="personList" type="text/html">
 		{{each data  value index}}
-		<div class="layui-col-xs2">
+		<div class="layui-col-xs2 peoName"  data-pid="{{value.pId}}">
 			<div class="layui-row" style="text-align: center;">
 				<img src="data:image/jpeg;base64,{{value.pIcon}}" class="layui-circle personImag">
 			</div>
-			<div class="layui-row" style="text-align: center;">{{value.pName}}</div>
+			<div class="layui-row " style="text-align: center;">{{value.pName}}</div>
 		</div>
 		{{/each}}
 	</script>
