@@ -298,6 +298,12 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		startTime = $(".startTime").text()
 		endTime = $(".endTime").text()
 
+		console.log('testConflict输入：')
+		console.log(attendList)
+		console.log(startDate)
+		console.log(startTime)
+		console.log(endTime)
+
 		$.ajax({
 			url: url,
 			type: "post",
@@ -330,11 +336,20 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 						}
 					});
 
-					//提示冲突人员
-					layer.tips('该时间段有人员冲突', '.layui-slider-bar', {
-						tips: [1, '#FF5722']
-					});
+					if (attendArry != '') {
+						//提示冲突人员
+						var tip_index = 0;
+						$(document).on('mouseenter', '.layui-slider-bar,.layui-slider-wrap', function () {
+							tip_index = layer.tips('该时间段有人员冲突', '.layui-slider-bar,.layui-slider-wrap', {
+								time: 2000,
+								tips: ['#FF5722']
+							});
+						}).on('mouseleave', '.layui-slider-bar,.layui-slider-wrap', function () {
+							layer.close(tip_index);
+						});
 
+						
+					}
 				} else {
 					$(".peoName").each(function (i) {
 						$(this).removeClass("conflictName");

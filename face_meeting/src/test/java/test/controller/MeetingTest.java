@@ -78,7 +78,7 @@ public class MeetingTest {
 	 
 	@Test
 	public void confliTest() {
-		NoteResult<List<String>> nr = mac.conflictTest("user01,user02,user03,1659010991@qq.com", "2019-03-25", "15:30:00",  "16:00:00");
+		NoteResult<List<String>> nr = mac.conflictTest("user01,user02,user03,1659010991@qq.com", "2019-04-14", "14:10:00",  "22:15:00");
 		nr.printJSON();
 	}
 
