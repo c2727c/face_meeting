@@ -353,15 +353,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 							layer.close(tip_index);
 						});
 
-						//时间轴提示冲突人员
-						// var tip_index = 0;
-						// $(document).on('mouseenter', '.infoAttend', function () {
-						// 	tip_index = layer.tips('查看详情', '.infoAttend', {
-						// 		time: 1000
-						// 	});
-						// }).on('mouseleave', '.infoAttend', function () {
-						// 	layer.close(tip_index);
-						// });
 		                $(".mytips").css("display", "inline");
 					} else {
 						$(".peoName").each(function (i) {
