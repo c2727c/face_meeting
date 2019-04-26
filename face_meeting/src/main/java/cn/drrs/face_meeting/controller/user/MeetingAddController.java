@@ -70,6 +70,7 @@ public class MeetingAddController {
 		for(String s :attends) {
 			for(String c :conf) {
 				if(s.equals(c))re.add(s);
+				break;
 			}
 		}
 		nr.setAll(0, "会程冲突名单", re);
