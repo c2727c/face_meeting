@@ -58,6 +58,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			startDate = value;
 			getEchart(startDate);
 			getRoomList();
+			testConflict();
 		}
 	});
 	//第一次加载图表
@@ -138,16 +139,16 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				time: 1500
 			});
 		} else {
-			console.log(mTitle)
-			console.log(mInfo)
-			console.log(mSize)
-			console.log(mSpan)
-			console.log(pId_FQ)
-			console.log(rId)
-			console.log(startDate)
-			console.log(startTime)
-			console.log(endTime)
-			console.log(attendList)
+			// console.log(mTitle)
+			// console.log(mInfo)
+			// console.log(mSize)
+			// console.log(mSpan)
+			// console.log(pId_FQ)
+			// console.log(rId)
+			// console.log(startDate)
+			// console.log(startTime)
+			// console.log(endTime)
+			// console.log(attendList)
 			var url = path + "/meeting/add.do";
 			// console.log("请求controller的url是:" + url)
 			$.ajax({
@@ -265,7 +266,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 
 	//调用ajax获得已选人员列表
 	function getPersonList(attendList) {
-		console.log('attendList:' + attendList)
+		// console.log('attendList:' + attendList)
 		var url = path + "/user/findUsers.do";
 		// console.log("请求controller的url是:" + url)
 		$.ajax({
@@ -282,6 +283,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 				if (str != '') {
 					var html = template('personList', data);
 					document.getElementById('content2').innerHTML = html;
+					testConflict();
 				}
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -293,84 +295,88 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 	//测试人员冲突
 	function testConflict() {
 		var url = path + "/meeting/conflictTest.do";
-		console.log('url:' + url)
+		// console.log('url:' + url)
 		startDate = $(".startDate").val()
 		startTime = $(".startTime").text()
 		endTime = $(".endTime").text()
+		// console.log('testConflict输入：')
+		// console.log(attendList)
+		// console.log(startDate)
+		// console.log(startTime)
+		// console.log(endTime)
 
-		console.log('testConflict输入：')
-		console.log(attendList)
-		console.log(startDate)
-		console.log(startTime)
-		console.log(endTime)
-
-		$.ajax({
-			url: url,
-			type: "post",
-			data: {
-				'attendList': attendList,
-				'startDate': startDate,
-				'startTime': startTime,
-				'endTime': endTime,
-			},
-			dataType: "json",
-			success: function (data) {
-				console.log(data)
-				if (data.data != "") {
-					var dataPeo = data.data[0];
-					// console.log('dataPeo:')
-					// console.log(dataPeo)
-					var attendArry = [];
-					attendArry = dataPeo.split(',');
-					// console.log('attendArry:')
-					// console.log(attendArry)
-					$(".peoName").each(function (i) {
-						var test = $(this).data('pid');
-						// console.log("这是data-pid")
-						// console.log(test)
-						$(this).removeClass("conflictName");
-						for (j = 0; j < attendArry.length; j++) {
-							if (test == attendArry[j]) {
-								$(this).addClass("conflictName");
+		if (attendList != '') {
+			$.ajax({
+				url: url,
+				type: "post",
+				data: {
+					'attendList': attendList,
+					'startDate': startDate,
+					'startTime': startTime,
+					'endTime': endTime,
+				},
+				dataType: "json",
+				success: function (data) {
+					// console.log(data)
+					if (data.data != "") {
+						// var dataPeo = data.data[0];
+						// console.log('dataPeo:')
+						// console.log(dataPeo)
+						var attendArry = [];
+						// attendArry = dataPeo.split(',');
+						attendArry = data.data;
+						// console.log('attendArry:')
+						// console.log(attendArry)
+						$(".peoName").each(function (i) {
+							var test = $(this).data('pid');
+							// console.log("这是data-pid")
+							// console.log(test)
+							$(this).removeClass("conflictName");
+							for (j = 0; j < attendArry.length; j++) {
+								if (test == attendArry[j]) {
+									$(this).addClass("conflictName");
+								}
 							}
-						}
-					});
+						});
 
-					if (attendArry != '') {
 						//提示冲突人员
 						var tip_index = 0;
-						$(document).on('mouseenter', '.layui-slider-bar,.layui-slider-wrap', function () {
-							tip_index = layer.tips('该时间段有人员冲突', '.layui-slider-bar,.layui-slider-wrap', {
-								time: 2000,
-								tips: ['#FF5722']
+						$(".conflictName").mouseenter(function () {
+							var index = $(".conflictName").index(this);
+							var str = '.conflictName:eq(' + index + ')';
+							tip_index = layer.tips('该时间段冲突', str, {
+								time: 1000,
+								tips: [1, '#FF5722'],
 							});
-						}).on('mouseleave', '.layui-slider-bar,.layui-slider-wrap', function () {
+						});
+						$(".conflictName").mouseleave(function () {
 							layer.close(tip_index);
 						});
 
-						
+						//时间轴提示冲突人员
+						// var tip_index = 0;
+						// $(document).on('mouseenter', '.infoAttend', function () {
+						// 	tip_index = layer.tips('查看详情', '.infoAttend', {
+						// 		time: 1000
+						// 	});
+						// }).on('mouseleave', '.infoAttend', function () {
+						// 	layer.close(tip_index);
+						// });
+		                $(".mytips").css("display", "inline");
+					} else {
+						$(".peoName").each(function (i) {
+							$(this).removeClass("conflictName");
+						})
+		                $(".mytips").css("display", "none");
 					}
-				} else {
-					$(".peoName").each(function (i) {
-						$(this).removeClass("conflictName");
-					})
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log('ajax请求失败')
 				}
-			},
-			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				console.log('ajax请求失败')
-			}
-		});
-
+			});
+		}
 	}
 
-	//提示冲突人员
-	var tip_index = 0;
-	$(document).on('mouseenter', '.conflictName', function () {
-		tip_index = layer.tips('该时间段冲突', '.conflictName', {
-			time: 2000
-		});
-	}).on('mouseleave', '.conflictName', function () {
-		layer.close(tip_index);
-	});;
+
 
 })

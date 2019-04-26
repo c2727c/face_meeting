@@ -89,6 +89,14 @@
 
 .conflictName {
     background: #FF5722;
+    /* background: #FFDAB9; */
     color: #FFF;
+    border-radius: 25px;
+}
+
+.mytips {
+    background: #FF5722;
+    color: #fff;
     border-radius: 5px;
+    font-size: 16px;
 }

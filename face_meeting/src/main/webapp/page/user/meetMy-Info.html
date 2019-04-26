@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon" href="../../images/ico/favicon.ico">
   <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
@@ -45,15 +46,19 @@
       border-radius: 8%;
       padding: 8px;
     }
+
     .centerAll {
-        text-align: center;
+      text-align: center;
     }
+
     .point {
-       cursor: pointer;
+      cursor: pointer;
     }
+
     .peoAll {
       display: none;
     }
+
     .layui-colla-title {
       position: relative;
       height: 42px;
@@ -65,7 +70,7 @@
       font-size: 14px;
       overflow: hidden;
     }
-    </style>
+  </style>
 </head>
 
 
@@ -77,6 +82,39 @@
     <div style="padding: 5px; background-color: #F2F2F2;">
       <div id="content">
         <!-- 填入模板 -->
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <div class="layui-row">
+              <h3 class="layui-col-xs8" style="font-weight:bold"></h3>
+            </div>
+          </div>
+          <div class="layui-card-body">
+            <div class="layui-row">
+              <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
+              <div class="layui-col-xs10"></div>
+            </div>
+            <br>
+            <div class="layui-row">
+              <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
+              <div class="layui-col-xs10">
+              </div>
+            </div>
+            <br>
+            <div class="layui-row">
+              <div class="layui-col-xs2" style="color:#c2c2c2">房间：</div>
+              <div class="layui-col-xs10">
+                <div class="layui-row">
+                  <div class=" layui-inline">
+                    <div class="rName layui-inline"></div>
+                  </div>
+                  <div class=" layui-inline">,位于<div class="rAddr layui-inline"></div>
+                  </div>
+                  <div class=" layui-inline">,可容纳<div class="rSize layui-inline"></div>人</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -107,7 +145,8 @@
                 <div class="layui-row">
                   <div class="layui-col-xs4">
                     <div class="layui-row centerAll">
-                      <i class="iconfont icon-sys-dangrishishichuqinbaobiao infoAttend  point" style="font-size: 30px;"></i>
+                      <i class="iconfont icon-sys-dangrishishichuqinbaobiao infoAttend  point"
+                        style="font-size: 30px;"></i>
                     </div>
                     <div class="layui-row centerAll">
                       报表详情
@@ -191,130 +230,137 @@
     {{ startDate.dayOfWeek }}
     <br>
     {{if startTime.hour< 10}}
-        0{{startTime.hour}}:
+    0{{startTime.hour}}:
     {{ else if startTime.hour >= 10}}
-        {{startTime.hour}}:
+    {{startTime.hour}}:
     {{/if}}
     {{if startTime.minute< 10}}
-        0{{startTime.minute}}
+    0{{startTime.minute}}
     {{ else if startTime.minute >= 10}}
-        {{startTime.minute}}
+    {{startTime.minute}}
     {{/if}}
     -
     {{if endTime.hour< 10}}
-        0{{endTime.hour}}:
+    0{{endTime.hour}}:
     {{ else if endTime.hour >= 10}}
-        {{endTime.hour}}:
+    {{endTime.hour}}:
     {{/if}}
     {{if endTime.minute< 10}}
-        0{{endTime.minute}}
+    0{{endTime.minute}}
     {{ else if endTime.minute >= 10}}
-        {{endTime.minute}}
+    {{endTime.minute}}
     {{/if}}
   </script>
   <script id="meetInfo" type="text/html">
     <div class="layui-card">
-    <div class="layui-card-header">
-      <div class="layui-row">
-        <h3 class="layui-col-xs8" style="font-weight:bold">{{ mTitle }}</h3>
-        <div class="hidediv layui-col-xs4" style="text-align:right">
-          <div class="layui-btn-group">
-            <button class="layui-btn layui-btn-sm " id="editMeet">
-              <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
-            </button>
-            <button class="layui-btn layui-btn-sm  btnDelGroup">
-              <i class="layui-icon layui-icon-delete" style="font-size: 30px;"></i>
-            </button>
+      <div class="layui-card-header">
+        <div class="layui-row">
+          <h3 class="layui-col-xs8" style="font-weight:bold">{{ mTitle }}</h3>
+          <div class="hidediv layui-col-xs4" style="text-align:right">
+            <div class="layui-btn-group">
+              <button class="layui-btn layui-btn-sm " id="editMeet">
+                <i class="layui-icon layui-icon-edit" style="font-size: 30px;"></i>
+              </button>
+              <button class="layui-btn layui-btn-sm  btnDelGroup">
+                <i class="layui-icon layui-icon-delete" style="font-size: 30px;"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="layui-card-body">
-      <div class="layui-row">
-        <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
-        <div class="layui-col-xs10">{{ mInfo }}</div>
-      </div>
-      <br>
-      <div class="layui-row">
-        <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
-        <div class="layui-col-xs10">
+      <div class="layui-card-body">
+        <div class="layui-row">
+          <div class="layui-col-xs2" style="color:#c2c2c2">说明：</div>
+          <div class="layui-col-xs10">{{ mInfo }}</div>
+        </div>
+        <br>
+        <div class="layui-row">
+          <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
+          <div class="layui-col-xs10">
 
-          {{ each mEventList}}
-          {{include 'time' $value}}
-          <!--引入子模板-->
-          {{/each}}
-        </div>
-      </div>
-      <br>
-      <div class="layui-row">
-        <div class="layui-col-xs2" style="color:#c2c2c2">房间：</div>
-        <div class="layui-col-xs10">
-          <div class="layui-row">
-            <div class=" layui-inline"><div class="rName layui-inline"></div></div>
-            <div class=" layui-inline">,位于<div class="rAddr layui-inline"></div></div>
-            <div class=" layui-inline">,可容纳<div class="rSize layui-inline"></div>人</div>
+            {{ each mEventList}}
+            {{include 'time' $value}}
+            <!--引入子模板-->
+            {{/each}}
           </div>
-          <!-- <div class="layui-row">
+        </div>
+        <br>
+        <div class="layui-row">
+          <div class="layui-col-xs2" style="color:#c2c2c2">房间：</div>
+          <div class="layui-col-xs10">
+            <div class="layui-row">
+              <div class=" layui-inline">
+                <div class="rName layui-inline"></div>
+              </div>
+              <div class=" layui-inline">,位于<div class="rAddr layui-inline"></div>
+              </div>
+              <div class=" layui-inline">,可容纳<div class="rSize layui-inline"></div>人</div>
+            </div>
+            <!-- <div class="layui-row">
             简介：<div></div>
           </div> -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </script>
   <script id="peopleList" type="text/html">
     {{ each mAttendList value index}}
     <div class="layui-col-xs2">
-        <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
-        <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
+      <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}"
+          class="people-circle"></div>
+      <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
     </div>
     {{/each}}
   </script>
   <script id="attendance" type="text/html">
-  <div class="layui-collapse">
-    <div class="layui-colla-item layui-row">
-      <h2 class="layui-colla-title">
-        <i class="iconfont icon-yidao" style="font-size: 30px; "></i>
-        已到
-      </h2>
-      <div class="layui-colla-content layui-row layui-show">
-        {{ each checkedin value index}}
-        <div class="layui-col-xs3">
-          <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
-          <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
+    <div class="layui-collapse">
+      <div class="layui-colla-item layui-row">
+        <h2 class="layui-colla-title">
+          <i class="iconfont icon-yidao" style="font-size: 30px; "></i>
+          已到
+        </h2>
+        <div class="layui-colla-content layui-row layui-show">
+          {{ each checkedin value index}}
+          <div class="layui-col-xs3">
+            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}"
+                class="people-circle"></div>
+            <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
+          </div>
+          {{ /each}}
         </div>
-        {{ /each}}
       </div>
-    </div>
-    <div class="layui-colla-item layui-row">
-      <h2 class="layui-colla-title">
-        <i class="iconfont icon-not-to" style="font-size: 30px; "></i>
-        未到
-      </h2>
-      <div class="layui-colla-content layui-show">
+      <div class="layui-colla-item layui-row">
+        <h2 class="layui-colla-title">
+          <i class="iconfont icon-not-to" style="font-size: 30px; "></i>
+          未到
+        </h2>
+        <div class="layui-colla-content layui-show">
           {{ each noshow value index}}
           <div class="layui-col-xs3">
-            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
+            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}"
+                class="people-circle"></div>
             <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
           </div>
           {{ /each}}
+        </div>
       </div>
-    </div>
-    <div class="layui-colla-item layui-row">
-      <h2 class="layui-colla-title">
-        <i class="iconfont icon-qingjia1" style="font-size: 30px; "></i>
-        请假
-      </h2>
-      <div class="layui-colla-content layui-show">
+      <div class="layui-colla-item layui-row">
+        <h2 class="layui-colla-title">
+          <i class="iconfont icon-qingjia1" style="font-size: 30px; "></i>
+          请假
+        </h2>
+        <div class="layui-colla-content layui-show">
           {{ each canceled value index}}
           <div class="layui-col-xs3">
-            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}" class="people-circle"></div>
+            <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{value.pIcon}}"
+                class="people-circle"></div>
             <div class="layui-row" style="text-align: center; font-size: 10px;">{{value.pName}}</div>
           </div>
           {{ /each}}
+        </div>
       </div>
     </div>
-  </div>
   </script>
 
 
