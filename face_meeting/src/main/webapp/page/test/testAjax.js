@@ -3,13 +3,118 @@ layui.use(['element', 'layer', 'jquery'], function () {
 	var layer = layui.layer;
 	var $ = layui.$;
 
+	// var userId = 'user01'
+	// console.log(userId)
+	// var datatime = '2019-03-02'
+	// console.log(datatime)
+
+	// 请求部门下的人员
+	// var url = path + "/user/group/findAllDept2.do";
+	// console.log("请求controller的url是:" + url)
+	// $.ajax({
+	// 	url: url,
+	// 	type: "get",
+	// 	dataType: "json",
+	// 	success: function (data) {
+	// 		if (data.status == 0) {
+	// 			console.log(data)
+	// 			$("#test1").html(JSON.stringify(data));
+	// 		}
+	// 	},
+	// 	error: function () {
+	// 		console.log("ajax请求失败");
+	// 	}
+	// });
+
+	// var url = path + '/user/getPerson.do';
+	// var userId = 'user01';
+	// $.ajax({
+	// 	url: url,
+	// 	type: "post",
+	// 	traditional: true, //这使json格式的字符不会被转码
+	// 	data: JSON.stringify({
+	// 		"pId": userId,
+	// 	}),
+	// 	contentType: 'application/json;charset=UTF-8', //这里的这行是关键
+	// 	dataType: "json",
+	// 	// dataType: "text",
+	// 	success: function (data) {
+	// 		console.log(data)
+	// 		console.log("data.data是：" + JSON.stringify(data.data))
+	// 		$("#test1").html(JSON.stringify(data));
+	// 	},
+	// 	error: function () {
+	// 		console.log("ajax请求失败");
+	// 	}
+	// });
+
+	//提交会议
+	// var mTitle = '吃饭'
+	// var mInfo = '无'
+	// var mSize = '20'
+	// var mSpan = '60'
+	// var pId_FQ = 'user01'
+	// var rId = 'CR001'
+	// var startDate = '2019-03-10'
+	// var startTime = '18:00'
+	// var endTime = '19:00'
+	// var attendList = 'user01,user02,user03'
+	// var url = path + "/meeting/add.do";
+	// console.log("请求controller的url是:" + url)
+	// $.ajax({
+	// 	url: url,
+	// 	type: "post",
+	// 	data: {
+	// 		'mTitle': mTitle,
+	// 		'mInfo': mInfo,
+	// 		'mSize': mSize,
+	// 		'mSpan': mSpan,
+	// 		'pId_FQ': pId_FQ,
+	// 		'rId': rId,
+	// 		'startDate': startDate,
+	// 		'startTime': startTime,
+	// 		'endTime': endTime,
+	// 		'attendList': attendList,
+	// 	},
+	// 	dataType: "json",
+	// 	success: function (data) {
+	// 		console.log("传过来的是：")
+	// 		console.log(data)
+	// 		console.log("data.data是：" + JSON.stringify(data.data))
+	// 		$("#test1").html(JSON.stringify(data));
+	// 	},
+	// 	error: function (XMLHttpRequest, textStatus, errorThrown) {
+	// 		console.log("ajax请求失败");
+	// 	}
+	// });
+
+// 	var mNo = 25;
+// //	var userId = 'user01'
+// 	var url = path + "/meeting/report.do";
+//     layer.msg(url);
+// 	$.ajax({
+// 		url: url,
+// 		type: "post",
+// 		data: {
+// 			'mNo': mNo,
+// 		},
+// 		dataType: "json",
+// 		success: function (data) {
+//             layer.alert('只想弱弱提示');
+// 			$("#test1").html(JSON.stringify(data));
+// 		},
+// 		error: function (XMLHttpRequest, textStatus, errorThrown) {
+// 			layer.alert("ajax请求失败");
+// 		}
+// 	});
+
 	var url = path + "/meeting/conflictTest.do";
-	console.log('url:' + url)
-	var attendList = '1210051224@qq.com,1659010991@qq.com,2319277867@qq.com,2516485257@qq.com'
+	console.log('url:'+url)
+	var attendList = '1210051224@qq.com,1659010991@qq.com'
 	var startDate = '2019-04-14'
-	var startTime = '14:00'
+	var startTime = '22:00'
 	var endTime = '23:00'
-	// layer.msg(url);
+    // layer.msg(url);
 	$.ajax({
 		url: url,
 		type: "post",
@@ -21,12 +126,10 @@ layui.use(['element', 'layer', 'jquery'], function () {
 		},
 		dataType: "json",
 		success: function (data) {
-			console.log(attendList)
+			layer.alert('只想弱弱提示');
+			layer.alert(data)
 			console.log(data)
-			if (data.data != "") {
-				var strPeo = data.data[0];
-				console.log(strPeo)
-			}
+			// $("#test1").html(JSON.stringify(data));
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			// layer.alert("ajax请求失败");
