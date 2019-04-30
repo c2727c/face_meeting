@@ -19,13 +19,6 @@ public class AnalyseServiceImple implements AnalyseService{
 	@Resource
 	private AnalyseDao analyseDao;
 	
-	public NoteResult<Map<Time, Integer>> dailyAvilable(Date date) {
-		Map<Time, Integer> map;
-		map = analyseDao.dailyAvilable(date);
-		NoteResult<Map<Time, Integer>> result = 
-				new NoteResult<Map<Time, Integer>>(0,"成功",map);
-		return result;
-	}
 	
 	public NoteResult<EChart> dailyAvilable2(Date date) {
 		List<AvilableCount> lav;
