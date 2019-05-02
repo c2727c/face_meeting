@@ -60,9 +60,15 @@
 			<result column="startTime" property="startTime" />
 			<result column="endTime" property="endTime" />
 		</collection>
+		<collection property="mAttendList" column="mNo"
+			ofType="PersonLight"
+			javaType="java.util.ArrayList"
+			select="selectmAttendListmini">
+		</collection>
 	</resultMap>
 	<insert id="save" useGeneratedKeys="true" 
 	    keyProperty="mNo" 
+	    keyColumn="mNo" 
 		parameterType="cn.drrs.face_meeting.entity.Meeting">
 		insert into Meeting values(NULL,#{mTitle},#{mInfo},#{mSize},#{mSpan},DEFAULT,#{pId_FQ},'pass',DEFAULT);
 	</insert>
@@ -110,6 +116,11 @@
 		parameterType="int"
 		resultType="PersonLight">
 		select * from person natural join pm_attend where mNo=#{mNo};
+	</select>
+	<select id="selectmAttendListmini" 
+		parameterType="int"
+		resultType="PersonLight">
+		select pId,pName,pIcon from person natural join pm_attend where mNo=#{mNo};
 	</select>
 	<select id="selectmInformList" 
 		parameterType="int"

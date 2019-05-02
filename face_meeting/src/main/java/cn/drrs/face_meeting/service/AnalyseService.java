@@ -11,7 +11,7 @@ import cn.drrs.face_meeting.util.NoteResult;
 
 public interface AnalyseService {
 	//·查询会议室可用情况日分布（给出一个日期查询当日的会议室预约情况返回<时刻，可用会议室数>集）
-	public NoteResult<Map<Time,Integer>> dailyAvilable(Date d);
+//	public NoteResult<Map<Time,Integer>> dailyAvilable(Date d);
 	public NoteResult<EChart> dailyAvilable2(Date d);
 	//·查询某日期区间内的会议室利用率
 	//·根据用户已选参会人推荐分组

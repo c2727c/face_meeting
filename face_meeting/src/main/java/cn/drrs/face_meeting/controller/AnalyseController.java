@@ -17,13 +17,13 @@ import cn.drrs.face_meeting.util.NoteResult;
 @RequestMapping("/analyse")	//匹配请求路径
 public class AnalyseController {
 	
-	@Resource
-	private AnalyseService analyseService;
-	public NoteResult<Map<Time,Integer>> dailyAvilable(String dateInString){
-		NoteResult<Map<Time,Integer>> result;
-		Date date = Date.valueOf(dateInString); 
-		result = analyseService.dailyAvilable(date);
-		return result;
-	}
+//	@Resource
+//	private AnalyseService analyseService;
+//	public NoteResult<Map<Time,Integer>> dailyAvilable(String dateInString){
+//		NoteResult<Map<Time,Integer>> result;
+//		Date date = Date.valueOf(dateInString); 
+//		result = analyseService.dailyAvilable(date);
+//		return result;
+//	}
 
 }

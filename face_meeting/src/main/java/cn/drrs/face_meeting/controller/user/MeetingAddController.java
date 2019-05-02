@@ -70,7 +70,6 @@ public class MeetingAddController {
 		for(String s :attends) {
 			for(String c :conf) {
 				if(s.equals(c))re.add(s);
-				break;
 			}
 		}
 		nr.setAll(0, "会程冲突名单", re);
@@ -95,7 +94,7 @@ public class MeetingAddController {
 		NoteResult<Object> nr = new NoteResult<Object>();
 		System.err.println("测试点mInfo");
 		System.err.println(mInfo);
-		Meeting m;
+		Meeting m;//
 		try {
 			m = new Meeting(mTitle, mInfo, mSize, mSpan, pId_FQ);
 			service.add(m);

@@ -13,12 +13,12 @@ import java.sql.Time;
 
 public interface AnalyseDao {
 
-	@MapKey("count_point")
-	public Map<Time,Integer> dailyAvilable(Date day);
+//	@MapKey("count_point")
+//	public Map<Time,Integer> dailyAvilable(Date day);
 	
 	public List<AvilableCount> dailyAvilable2(Date day);
 	
-	@MapKey("count_point")
-	public int dailyAvilable3(Date day);
+//	@MapKey("count_point")
+//	public int dailyAvilable3(Date day);
 	
 }

@@ -179,6 +179,7 @@ public class MeetingServiceImple implements MeetingService{
 		List<PersonLight> noshow= new ArrayList<PersonLight>(); 
 		List<PersonLight> cancel= new ArrayList<PersonLight>(); 
 		for(PersonLight p:m.getmAttendList()) {
+			p.setpFace(null);
 			if(p.getState().equals("noshow")) {
 				noshow.add(p);
 			}else if(p.getState().equals("canceled")) {
@@ -186,7 +187,7 @@ public class MeetingServiceImple implements MeetingService{
 			}else {
 				checkedin.add(p);
 			}
-		}
+		} 
 		Report rp = new Report();
 		rp.setmNo(m.getmNo());
 		rp.setCanceled(cancel);
