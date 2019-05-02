@@ -41,4 +41,5 @@ public interface MeetingService {
 	public NoteResult<List<Meeting>> getMyMeetings(String pId,LocalDate ld,int option);
 	public NoteResult<Meeting> findFullInfoBymNo(int mNo);
 	public NoteResult<Report> findReport(int mNo);
+	public ResponseData getPageofMeetingByDate(int page, int limit, LocalDate parse);
 }

@@ -7,7 +7,7 @@
     <title></title>
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-    <script type="text/javascript" src = "../../js/base.js"></script>
+    <script type="text/javascript" src = "../../js/user/common.js"></script>
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
 </head>
 
@@ -76,11 +76,9 @@
 			var form = layui.form;
 			
 			form.on('submit(updateRoomInfoButton)',function(data){
-				console.log(data.field);
-				console.log(basePath);
 				layer.msg(JSON.stringify(data.field));
 				$.ajax({
-					url:basePath+"/admin/room/updateRoom.do",
+					url: path+"/admin/room/updateRoom.do",
 					traditional:true,
 					contentType:"application/json;charset=utf-8",
 					type:"post",

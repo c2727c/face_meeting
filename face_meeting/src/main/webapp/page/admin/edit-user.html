@@ -77,7 +77,7 @@
 			//form.render('radio');
 			//form.render();
 			$.ajax({
-				url:basePath+"/user/getPerson.do",
+				url: path+"/user/getPerson.do",
 				type:"post",
 				data:JSON.stringify({"pId":pId}),
 				traditional:true,
@@ -107,7 +107,7 @@
 				var data = data.field;
 				console.log(data);
 				$.ajax({
-					url:basePath+"/user/userInfoUpdate.do",
+					url: path+"/user/userInfoUpdate.do",
 					type:"post",
 					data:JSON.stringify({
 						"pId":data.pId,

@@ -7,6 +7,7 @@
     <title></title>
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src = "../../js/user/common.js"></script>
     <script type="text/javascript" src="../../js/cookie.js"></script>
     <script type="text/javascript" src="../../js/lay-verify.js"></script>
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
@@ -117,13 +118,13 @@
 			var layer = layui.layer;
 			var $ = layui.$;
 			var form = layui.form;
-			var userId = getCookie("userId"); 
+			//var userId = getCookie("userId"); 
 			$.ajax({
-				url: "http://localhost:8080/face_meeting/user/getPerson.do",
+				url: path+"/user/getPerson.do",
 				type:"post",
 				traditional:true,
 				contentType:"application/json;charset=utf-8",
-				data:JSON.stringify({"pId":userId}),
+				data:JSON.stringify({"pId":"2319277867@qq.com"}),
 				dataType:"json",
 				success:function(data){
 					if(data.status==0){
@@ -143,7 +144,7 @@
 					}else layer.msg(data.msg,{icon:5,time:1000});
 				},
 				error:function(){
-					layer.msg("ajax请求失败",{icon:5,time:1000});
+					layer.msg("您还没有登录",{icon:5,time:1000});
 				},
 			});
 			
@@ -151,7 +152,7 @@
 				var userInfo=data.field;
 				console.log(userInfo);
 				$.ajax({
-					url:"http://localhost:8080/face_meeting/user/userInfoUpdate.do",
+					url: path+"/user/userInfoUpdate.do",
 					type:"post",
 					contentType:"application/json;charset=utf-8",
 					traditional:true,
@@ -171,7 +172,7 @@
 			form.on("submit(changePwd)",function(data){
 				var password=data.field.password;
 				$.ajax({
-					url:"http://localhost:8080/face_meeting/user/userInfoUpdate.do",
+					url: path+"/user/userInfoUpdate.do",
 					type:"post",
 					contentType:"application/json;charset=utf-8",
 					traditional:true,
@@ -187,29 +188,6 @@
 					},
 				});
 			});
-			/* 方式1：获取cookie*/
-			/* var adminName=getCookie("username");
-			$("#adminName").html(adminName); */
-			//方式2：获取session
-			//var userJsonInfo=sessionStorage.getItem("userInfo"); 
-			//var userInfo=JSON.parse(userJsonInfo);
-			//console.log(userInfo2);//注意ajax是异步请求，也就是userInfo2没有获得之前，就已经输出userInfo
-			//console.log(userInfo);
-			//console.log(userInfo.userName);
-			/* 预设元素属性 */
-			//var username=userInfo.userName; 
-			/* form.val("userInfo",{
-				"username":username,
-				"sex":userInfo.userSex,
-				"department":userInfo.userDept,
-				"role":userInfo.userRole,
-				"realName":username,
-				"phone":userInfo.userPhone,
-				"email":"2319277867@qq.com"
-			});
-			form.val("pswChange",{
-				"username":username,
-			}); */
 		});
 	</script>
 </body>

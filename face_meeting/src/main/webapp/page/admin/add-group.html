@@ -7,7 +7,7 @@
     <title></title>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src = "../../js/base.js"></script>
+    <script type="text/javascript" src = "../../js/user/common.js"></script>
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
 </head>
 
@@ -46,9 +46,9 @@
 			var form = layui.form;
 			form.on('submit(addGroupButton)',function(data){
 				console.log(data.field);
-				console.log(basePath);
+				console.log(path);
 				$.ajax({
-					url:basePath+"/admin/group/addGroup.do",
+					url:path+"/admin/group/addGroup.do",
 					traditional:true,
 					contentType:"application/json;charset=utf-8",
 					type:"post",

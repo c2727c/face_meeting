@@ -7,7 +7,7 @@
     <title></title>
     <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../js/jquery-1.11.1.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src = "../../js/user/common.js"></script>
     <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
 </head>
 
@@ -21,13 +21,13 @@
 	    <thead>
 	      <tr>
 	        <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-	        <th lay-data="{field:'pId',sort:true}">pId</th>
-	        <th lay-data="{field:'pName',sort:true}">pName</th>
-	        <th lay-data="{field:'pGender', sort: true}">pGender</th>
-	        <th lay-data="{field:'pRole', sort: true}">pRole</th>
-	        <th lay-data="{field:'pDept', sort: true}">pDept</th>
-	        <th lay-data="{field:'pTel', sort: true}">pTel</th>
-	        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">数据操作</th>
+	        <th lay-data="{field:'pId',width:170,sort:true}">邮箱</th>
+	        <th lay-data="{field:'pName',width:80,sort:true}">姓名</th>
+	        <th lay-data="{field:'pGender', width:70,sort: true}">性别</th>
+	        <th lay-data="{field:'pRole', width:70,sort: true}">职位</th>
+	        <th lay-data="{field:'pDept', width:80,sort: true}">部门</th>
+	        <th lay-data="{field:'pTel', width:130,sort: true}">手机号</th>
+	        <th lay-data="{width:158, align:'center', toolbar: '#barDemo'}">数据操作</th>
 	      </tr>
 	    </thead>
 	</table>
@@ -117,7 +117,7 @@
 		                    var orderNoList = new Array();
 		                    orderNoList[0]=data.pId;
 		                    $.ajax({
-				        		url:basePath+"/user/deleteUser.do",
+				        		url: path+"/user/deleteUser.do",
 				        		type:"post",
 				        		contentType:"application/json;charset=utf-8",
 				        		data:JSON.stringify(orderNoList),
@@ -189,7 +189,7 @@
 		        	}
 		        	//ajax传list集合
 		        	$.ajax({
-		        		url:basePath+"/user/deleteUser.do",
+		        		url: path+"/user/deleteUser.do",
 		        		type:"post",
 		        		contentType:"application/json;charset=utf-8",
 		        		data:JSON.stringify(orderNoList),

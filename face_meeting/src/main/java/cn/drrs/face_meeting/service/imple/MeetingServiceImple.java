@@ -258,6 +258,18 @@ public class MeetingServiceImple implements MeetingService{
 		}
 	}
 
+	@Override
+	public ResponseData getPageofMeetingByDate(int page, int limit, LocalDate parse) {
+		// TODO Auto-generated method stub
+		page=(page-1)*limit;
+		ResponseData rd = new ResponseData();
+		List<Meeting> list = new ArrayList<Meeting>();
+		rd.setCode("0");
+		rd.setMsg("查询成功");
+		//int num=meetingDao.queryMeetingCountByDate()
+		return rd;
+	}
+
 	
 
 	
