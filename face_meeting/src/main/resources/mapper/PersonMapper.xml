@@ -94,9 +94,9 @@
 		parameterType="cn.drrs.face_meeting.entity.Person">
 		update person
 			<set>
-			    <if test="pPass!=null">pPass=#{pPass},</if>
-			    <if test="pName!=null">pName=#{pName},</if>
-			    <if test="pGender!=null">pGender=#{pGender},</if>
+			    <if test="pPass!=null">nPoint=#{nPoint},</if>
+			    <if test="pName!=null">nPointTime=#{nPointTime},</if>
+			    <if test="pGender!=null">nDrag=#{nDrag},</if>
 			    <if test="pRole!=null">pRole=#{pRole},</if>
 			    <if test="pDept!=null">pDept=#{pDept},</if>
 			    <if test="pPrivilege!=null">pPrivilege=#{pPrivilege},</if>

@@ -83,7 +83,9 @@ public class MeetingTest {
 	}
 	@Test
 	public void detailTest() {
-		mdc.detailWithoutFace(23);
+		NoteResult<Meeting> nr = new NoteResult<Meeting>();
+		nr=mdc.detailWithoutFace(23);
+		nr.printJSON();
 		
 	}
 
