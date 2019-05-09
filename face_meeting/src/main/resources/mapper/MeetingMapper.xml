@@ -53,12 +53,9 @@
 		    select="selectCreator">
 		</association>
 		<collection property="mEventList" column="mNo"
-			ofType="cn.drrs.face_meeting.entity.Event">
-			<id column="mNo" property="mNo" />
-			<id column="rId" property="rId" />
-			<result column="startDate" property="startDate" />
-			<result column="startTime" property="startTime" />
-			<result column="endTime" property="endTime" />
+			ofType="cn.drrs.face_meeting.entity.Event"
+			javaType="java.util.ArrayList"
+			select="selectmEventList">
 		</collection>
 		<collection property="mAttendList" column="mNo"
 			ofType="PersonLight"
