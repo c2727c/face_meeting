@@ -28,7 +28,7 @@ function getEchart(dateInString) {
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
-                        type: 'cross',
+                        type: 'line',
                         lable: {
                         	precision: '0',
                         }

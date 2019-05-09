@@ -88,8 +88,8 @@
 }
 
 .conflictName {
-    background: #FF5722;
-    /* background: #FFDAB9; */
+    /* background: #FF5722; */
+    background: #FFDAB9;
     color: #FFF;
     border-radius: 25px;
 }

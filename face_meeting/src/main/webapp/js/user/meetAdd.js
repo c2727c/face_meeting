@@ -211,6 +211,10 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		return result;
 	}
 
+	//房间大小改变调用房间列表
+	$('.mSize').bind('input oninput', function() {
+		getRoomList()
+	});
 	
 	//调用ajax获得可用房间列表
 	function getRoomList() {
