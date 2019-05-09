@@ -16,15 +16,36 @@
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
+                plugins: [ 'interaction', 'dayGrid' ],
                 header: {
-                    left: 'prev,next today',
+                    left: 'prevYear,prev,next,nextYear today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
                 },
+                height: 'parent',
                 defaultDate: '2019-04-12',
-                editable: true,
                 navLinks: true, // can click day/week names to navigate views
+                selectable: true,
+                selectMirror: true,
+                select: function(arg) {
+                	//点击处理事件
+                	layer.open({
+					  title: '添加会议事件'
+					  ,area: ['500px', '300px']
+					  ,content: '<h style="width:100px;font-size:20px;">会议标题&nbsp;&nbsp;&nbsp<\h><input style="align:right;"\>'
+					});
+                  /* var title = prompt('Event Title:');
+                  if (title) {
+                    calendar.addEvent({
+                      title: title,
+                      start: arg.start,
+                      end: arg.end,
+                      allDay: arg.allDay
+                    })
+                  }
+                  calendar.unselect() */
+                },
+                editable: true,
                 eventLimit: true, // allow "more" link when too many events
                 events: {
                     url: 'fullcalendar-4.1.0/events.json',
@@ -112,8 +133,8 @@
             <ul class="layui-tab-title">
 
             </ul>
-            <div class="layui-tab-content">
-                <div id='calendar' overflow="scroll"></div>
+            <div class="layui-tab-content" >
+                <div id='calendar'></div>
             </div>
         </div>
 
@@ -129,7 +150,13 @@
             var element = layui.element;
             // var layer = layui.layer;
             var $ = layui.$;
-
+            $('.fc-content').on('click',function(){
+                layer.open({
+                    title:"事件详情",
+                    area:['600px','400px'],
+                    content:"<div style=\"font-size:20px;\">会议内容:第一次全体会议</div><div></div><div>会议人数：50</div><div>会议地点：X201</div><div>会议主持：罗倩</div>",
+                });
+            });
             // 配置tab实践在下面无法获取到菜单元素
             $('.site-demo-active').on('click', function () {
                 document.getElementById("calendar").style.display='none';
