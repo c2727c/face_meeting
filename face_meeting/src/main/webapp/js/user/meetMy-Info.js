@@ -9,8 +9,9 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
     var upload = layui.upload;
 
     //取得会议详情
-    var url = path + "/meeting/detail.do";
-    // console.log("请求controller的url是:" + url)
+    // var url = path + "/meeting/detail.do";
+    var url = path + "/meeting/detailWithoutFace.do";
+    console.log("请求controller的url是:" + url)
     mNo = parent.mNo;
     // console.log('iframe-mNo:' + mNo)
     $.ajax({
@@ -21,6 +22,7 @@ layui.use(['element', 'layer', 'jquery', 'form', 'upload'], function () {
         },
         dataType: "json",
         success: function (data) {
+            console.log("detail")
             console.log(data);
             // console.log("data.data是：" + JSON.stringify(data.data))
             var html = template('meetInfo', data.data);

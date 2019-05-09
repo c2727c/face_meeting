@@ -131,7 +131,6 @@ function getEchart(dateInString) {
 }
 
 
-
 $(".echartButton").click(function () {
     $(".echart").slideToggle();
 })

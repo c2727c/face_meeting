@@ -52,9 +52,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		isInitValue: true,
 		value: new Date(),
 		done: function (value, date) {
-			// console.log("done:")
-			// console.log(value); //得到日期生成的值，如：2017-08-18
-			// console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
 			startDate = value;
 			getEchart(startDate);
 			getRoomList();
@@ -197,7 +194,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			Math.ceil(parseInt(strTime.charAt(4)) / 5) * 1;
 		return number;
 	}
-
 	//传入数字，得到格式化的时间。如‘08:00'
 	function getTimeValue(value) {
 		//自定义提示文本
@@ -215,6 +211,7 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 		return result;
 	}
 
+	
 	//调用ajax获得可用房间列表
 	function getRoomList() {
 		mSize = $(".mSize").val()
@@ -263,7 +260,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			}
 		});
 	}
-
 	//调用ajax获得已选人员列表
 	function getPersonList(attendList) {
 		// console.log('attendList:' + attendList)
@@ -291,7 +287,6 @@ layui.use(["element", "layer", "jquery", "form", "laydate", "slider"], function 
 			}
 		});
 	}
-
 	//测试人员冲突
 	function testConflict() {
 		var url = path + "/meeting/conflictTest.do";
