@@ -26,7 +26,8 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             },
             dataType: "json",
             success: function (data) {
-                // console.log(data)
+                console.log("小组")
+                console.log(data)
                 if (data.status == 0) {
                     // console.log("读入")
                     var html = template('meetGroup', {
@@ -79,7 +80,8 @@ layui.use(["element", "layer", "jquery", "form"], function () {
             type: "get",
             dataType: "json",
             success: function (data) {
-                // console.log(data)
+                console.log("部门")
+                console.log(data)
                 if (data.status == 0) {
                     // console.log("读入")
                     var html = template('meetDept', {

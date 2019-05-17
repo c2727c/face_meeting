@@ -14,7 +14,7 @@ Author: Lorenzo Cioni - https://github.com/lorecioni
 		//Default parameters
 		params = $.extend({
 			hints: [],
-			placeholder: '在公司部门中查找',
+			placeholder: '在部门中查找',
 			width: 200,
 			height: 16,
 			showButton: true,

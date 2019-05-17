@@ -35,7 +35,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                     $(".btnDelGroup").mouseenter(function () {
                         var index = $(".btnDelGroup").index(this);
                         var str = '.btnDelGroup:eq(' + index + ')';
-                        tip_index = layer.tips('加入该工作组', str, {
+                        tip_index = layer.tips('加入该组群', str, {
                             time: 1000
                         });
                     });
@@ -52,7 +52,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                         var url = path + "/user/group/join.do";
                         // console.log("请求controller的url是:" + url)
 
-                        layer.confirm('确定加入当前工作组？', {
+                        layer.confirm('确定加入当前组群？', {
                             btn: ['确定', '取消'] //按钮
                         }, function () {
                             $.ajax({

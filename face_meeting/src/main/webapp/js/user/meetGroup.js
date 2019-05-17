@@ -10,7 +10,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
     $(".btnAddPeople").on("click", function () {
         layer.open({
             type: 2,
-            title: ["加入新工作组"],
+            title: ["加入新的组群"],
             content: "meetGroup-do.html",
             area: ["411px", "98%"],
             skin: 'layui-layer-molv',
@@ -58,7 +58,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                         var url = path + "/user/group/quit.do";
                         // console.log("请求controller的url是:" + url)
 
-                        layer.confirm('确定退出当前工作组？', {
+                        layer.confirm('确定退出当前组群？', {
                             btn: ['确定', '取消'] //按钮
                         }, function () {
                             $.ajax({
@@ -95,7 +95,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                     $(".btnDelGroup").mouseenter(function () {
                         var index = $(".btnDelGroup").index(this);
                         var str = '.btnDelGroup:eq(' + index + ')';
-                        tip_index = layer.tips('退出工作组', str, {
+                        tip_index = layer.tips('退出组群', str, {
                             time: 1000
                         });
                     });
@@ -104,7 +104,7 @@ layui.use(["element", "layer", "jquery", "form"], function () {
                     });
 
                 } else {
-                    layer.msg("请求我的工作组失败", {
+                    layer.msg("请求我的组群失败", {
                         time: '1000',
                         icon: 5,
                     })
