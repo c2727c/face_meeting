@@ -96,7 +96,9 @@
             <br>
             <div class="layui-row">
               <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
-              <div class="layui-col-xs10">
+              <div class="layui-col-xs7">
+              </div>
+              <div class="layui-col-xs3">
               </div>
             </div>
             <br>
@@ -224,6 +226,7 @@
   <script id="time" type="text/html">
     {{ startDate.year}}-{{ startDate.monthValue}}-{{startDate.dayOfMonth}}
     &nbsp &nbsp
+    <br>
     {{ startDate.dayOfWeek }}
     <br>
     {{if startTime.hour< 10}}
@@ -273,12 +276,17 @@
         <br>
         <div class="layui-row">
           <div class="layui-col-xs2" style="color:#c2c2c2">时间：</div>
-          <div class="layui-col-xs10">
-
+          <div class="layui-col-xs4">
             {{ each mEventList}}
             {{include 'time' $value}}
             <!--引入子模板-->
             {{/each}}
+          </div>
+          <div class="layui-col-xs3" style="color:#c2c2c2;text-align: right;">发起人：</div>
+          <div class="layui-col-xs3">
+              <div class="layui-row" style="text-align: center;"><img src="data:image/jpeg;base64,{{creator.pIcon}}"
+                  class="people-circle"></div>
+              <div class="layui-row" style="text-align: center; font-size: 10px;">{{creator.pName}}</div>
           </div>
         </div>
         <br>
