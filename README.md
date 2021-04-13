@@ -1,6 +1,6 @@
-# 说明
+# Instructions
 
 
-war包成功，运行后生成的的war包实在与database平行的target目录下。
+If the war package proceed successively, The war package generated after running is actually in the target directory parallel to the database.
 
-放到服务器时，记得把face_meeting-0.0.1-SNAPSHOT.war改成face_meeting再放到tomcat的webapps目录下
+When you put it on the server, remember to change face_meeting-0.0.1-SNAPSHOT.war to face_meeting and then put it in the webapps directory of tomcat.
